@@ -1,0 +1,38 @@
+# Note
+* Use `repeat(n)` rather than `while(n--)`.
+* Use `error()` rather than `throw IllegalStateException()`.
+* Mark a function with `suspend` rather than call a coroutine builder inside the function.
+
+# How to show the name of the current thread and the name of the current coroutine
+* `Thread.currentThread().name`
+  * shows the name of the current thread without condition.
+  * shows the name of the current coroutine after the following preparation:
+    * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
+
+# Difference between intArrayOf() and arrayOf()
+```kotlin
+intArrayOf(1, 2, 3) // IntArray (int[] in Java)
+arrayOf(1, 2, 3) // Array<Int> (Integer[] in Java)
+```
+
+# How to initialize IntArray (int[] in Jva) only with size.
+```kotlin
+val xs = IntArray(size)
+```
+Note that there is no way to initialize Array<Int> (Integer[] in Java) only with size.
+
+# How to convert IntArray (int[] in Java) to Array<Int> (Integer[] in Java)
+```kotlin
+intArray.toTypedArray()
+```
+
+# How to sort a list
+```kotlin
+list.sorted()
+list.sortedDescending()
+```
+
+# How to sort a map by key
+```kotlin
+map.toSortedMap()
+```

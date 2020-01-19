@@ -1,0 +1,56 @@
+package util
+
+import kotlin.math.max
+
+object StringUtil {
+    fun alphabetize(s: String) = s.toCharArray().sorted().joinToString("")
+    fun equalsIgnoreCase(s1: String, s2: String) = s1.equals(s2, true)
+    fun isNeitherNullNorBlank(s: String?) = s != null && s.isNotBlank()
+    fun isNeitherNullNorEmpty(s: String?) = s != null && s.isNotEmpty()
+    fun replaceAt(s: String, index: Int, replacement: Char) = s.replaceRange(index, index + 1, replacement.toString())
+    fun splitLast(s: String) = s.substringBeforeLast("") to s.substringAfterLast("")
+
+    fun substrings(s: String) = sequence {
+        for (i in s.indices) {
+            for (j in i + 1..s.length) yield(s.substring(i, j))
+        }
+    }
+
+    fun isAllSameChars(s: String) = if (s.isEmpty()) {
+        true
+    } else {
+        s.all { s[0] == it }
+    }
+
+    /** https://en.wikipedia.org/wiki/Longest_common_subsequence_problem */
+    fun lcs(s1: String, s2: String): String {
+        if (s1.isEmpty() || s2.isEmpty()) return ""
+        val (s1_, s1last) = splitLast(s1)
+        val (s2_, s2last) = splitLast(s2)
+        if (s1last == s2last) return lcs(s1_, s2_) + s1last
+        val lcs1 = lcs(s1, s2_)
+        val lcs2 = lcs(s1_, s2)
+        return if (lcs1.length > lcs2.length) lcs1 else lcs2
+    }
+
+    /** https://en.wikipedia.org/wiki/Longest_common_subsequence_problem */
+    fun lcsLength(s1: String, s2: String) = List(s1.length + 1) {
+        IntArray(s2.length + 1)
+    }.also {
+        for (i in s1.indices) {
+            for (j in s2.indices) it[i + 1][j + 1] =
+                if (s1[i] == s2[j]) it[i][j] + 1 else max(it[i + 1][j], it[i][j + 1])
+        }
+    }[s1.length][s2.length]
+
+    fun permute(s: String): List<String> {
+        fun permute(s: String, result: String = ""): List<String> = if (s.isEmpty()) {
+            listOf(result)
+        } else {
+            s.flatMapIndexed { i, c ->
+                permute(s.removeRange(i, i + 1), result + c)
+            }
+        }
+        return permute(s)
+    }
+}

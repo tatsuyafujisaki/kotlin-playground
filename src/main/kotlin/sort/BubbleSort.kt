@@ -1,5 +1,8 @@
 package sort
 
+/**
+ * For educational purposes only
+ */
 object BubbleSort {
     fun sort(xs: IntArray) {
         var n = xs.size

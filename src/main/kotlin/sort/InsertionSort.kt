@@ -1,5 +1,8 @@
 package sort
 
+/**
+ * For educational purposes only
+ */
 object InsertionSort {
     fun sort(xs: IntArray) {
         for (i in 1 until xs.size) {

@@ -16,6 +16,12 @@ fun swap(xs: MutableList<Int>, i: Int, j: Int) {
     xs[j] = tmp
 }
 
+fun swap(xs: IntArray, i: Int, j: Int) {
+    val tmp = xs[i]
+    xs[i] = xs[j]
+    xs[j] = tmp
+}
+
 fun largestDivisor(n: Int): Int {
     for (i in 2..n) {
         if (n % i == 0) {

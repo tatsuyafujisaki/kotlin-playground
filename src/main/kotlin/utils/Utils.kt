@@ -10,4 +10,10 @@ fun sortByValueDescending(map: Map<Any, Int>) = map.toList().sortedByDescending 
 fun getEntryOfMaxValue(map: Map<Any, Int>) = map.maxBy { it.value }
 
 fun printArray(xs: Array<*>) = xs.forEach { println(it) }
+
+fun printArray(xs: IntArray) {
+    xs.forEach { print("$it ") }
+    println()
+}
+
 fun printTimeMillis(f: () -> Unit) = println(measureTimeMillis(f))

@@ -3,17 +3,13 @@ package utils
 import kotlin.system.measureTimeMillis
 
 fun readLineAsInts() = readLine()!!.split(' ').filter { it.isNotEmpty() }.map { it.toInt() }
+
 fun readLineAsDoubles() = readLine()!!.split(' ').filter { it.isNotEmpty() }.map { it.toDouble() }
 
 fun sortByValue(map: Map<Any, Int>) = map.toList().sortedBy { it.second }.toMap()
+
 fun sortByValueDescending(map: Map<Any, Int>) = map.toList().sortedByDescending { it.second }.toMap()
+
 fun getEntryOfMaxValue(map: Map<Any, Int>) = map.maxBy { it.value }
-
-fun printArray(xs: Array<*>) = xs.forEach { println(it) }
-
-fun printArray(xs: IntArray) {
-    xs.forEach { print("$it ") }
-    println()
-}
 
 fun printTimeMillis(f: () -> Unit) = println(measureTimeMillis(f))

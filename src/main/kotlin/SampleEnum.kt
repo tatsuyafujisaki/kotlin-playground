@@ -1,5 +1,5 @@
-enum class Enum1(val value: Int) : Interface1 {
-    Constant1(0) {
+enum class SampleEnum(val value: Int) : SampleInterface {
+    ConstantSample(0) {
         override val field1: String
             get() = "foo"
 
@@ -22,6 +22,6 @@ enum class Enum1(val value: Int) : Interface1 {
     }
 }
 
-interface Interface1 {
+interface SampleInterface {
     fun interfaceFunction1(s: String)
 }

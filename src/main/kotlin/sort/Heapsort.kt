@@ -25,15 +25,17 @@ object Heapsort {
         var indexOfMax = currentNodeIndex
         val leftChildIndex = 2 * currentNodeIndex + 1
         val rightChildIndex = 2 * currentNodeIndex + 2
-        if (leftChildIndex < nodeCount && xs[indexOfMax] < xs[leftChildIndex]) {
-            indexOfMax = leftChildIndex
-        }
-        if (rightChildIndex < nodeCount && xs[indexOfMax] < xs[rightChildIndex]) {
-            indexOfMax = rightChildIndex
-        }
-        if (currentNodeIndex != indexOfMax) {
-            swap(xs, currentNodeIndex, indexOfMax)
-            heapify(xs, nodeCount, indexOfMax)
+        if (leftChildIndex < nodeCount) {
+            if (xs[indexOfMax] < xs[leftChildIndex]) {
+                indexOfMax = leftChildIndex
+            }
+            if (rightChildIndex < nodeCount && xs[indexOfMax] < xs[rightChildIndex]) {
+                indexOfMax = rightChildIndex
+            }
+            if (currentNodeIndex != indexOfMax) {
+                swap(xs, currentNodeIndex, indexOfMax)
+                heapify(xs, nodeCount, indexOfMax)
+            }
         }
     }
 }

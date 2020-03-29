@@ -1,6 +1,7 @@
 # Best practices
 * Use `repeat(n)` rather than `while(n--)` for simplicity.
-* Use `copyRangeOf(...)` rather htan `sliceArray(...)` for simplicity.
+* Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.
+* Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
 * Use `error()` rather than `throw IllegalStateException()` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 

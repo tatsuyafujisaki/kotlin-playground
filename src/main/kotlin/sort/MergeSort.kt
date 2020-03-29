@@ -13,7 +13,6 @@ object MergeSort {
         var leftIndex = 0
         var rightIndex = 0
         val merged = mutableListOf<Int>()
-
         while (true) {
             if (lefts[leftIndex] <= rights[rightIndex]) {
                 merged.add(lefts[leftIndex++])
@@ -29,7 +28,6 @@ object MergeSort {
                 }
             }
         }
-
         return merged.toIntArray()
     }
 }

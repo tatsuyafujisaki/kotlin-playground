@@ -15,7 +15,7 @@ intArrayOf(1, 2, 3) // IntArray (int[] in Java)
 arrayOf(1, 2, 3) // Array<Int> (Integer[] in Java)
 ```
 
-# How to initialize IntArray (int[] in Jva) only with size.
+# How to initialize IntArray (int[] in Java) only with size.
 ```kotlin
 val xs = IntArray(size)
 ```

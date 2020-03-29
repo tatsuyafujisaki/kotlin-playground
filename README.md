@@ -1,6 +1,7 @@
-# Note
-* Use `repeat(n)` rather than `while(n--)`.
-* Use `error()` rather than `throw IllegalStateException()`.
+# Best practices
+* Use `repeat(n)` rather than `while(n--)` for simplicity.
+* Use `copyRangeOf(...)` rather htan `sliceArray(...)` for simplicity.
+* Use `error()` rather than `throw IllegalStateException()` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
 # How to show the name of the current thread and the name of the current coroutine

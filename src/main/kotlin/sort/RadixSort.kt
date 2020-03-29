@@ -23,9 +23,7 @@ object RadixSort {
          * At this point,
          * frequency[0] ... frequency of '0'
          * frequency[1] ... frequency of '0' + frequency of '1'
-         * .
-         * .
-         * .
+         * ⋮
          * frequency[9] ... frequency of '0' + frequency of '1' + ... + frequency of '9'
          */
         for (i in xs.lastIndex downTo 0) {

@@ -1,10 +1,8 @@
 package sort
 
-import utils.swap
-
 object Quicksort {
     fun sort(xs: IntArray) {
-        sort(xs, 0, xs.indices.last)
+        sort(xs, 0, xs.lastIndex)
     }
 
     private fun sort(xs: IntArray, low: Int, high: Int) {
@@ -32,5 +30,11 @@ object Quicksort {
             swap(xs, i++, j--)
         }
         return i
+    }
+
+    private fun swap(xs: IntArray, i: Int, j: Int) {
+        val tmp = xs[i]
+        xs[i] = xs[j]
+        xs[j] = tmp
     }
 }

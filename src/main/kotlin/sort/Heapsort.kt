@@ -1,7 +1,5 @@
 package sort
 
-import utils.swap
-
 object Heapsort {
     fun sort(xs: IntArray) {
         // Build a binary max heap. i.e. Create a binary max heap except the deepest nodes.
@@ -9,7 +7,7 @@ object Heapsort {
             heapify(xs, xs.size, i)
         }
 
-        for (lastIndex in xs.indices.last downTo 0) {
+        for (lastIndex in xs.lastIndex downTo 0) {
             // Move the largest node, which is at the first element of the array, to the end of the array.
             swap(xs, 0, lastIndex)
 
@@ -37,5 +35,11 @@ object Heapsort {
                 heapify(xs, nodeCount, indexOfMax)
             }
         }
+    }
+
+    private fun swap(xs: IntArray, i: Int, j: Int) {
+        val tmp = xs[i]
+        xs[i] = xs[j]
+        xs[j] = tmp
     }
 }

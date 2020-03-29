@@ -1,7 +1,5 @@
 package sort
 
-import utils.swap
-
 object BubbleSort {
     fun sort(xs: IntArray) {
         var n = xs.size
@@ -15,5 +13,11 @@ object BubbleSort {
             }
             n = lastSwappedIndex
         }
+    }
+
+    private fun swap(xs: IntArray, i: Int, j: Int) {
+        val tmp = xs[i]
+        xs[i] = xs[j]
+        xs[j] = tmp
     }
 }

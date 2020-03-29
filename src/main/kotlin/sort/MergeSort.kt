@@ -5,28 +5,30 @@ object MergeSort {
         if (xs.size < 2) {
             return xs
         }
-        
         val middle = xs.size / 2
         return merge(sort(xs.copyOfRange(0, middle)), sort(xs.copyOfRange(middle, xs.size)))
     }
 
     private fun merge(lefts: IntArray, rights: IntArray): IntArray {
-        var i = 0
-        var j = 0
+        var leftIndex = 0
+        var rightIndex = 0
         val merged = mutableListOf<Int>()
 
-        while (i < lefts.size && j < rights.size) {
-            if (lefts[i] <= rights[j]) {
-                merged.add(lefts[i])
-                i++
+        while (true) {
+            if (lefts[leftIndex] <= rights[rightIndex]) {
+                merged.add(lefts[leftIndex++])
+                if(leftIndex == lefts.size) {
+                    rights.copyOfRange(rightIndex, rights.size).toCollection(merged)
+                    break
+                }
             } else {
-                merged.add(rights[j])
-                j++
+                merged.add(rights[rightIndex++])
+                if(rightIndex == rights.size) {
+                    lefts.copyOfRange(leftIndex, lefts.size).toCollection(merged)
+                    break
+                }
             }
         }
-
-        merged.addAll((if (i < lefts.size) lefts.copyOfRange(i, lefts.size)
-            else rights.copyOfRange(i, rights.size)).toTypedArray())
 
         return merged.toIntArray()
     }

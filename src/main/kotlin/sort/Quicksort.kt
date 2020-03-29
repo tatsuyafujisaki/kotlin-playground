@@ -3,17 +3,7 @@ package sort
 import utils.swap
 
 object Quicksort {
-    fun sortRecursive(xs: IntArray): IntArray {
-        if (xs.isEmpty()) {
-            return xs
-        }
-        val pivot = xs[xs.size / 2]
-        return sortRecursive(xs.filter { it < pivot }.toIntArray()) +
-            xs.filter { it == pivot } +
-            sortRecursive(xs.filter { it > pivot }.toIntArray())
-    }
-
-    fun sortImperative(xs: IntArray) {
+    fun sort(xs: IntArray) {
         sort(xs, 0, xs.indices.last)
     }
 

@@ -1,5 +1,6 @@
 # Best practices
 * Use `repeat(n)` rather than `while(n--)` for simplicity.
+* Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1`.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
 * Use `error()` rather than `throw IllegalStateException()` for simplicity.

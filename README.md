@@ -5,12 +5,6 @@
 * Use `error()` rather than `throw IllegalStateException()` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
-# How to show the name of the current thread and the name of the current coroutine
-* `Thread.currentThread().name`
-  * shows the name of the current thread without condition.
-  * shows the name of the current coroutine after the following preparation:
-    * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
-
 # Difference between intArrayOf() and arrayOf()
 ```kotlin
 intArrayOf(1, 2, 3) // IntArray (int[] in Java)
@@ -38,3 +32,9 @@ list.sortedDescending()
 ```kotlin
 map.toSortedMap()
 ```
+
+# How to show the name of the current thread and the name of the current coroutine
+* `Thread.currentThread().name`
+  * shows the name of the current thread without condition.
+  * shows the name of the current coroutine after the following preparation:
+    * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.

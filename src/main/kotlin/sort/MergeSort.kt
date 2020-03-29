@@ -9,21 +9,21 @@ object MergeSort {
         return merge(sort(xs.copyOfRange(0, middle)), sort(xs.copyOfRange(middle, xs.size)))
     }
 
-    private fun merge(lefts: IntArray, rights: IntArray): IntArray {
+    private fun merge(left: IntArray, right: IntArray): IntArray {
         var leftIndex = 0
         var rightIndex = 0
         val merged = mutableListOf<Int>()
         while (true) {
-            if (lefts[leftIndex] <= rights[rightIndex]) {
-                merged.add(lefts[leftIndex++])
-                if(leftIndex == lefts.size) {
-                    rights.copyOfRange(rightIndex, rights.size).toCollection(merged)
+            if (left[leftIndex] <= right[rightIndex]) {
+                merged.add(left[leftIndex++])
+                if(leftIndex == left.size) {
+                    right.copyOfRange(rightIndex, right.size).toCollection(merged)
                     break
                 }
             } else {
-                merged.add(rights[rightIndex++])
-                if(rightIndex == rights.size) {
-                    lefts.copyOfRange(leftIndex, lefts.size).toCollection(merged)
+                merged.add(right[rightIndex++])
+                if(rightIndex == right.size) {
+                    left.copyOfRange(leftIndex, left.size).toCollection(merged)
                     break
                 }
             }

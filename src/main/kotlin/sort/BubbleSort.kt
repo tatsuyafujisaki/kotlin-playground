@@ -5,7 +5,7 @@ import utils.swap
 object BubbleSort {
     fun sort(xs: IntArray) {
         var n = xs.size
-        do {
+        while (1 < n) {
             var lastSwappedIndex = 0
             for (i in 0..(n - 2)) {
                 if (xs[i + 1] < xs[i]) {
@@ -14,6 +14,6 @@ object BubbleSort {
                 }
             }
             n = lastSwappedIndex
-        } while (1 < n)
+        }
     }
 }

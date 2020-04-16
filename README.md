@@ -3,7 +3,7 @@
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for cimplicity.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.
 * Use `foo.takeIf { it.bar == baz }` rather than `if (foo.bar == baz) foo else null` for simplicity.
-* Use `foo.takeUnless { it.bar == baz }` rather than `if (foo.bar != baz) foo else foo` for simplicity.
+* Use `foo.takeUnless { it.bar == baz }` rather than `if (foo.bar != baz) foo else null` for simplicity.
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
 * Use `error()` rather than `throw IllegalStateException()` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.

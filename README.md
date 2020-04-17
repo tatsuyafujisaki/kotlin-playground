@@ -36,6 +36,18 @@ list.sortedDescending()
 map.toSortedMap()
 ```
 
+# How to convert String? to String
+```kotlin
+val s1: String? = null
+val s2: String = s1.orEmpty()
+```
+
+# How to convert List\<T>? to List\<T>
+```kotlin
+val xs: List<Int>? = null
+val ys: List<Int> = xs.orEmpty()
+```    
+
 # How to show the name of the current thread and the name of the current coroutine
 * `Thread.currentThread().name`
   * shows the name of the current thread without condition.

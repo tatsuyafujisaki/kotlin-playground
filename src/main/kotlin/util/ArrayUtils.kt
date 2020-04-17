@@ -1,4 +1,4 @@
-package utils
+package util
 
 fun getIndexOfMin(xs: IntArray): Int {
     var indexOfMin = 0

@@ -1,4 +1,4 @@
-package utils
+package util
 
 fun matrix(rowCount: Int, columnCount: Int) = Array(rowCount) { DoubleArray(columnCount) }
 

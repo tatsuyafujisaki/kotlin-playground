@@ -1,4 +1,3 @@
-import arrow.core.Eval
 import org.junit.Assert
 import org.junit.Test
 import kotlin.reflect.jvm.jvmName
@@ -29,24 +28,5 @@ class MyTest {
 
         Assert.assertEquals("int", x.javaClass.canonicalName)
         Assert.assertEquals("java.lang.Integer", y.javaClass.canonicalName)
-    }
-
-    @Test
-    fun test() {
-        var counter: Int = 0
-        val later = Eval.later { counter++; counter }
-        Assert.assertEquals(0, counter)
-
-        val firstValue = later.value()
-        Assert.assertEquals(1, firstValue)
-        Assert.assertEquals(1, counter)
-
-        val secondValue = later.value()
-        Assert.assertEquals(1, secondValue)
-        Assert.assertEquals(1, counter)
-
-        val thirdValue = later.value()
-        Assert.assertEquals(1, thirdValue)
-        Assert.assertEquals(1, counter)
     }
 }

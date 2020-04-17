@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     /**
-     * Since Kotlin 1.1.2, the versions of the group "org.jetbrains.kotlin" have been optional
+     * The versions of the group "org.jetbrains.kotlin" is optional
      * because they can be inferred from the applied plugin.
      * https://kotlinlang.org/docs/reference/using-gradle.html
      */

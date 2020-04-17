@@ -24,28 +24,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 
-    implementation 'org.kodein.di:kodein-di-generic-jvm:6.5.3'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.2'
 
     testImplementation 'io.mockk:mockk:1.9.3'
-
-    def arrow_version = '0.10.4'
-    implementation "io.arrow-kt:arrow-core:$arrow_version"
-    implementation "io.arrow-kt:arrow-core-data:$arrow_version"
-    implementation "io.arrow-kt:arrow-optics:$arrow_version"
-    implementation "io.arrow-kt:arrow-fx:$arrow_version"
-    implementation "io.arrow-kt:arrow-syntax:$arrow_version"
-    implementation "io.arrow-kt:arrow-fx-rx2:$arrow_version"
-    implementation "io.arrow-kt:arrow-fx-reactor:$arrow_version"
-    implementation "io.arrow-kt:arrow-mtl:$arrow_version"
-    implementation "io.arrow-kt:arrow-mtl-data:$arrow_version"
-    implementation "io.arrow-kt:arrow-optics-mtl:$arrow_version"
-    implementation "io.arrow-kt:arrow-recursion:$arrow_version"
-    implementation "io.arrow-kt:arrow-recursion-data:$arrow_version"
-    implementation "io.arrow-kt:arrow-integration-retrofit-adapter:$arrow_version"
-    implementation "io.arrow-kt:arrow-free:$arrow_version"
-    implementation "io.arrow-kt:arrow-free-data:$arrow_version"
-    kapt "io.arrow-kt:arrow-generic:$arrow_version"
-    kapt "io.arrow-kt:arrow-meta:$arrow_version"
 }
 
 compileKotlin {

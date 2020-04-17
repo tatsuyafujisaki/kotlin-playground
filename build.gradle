@@ -26,6 +26,8 @@ dependencies {
 
     implementation 'com.squareup.moshi:moshi-kotlin:1.9.2'
 
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     testImplementation 'io.mockk:mockk:1.9.3'
 }
 

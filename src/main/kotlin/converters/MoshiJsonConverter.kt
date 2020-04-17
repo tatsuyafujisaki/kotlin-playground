@@ -3,7 +3,7 @@ package converters
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
-object MoshiConverter {
+object MoshiJsonConverter {
     val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     inline fun <reified T> serialize(value: T): String = moshi.adapter(T::class.java).toJson(value)
     inline fun <reified T> deserialize(string: String) = moshi.adapter(T::class.java).fromJson(string)

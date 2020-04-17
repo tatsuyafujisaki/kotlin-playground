@@ -1,6 +1,8 @@
 package util
 
-fun matrix(rowCount: Int, columnCount: Int) = Array(rowCount) { DoubleArray(columnCount) }
+fun matrix(rowCount: Int, columnCount: Int) = Array(rowCount) {
+    DoubleArray(columnCount)
+}
 
 fun rowCount(matrix: Array<DoubleArray>) = matrix.size
 fun columnCount(matrix: Array<DoubleArray>) = matrix[0].size
@@ -9,26 +11,26 @@ fun isSquareMatrix(matrix: Array<DoubleArray>) = rowCount(matrix) == columnCount
 
 // Helper method to create a 2x2 matrix
 fun matrix2(a00: Double, a01: Double, a10: Double, a11: Double) =
-    matrix(2, 2).apply {
-        this[0][0] = a00
-        this[0][1] = a01
-        this[1][0] = a10
-        this[1][1] = a11
-    }
+        matrix(2, 2).apply {
+            this[0][0] = a00
+            this[0][1] = a01
+            this[1][0] = a10
+            this[1][1] = a11
+        }
 
 // Helper method to create a 3x3 matrix
 fun matrix3(a00: Double, a01: Double, a02: Double, a10: Double, a11: Double, a12: Double, a20: Double, a21: Double, a22: Double) =
-    matrix(3, 3).apply {
-        this[0][0] = a00
-        this[0][1] = a01
-        this[0][2] = a02
-        this[1][0] = a10
-        this[1][1] = a11
-        this[1][2] = a12
-        this[2][0] = a20
-        this[2][1] = a21
-        this[2][2] = a22
-    }
+        matrix(3, 3).apply {
+            this[0][0] = a00
+            this[0][1] = a01
+            this[0][2] = a02
+            this[1][0] = a10
+            this[1][1] = a11
+            this[1][2] = a12
+            this[2][0] = a20
+            this[2][1] = a21
+            this[2][2] = a22
+        }
 
 fun submatrix(matrix: Array<DoubleArray>, excludingRow: Int, excludingColumn: Int): Array<DoubleArray> {
     val rowCount = rowCount(matrix)

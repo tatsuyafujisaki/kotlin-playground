@@ -5,6 +5,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 object MoshiJsonConverter {
     val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-    inline fun <reified T> serialize(value: T): String = moshi.adapter(T::class.java).toJson(value)
-    inline fun <reified T> deserialize(string: String) = moshi.adapter(T::class.java).fromJson(string)
+    inline fun <reified T> toJson(value: T): String = moshi.adapter(T::class.java).toJson(value)
+    inline fun <reified T> fromJson(string: String) = moshi.adapter(T::class.java).fromJson(string)
 }

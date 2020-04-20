@@ -14,11 +14,13 @@ intArrayOf(1, 2, 3) // IntArray (int[] in Java)
 arrayOf(1, 2, 3) // Array<Int> (Integer[] in Java)
 ```
 
-# How to initialize IntArray (int[] in Java) only with size.
+# How to initialize IntArray (int[] in Java) only with size
 ```kotlin
 val xs = IntArray(size)
 ```
-Note that there is no way to initialize Array<Int> (Integer[] in Java) only with size.
+
+# How to initialize Array<Int> (Integer[] in Java) only with size
+There is no way to do it.
 
 # How to convert IntArray (int[] in Java) to Array<Int> (Integer[] in Java)
 ```kotlin
@@ -31,6 +33,12 @@ list.sorted()
 list.sortedDescending()
 ```
 
+# How to convert List\<T>? to List\<T>
+```kotlin
+val xs: List<Int>? = null
+val ys: List<Int> = xs.orEmpty()
+```    
+
 # How to sort a map by key
 ```kotlin
 map.toSortedMap()
@@ -42,11 +50,12 @@ val s1: String? = null
 val s2: String = s1.orEmpty()
 ```
 
-# How to convert List\<T>? to List\<T>
+# Difference between string.isBlank() and string.isEmpty()
 ```kotlin
-val xs: List<Int>? = null
-val ys: List<Int> = xs.orEmpty()
-```    
+val s = " "
+s.isBlank() // true
+s.isEmpty() // false
+```
 
 # How to show the name of the current thread and the name of the current coroutine
 * `Thread.currentThread().name`

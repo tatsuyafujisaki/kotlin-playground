@@ -50,7 +50,7 @@ val s1: String? = null
 val s2: String = s1.orEmpty()
 ```
 
-# Difference between string.isBlank() and string.isEmpty()
+# Difference between CharSequence.isBlank() and CharSequence.isEmpty()
 ```kotlin
 val s = " "
 s.isBlank() // true

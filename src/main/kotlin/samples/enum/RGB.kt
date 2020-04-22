@@ -1,13 +1,13 @@
 package samples.enum
 
-private enum class RGB(val value: Int) {
-    RED(0xff0000),
-    GREEN(0x00ff00),
-    BLUE(0x0000ff)
+private enum class RGB(val value: String) {
+    RED("Red!"),
+    GREEN("Green!"),
+    BLUE("Blue!")
 }
 
 fun rgbSampleUsage() {
     val red: RGB = RGB.valueOf("RED")
     println(red)
-    println("%x".format(red.value))
+    println(red.value)
 }

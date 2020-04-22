@@ -1,9 +1,15 @@
 package samples.enum
 
 private enum class BLT {
-    BACON,
-    LETTUCE,
-    TOMATO
+    BACON {
+        override fun toString() = "Bacon!"
+    },
+    LETTUCE {
+        override fun toString() = "Lettuce!"
+    },
+    TOMATO {
+        override fun toString() = "Tomato!"
+    },
 }
 
 fun bltSampleUsage() {

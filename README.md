@@ -12,7 +12,7 @@
 Kotlin|Java
 ---|---
 IntArray|int[]
-Array<Int>|Integer[]
+Array\<Int>|Integer[]
 
 # Difference between intArrayOf() and arrayOf()
 ```kotlin

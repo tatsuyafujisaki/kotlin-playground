@@ -8,6 +8,12 @@
 * Use `error()` rather than `throw IllegalStateException()` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
+# Type mapping between Kotlin and Java
+Kotlin|Java
+---|---
+IntArray|int[]
+Array<Int>|Integer[]
+
 # Difference between intArrayOf() and arrayOf()
 ```kotlin
 intArrayOf(1, 2, 3) // IntArray (int[] in Java)

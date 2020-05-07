@@ -70,7 +70,7 @@ s.isEmpty() // false
     * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
 
 # How to remove comments
-1. Command+Shift+F in Android Studio.
+1. Command+Shift+F in IntelliJ IDEA.
 2. Check `Regex`.
 3. Put one of the following regexes.
 4. Click `Replace All`.

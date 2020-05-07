@@ -68,3 +68,24 @@ s.isEmpty() // false
   * shows the name of the current thread without condition.
   * shows the name of the current coroutine after the following preparation:
     * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
+
+# How to remove comments
+1. Command+Shift+F in Android Studio.
+2. Check `Regex`.
+3. Put one of the following regexes.
+4. Click `Replace All`.
+
+## Regex to match all the comments (/* \*/ including /** \*/)
+```
+/\*([\S\s]+?)\*/
+```
+
+## Regex to match copyright comments (/* \*/ including /** \*/)
+```
+/\*([\S\s]+?Copyright[\S\s]+?)\*/
+```
+
+## Regex to match copyright comments in XML
+```
+<!--([\S\s]+?Copyright[\S\s]+?)-->
+```

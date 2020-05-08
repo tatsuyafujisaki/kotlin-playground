@@ -1,4 +1,5 @@
 # Best practices
+* Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity
 * Use `repeat(n)` rather than `while(n--)` for simplicity.
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for cimplicity.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.

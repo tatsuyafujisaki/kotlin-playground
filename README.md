@@ -2,8 +2,8 @@
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.
 * Use `repeat(n)` rather than `while(n--)` for simplicity.
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for simplicity.
-* Use `xs.ifEmpty { "Empty!" }` rather than `xs.takeIf { it.isNotEmpty() } ?: "Empty!"` simplicity.
-* Use `s.ifBlank { "Blank!" }` rather than `s.takeIf { it.isNotBlank() } ?: "Blank!"` simplicity.
+* Use `xs.ifEmpty { "default" }` rather than `xs.takeIf { it.isNotEmpty() } ?:"default"` simplicity.
+* Use `s.ifBlank { "default" }` rather than `s.takeIf { it.isNotBlank() } ?: "default"` simplicity.
 * Use `foo.takeIf { it.bar == baz }` rather than `if (foo.bar == baz) foo else null` for simplicity.
 * Use `foo.takeUnless { it.bar == baz }` rather than `if (foo.bar != baz) foo else null` for simplicity.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.

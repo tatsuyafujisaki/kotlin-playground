@@ -42,21 +42,27 @@ list.sorted()
 list.sortedDescending()
 ```
 
-# How to convert List\<T>? to List\<T>
-```kotlin
-val xs: List<Int>? = null
-val ys: List<Int> = xs.orEmpty()
-```    
-
 # How to sort a map by key
 ```kotlin
 map.toSortedMap()
 ```
 
-# How to convert String? to String
+# Null-related
+## How to convert String? to String
 ```kotlin
 val s1: String? = null
 val s2: String = s1.orEmpty()
+```
+
+## How to convert List\<T>? to List\<T>
+```kotlin
+val xs: List<Int>? = null
+val ys: List<Int> = xs.orEmpty()
+```    
+
+## How to create a non-nullable List from nullable elements
+```kotlin
+listOfNotNull(1, null, 2) // 1, 2
 ```
 
 # Difference between CharSequence.isBlank() and CharSequence.isEmpty()

@@ -26,7 +26,7 @@ val ys = IntArray(3) // [0, 0, 0]
 val zs = IntArray(3) { it * 2 } // [0, 2, 4]
 ```
 
-# How to create an Array\<Int>
+# How to create an Array\<Int> or Array\<String>
 ```kotlin
 val xs = arrayOf(1, 2, 3) // [1, 2, 3]
 

@@ -30,8 +30,8 @@ val zs = IntArray(3) { it * 2 } // [0, 2, 4]
 ```kotlin
 val xs = arrayOf(1, 2, 3) // [1, 2, 3]
 
-// There is no such constructor as Array(size).
-val ys = Array(3) { it } // [0, 0, 0]
+// No constructor takes only size.
+val ys = Array(3) { it } // [0, 1, 2]
 
 val zs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
@@ -52,7 +52,7 @@ val xs = listOf(1, 2, 3) // [1, 2, 3]
 
 val ys = List(3) { it } // [0, 1, 2]
 
-val zs = List(3) { "item$it] } // ["item0", "item1", "item2"]
+val zs = List(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
 # How to sort a list

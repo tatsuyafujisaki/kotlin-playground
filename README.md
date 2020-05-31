@@ -17,21 +17,22 @@ Kotlin|Java
 IntArray|int[]
 Array\<Int>|Integer[]
 
-# Difference between intArrayOf() and arrayOf()
+# How to create an IntArray (int[] in Java)
 ```kotlin
-intArrayOf(1, 2, 3) // IntArray (int[] in Java)
-arrayOf(1, 2, 3) // Array<Int> (Integer[] in Java)
+val xs = intArrayOf(1, 2, 3)
+
+# How to create IntArray (int[] in Java) only with size
+val ys = IntArray(size)
 ```
 
-# How to initialize IntArray (int[] in Java) only with size
+## How to create an Array\<Int> (Integer[] in Java)
 ```kotlin
-val xs = IntArray(size)
+val xs = arrayOf(1, 2, 3)
+
+# There is no way to create an Array<Int> only with size.
 ```
 
-# How to initialize Array<Int> (Integer[] in Java) only with size
-There is no way to do it.
-
-# How to convert IntArray (int[] in Java) to Array<Int> (Integer[] in Java)
+# How to convert IntArray (int[] in Java) to Array\<Int> (Integer[] in Java)
 ```kotlin
 intArray.toTypedArray()
 ```
@@ -62,7 +63,7 @@ val ys: List<Int> = xs.orEmpty()
 
 ## How to create a non-nullable List from nullable elements
 ```kotlin
-listOfNotNull(1, null, 2) // 1, 2
+listOfNotNull(1, null, 2) // [1, 2]
 ```
 
 # Difference between CharSequence.isBlank() and CharSequence.isEmpty()

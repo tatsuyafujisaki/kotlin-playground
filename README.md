@@ -31,9 +31,9 @@ val zs = IntArray(3) { it * 2 } // [0, 2, 4]
 val xs = arrayOf(1, 2, 3) // [1, 2, 3]
 
 // No constructor takes only size.
-val ys = Array(3) { it } // [0, 1, 2]
+val xs = Array(3) { it } // [0, 1, 2]
 
-val zs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
+val xs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
 # How to convert IntArray to Array\<Int>
@@ -46,44 +46,39 @@ val xs: Array<Int> = intArray.toTypedArray()
 val xs: IntArray = arrayInt.toIntArray()
 ```
 
-# How to create a list
+# How to create a List
 ```kotlin
 val xs = listOf(1, 2, 3) // [1, 2, 3]
+val xs = listOfNotNull(1, null, 2) // [1, 2]
 
 // No constructor takes only size.
-val ys = List(3) { it } // [0, 1, 2]
+val xs = List(3) { it } // [0, 1, 2]
 
-val zs = List(3) { "item$it" } // ["item0", "item1", "item2"]
+val xs = List(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
-# How to sort a list
+# How to sort a List
 ```kotlin
 val sorted = xs.sorted()
 
 val sortedDescending = xs.sortedDescending()
 ```
 
-# How to sort a map by key
+# How to sort a Map by key
 ```kotlin
 val sorted = map.toSortedMap()
 ```
 
-# Null-related
-## How to convert String? to String
+# How to convert String? to String
 ```kotlin
 val s1: String? = null
 val s2: String = s1.orEmpty()
 ```
 
-## How to convert List\<T>? to List\<T>
+# How to convert List\<T>? to List\<T>
 ```kotlin
 val xs: List<Int>? = null
 val ys: List<Int> = xs.orEmpty()
-```    
-
-## How to create a non-nullable List from nullable elements
-```kotlin
-listOfNotNull(1, null, 2) // [1, 2]
 ```
 
 # Difference between CharSequence.isBlank() and CharSequence.isEmpty()

@@ -19,25 +19,30 @@ Array\<Int>|Integer[]
 
 # How to create an IntArray
 ```kotlin
-val xs = intArrayOf(1, 2, 3)
-```
+val xs = intArrayOf(1, 2, 3) // [1, 2, 3]
 
-# How to create an IntArray only with size
-```kotlin
-val xs = IntArray(size)
+val ys = IntArray(3) // [0, 0, 0]
+
+val zs = IntArray(3) { it * 2 } // [0, 2, 4]
 ```
 
 # How to create an Array\<Int>
 ```kotlin
 val xs = arrayOf(1, 2, 3)
+
+// Array<Int> does not have a constructor that takes only size. i.e. Array(3) is not supported.
+val ys = Array(3) { it } // [0, 0, 0]
+
+val zs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
-# How to create an Array\<Int> only with size
-There is no way to create an Array\<Int> only with size.
-
-# How to convert IntArray (int[] in Java) to Array\<Int> (Integer[] in Java)
+# How to convert IntArray to Array\<Int>
 ```kotlin
-intArray.toTypedArray()
+val xs: Array<Int> = intArray.toTypedArray()
+```
+# How to convert Array\<Int> to IntArray
+```kotlin
+val xs: IntArray = arrayInt.toIntArray()
 ```
 
 # How to sort a list

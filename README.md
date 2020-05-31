@@ -21,16 +21,16 @@ Array\<Int>|Integer[]
 ```kotlin
 val xs = intArrayOf(1, 2, 3) // [1, 2, 3]
 
-val ys = IntArray(3) // [0, 0, 0]
+val xs = IntArray(3) // [0, 0, 0]
 
-val zs = IntArray(3) { it * 2 } // [0, 2, 4]
+val xs = IntArray(3) { it * 2 } // [0, 2, 4]
 ```
 
 # How to create an Array\<Int> or Array\<String>
 ```kotlin
 val xs = arrayOf(1, 2, 3) // [1, 2, 3]
 
-// No constructor takes only size.
+// The lambda is not optional.
 val xs = Array(3) { it } // [0, 1, 2]
 
 val xs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
@@ -49,9 +49,10 @@ val xs: IntArray = arrayInt.toIntArray()
 # How to create a List
 ```kotlin
 val xs = listOf(1, 2, 3) // [1, 2, 3]
+
 val xs = listOfNotNull(1, null, 2) // [1, 2]
 
-// No constructor takes only size.
+// The lambda is not optional.
 val xs = List(3) { it } // [0, 1, 2]
 
 val xs = List(3) { "item$it" } // ["item0", "item1", "item2"]
@@ -71,14 +72,14 @@ val sorted = map.toSortedMap()
 
 # How to convert String? to String
 ```kotlin
-val s1: String? = null
-val s2: String = s1.orEmpty()
+val nullable: String? = null
+val nonNullable: String = nullable.orEmpty()
 ```
 
 # How to convert List\<T>? to List\<T>
 ```kotlin
-val xs: List<Int>? = null
-val ys: List<Int> = xs.orEmpty()
+val nullable: List<Int>? = null
+val nonNullable: List<Int> = nullable.orEmpty()
 ```
 
 # Difference between CharSequence.isBlank() and CharSequence.isEmpty()

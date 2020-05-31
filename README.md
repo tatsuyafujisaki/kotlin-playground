@@ -46,10 +46,11 @@ val xs: Array<Int> = intArray.toTypedArray()
 val xs: IntArray = arrayInt.toIntArray()
 ```
 
-# How to create a List
+# How to create a list
 ```kotlin
 val xs = listOf(1, 2, 3) // [1, 2, 3]
 
+// No constructor takes only size.
 val ys = List(3) { it } // [0, 1, 2]
 
 val zs = List(3) { "item$it" } // ["item0", "item1", "item2"]
@@ -57,13 +58,14 @@ val zs = List(3) { "item$it" } // ["item0", "item1", "item2"]
 
 # How to sort a list
 ```kotlin
-list.sorted()
-list.sortedDescending()
+val sorted = xs.sorted()
+
+val sortedDescending = xs.sortedDescending()
 ```
 
 # How to sort a map by key
 ```kotlin
-map.toSortedMap()
+val sorted = map.toSortedMap()
 ```
 
 # Null-related

@@ -26,7 +26,7 @@ val xs = IntArray(3) // [0, 0, 0]
 val xs = IntArray(3) { it * 2 } // [0, 2, 4]
 ```
 
-# How to create an Array\<Int> or Array\<String>
+# How to create an Array\<T>
 ```kotlin
 val xs = arrayOf(1, 2, 3) // [1, 2, 3]
 
@@ -77,14 +77,14 @@ val xs = mapOf(1 to "x", 3 to "z", 2 to "y").toSortedMap() // {1=x, 2=y, 3=z}
 
 # How to convert String? to String
 ```kotlin
-val nullable: String? = null
-val nonNullable: String = nullable.orEmpty()
+val x: String? = null
+val y: String = x.orEmpty()
 ```
 
 # How to convert List\<T>? to List\<T>
 ```kotlin
-val nullable: List<Int>? = null
-val nonNullable: List<Int> = nullable.orEmpty()
+val x: List<Int>? = null
+val y: List<Int> = x.orEmpty()
 ```
 
 # Difference between CharSequence.isBlank() and CharSequence.isEmpty()

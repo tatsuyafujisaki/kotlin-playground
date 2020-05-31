@@ -84,9 +84,9 @@ val nonNullable: List<Int> = nullable.orEmpty()
 
 # Difference between CharSequence.isBlank() and CharSequence.isEmpty()
 ```kotlin
-val s = " "
-s.isBlank() // true
-s.isEmpty() // false
+val blank = " "
+blank.isBlank() // true
+blank.isEmpty() // false
 ```
 
 # How to show the name of the current thread and the name of the current coroutine

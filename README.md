@@ -50,8 +50,9 @@ val xs: IntArray = arrayInt.toIntArray()
 ```kotlin
 val xs = listOf(1, 2, 3) // [1, 2, 3]
 
-val ys = 
+val ys = List(3) { it } // [0, 1, 2]
 
+val zs = List(3) { "item$it] } // ["item0", "item1", "item2"]
 ```
 
 # How to sort a list

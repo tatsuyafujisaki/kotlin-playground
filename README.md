@@ -28,9 +28,9 @@ val zs = IntArray(3) { it * 2 } // [0, 2, 4]
 
 # How to create an Array\<Int>
 ```kotlin
-val xs = arrayOf(1, 2, 3)
+val xs = arrayOf(1, 2, 3) // [1, 2, 3]
 
-// Array<Int> does not have a constructor that takes only size. i.e. Array(3) is not supported.
+// There is no such constructor as Array(size).
 val ys = Array(3) { it } // [0, 0, 0]
 
 val zs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
@@ -40,9 +40,18 @@ val zs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 ```kotlin
 val xs: Array<Int> = intArray.toTypedArray()
 ```
+
 # How to convert Array\<Int> to IntArray
 ```kotlin
 val xs: IntArray = arrayInt.toIntArray()
+```
+
+# How to create a List
+```kotlin
+val xs = listOf(1, 2, 3) // [1, 2, 3]
+
+val ys = 
+
 ```
 
 # How to sort a list

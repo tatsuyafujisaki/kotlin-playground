@@ -38,12 +38,12 @@ val xs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 
 # How to convert IntArray to Array\<Int>
 ```kotlin
-val xs: Array<Int> = intArray.toTypedArray()
+val xs = intArray.toTypedArray()
 ```
 
 # How to convert Array\<Int> to IntArray
 ```kotlin
-val xs: IntArray = arrayInt.toIntArray()
+val xs = arrayInt.toIntArray()
 ```
 
 # How to create a List
@@ -60,14 +60,19 @@ val xs = List(3) { "item$it" } // ["item0", "item1", "item2"]
 
 # How to sort a List
 ```kotlin
-val sorted = xs.sorted()
+val xs = listOf(1, 3, 2).sorted() // [1, 2, 3]
 
-val sortedDescending = xs.sortedDescending()
+val xs = listOf(1, 3, 2).sortedDescending() [3, 2, 1]
+```
+
+# How to create a Map
+```kotlin
+val xs = mapOf(1 to "x", 2 to "y", 3 to "z") // {1=x, 2=y, 3=z}
 ```
 
 # How to sort a Map by key
 ```kotlin
-val sorted = map.toSortedMap()
+val xs = mapOf(1 to "x", 3 to "z", 2 to "y").toSortedMap() // {1=x, 2=y, 3=z}
 ```
 
 # How to convert String? to String

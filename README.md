@@ -62,7 +62,7 @@ val xs = List(3) { "item$it" } // ["item0", "item1", "item2"]
 ```kotlin
 val xs = listOf(1, 3, 2).sorted() // [1, 2, 3]
 
-val xs = listOf(1, 3, 2).sortedDescending() [3, 2, 1]
+val xs = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 ```
 
 # How to create a Map
@@ -70,7 +70,7 @@ val xs = listOf(1, 3, 2).sortedDescending() [3, 2, 1]
 val xs = mapOf(1 to "x", 2 to "y", 3 to "z") // {1=x, 2=y, 3=z}
 ```
 
-# How to sort a Map by key
+# How to sort a Map
 ```kotlin
 val xs = mapOf(1 to "x", 3 to "z", 2 to "y").toSortedMap() // {1=x, 2=y, 3=z}
 ```

@@ -17,20 +17,23 @@ Kotlin|Java
 IntArray|int[]
 Array\<Int>|Integer[]
 
-# How to create an IntArray (int[] in Java)
+# How to create an IntArray
 ```kotlin
 val xs = intArrayOf(1, 2, 3)
-
-# How to create IntArray (int[] in Java) only with size
-val ys = IntArray(size)
 ```
 
-## How to create an Array\<Int> (Integer[] in Java)
+# How to create an IntArray only with size
+```kotlin
+val xs = IntArray(size)
+```
+
+# How to create an Array\<Int>
 ```kotlin
 val xs = arrayOf(1, 2, 3)
-
-# There is no way to create an Array<Int> only with size.
 ```
+
+# How to create an Array\<Int> only with size
+There is no way to create an Array\<Int> only with size.
 
 # How to convert IntArray (int[] in Java) to Array\<Int> (Integer[] in Java)
 ```kotlin

@@ -67,12 +67,15 @@ val xs = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 
 # How to create a Map
 ```kotlin
-val xs = mapOf(1 to "x", 2 to "y", 3 to "z") // {1=x, 2=y, 3=z}
+val map = mapOf(1 to "a", 2 to "b", 3 to "c").withDefault { "default" } // {1=a, 2=b, 3=c}
+
+val x = map.getValue(4) // "default"
+val y = map[4] // null
 ```
 
 # How to sort a Map
 ```kotlin
-val xs = mapOf(1 to "x", 3 to "z", 2 to "y").toSortedMap() // {1=x, 2=y, 3=z}
+val map = mapOf(1 to "a", 3 to "b", 2 to "c").toSortedMap() // {1=x, 2=y, 3=z}
 ```
 
 # How to convert String? to String

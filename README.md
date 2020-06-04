@@ -114,8 +114,7 @@ x+|1+|greedy
 x+?|1+|reluctant
 
 ## References
-* Kotlin's regex pattern syntax is that same as Java's Pattern.
-  * https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
+* Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
 
 # How to remove comments
 1. Command+Shift+F in IntelliJ IDEA.

@@ -19,63 +19,56 @@ Array\<Int>|Integer[]
 
 # How to create an IntArray
 ```kotlin
-val xs = intArrayOf(1, 2, 3) // [1, 2, 3]
-
-val xs = IntArray(3) // [0, 0, 0]
-
-val xs = IntArray(3) { it * 2 } // [0, 2, 4]
+val xs: IntArray = intArrayOf(1, 2, 3) // [1, 2, 3]
+val ys: IntArray = IntArray(3) // [0, 0, 0]
+val zs: IntArray = IntArray(3) { it * 2 } // [0, 2, 4]
 ```
 
 # How to create an Array\<T>
 ```kotlin
-val xs = arrayOf(1, 2, 3) // [1, 2, 3]
+val xs: Array<Int> = arrayOf(1, 2, 3) // [1, 2, 3]
 
 // The lambda is not optional.
-val xs = Array(3) { it } // [0, 1, 2]
-
-val xs = Array(3) { "item$it" } // ["item0", "item1", "item2"]
+val ys: Array<Int> = Array(3) { it } // [0, 1, 2]
+val zs: Array<String> = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
 # How to convert IntArray to Array\<Int>
 ```kotlin
-val xs = intArray.toTypedArray()
+val xs: Array<Int> = intArray.toTypedArray()
 ```
 
 # How to convert Array\<Int> to IntArray
 ```kotlin
-val xs = arrayInt.toIntArray()
+val xs: IntArray = arrayInt.toIntArray()
 ```
 
 # How to create a List
 ```kotlin
-val xs = listOf(1, 2, 3) // [1, 2, 3]
-
-val xs = listOfNotNull(1, null, 2) // [1, 2]
+val xs: List<Int> = listOf(1, 2, 3) // [1, 2, 3]
+val ys: List<Int> = listOfNotNull(1, null, 2) // [1, 2]
 
 // The lambda is not optional.
-val xs = List(3) { it } // [0, 1, 2]
-
-val xs = List(3) { "item$it" } // ["item0", "item1", "item2"]
+val xs: List<Int> = List(3) { it } // [0, 1, 2]
+val ys: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
 # How to sort a List
 ```kotlin
-val xs = listOf(1, 3, 2).sorted() // [1, 2, 3]
-
-val xs = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
+val xs: List<Int> = listOf(1, 3, 2).sorted() // [1, 2, 3]
+val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 ```
 
 # How to create a Map
 ```kotlin
-val map = mapOf(1 to "a", 2 to "b", 3 to "c").withDefault { "default" } // {1=a, 2=b, 3=c}
-
-val x = map.getValue(4) // "default"
-val y = map[4] // null
+val map: Map<Int, String> = mapOf(1 to "a", 2 to "b", 3 to "c").withDefault { "default" } // {1=a, 2=b, 3=c}
+val x: String = map.getValue(4) // "default"
+val y: String? = map[4] // null
 ```
 
 # How to sort a Map
 ```kotlin
-val map = mapOf(1 to "a", 3 to "b", 2 to "c").toSortedMap() // {1=x, 2=y, 3=z}
+val map: Map<Int, String> = mapOf(1 to "a", 3 to "b", 2 to "c").toSortedMap() // {1=x, 2=y, 3=z}
 ```
 
 # How to convert String? to String
@@ -86,21 +79,21 @@ val y: String = x.orEmpty()
 
 # How to convert List\<T>? to List\<T>
 ```kotlin
-val x: List<Int>? = null
-val y: List<Int> = x.orEmpty()
+val xs: List<Int>? = null
+val ys: List<Int> = x.orEmpty()
 ```
 
 # Difference between CharSequence.isBlank() and CharSequence.isEmpty()
 ```kotlin
-val blank = " "
-blank.isBlank() // true
-blank.isEmpty() // false
+val blank: String = " "
+val x: Boolean = blank.isBlank() // true
+val y: Boolean = blank.isEmpty() // false
 ```
 
 # How to extract a double-quoted URL from a string
 ```kotlin
-val html = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"
-val url = Regex("(https?://.*?)\"").find(s)?.groupValues?.last() // https://example.com
+val html: String = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"
+val url: String = Regex("(https?://.*?)\"").find(s)?.groupValues?.last() // https://example.com
 ```
 
 # How to show the name of the current thread and the name of the current coroutine
@@ -108,6 +101,26 @@ val url = Regex("(https?://.*?)\"").find(s)?.groupValues?.last() // https://exam
   * shows the name of the current thread without condition.
   * shows the name of the current coroutine after the following preparation:
     * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
+
+# Function references and constructor references
+```kotlin
+fun main() {
+    val xs: List<Int> = listOf(1, 2)
+
+    // Function reference
+    val ys: List<Int> = xs.filter(::isOdd) // [true, false]
+
+    // Qualified function reference
+    val zs2: List<String> = xs.map(Int::toString) // ["1", "2"]
+
+    // Constructor reference
+    val zs: List<Sample> = xs.map(::Sample) // [Sample(1), Sample(2)]
+}
+
+fun isOdd(x: Int): Boolean = x % 2 != 0
+
+data class Sample(val x: Int)
+```
 
 # Regex
 Construct|Matches|Greedy or reluctant

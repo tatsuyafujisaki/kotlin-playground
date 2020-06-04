@@ -102,7 +102,7 @@ val url: String = Regex("(https?://.*?)\"").find(s)?.groupValues?.last() // http
   * shows the name of the current coroutine after the following preparation:
     * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
 
-# Function references and constructor references
+# How to use function references and constructor references
 ```kotlin
 fun main() {
     val xs: List<Int> = listOf(1, 2)

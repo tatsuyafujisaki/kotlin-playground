@@ -8,14 +8,14 @@ object StringUtil {
      *
      * Usage:
      * val html = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"
-     * val url = extractDoubleQuotedUrl(html) // example.com
+     * val url = extractDoubleQuotedUrl(html) // https://example.com
      */
     fun extractDoubleQuotedUrl(s: String) = Regex("(https?://.*?)\"").find(s)?.groupValues?.last()
 
     /**
      * Usage:
      * val html = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"
-     * val url = extractDoubleQuotedUrl(html) // example.com
+     * val url = extractDoubleQuotedUrl(html) // https://example.com
      */
     fun extractDoubleQuotedUrl2(s: String) =
         Regex("(https?://.*?)\"").find(s)?.destructured?.component1()

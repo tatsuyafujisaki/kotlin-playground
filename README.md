@@ -97,6 +97,12 @@ blank.isBlank() // true
 blank.isEmpty() // false
 ```
 
+# How to extract a double-quoted URL from a string
+```kotlin
+val html = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"
+val url = Regex("(https?://.*?)\"").find(s)?.groupValues?.last() // https://example.com
+```
+
 # How to show the name of the current thread and the name of the current coroutine
 * `Thread.currentThread().name`
   * shows the name of the current thread without condition.

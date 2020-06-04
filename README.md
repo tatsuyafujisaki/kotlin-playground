@@ -103,6 +103,20 @@ blank.isEmpty() // false
   * shows the name of the current coroutine after the following preparation:
     * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
 
+# Regex
+Construct|Matches|Greedy or reluctant
+--|--|--
+x?|0,1|greedy
+x??|0,1|reluctant
+x*|0+|greedy
+x*?|0+|reluctant
+x+|1+|greedy
+x+?|1+|reluctant
+
+## References
+* Kotlin's regex pattern syntax is that same as Java's Pattern.
+  * https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
+
 # How to remove comments
 1. Command+Shift+F in IntelliJ IDEA.
 2. Check `Regex`.

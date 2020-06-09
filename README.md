@@ -93,7 +93,7 @@ val y: Boolean = blank.isEmpty() // false
 ```
 
 # How to use joinToString(...)
-```kollin
+```kotlin
 val xs: String = listOf("aaa", "bbb", "ccc").joinToString(
   separator = ";",
   prefix = "{",

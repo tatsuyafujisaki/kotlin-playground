@@ -92,6 +92,17 @@ val x: Boolean = blank.isBlank() // true
 val y: Boolean = blank.isEmpty() // false
 ```
 
+# How to use joinToString(...)
+```kollin
+val xs: String = listOf("aaa", "bbb", "ccc").joinToString(
+  separator = ";",
+  prefix = "{",
+  postfix = "}",
+  limit = 2,
+  truncated = "etc"
+) // "{aaa;bbb;etc}
+```
+
 # How to extract a double-quoted URL from a string
 ```kotlin
 val html: String = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"

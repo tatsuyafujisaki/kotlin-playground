@@ -1,6 +1,9 @@
 package util
 
 object StringUtil {
+    fun String?.isNeitherNullNorEmpty(): Boolean = this != null && isNotEmpty()
+    fun String?.isNeitherNullNorBlank(): Boolean = this != null && isNotBlank()
+
     /**
      * groupValues returns a list of two elements.
      * The first element is the entire match including a trailing double quotation mark we don't want.

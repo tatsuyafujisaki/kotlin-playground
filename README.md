@@ -131,28 +131,29 @@ val result2: String? = map[4] // null
 val map: Map<Int, String> = mapOf(1 to "a", 3 to "b", 2 to "c").toSortedMap() // {1=x, 2=y, 3=z}
 ```
 
-# How to convert String? to String
+# String
+## How to convert String? to String
 ```kotlin
 val x: String? = null
 val y: String = x.orEmpty()
 ```
 
-# Difference between CharSequence.isBlank() and CharSequence.isEmpty()
+## Difference between String.isBlank() and String.isEmpty()
 ```kotlin
 val blank: String = " "
 val x: Boolean = blank.isBlank() // true
 val y: Boolean = blank.isEmpty() // false
 ```
 
-# How to use joinToString(...)
+## How to use joinToString(...)
 ```kotlin
-val xs: String = listOf("aaa", "bbb", "ccc").joinToString(
+val xs: String = listOf("a", "b", "c").joinToString(
   separator = ";",
   prefix = "{",
   postfix = "}",
   limit = 2,
   truncated = "etc"
-) // "{aaa;bbb;etc}
+) // "{a;b;etc}
 ```
 
 # How to extract a double-quoted URL from a string

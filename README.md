@@ -20,7 +20,6 @@ IntArray|int[]
 Array\<Int>|Integer[]
 
 # Array
-
 ## How to create an IntArray
 ```kotlin
 val xs: IntArray = intArrayOf(1, 2, 3) // [1, 2, 3]
@@ -48,7 +47,6 @@ val xs: IntArray = arrayInt.toIntArray()
 ```
 
 # List
-
 ## How to create a List
 ```kotlin
 val xs: List<Int> = listOf(1, 2, 3) // [1, 2, 3]
@@ -57,12 +55,6 @@ val ys: List<Int> = listOfNotNull(1, null, 2) // [1, 2]
 // The lambda is not optional.
 val xs: List<Int> = List(3) { it } // [0, 1, 2]
 val ys: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
-```
-
-## How to sort a List
-```kotlin
-val xs: List<Int> = listOf(1, 3, 2).sorted() // [1, 2, 3]
-val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 ```
 
 ## How to filter a List
@@ -74,7 +66,13 @@ val result2: Set<Int> = xs intersect ys // [2, 3]
 val result3: Set<Int> = xs subtract ys // [1]
 ```
 
-# How to convert List\<T>? to List\<T>
+## How to sort a List
+```kotlin
+val xs: List<Int> = listOf(1, 3, 2).sorted() // [1, 2, 3]
+val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
+```
+
+## How to convert List\<T>? to List\<T>
 ```kotlin
 val xs: List<Int>? = null
 val ys: List<Int> = x.orEmpty()

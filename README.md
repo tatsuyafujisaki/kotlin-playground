@@ -57,6 +57,13 @@ val xs: List<Int> = List(3) { it } // [0, 1, 2]
 val ys: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
+## How to add/remove an element to/from a List
+```kotlin
+ val xs: List<Int> = listOf(1, 2 ,3)
+ val result1: List<Int> = xs.plus(4) // [1, 2, 3, 4]
+ val result2: List<Int> = xs.minus(2) // [1, 3]
+```
+
 ## How to filter a List
 ```kotlin
 val xs: List<Int> = listOf(1, 2 ,3)

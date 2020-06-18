@@ -60,6 +60,15 @@ val ys: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
 ## How to filter a List
 ```kotlin
 val xs: List<Int> = listOf(1, 2 ,3)
+val result1: List<Int> = xs.filter { it == 2 } // [2]
+val result2: List<Int> = xs.filterNot { it == 2 } // [1, 3]
+val ys: List<Int?> = listOf(1, null, 2)
+val result3: List<Int> = ys.filterNotNull() // [1, 2]
+```
+
+## How to work with multiple List(s)
+```kotlin
+val xs: List<Int> = listOf(1, 2 ,3)
 val ys: List<Int> = listOf(2, 3, 4)
 val result1: Set<Int> = xs union ys // [1, 2, 3, 4]
 val result2: Set<Int> = xs intersect ys // [2, 3]

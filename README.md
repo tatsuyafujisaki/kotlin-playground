@@ -1,6 +1,5 @@
 # Best practices
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.
-* Use `xs.filterNot { it == y }` rather than `xs.filter { it != y }` for simplicity.
 * Use `repeat(n)` rather than `while(n--)` for simplicity.
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for simplicity.
 * Use `xs.ifEmpty { "fallback" }` to return a special value in case the receiver is an empty list or an empty string.
@@ -20,14 +19,16 @@ Kotlin|Java
 IntArray|int[]
 Array\<Int>|Integer[]
 
-# How to create an IntArray
+# Array
+
+## How to create an IntArray
 ```kotlin
 val xs: IntArray = intArrayOf(1, 2, 3) // [1, 2, 3]
 val ys: IntArray = IntArray(3) // [0, 0, 0]
 val zs: IntArray = IntArray(3) { it * 2 } // [0, 2, 4]
 ```
 
-# How to create an Array\<T>
+## How to create an Array\<T>
 ```kotlin
 val xs: Array<Int> = arrayOf(1, 2, 3) // [1, 2, 3]
 
@@ -36,17 +37,19 @@ val ys: Array<Int> = Array(3) { it } // [0, 1, 2]
 val zs: Array<String> = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
-# How to convert IntArray to Array\<Int>
+## How to convert IntArray to Array\<Int>
 ```kotlin
 val xs: Array<Int> = intArray.toTypedArray()
 ```
 
-# How to convert Array\<Int> to IntArray
+## How to convert Array\<Int> to IntArray
 ```kotlin
 val xs: IntArray = arrayInt.toIntArray()
 ```
 
-# How to create a List
+# List
+
+## How to create a List
 ```kotlin
 val xs: List<Int> = listOf(1, 2, 3) // [1, 2, 3]
 val ys: List<Int> = listOfNotNull(1, null, 2) // [1, 2]
@@ -56,20 +59,37 @@ val xs: List<Int> = List(3) { it } // [0, 1, 2]
 val ys: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
-# How to sort a List
+## How to sort a List
 ```kotlin
 val xs: List<Int> = listOf(1, 3, 2).sorted() // [1, 2, 3]
 val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 ```
 
-# How to create a Map
+## How to filter a List
+```kotlin
+val xs: List<String> = listOf("a", "b", "c")
+val filtered1: List<String> = xs.filter { it == "b" } // [b]
+val filtered2: List<String> = xs.filterNot { it == "b" } // [a, c]
+
+val ys: List<String?> = listOf("a", null, "b")
+val filtered3: List<String> = ys.filterNotNull() // [a, b]
+```
+
+# How to convert List\<T>? to List\<T>
+```kotlin
+val xs: List<Int>? = null
+val ys: List<Int> = x.orEmpty()
+```
+
+# Map
+## How to create a Map
 ```kotlin
 val map: Map<Int, String> = mapOf(1 to "a", 2 to "b", 3 to "c").withDefault { "default" } // {1=a, 2=b, 3=c}
 val x: String = map.getValue(4) // "default"
 val y: String? = map[4] // null
 ```
 
-# How to sort a Map
+## How to sort a Map
 ```kotlin
 val map: Map<Int, String> = mapOf(1 to "a", 3 to "b", 2 to "c").toSortedMap() // {1=x, 2=y, 3=z}
 ```
@@ -78,12 +98,6 @@ val map: Map<Int, String> = mapOf(1 to "a", 3 to "b", 2 to "c").toSortedMap() //
 ```kotlin
 val x: String? = null
 val y: String = x.orEmpty()
-```
-
-# How to convert List\<T>? to List\<T>
-```kotlin
-val xs: List<Int>? = null
-val ys: List<Int> = x.orEmpty()
 ```
 
 # Difference between CharSequence.isBlank() and CharSequence.isEmpty()

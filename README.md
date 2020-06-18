@@ -68,11 +68,10 @@ val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 ## How to filter a List
 ```kotlin
 val xs: List<Int> = listOf(1, 2 ,3)
-val filtered1: List<Int> = xs.filter { it == 2 } // [2]
-val filtered2: List<Int> = xs.filterNot { it == 2 } // [1, 3]
-
-val ys: List<Int?> = listOf(1, null, 2)
-val filtered3: List<Int> = ys.filterNotNull() // [1, 2]
+val ys: List<Int> = listOf(2, 3, 4)
+val result1: Set<Int> = xs union ys // [1, 2, 3, 4]
+val result2: Set<Int> = xs intersect ys // [2, 3]
+val result3: Set<Int> = xs subtract ys // [1]
 ```
 
 # How to convert List\<T>? to List\<T>

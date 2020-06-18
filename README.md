@@ -74,7 +74,7 @@ val result3: List<Int> = ys.filterNotNull() // [1, 2]
 val result4: List<Int> = ys.mapNotNull { it.takeIf { it == 2 } } // [2]
 ```
 
-## How to work with multiple List(s)
+## How to work with multiple lists
 ```kotlin
 val xs: List<Int> = listOf(1, 2 ,3)
 val ys: List<Int> = listOf(2, 3, 4)
@@ -93,6 +93,13 @@ val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 ```kotlin
 val xs: List<Int>? = null
 val ys: List<Int> = x.orEmpty()
+```
+
+## How to convert two lists to a map
+```kotlin
+val xs: List<Int> = listOf(1, 2, 3)
+val ys: List<String> = listOf("a", "b", "c")
+val zs: Map<Int, String> = xs.zip(ys).toMap() // {1=a, 2=b, 3=c}
 ```
 
 # Map

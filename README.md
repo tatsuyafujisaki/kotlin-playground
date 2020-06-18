@@ -67,12 +67,12 @@ val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 
 ## How to filter a List
 ```kotlin
-val xs: List<String> = listOf("a", "b", "c")
-val filtered1: List<String> = xs.filter { it == "b" } // [b]
-val filtered2: List<String> = xs.filterNot { it == "b" } // [a, c]
+val xs: List<Int> = listOf(1, 2 ,3)
+val filtered1: List<Int> = xs.filter { it == 2 } // [2]
+val filtered2: List<Int> = xs.filterNot { it == 2 } // [1, 3]
 
-val ys: List<String?> = listOf("a", null, "b")
-val filtered3: List<String> = ys.filterNotNull() // [a, b]
+val ys: List<Int?> = listOf(1, null, 2)
+val filtered3: List<Int> = ys.filterNotNull() // [1, 2]
 ```
 
 # How to convert List\<T>? to List\<T>

@@ -64,6 +64,7 @@ val result1: List<Int> = xs.filter { it == 2 } // [2]
 val result2: List<Int> = xs.filterNot { it == 2 } // [1, 3]
 val ys: List<Int?> = listOf(1, null, 2)
 val result3: List<Int> = ys.filterNotNull() // [1, 2]
+val result4: List<Int> = ys.mapNotNull { it.takeIf { it == 2 } } // [2]
 ```
 
 ## How to work with multiple List(s)

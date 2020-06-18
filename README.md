@@ -1,13 +1,14 @@
 # Best practices
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.
+* Use `xs.filterNot { it == y }` rather than `xs.filter { it != y }` for simplicity.
 * Use `repeat(n)` rather than `while(n--)` for simplicity.
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for simplicity.
 * Use `xs.ifEmpty { "fallback" }` to return a special value in case the receiver is an empty list or an empty string.
   * e.g. Use `xs.ifEmpty { null }` if you have to return `null` instead of an empty list or an empty string.
 * Use `s.ifBlank { "fallback" }` to return a special value in case the receiver isblank.
   * e.g. Use `xs.ifBlank { null }` if you have to return `null` instead of a blank string.
-* Use `foo.takeIf { it.bar == baz }` rather than `if (foo.bar == baz) foo else null` for simplicity.
-* Use `foo.takeUnless { it.bar == baz }` rather than `if (foo.bar != baz) foo else null` for simplicity.
+* Use `x.takeIf { it == y }` rather than `if (x == y) x else null` for simplicity.
+* Use `x.takeUnless { it == y }` rather than `if (x != y) x else null` for simplicity.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
 * Use `error()` rather than `throw IllegalStateException()` for simplicity.

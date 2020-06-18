@@ -121,7 +121,7 @@ val zs: Map<Int, String> = xs.zip(ys).toMap() // {1=a, 2=b, 3=c}
 # Map
 ## How to create a Map
 ```kotlin
-val map: Map<Int, String> = mapOf(1 to "a", 2 to "b", 3 to "c").withDefault { "default" } // {1=a, 2=b, 3=c}
+val map: Map<Int, String> = mapOf(1 to "a", 2 to "b", 3 to "c").withDefault { "default" }
 val result1: String = map.getValue(4) // "default"
 val result2: String? = map[4] // null
 ```

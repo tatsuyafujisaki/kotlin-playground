@@ -99,8 +99,9 @@ val ys: List<Int> = x.orEmpty()
 ## How to convert a List to a Map
 ```kotlin
 val xs: List<Int> = listOf(1, 2, 3)
-val ys = xs.associateWith { "value$it" } // {1=value1, 2=value2, 3=value3}
-val zs = xs.associateBy { "key$it" } // {key1=1, key2=2, key3=3}
+val result1: Map<Int, Int> = xs.withIndex().associate { it.value to it.index } // {1=0, 2=1, 3=2}
+val result2: Map<Int, String> = xs.associateWith { "value$it" } // {1=value1, 2=value2, 3=value3}
+val result3: Map<String, Int> = xs.associateBy { "key$it" } // {key1=1, key2=2, key3=3}
 ```
 
 ## How to convert two List(s) to another List

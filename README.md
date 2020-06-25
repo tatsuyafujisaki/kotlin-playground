@@ -123,14 +123,28 @@ val zs: Map<Int, String> = xs.zip(ys).toMap() // {1=a, 2=b, 3=c}
 # Map
 ## How to create a Map
 ```kotlin
-val map: Map<Int, String> = mapOf(1 to "a", 2 to "b", 3 to "c").withDefault { "default" }
-val result1: String = map.getValue(4) // "default"
-val result2: String? = map[4] // null
+val map: Map<String, String> = mapOf("a" to "x", "b" to "y", "c" to "z").withDefault { "default" }
+val result1: Set<Map.Entry<String, String>> = map.entries // [a=x, b=y, c=z]
+val result2: Set<String> = map.keys // [a, b, c]
+val result3: Collection<String> = map.values // [x, y, z]
+val result4: String? = map["d"] // null
+val result5: String = map.getValue("d") // "default"
+val result6: String? = map.getOrDefault("d", "not found") // not found
+val result7: String? = map.getOrElse("d") { "not found" } // not found
+```
+
+## How to filter a Map
+```kotlin
+val map: Map<String, String> = mapOf("a" to "x", "b" to "y", "c" to "z").withDefault { "default" }
+val result1 = map.filterKeys { it == "b" } // {b=y}
+val result2 = map.filterValues { it == "y" } // {b=y}
+val result3 = map.filter { it.key == "b" && it.value == "y" } // {b=y}
 ```
 
 ## How to sort a Map
 ```kotlin
-val map: Map<Int, String> = mapOf(1 to "a", 3 to "b", 2 to "c").toSortedMap() // {1=x, 2=y, 3=z}
+val map: Map<String, String> = mapOf("a" to "x", "b" to "y", "c" to "z")
+val result: Map<String, String> = map.toSortedMap() // {a=x, b=y, c=z}
 ```
 
 # String

@@ -1,5 +1,7 @@
 # Best practices
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.
+* Use infix notation for simplicity as long as the usage follows the Kotlin coding convention.
+  * e.g. Use `x in xs` rather than `xs.contains(x)`.
 * Use `repeat(n)` rather than `while(n--)` for simplicity.
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for simplicity.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.

@@ -84,9 +84,10 @@ val z: List<Int>? = listOf(1, 2, 3).takeUnless { 1 in it } // null
 ```kotlin
 val xs: List<Int> = listOf(1, 2 ,3)
 val ys: List<Int> = listOf(2, 3, 4)
-val result1: Set<Int> = xs union ys // [1, 2, 3, 4]
-val result2: Set<Int> = xs intersect ys // [2, 3]
-val result3: Set<Int> = xs subtract ys // [1]
+val result1: List<Int> = xs + ys // [1, 2, 3, 2, 3, 4]
+val result2: Set<Int> = xs union ys // [1, 2, 3, 4]
+val result3: Set<Int> = xs intersect ys // [2, 3]
+val result4: Set<Int> = xs subtract ys // [1]
 ```
 
 ## How to sort a List

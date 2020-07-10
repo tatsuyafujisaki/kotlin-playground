@@ -154,6 +154,14 @@ val result: Map<String, String> = map.toSortedMap() // {a=x, b=y, c=z}
 ```
 
 # String
+## Remove a substring from a String
+```kotlin
+val result1: String = "abc".removePrefix("a")) // bc
+val result2: String = "abc".removeSuffix("c")) // ab
+val result3: String = "aaa".removeSurrounding("a")) // bb
+val result4: String = "abc".removeSurrounding("a", "c")) // b
+```
+
 ## How to convert String? to String
 ```kotlin
 val x: String? = null

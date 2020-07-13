@@ -137,8 +137,6 @@ fun main() {
         Sample("b", 2),
         Sample("c", 1)
     ).toSortedSet(compareBy { it.order }) // [(c,1), (b,2), (a,3)]
-
-    println(xs)
 }
 
 class Sample(private val name: String, val order: Int) {

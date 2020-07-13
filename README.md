@@ -119,11 +119,33 @@ val zs: List<String> = xs.zip(ys).map { (x, y) ->
 } // [1a, 2b, 3c]
 ```
 
-## How to convert two List(s) to a map
+## How to convert two List(s) to a Map
 ```kotlin
 val xs: List<Int> = listOf(1, 2, 3)
 val ys: List<String> = listOf("a", "b", "c")
 val zs: Map<Int, String> = xs.zip(ys).toMap() // {1=a, 2=b, 3=c}
+```
+
+# Set
+## How to convert a List to a SortedSet
+```kotlin
+fun main() {
+    val xs: SortedSet<String> = listOf("c", "b", "a").toSortedSet() // [a, b, c]
+
+    val ys: SortedSet<Sample> = listOf(
+        Sample("a", 3),
+        Sample("b", 2),
+        Sample("c", 1)
+    ).toSortedSet(compareBy { it.order }) // [(c,1), (b,2), (a,3)]
+
+    println(xs)
+}
+
+class Sample(private val name: String, val order: Int) {
+    override fun toString(): String {
+        return "($name,$order)"
+    }
+}
 ```
 
 # Map

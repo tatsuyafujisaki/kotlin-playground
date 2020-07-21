@@ -132,7 +132,14 @@ val zs: Map<Int, String> = xs.zip(ys).toMap() // {1=a, 2=b, 3=c}
 fun main() {
     val xs: SortedSet<String> = listOf("c", "b", "a").toSortedSet() // [a, b, c]
 
-    val ys: SortedSet<Sample> = listOf(
+    val ys = sortedSetOf(
+        compareBy { it.order },
+        Sample("a", 3),
+        Sample("b", 2),
+        Sample("c", 1)
+    ) // [(c,1), (b,2), (a,3)]
+
+    val zs: SortedSet<Sample> = listOf(
         Sample("a", 3),
         Sample("b", 2),
         Sample("c", 1)

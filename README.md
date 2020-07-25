@@ -3,8 +3,7 @@
 * Use `A to B` rather than `Pair(A, B)` for simplicity.
 * Use `with(...)` rather than `run(...)` if the receiver is not nullable because, in my opinion, the former is slightly more readable.
 * Use `filterIsInstance<Foo>()` rather than `filterIsInstance(Foo::class.java)` for simplicity.
-* Use infix notation for simplicity as long as the usage follows the Kotlin coding convention.
-  * e.g. Use `x in xs` rather than `xs.contains(x)`.
+* Use infix notation for simplicity. e.g. Use `x !in xs` rather than `!xs.contains(x)`.
 * Use `repeat(n)` rather than `while(n--)` for simplicity.
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for simplicity.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.

@@ -91,8 +91,13 @@ val result4: Set<Int> = xs subtract ys // [1]
 
 ## How to sort a List
 ```kotlin
+data class Sample(val name: String)
+```
+
+```kotlin
 val xs: List<Int> = listOf(1, 3, 2).sorted() // [1, 2, 3]
 val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
+val zs: List<Sample> = listOf(Sample("c"), Sample("b"), Sample("a")).sortedBy { it.name } // [Sample(name=a), Sample(name=b), Sample(name=c)]
 ```
 
 ## How to convert a List? to a List

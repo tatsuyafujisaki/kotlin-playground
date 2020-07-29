@@ -241,7 +241,7 @@ fun main() {
     // Qualified function reference
     val result2: List<String> = xs.map(Int::toString) // ["1", "2"]
 
-    // Companion object unction reference
+    // Companion object function reference
     val result3: List<Int> = xs.map((Sample)::double) // [2, 4]
     val result4: List<Int> = xs.map(Sample.Companion::double) // [2, 4]
 

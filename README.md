@@ -8,7 +8,6 @@
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for simplicity.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
-* Use `error()` rather than `throw IllegalStateException()` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
 # Type mapping between Kotlin and Java
@@ -272,6 +271,15 @@ x+?|1+|reluctant
 
 ## References
 * Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
+
+# Exception throwers
+Function|Throws
+--|--
+check(Boolean)|IllegalStateException
+checkNotNull(T?)|IllegalStateException
+error(Any)|IllegalStateException
+require(Boolean)|IllegalArgumentException
+requireNotNull(T?)|IllegalArgumentException
 
 # How to use CookieManager
 ```kotlin

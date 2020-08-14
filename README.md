@@ -10,6 +10,15 @@
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
+# Syntactic sugar for throwing exceptions
+Function|Throws
+--|--
+check(Boolean)|IllegalStateException
+checkNotNull(T?)|IllegalStateException
+error(Any)|IllegalStateException
+require(Boolean)|IllegalArgumentException
+requireNotNull(T?)|IllegalArgumentException
+
 # Type mapping between Kotlin and Java
 Kotlin|Java
 ---|---
@@ -271,15 +280,6 @@ x+?|1+|reluctant
 
 ## References
 * Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
-
-# Exception throwers
-Function|Throws
---|--
-check(Boolean)|IllegalStateException
-checkNotNull(T?)|IllegalStateException
-error(Any)|IllegalStateException
-require(Boolean)|IllegalArgumentException
-requireNotNull(T?)|IllegalArgumentException
 
 # How to use CookieManager
 ```kotlin

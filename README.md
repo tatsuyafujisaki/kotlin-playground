@@ -17,8 +17,8 @@
 # `init` and second `constructor`
 `init` is called before the secondary `constructor`.
 ```kotlin
-class Sample(val s: String) {
-    constructor(s: String, n: Int): this(s) {
+class Sample(val s: String) /* Primary constructor */ {
+    constructor(s: String, n: Int) /* Secondary constructor */ : this(s) {
         println("Secondary constructor is called.")
     }
     init {

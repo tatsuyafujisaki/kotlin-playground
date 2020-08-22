@@ -1,8 +1,6 @@
-# Official style guides
+# Official (top-priority) style guides
 * https://developer.android.com/kotlin/style-guide
 * https://kotlinlang.org/docs/reference/coding-conventions.html
-
-These should precede other style guides.
 
 # Personal best practices
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.

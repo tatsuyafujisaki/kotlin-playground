@@ -1,4 +1,8 @@
-# Best practices
+# Official style guides
+* https://developer.android.com/kotlin/style-guide
+* https://kotlinlang.org/docs/reference/coding-conventions.html
+
+# Personal best practices
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.
 * Use `A to B` rather than `Pair(A, B)` for simplicity.
 * Use `with(...)` rather than `run(...)` if the receiver is not nullable because, in my opinion, the former is slightly more readable.
@@ -10,14 +14,26 @@
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
-# Syntactic sugar for throwing exceptions
-Function|Throws
---|--
-check(Boolean)|IllegalStateException
-checkNotNull(T?)|IllegalStateException
-error(Any)|IllegalStateException
-require(Boolean)|IllegalArgumentException
-requireNotNull(T?)|IllegalArgumentException
+# `init` and second `constructor`
+`init` is called before the secondary `constructor`.
+```kotlin
+class Sample(val s: String) {
+    constructor(s: String, n: Int): this(s) {
+        println("Secondary constructor is called.")
+    }
+    init {
+        println("init is called.")
+    }
+}
+
+fun main() {
+    val sample = Sample("Alice", 18)
+}
+
+// Result:
+// init is called.
+// Secondary constructor is called.
+```
 
 # Type mapping between Kotlin and Java
 Kotlin|Java
@@ -280,6 +296,15 @@ x+?|1+|reluctant
 
 ## References
 * Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
+
+# Syntactic sugar for throwing exceptions
+Function|Throws
+--|--
+check(Boolean)|IllegalStateException
+checkNotNull(T?)|IllegalStateException
+error(Any)|IllegalStateException
+require(Boolean)|IllegalArgumentException
+requireNotNull(T?)|IllegalArgumentException
 
 # How to use CookieManager
 ```kotlin

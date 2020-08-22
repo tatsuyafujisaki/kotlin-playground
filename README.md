@@ -1,5 +1,5 @@
 # Official (top-priority) style guides
-* https://developer.android.com/kotlin/style-guide
+* https://developer.android.com/kotlin/style-guide (only if Android development)
 * https://kotlinlang.org/docs/reference/coding-conventions.html
 
 # Personal best practices

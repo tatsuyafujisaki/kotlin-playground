@@ -1,4 +1,4 @@
-# Official (top-priority) style guides
+# Official style guides
 * https://developer.android.com/kotlin/style-guide (only if Android development)
 * https://kotlinlang.org/docs/reference/coding-conventions.html
 

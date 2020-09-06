@@ -166,6 +166,13 @@ val zs: Map<Int, String> = xs.zip(ys).toMap() // {1=a, 2=b, 3=c}
 ```
 
 # Set
+
+## How to crete a Set
+```kotlin
+val set1: Set<String> = setOf("a", "b", "b") // [a, b]
+val set2: Set<String> = setOfNotNull(null, "a", "b", "b", null) // [a, b]
+```
+
 ## How to convert a List to a SortedSet
 ```kotlin
 fun main() {

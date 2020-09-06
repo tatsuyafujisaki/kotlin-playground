@@ -4,7 +4,7 @@ object RadixSort {
     fun sort(xs: IntArray) {
         require(xs.all { 0 <= it })
         var place = 1
-        repeat(xs.max()!!.toString().length) {
+        repeat(xs.maxOrNull()!!.toString().length) {
             countingSort(xs, place)
             place *= 10
         }

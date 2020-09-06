@@ -253,6 +253,14 @@ val xs: String = listOf("a", "b", "c").joinToString(
 ) // "{a;b;etc}
 ```
 
+## How to append strings
+```kotlin
+val s: String = buildString {
+    appendLine("aaa")
+    appendLine("bbb")
+}
+```
+
 # How to extract a double-quoted URL from a string
 ```kotlin
 val html: String = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"

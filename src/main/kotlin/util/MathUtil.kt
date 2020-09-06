@@ -34,7 +34,8 @@ object MathUtil {
 
     fun round(x: Double, decimals: Int) = "%.${decimals}f".format(x)
 
-    fun weightedMean(xs: List<Int>, weights: List<Int>) = (xs.zip(weights) { x, weight -> x * weight }).sum() / weights.sum().toDouble()
+    fun weightedMean(xs: List<Int>, weights: List<Int>) =
+        (xs.zip(weights) { x, weight -> x * weight }).sum() / weights.sum().toDouble()
 
     /**
      * @param xs must be sorted.
@@ -50,7 +51,7 @@ object MathUtil {
     /**
      * @param xs must be sorted if you want to return the smallest mode.
      */
-    fun mode(xs: List<Int>) = xs.groupingBy { it }.eachCount().maxBy { it.value }!!.key
+    fun mode(xs: List<Int>) = xs.groupingBy { it }.eachCount().maxByOrNull { it.value }!!.key
 
     fun standardDeviation(xs: List<Double>): Double {
         val mean = xs.average()
@@ -116,7 +117,8 @@ object MathUtil {
     // Spearman's rank correlation coefficient
     fun spearman(xs: List<Double>, ys: List<Double>): Double {
         val n = xs.size
-        return 1.0 - (6.0 * rank(xs).zip(rank(ys)) { rankX, rankY -> powInt(rankX - rankY, 2) }.sum() / (n * (n * n - 1.0)))
+        return 1.0 - (6.0 * rank(xs).zip(rank(ys)) { rankX, rankY -> powInt(rankX - rankY, 2) }
+            .sum() / (n * (n * n - 1.0)))
     }
 
     // O(sqrt(n))

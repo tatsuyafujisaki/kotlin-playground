@@ -310,6 +310,32 @@ data class Sample(val x: Int) {
 }
 ```
 
+# Delegate
+## How to use Delegates.observable(...)
+```kotlin
+// The type can be omitted.
+var observed: String by Delegates.observable("a") { _, old, new ->
+    println("$old -> $new")
+}
+println(observed) // a
+observed = "b" // a -> b
+observed = "c" // b -> c
+```
+
+## How to use Delegates.vetoable(...)
+```kotlin
+// The type can be omitted.
+var evenNumber: Int by Delegates.vetoable(1) { _, old, new ->
+    new % 2 == 0
+}
+
+println(evenNumber) // 1. Though 1 is not an even number, the initial value is not validated.
+evenNumber = 3 // vetoed because 3 is not a even number.
+println(evenNumber) // 1
+evenNumber = 2
+println(evenNumber) // 2
+```
+
 # Regex
 Construct|Matches|Greedy or reluctant
 --|--|--
@@ -331,30 +357,6 @@ checkNotNull(T?)|IllegalStateException
 error(Any)|IllegalStateException
 require(Boolean)|IllegalArgumentException
 requireNotNull(T?)|IllegalArgumentException
-
-# How to use CookieManager
-```kotlin
-val cookieManager = CookieManager.getInstance()
-
-val url1 = "example.com"
-val url2 = "example.com/foo"
-val url3 = "sub.example.com"
-val url4 = "https://example.com"
-val url5 = "http://example.com"
-
-cookieManager.setCookie(url1, "a=1")
-cookieManager.setCookie(url2, "b=2")
-cookieManager.setCookie(url3, "c=3")
-cookieManager.setCookie(url4, "d=4")
-cookieManager.setCookie(url5, "e=5")
-cookieManager.setCookie(url5, "e=5!")
-
-val cookie1: String = cookieManager.getCookie(url1) // a = 1; b = 2; d = 4; e = 5!
-val cookie2: String = cookieManager.getCookie(url2) // a = 1; b = 2; d = 4; e = 5!
-val cookie3: String = cookieManager.getCookie(url3) // c = 3
-val cookie4: String = cookieManager.getCookie(url4) // a = 1; b = 2; d = 4; e = 5!
-val cookie5: String = cookieManager.getCookie(url5) // a = 1; b = 2; d = 4; e = 5!
-```
 
 # How to remove comments
 1. Command+Shift+F in IntelliJ IDEA.

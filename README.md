@@ -97,6 +97,14 @@ val ys: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
  val result2: List<Int> = xs.minus(2) // [1, 3]
 ```
 
+## How to use `onEach` and `forEach`
+```kotlin
+listOf('a', 'b', 'c')
+    .onEach { println(it) } // a b c
+    .map { it.toUpperCase() }
+    .forEach { println(it) } // A B C
+```
+
 ## How to filter a List
 ```kotlin
 val xs: List<Int> = listOf(1, 2 ,3)

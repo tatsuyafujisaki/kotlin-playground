@@ -344,6 +344,7 @@ evenNumber = 2
 println(evenNumber) // 2
 ```
 
+## Comparison among lazy, Delegates#notNull(), and lateinit
 &nbsp;|lazy|Delegates#notNull()|lateinit
 --|--|--|--
 val|supported|not supported|not supported

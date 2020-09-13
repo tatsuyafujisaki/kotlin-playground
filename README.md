@@ -378,6 +378,16 @@ error(Any)|IllegalStateException
 require(Boolean)|IllegalArgumentException
 requireNotNull(T?)|IllegalArgumentException
 
+# Predefined string resources
+```kotlin
+val a: String = resources.getString(android.R.string.ok) // OK
+val d: String = resources.getString(android.R.string.cancel) // Cancel
+val b: String = resources.getString(android.R.string.unknownName) // Unknown
+val c: String = resources.getString(android.R.string.untitled) // <Untitled>
+```
+
+https://developer.android.com/reference/kotlin/android/R.string
+
 # How to remove comments
 1. Command+Shift+F in IntelliJ IDEA.
 2. Check `Regex`.

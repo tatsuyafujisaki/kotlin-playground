@@ -344,6 +344,17 @@ evenNumber = 2
 println(evenNumber) // 2
 ```
 
+&nbsp;|lazy|Delegates#notNull()|lateinit
+--|--|--|--
+val|supported|not supported|not supported
+non-nullable|supported|supported|not supported
+primitive types|supported|supported|not supported
+performance|ok(※1)|ok(※1)|good
+Dagger|supported|supported(※2)|supported
+
+* (※1) A delegate object is created.
+* (※2) Dagger's field injection is not supported but Dagger's method (setter) injection is.
+
 # Regex
 Construct|Matches|Greedy or reluctant
 --|--|--

@@ -4,8 +4,8 @@ import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class InjectTestService {
@@ -27,7 +27,7 @@ class AnnotationMockKUnitTest {
     @InjectMockKs
     var objectUnderTest = InjectTestService()
 
-    @Before
+    @BeforeAll
     fun setUp() = MockKAnnotations.init(this)
 
     @Test

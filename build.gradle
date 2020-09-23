@@ -16,7 +16,6 @@ dependencies {
      * https://kotlinlang.org/docs/reference/using-gradle.html
      */
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    // implementation 'org.jetbrains.kotlin:kotlin-reflect'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
 
@@ -27,6 +26,9 @@ dependencies {
     implementation 'com.squareup.moshi:moshi-kotlin:1.9.2'
 
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    // Use Rx only if your client does not want to use Coroutines and Flow.
+    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
 
     testImplementation 'io.mockk:mockk:1.9.3'
 }

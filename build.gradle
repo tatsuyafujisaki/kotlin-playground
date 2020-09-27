@@ -23,7 +23,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 
-    implementation 'com.squareup.moshi:moshi-kotlin:1.9.2'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.10.0'
 
     implementation 'com.google.code.gson:gson:2.8.6'
 

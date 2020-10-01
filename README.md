@@ -1,6 +1,8 @@
 # Official style guides
 * https://developer.android.com/kotlin/style-guide (only if Android development)
 * https://kotlinlang.org/docs/reference/coding-conventions.html
+  * Note that Kotlin Coding Conventions' recommended indent for chained call wrapping is a single indent (four spaces).
+  * https://kotlinlang.org/docs/reference/coding-conventions.html#chained-call-wrapping
 
 # Personal best practices
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.

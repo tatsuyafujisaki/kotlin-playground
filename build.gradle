@@ -24,12 +24,10 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 
     implementation 'com.squareup.moshi:moshi-kotlin:1.10.0'
-
     implementation 'com.google.code.gson:gson:2.8.6'
-
     testImplementation 'io.mockk:mockk:1.9.3'
 
-    // Use Rx only if your client does not want to use Coroutines and Flow.
+    // Use Rx only if your client sticks with it.
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:$coroutines_version"
     implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
 }

@@ -6,10 +6,15 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 object ObservableExamples {
     private val compositeDisposable = CompositeDisposable()
 
-    fun example1() {
+    val observable1: Observable<Any> = Observable.empty()
+    val observable2: Observable<Any> = Observable.never()
+    val observable3: Observable<Any> = Observable.error(Throwable())
+
+    fun example1(items: List<String> = listOf("apple", "orange")) {
+
         val observable =
             Observable
-                .just("apple", "orange")
+                .fromIterable(items.asIterable())
                 .doOnSubscribe {
                     // Called whenever a new subscriber is added.
                     println("doOnSubscribe")

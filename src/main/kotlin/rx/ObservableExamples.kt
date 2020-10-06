@@ -11,10 +11,10 @@ object ObservableExamples {
     val observable3: Observable<Any> = Observable.error(Throwable())
 
     fun example1(items: List<String> = listOf("apple", "orange")) {
-
         val observable =
             Observable
                 .fromIterable(items.asIterable())
+                // .map { throw Throwable("wtf") }
                 .doOnSubscribe {
                     // Called whenever a new subscriber is added.
                     println("doOnSubscribe")
@@ -25,10 +25,17 @@ object ObservableExamples {
                 }
                 .doOnError {
                     // Called on error whenever a new subscriber is added.
+                    println("doOnError: ${it.message}")
                     it.printStackTrace()
                 }
+                .onErrorResumeNext {
+                    // Called on error whenever a new subscriber is added.
+                    println("onErrorResumeNext: ${it.message}")
+                    it.printStackTrace()
+                    Observable.never()
+                }
                 .doOnComplete {
-                    // Called whenever a new subscriber is added.
+                    // Called on complete with no error whenever a new subscriber is added.
                     println("doOnComplete")
                 }
 

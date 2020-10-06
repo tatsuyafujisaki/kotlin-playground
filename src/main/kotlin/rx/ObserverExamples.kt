@@ -13,11 +13,13 @@ object ObserverExamples {
             println("onNext: $item")
         }
 
-        override fun onError(t: Throwable) {
-            t.printStackTrace()
+        override fun onError(e: Throwable) {
+            println("onError: ${e.message}")
+            e.printStackTrace()
         }
 
         override fun onComplete() {
+            // Called on complete with no error.
             println("onComplete")
         }
     }

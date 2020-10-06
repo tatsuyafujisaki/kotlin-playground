@@ -13,13 +13,21 @@ object SingleExamples {
     fun example1(item: String = "apple") {
         val single = Single
             .just(item)
+            // .map { throw Throwable("wtf") }
             .doOnSuccess {
                 // Called on success whenever a new subscriber is added.
                 println("doOnSuccess: $it")
             }
             .doOnError {
                 // Called on error whenever a new subscriber is added.
+                println("doOnError: ${it.message}")
                 it.printStackTrace()
+            }
+            .onErrorResumeNext {
+                // Called on error whenever a new subscriber is added.
+                println("onErrorResumeNext: ${it.message}")
+                it.printStackTrace()
+                Single.never()
             }
 
         with(single) {

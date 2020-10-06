@@ -1,15 +1,17 @@
 package rx
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 
 object SubjectExamples {
-    var firstExecution = true
+    private val compositeDisposable = CompositeDisposable()
 
     fun example1() {
         val subject = PublishSubject.create<Unit>()
         val observable = subject.hide()
+        var firstExecution = true
 
         observable
             .map {
@@ -25,20 +27,25 @@ object SubjectExamples {
             }
             .subscribe {
                 println("subscribe")
-            }
+            }.let(compositeDisposable::add)
 
         subject.onNext(Unit) // prints "subscribe".
         subject.onNext(Unit) // prints "onErrorResumeNext".
         subject.onNext(Unit) // does nothing.
+
+        compositeDisposable.dispose()
     }
 
     fun example2() {
         val subject = PublishSubject.create<Unit>()
         subject.subscribe {
             println("subscribe")
-        }
+        }.let(compositeDisposable::add)
+
         subject.onNext(Unit) // prints "subscribe".
         subject.onNext(Unit) // prints "subscribe".
+
+        compositeDisposable.dispose()
     }
 
     fun example3() {

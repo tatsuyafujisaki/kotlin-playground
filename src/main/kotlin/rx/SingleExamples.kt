@@ -11,11 +11,11 @@ object SingleExamples {
         val single = Single
             .just("apple")
             .doOnSuccess {
-                // Called whenever a new subscriber is added.
+                // Called on success whenever a new subscriber is added.
                 println("doOnSuccess: $it")
             }
             .doOnError {
-                // Called whenever a new subscriber is added.
+                // Called on error whenever a new subscriber is added.
                 it.printStackTrace()
             }
 

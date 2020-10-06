@@ -6,13 +6,17 @@ object ObservableExamples {
     fun example1() {
         val observable =
             Observable
-                .just("apple", "orange")
-                .doOnNext {
+                .just("apple", "orange", "banana")
+                .doOnSubscribe {
                     // Called whenever a new subscriber is added.
+                    println("doOnSubscribe")
+                }
+                .doOnNext {
+                    // Called on each successful item whenever a new subscriber is added.
                     println("doOnNext: $it")
                 }
                 .doOnError {
-                    // Called whenever a new subscriber is added.
+                    // Called on error whenever a new subscriber is added.
                     it.printStackTrace()
                 }
                 .doOnComplete {
@@ -21,8 +25,7 @@ object ObservableExamples {
                 }
 
         with(observable) {
-            mySubscribe1()
-            mySubscribe2()
+            mySubscribe3()
             mySubscribe3()
         }
     }

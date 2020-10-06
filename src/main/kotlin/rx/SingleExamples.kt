@@ -39,8 +39,8 @@ object SingleExamples {
     }
 
     private fun Single<*>.mySubscribe1(compositeDisposable: CompositeDisposable) {
-        subscribe { value ->
-            println("onSuccess: $value")
+        subscribe { item ->
+            println("onSuccess: $item")
         }.let(compositeDisposable::add)
     }
 

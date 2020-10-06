@@ -19,28 +19,22 @@ object SingleExamples {
                 it.printStackTrace()
             }
 
-        single
-            .subscribe(
-                { println("onSuccess: $it") },
-                { it.printStackTrace() },
-            )
-
-        single
-            .subscribe(
-                { println("onSuccess: $it") },
-                { it.printStackTrace() },
-            )
+        with(single) {
+            mySubscribe1()
+            mySubscribe2()
+        }
     }
 
-    fun example2(single: Single<*>) {
-        with(single) {
-            subscribe { value ->
-                println("onSuccess: $value")
-            }
-            subscribe(
-                { println("onSuccess: $it") },
-                { it.printStackTrace() },
-            )
+    private fun Single<*>.mySubscribe1() {
+        subscribe { value ->
+            println("onSuccess: $value")
         }
+    }
+
+    private fun Single<*>.mySubscribe2() {
+        subscribe(
+            { println("onSuccess: $it") },
+            { it.printStackTrace() },
+        )
     }
 }

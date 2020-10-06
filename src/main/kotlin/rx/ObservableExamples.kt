@@ -20,33 +20,31 @@ object ObservableExamples {
                     println("doOnComplete")
                 }
 
-        observable.subscribe(
-            { println("onNext: $it") },
-            { it.printStackTrace() },
-            { println("onComplete") }
-        )
+        with(observable) {
+            mySubscribe1()
+            mySubscribe2()
+            mySubscribe3()
+        }
+    }
 
-        observable.subscribe(
+    private fun Observable<*>.mySubscribe1() {
+        subscribe {
+            println("onNext: $it")
+        }
+    }
+
+    private fun Observable<*>.mySubscribe2() {
+        subscribe(
             { println("onNext: $it") },
-            { it.printStackTrace() },
-            { println("onComplete") }
+            { it.printStackTrace() }
         )
     }
 
-    fun example2(observable: Observable<*>) {
-        with(observable) {
-            subscribe {
-                println("onNext: $it")
-            }
-            subscribe(
-                { println("onNext: $it") },
-                { it.printStackTrace() },
-            )
-            subscribe(
-                { println("onNext: $it") },
-                { it.printStackTrace() },
-                { println("onComplete") }
-            )
-        }
+    private fun Observable<*>.mySubscribe3() {
+        subscribe(
+            { println("onNext: $it") },
+            { it.printStackTrace() },
+            { println("onComplete") }
+        )
     }
 }

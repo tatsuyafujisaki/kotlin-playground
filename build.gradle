@@ -28,8 +28,8 @@ dependencies {
     testImplementation 'io.mockk:mockk:1.9.3'
 
     // Use Rx only if your client sticks with it.
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.1'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:$coroutines_version"
-    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
 }
 
 compileKotlin.kotlinOptions.jvmTarget = '1.8'

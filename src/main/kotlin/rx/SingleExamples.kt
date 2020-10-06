@@ -10,9 +10,9 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 object SingleExamples {
     private val compositeDisposable = CompositeDisposable()
 
-    fun example1() {
+    fun example1(item: String = "lorem") {
         val single = Single
-            .just("apple")
+            .just(item)
             .doOnSuccess {
                 // Called on success whenever a new subscriber is added.
                 println("doOnSuccess: $it")

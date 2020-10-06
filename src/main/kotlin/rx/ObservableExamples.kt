@@ -1,12 +1,15 @@
 package rx
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 object ObservableExamples {
+    private val compositeDisposable = CompositeDisposable()
+
     fun example1() {
         val observable =
             Observable
-                .just("apple", "orange", "banana")
+                .just("apple", "orange")
                 .doOnSubscribe {
                     // Called whenever a new subscriber is added.
                     println("doOnSubscribe")
@@ -25,29 +28,29 @@ object ObservableExamples {
                 }
 
         with(observable) {
-            mySubscribe3()
-            mySubscribe3()
+            mySubscribe3(compositeDisposable)
+            mySubscribe3(compositeDisposable)
         }
     }
 
-    private fun Observable<*>.mySubscribe1() {
+    private fun Observable<*>.mySubscribe1(compositeDisposable: CompositeDisposable) {
         subscribe {
             println("onNext: $it")
-        }
+        }.let(compositeDisposable::add)
     }
 
-    private fun Observable<*>.mySubscribe2() {
+    private fun Observable<*>.mySubscribe2(compositeDisposable: CompositeDisposable) {
         subscribe(
             { println("onNext: $it") },
             { it.printStackTrace() }
-        )
+        ).let(compositeDisposable::add)
     }
 
-    private fun Observable<*>.mySubscribe3() {
+    private fun Observable<*>.mySubscribe3(compositeDisposable: CompositeDisposable) {
         subscribe(
             { println("onNext: $it") },
             { it.printStackTrace() },
             { println("onComplete") }
-        )
+        ).let(compositeDisposable::add)
     }
 }

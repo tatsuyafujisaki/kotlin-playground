@@ -31,6 +31,8 @@ object ObservableExamples {
             mySubscribe3(compositeDisposable)
             mySubscribe3(compositeDisposable)
         }
+
+        compositeDisposable.dispose()
     }
 
     private fun Observable<*>.mySubscribe1(compositeDisposable: CompositeDisposable) {

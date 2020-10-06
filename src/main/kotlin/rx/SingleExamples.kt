@@ -26,6 +26,8 @@ object SingleExamples {
             mySubscribe1(compositeDisposable)
             mySubscribe2(compositeDisposable)
         }
+
+        compositeDisposable.dispose()
     }
 
     private fun Single<*>.mySubscribe1(compositeDisposable: CompositeDisposable) {

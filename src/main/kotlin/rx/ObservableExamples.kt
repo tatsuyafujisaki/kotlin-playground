@@ -1,6 +1,7 @@
 package rx
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 object ObservableExamples {
@@ -42,6 +43,35 @@ object ObservableExamples {
         with(observable) {
             mySubscribe3(compositeDisposable)
             mySubscribe3(compositeDisposable)
+        }
+
+        compositeDisposable.dispose()
+    }
+
+    /**
+     * Observable unicasts by design but multicasts by calling share().
+     *
+     * Output:
+     * Subscriber1: apple
+     * Subscriber1: orange <- shown only if Observable#share() is used.
+     * Subscriber2: orange
+     */
+    fun example2() {
+        var emitter: ObservableEmitter<String>? = null
+        val observable = Observable.create<String> { emitter = it }
+
+        with(observable) {
+            subscribe {
+                println("Subscriber1: $it")
+            }.let(compositeDisposable::add)
+
+            emitter?.onNext("apple")
+
+            subscribe {
+                println("Subscriber2: $it")
+            }.let(compositeDisposable::add)
+
+            emitter?.onNext("orange")
         }
 
         compositeDisposable.dispose()

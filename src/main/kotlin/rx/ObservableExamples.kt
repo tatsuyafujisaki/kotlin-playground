@@ -14,7 +14,7 @@ object ObservableExamples {
     fun example1(items: List<String> = listOf("apple", "orange")) {
         val observable =
             Observable
-                .fromIterable(items.asIterable())
+                .fromIterable(items)
                 // .map { throw Throwable("wtf") }
                 .doOnSubscribe {
                     // Called whenever a new subscriber is added.

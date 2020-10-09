@@ -1,6 +1,7 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.10'
     id 'org.jetbrains.kotlin.kapt' version '1.4.10'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'
 }
 
 repositories {
@@ -15,6 +16,7 @@ dependencies {
      * https://kotlinlang.org/docs/reference/using-gradle.html
      */
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0'
     // https://kotlinlang.org/api/latest/kotlin.test/
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'

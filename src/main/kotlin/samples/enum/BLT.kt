@@ -1,6 +1,6 @@
 package samples.enum
 
-private enum class BLT {
+enum class BLT {
     BACON {
         override fun toString() = "Bacon!"
     },
@@ -13,9 +13,14 @@ private enum class BLT {
 
     companion object {
         fun example() {
-            val bacon: BLT = valueOf("BACON")
+            val bacon = valueOf("BACON")
             println(bacon)
+        }
+
+        fun example2() {
+            for (value in values()) {
+                println("The index of " + value + " is " + value.ordinal)
+            }
         }
     }
 }
-

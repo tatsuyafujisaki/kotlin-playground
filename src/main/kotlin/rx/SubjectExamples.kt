@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.subjects.Subject
 object SubjectExamples {
     private val compositeDisposable = CompositeDisposable()
 
-    fun example1() {
+    fun example() {
         val subject = PublishSubject.create<Unit>()
         val observable = subject.hide()
         var firstExecution = true

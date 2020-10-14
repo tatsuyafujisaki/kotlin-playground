@@ -9,10 +9,13 @@ private enum class BLT {
     },
     TOMATO {
         override fun toString() = "Tomato!"
-    },
+    };
+
+    companion object {
+        fun example() {
+            val bacon: BLT = valueOf("BACON")
+            println(bacon)
+        }
+    }
 }
 
-fun bltSampleUsage() {
-    val bacon: BLT = BLT.valueOf("BACON")
-    println(bacon)
-}

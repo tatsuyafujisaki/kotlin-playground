@@ -32,10 +32,12 @@ enum class MyEnum(val value: Int) : MyInterface {
 
     abstract val myField: String
     abstract fun doSomething(s: String)
-}
 
-fun myEnumSampleUsage() {
-    val foo: MyEnum = MyEnum.valueOf("FOO")
-    println(foo.myField)
-    foo.doSomething("XYZ")
+    companion object {
+        fun example() {
+            val foo: MyEnum = valueOf("FOO")
+            println(foo.myField)
+            foo.doSomething("XYZ")
+        }
+    }
 }

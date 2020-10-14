@@ -10,7 +10,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 object SingleExamples {
     private val compositeDisposable = CompositeDisposable()
 
-    fun example1(item: String = "apple") {
+    fun example(item: String = "apple") {
         val single = Single
             .just(item)
             // .map { throw Throwable("wtf") }

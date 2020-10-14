@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 object CompletableExamples {
     private val compositeDisposable = CompositeDisposable()
 
-    fun example1() {
+    fun example() {
         val completable = Completable.create { emitter ->
             runCatching {
                 // Do something.

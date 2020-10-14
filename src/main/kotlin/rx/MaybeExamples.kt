@@ -6,13 +6,13 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 object MaybeExamples {
     private val compositeDisposable = CompositeDisposable()
 
-    fun example1() {
+    fun example() {
         val maybe = Maybe.just("apple")
         val single = maybe.defaultIfEmpty("orange")
 
         maybe.mySubscribe3(compositeDisposable)
         maybe.mySubscribe3(compositeDisposable)
-        
+
         compositeDisposable.dispose()
     }
 

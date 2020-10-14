@@ -7,16 +7,16 @@ private enum class RGB(val value: Int) {
 
     companion object {
         fun from(value: Int) = values().firstOrNull { it.value == value }
+
+        fun example() {
+            val red = valueOf("RED")
+            println(red)
+
+            val green = from(0x00FF00)
+            println(green)
+
+            val nil = from(0xFFFFFF)
+            println(nil)
+        }
     }
-}
-
-fun rgbSampleUsage() {
-    val red = RGB.valueOf("RED")
-    println(red)
-
-    val green = RGB.from(0x00FF00)
-    println(green)
-
-    val nil = RGB.from(0xFFFFFF)
-    println(nil)
 }

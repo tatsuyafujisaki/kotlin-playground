@@ -15,7 +15,7 @@ object StringUtil {
     fun extractDoubleQuotedUrl2(s: String) =
         Regex("(https?://.+?)\"").find(s)?.destructured?.component1()
 
-    fun sampleUsage() {
+    fun example() {
         val html = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"
         val url = extractDoubleQuotedUrl(html) // https://example.com
         val url2 = extractDoubleQuotedUrl2(html) // https://example.com

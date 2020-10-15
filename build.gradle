@@ -9,11 +9,15 @@ repositories {
 }
 
 dependencies {
+    // 
+    
     /**
-     * Since Kotlin 1.1.2, the versions of artifacts of the group "org.jetbrains.kotlin" have been optional
-     * because they are inferred from the applied plugin.
+     * Starting from Kotlin 1.4, the standard library is added automatically.
+     * https://kotlinlang.org/docs/reference/whatsnew14.html#dependency-on-the-standard-library-added-by-default
+     *
+     * Starting from Kotlin 1.1.2, the versions of artifacts of the group "org.jetbrains.kotlin" are optional and inferred from the applied plugin.
+     * (No documentation is found about it)
      */
-    // The versions of the artifacts of the group "org.jetbrains.kotlin" is optional.
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5' // includes kotlin-test.
 
     /*

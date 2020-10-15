@@ -9,6 +9,10 @@ repositories {
 }
 
 dependencies {
+    /**
+     * Since Kotlin 1.1.2, the versions of artifacts of the group "org.jetbrains.kotlin" have been optional
+     * because they are inferred from the applied plugin.
+     */
     // The versions of the artifacts of the group "org.jetbrains.kotlin" is optional.
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5' // includes kotlin-test.
 

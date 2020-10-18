@@ -8,9 +8,7 @@ repositories {
 }
 
 dependencies {
-    // 
-    
-    /**
+    /*
      * Starting from Kotlin 1.4, the standard library is added automatically.
      * https://kotlinlang.org/docs/reference/whatsnew14.html#dependency-on-the-standard-library-added-by-default
      *
@@ -37,5 +35,5 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.0.1'
 }
 
-compileKotlin.kotlinOptions.jvmTarget = '1.8'
-compileTestKotlin.kotlinOptions.jvmTarget = '1.8'
+compileKotlin.kotlinOptions.jvmTarget = '13'
+compileTestKotlin.kotlinOptions.jvmTarget = '13'

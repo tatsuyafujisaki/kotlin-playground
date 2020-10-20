@@ -38,12 +38,18 @@ object SubjectExamples {
 
     fun example2() {
         val subject = PublishSubject.create<Unit>()
-        subject.subscribe {
-            println("subscribe")
-        }.let(compositeDisposable::add)
 
-        subject.onNext(Unit) // prints "subscribe".
-        subject.onNext(Unit) // prints "subscribe".
+        subject.subscribe({
+            println("onNext")
+        }, {
+            println("onError")
+        }, {
+            println("onComplete")
+        }).let(compositeDisposable::add)
+
+        subject.onNext(Unit) // prints "onNext".
+        subject.onNext(Unit) // prints "onNext".
+        subject.onComplete() // prints "Complete".
 
         compositeDisposable.dispose()
     }

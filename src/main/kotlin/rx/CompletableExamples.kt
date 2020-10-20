@@ -18,20 +18,14 @@ object CompletableExamples {
         }
 
         with(completable) {
-            mySubscribe1(compositeDisposable)
-            mySubscribe2(compositeDisposable)
+            mySubscribe(compositeDisposable)
+            mySubscribe(compositeDisposable)
         }
 
         compositeDisposable.dispose()
     }
 
-    private fun Completable.mySubscribe1(compositeDisposable: CompositeDisposable) {
-        subscribe {
-            println("onComplete")
-        }.let(compositeDisposable::add)
-    }
-
-    private fun Completable.mySubscribe2(compositeDisposable: CompositeDisposable) {
+    private fun Completable.mySubscribe(compositeDisposable: CompositeDisposable) {
         subscribe(
             { println("onComplete") },
             { it.printStackTrace() }

@@ -10,26 +10,13 @@ object MaybeExamples {
         val maybe = Maybe.just("apple")
         val single = maybe.defaultIfEmpty("orange")
 
-        maybe.mySubscribe3(compositeDisposable)
-        maybe.mySubscribe3(compositeDisposable)
+        maybe.mySubscribe(compositeDisposable)
+        maybe.mySubscribe(compositeDisposable)
 
         compositeDisposable.dispose()
     }
 
-    private fun Maybe<*>.mySubscribe1(compositeDisposable: CompositeDisposable) {
-        subscribe {
-            println("onNext: $it")
-        }.let(compositeDisposable::add)
-    }
-
-    private fun Maybe<*>.mySubscribe2(compositeDisposable: CompositeDisposable) {
-        subscribe(
-            { println("onNext: $it") },
-            { it.printStackTrace() }
-        ).let(compositeDisposable::add)
-    }
-
-    private fun Maybe<*>.mySubscribe3(compositeDisposable: CompositeDisposable) {
+    private fun Maybe<*>.mySubscribe(compositeDisposable: CompositeDisposable) {
         subscribe(
             { println("onNext: $it") },
             { it.printStackTrace() },

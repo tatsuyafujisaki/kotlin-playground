@@ -31,20 +31,14 @@ object SingleExamples {
             }
 
         with(single) {
-            mySubscribe1(compositeDisposable)
-            mySubscribe2(compositeDisposable)
+            mySubscribe(compositeDisposable)
+            mySubscribe(compositeDisposable)
         }
 
         compositeDisposable.dispose()
     }
 
-    private fun Single<*>.mySubscribe1(compositeDisposable: CompositeDisposable) {
-        subscribe { item ->
-            println("onSuccess: $item")
-        }.let(compositeDisposable::add)
-    }
-
-    private fun Single<*>.mySubscribe2(compositeDisposable: CompositeDisposable) {
+    private fun Single<*>.mySubscribe(compositeDisposable: CompositeDisposable) {
         subscribe(
             { println("onSuccess: $it") },
             { it.printStackTrace() },

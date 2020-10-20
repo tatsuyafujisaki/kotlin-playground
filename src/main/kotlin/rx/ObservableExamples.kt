@@ -41,8 +41,8 @@ object ObservableExamples {
                 }
 
         with(observable) {
-            mySubscribe3(compositeDisposable)
-            mySubscribe3(compositeDisposable)
+            mySubscribe(compositeDisposable)
+            mySubscribe(compositeDisposable)
         }
 
         compositeDisposable.dispose()
@@ -77,20 +77,7 @@ object ObservableExamples {
         compositeDisposable.dispose()
     }
 
-    private fun Observable<*>.mySubscribe1(compositeDisposable: CompositeDisposable) {
-        subscribe {
-            println("onNext: $it")
-        }.let(compositeDisposable::add)
-    }
-
-    private fun Observable<*>.mySubscribe2(compositeDisposable: CompositeDisposable) {
-        subscribe(
-            { println("onNext: $it") },
-            { it.printStackTrace() }
-        ).let(compositeDisposable::add)
-    }
-
-    private fun Observable<*>.mySubscribe3(compositeDisposable: CompositeDisposable) {
+    private fun Observable<*>.mySubscribe(compositeDisposable: CompositeDisposable) {
         subscribe(
             { println("onNext: $it") },
             { it.printStackTrace() },

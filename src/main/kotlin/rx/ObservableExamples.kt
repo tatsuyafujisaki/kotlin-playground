@@ -48,6 +48,20 @@ object ObservableExamples {
         compositeDisposable.dispose()
     }
 
+    fun example2() {
+        var emitter: ObservableEmitter<String>? = null
+        val observable = Observable.create<String> { emitter = it }
+
+        with(observable) {
+            emitter?.onNext("apple") // has no effect because the observable is not subscribed to yet.
+            mySubscribe(compositeDisposable)
+            emitter?.onNext("orange")
+            emitter?.onComplete()
+        }
+
+        compositeDisposable.dispose()
+    }
+
     /**
      * Observable unicasts by design but multicasts by calling share().
      *
@@ -56,7 +70,7 @@ object ObservableExamples {
      * Subscriber1: orange <- shown only if Observable#share() is used.
      * Subscriber2: orange
      */
-    fun example2() {
+    fun example3() {
         var emitter: ObservableEmitter<String>? = null
         val observable = Observable.create<String> { emitter = it }
 

@@ -5,6 +5,7 @@
      * https://kotlinlang.org/docs/reference/coding-conventions.html#chained-call-wrapping
 
 # Personal best practices
+* Use `emptyList()` rather than `listOf()` for clarity.
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.
 * Use `A to B` rather than `Pair(A, B)` for simplicity.
 * Use `with(...)` rather than `run(...)` if the receiver is not nullable because, in my opinion, the former is slightly more readable.

@@ -285,12 +285,6 @@ val html: String = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>
 val url: String = Regex("(https?://.*?)\"").find(s)?.groupValues?.last() // https://example.com
 ```
 
-# How to show the name of the current thread and the name of the current coroutine
-* `Thread.currentThread().name`
-  * shows the name of the current thread without condition.
-  * shows the name of the current coroutine after the following preparation:
-    * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
-
 # How to use function references and constructor references
 ```kotlin
 fun main() {
@@ -372,6 +366,20 @@ x+?|1+|reluctant
 ## References
 * Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
 
+# How to print the name of the current method
+```kotlin
+fun method1 {
+    println(object {}.javaClass.enclosingMethod?.name) // prints "method1".
+}
+```
+
+# How to show the name of the current thread
+```kotlin
+val currentThreadName: String = Thread.currentThread().name
+```
+* The above also shows the name of the current coroutine after the following preparation:
+  * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
+
 # Syntactic sugar for throwing exceptions
 Function|Throws
 --|--
@@ -380,16 +388,6 @@ checkNotNull(T?)|IllegalStateException
 error(Any)|IllegalStateException
 require(Boolean)|IllegalArgumentException
 requireNotNull(T?)|IllegalArgumentException
-
-# Predefined string resources
-```kotlin
-val a: String = resources.getString(android.R.string.ok) // OK
-val d: String = resources.getString(android.R.string.cancel) // Cancel
-val b: String = resources.getString(android.R.string.unknownName) // Unknown
-val c: String = resources.getString(android.R.string.untitled) // <Untitled>
-```
-
-https://developer.android.com/reference/kotlin/android/R.string
 
 # How to remove comments
 1. Command+Shift+F in IntelliJ IDEA.

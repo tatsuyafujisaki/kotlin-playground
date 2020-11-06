@@ -35,7 +35,7 @@ object SingleExamples {
             mySubscribe(compositeDisposable)
         }
 
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
     private fun Single<*>.mySubscribe(compositeDisposable: CompositeDisposable) {

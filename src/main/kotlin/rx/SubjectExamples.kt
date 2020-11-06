@@ -33,7 +33,7 @@ object SubjectExamples {
         subject.onNext(Unit) // prints "onErrorResumeNext".
         subject.onNext(Unit) // does nothing.
 
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
     fun example2() {
@@ -51,7 +51,7 @@ object SubjectExamples {
         subject.onNext(Unit) // prints "onNext".
         subject.onComplete() // prints "Complete".
 
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
     fun example3() {

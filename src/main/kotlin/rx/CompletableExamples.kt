@@ -22,7 +22,7 @@ object CompletableExamples {
             mySubscribe(compositeDisposable)
         }
 
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
     private fun Completable.mySubscribe(compositeDisposable: CompositeDisposable) {

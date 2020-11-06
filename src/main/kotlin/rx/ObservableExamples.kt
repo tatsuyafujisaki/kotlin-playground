@@ -45,7 +45,7 @@ object ObservableExamples {
             mySubscribe(compositeDisposable)
         }
 
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
     fun example2() {
@@ -88,7 +88,7 @@ object ObservableExamples {
             emitter?.onNext("orange")
         }
 
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
     private fun Observable<*>.mySubscribe(compositeDisposable: CompositeDisposable) {

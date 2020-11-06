@@ -13,7 +13,7 @@ object MaybeExamples {
         maybe.mySubscribe(compositeDisposable)
         maybe.mySubscribe(compositeDisposable)
 
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
     private fun Maybe<*>.mySubscribe(compositeDisposable: CompositeDisposable) {

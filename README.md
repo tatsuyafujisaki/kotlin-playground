@@ -267,8 +267,10 @@ val xs: String = listOf("a", "b", "c").joinToString(
   prefix = "{",
   postfix = "}",
   limit = 2,
-  truncated = "etc"
-) // "{a;b;etc}
+  truncated = "..."
+) {
+    it.toUpperCase()
+} // "{A;B;...}
 ```
 
 ## How to append strings

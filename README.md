@@ -379,7 +379,7 @@ fun method1 {
 ```kotlin
 val currentThreadName: String = Thread.currentThread().name
 ```
-* The above also shows the name of the current coroutine after the following preparation:
+* The preceding code also shows the name of the current coroutine after the following preparation:
   * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.
 
 # Syntactic sugar for throwing exceptions

@@ -22,4 +22,15 @@ object StringUtil {
         println(url)
         println(url2)
     }
+
+    fun nth(n: Int): String {
+        val lastDigit = n % 10
+        return n.toString() + when {
+            n in 11..13 || lastDigit !in 1..3 -> "th"
+            lastDigit == 1 -> "st"
+            lastDigit == 2 -> "nd"
+            lastDigit == 3 -> "rd"
+            else -> error("Impossible state")
+        }
+    }
 }

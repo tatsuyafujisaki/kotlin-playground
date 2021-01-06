@@ -28,12 +28,20 @@ object ObservableExamples {
     }
 
     /**
-     * Observable unicasts by design but multicasts by calling share().
+     * Observable unicasts by default.
+     * Observable multicasts after calling share().
+     *
+     * Observable.share() is an alias for publish().refCount().
+     * Observable.publish() returns a ConnectableObservable, which starts emitting items, not when subscribed, but when connect() is called. By which, a ConnectableObservable can emit items only after all the subscribers subscribe.
+     * Observable.refCount() returns an Observable that will be disposed when all the subscribers are unsubscribed.
      *
      * Output:
-     * Observer1: apple
-     * Observer1: orange <- shown only if Observable#share() is used.
-     * Observer1: orange
+     * Observer(1st).onNext: apple
+     * Observer(1nd).onNext: banana <- not shown because an Observable can take only one Subscriber. Registering the second Subscriber kills the first Subscriber.
+     * Observer(2nd).onNext: banana
+     * Observer(3rd).onNext: grape
+     * Observer(3rd).onNext: orange <- shown because share() is called.
+     * Observer(4th).onNext: orange
      */
     fun example3() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
@@ -41,6 +49,13 @@ object ObservableExamples {
         with(Observable.create<String> { emitter = it }) {
             myCountingSubscribe()
             emitter?.onNext("apple")
+            myCountingSubscribe()
+            emitter?.onNext("banana")
+        }
+        // Note share().
+        with(Observable.create<String> { emitter = it }.share()) {
+            myCountingSubscribe()
+            emitter?.onNext("grape")
             myCountingSubscribe()
             emitter?.onNext("orange")
         }
@@ -127,9 +142,9 @@ object ObservableExamples {
         for (i in 1..n) {
             val nthObserver = i.nth()
             subscribe(
-                { println("$nthObserver Observer.onNext: $it") },
-                { println("$nthObserver Observer.onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
-                { println("$nthObserver Observer.onComplete (After this, Observer.onNext() will never be called.)") }
+                { println("Observer($nthObserver).onNext: $it") },
+                { println("Observer($nthObserver).onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
+                { println("Observer($nthObserver).onComplete (After this, Observer.onNext() will never be called.)") }
             ).let(compositeDisposable::add)
         }
     }
@@ -138,9 +153,9 @@ object ObservableExamples {
         observerCount += 1
         val nthObserver = observerCount.nth()
         subscribe(
-            { println("$nthObserver Observer.onNext: $it") },
-            { println("$nthObserver Observer.onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
-            { println("$nthObserver Observer.onComplete (After this, Observer.onNext() will never be called.)") }
+            { println("Observer($nthObserver).onNext: $it") },
+            { println("Observer($nthObserver).onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
+            { println("Observer($nthObserver).onComplete (After this, Observer.onNext() will never be called.)") }
         ).let(compositeDisposable::add)
     }
 }

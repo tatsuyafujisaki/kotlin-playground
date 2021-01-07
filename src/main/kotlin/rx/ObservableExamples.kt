@@ -28,7 +28,7 @@ object ObservableExamples {
     }
 
     /**
-     * Observable unicasts by default.
+     * Observable unicasts by default. Observable can take only one Subscriber. Registering the second Subscriber unregisters the first Subscriber.
      * Observable multicasts after calling share().
      *
      * Observable.share() is an alias for publish().refCount().
@@ -37,7 +37,7 @@ object ObservableExamples {
      *
      * Output:
      * Observer(1st).onNext: apple
-     * Observer(1nd).onNext: banana <- not shown because an Observable can take only one Subscriber. Registering the second Subscriber kills the first Subscriber.
+     * Observer(1nd).onNext: banana <- not shown because Observable can take only one Subscriber. Registering the second Subscriber unregisters the first Subscriber.
      * Observer(2nd).onNext: banana
      * Observer(3rd).onNext: grape
      * Observer(3rd).onNext: orange <- shown because share() is called.

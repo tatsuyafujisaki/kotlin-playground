@@ -32,7 +32,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     testImplementation 'io.mockk:mockk:1.10.4'
 
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.1'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.9'
 }
 
 compileKotlin.kotlinOptions.jvmTarget = '13'

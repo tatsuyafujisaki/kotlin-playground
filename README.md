@@ -4,7 +4,7 @@
   * Note that Kotlin Coding Conventions' continuation indent is a single indent (four spaces). 
      * https://kotlinlang.org/docs/reference/coding-conventions.html#chained-call-wrapping
 
-# Personal best practices
+# Best practices
 * Use `emptyList()` rather than `listOf()` for clarity.
 * Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.
 * Use `A to B` rather than `Pair(A, B)` for simplicity.

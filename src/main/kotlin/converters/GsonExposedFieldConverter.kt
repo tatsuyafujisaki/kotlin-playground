@@ -2,7 +2,6 @@ package converters
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 
 /**
  * Serialize and deserialize only fields that are annotated with @Expose.
@@ -11,6 +10,6 @@ import com.google.gson.reflect.TypeToken
  */
 object GsonExposedFieldConverter {
     val gson: Gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
-    fun <T> toJson(src: T): String = gson.toJson(src)
-    inline fun <reified T> fromJson(json: String): T = gson.fromJson(json, object : TypeToken<T>() {}.type)
+    fun <T> encodeToString(src: T): String = gson.toJson(src)
+    inline fun <reified T> decodeFromString(json: String): T = gson.fromJson(json, T::class.java)
 }

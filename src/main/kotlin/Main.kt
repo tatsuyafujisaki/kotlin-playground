@@ -1,10 +1,12 @@
 import converters.GsonConverterExamples
+import converters.KotlinxSerializationExamples
 import converters.MoshiConverterExamples
 import rx.ObservableExamples
 
 fun main() {
     GsonConverterExamples.example()
     MoshiConverterExamples.example()
+    KotlinxSerializationExamples.example()
 
     ObservableExamples.example1()
     ObservableExamples.example2()

@@ -4,7 +4,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-object KotlinxSerializationExamples {
+object KotlinSerializationExamples {
     fun example() {
         val person = Person("Jane", 18)
         println(person)

@@ -12,6 +12,7 @@ object KotlinSerializationExamples {
         val json = Json.encodeToString(person)
         println(json)
 
+        // Note that the returned value is non-nullable unlike Moshi.
         val person2: Person = Json.decodeFromString(json)
         println(person2)
     }

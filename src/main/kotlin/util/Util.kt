@@ -3,9 +3,9 @@ package util
 import kotlin.system.measureTimeMillis
 
 object Util {
-    fun readLineAsInts() = readLine()!!.split(' ').filter { it.isNotEmpty() }.map { it.toInt() }
+    fun readLineAsIntegers() = readLine().orEmpty().split(' ').filterNot { it.isEmpty() }.map { it.toInt() }
 
-    fun readLineAsDoubles() = readLine()!!.split(' ').filter { it.isNotEmpty() }.map { it.toDouble() }
+    fun readLineAsDoubles() = readLine().orEmpty().split(' ').filterNot { it.isEmpty() }.map { it.toDouble() }
 
     fun sortByValue(map: Map<Any, Int>) = map.toList().sortedBy { it.second }.toMap()
 

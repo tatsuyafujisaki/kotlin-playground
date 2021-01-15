@@ -5,10 +5,10 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 object MathUtil {
-    fun isEven(n: Int) = (n % 2) == 0
-    fun isSquareNumber(n: Int) = (sqrt(n.toDouble())) % 1.0 == 0.0
-    fun powInt(base: Int, exponent: Int) = base.toDouble().pow(exponent)
-    fun sqrtInt(n: Int) = sqrt(n.toDouble())
+    fun Int.pow(n: Int) = toDouble().pow(n).toInt()
+    fun Int.isEven() = (this % 2) == 0
+    fun Int.isSquareNumber() = (sqrt(toDouble())) % 1.0 == 0.0
+    fun Int.sqrt(n: Int) = sqrt(n.toDouble()).toInt()
     fun swap(a: Int, b: Int) = b to a
 
     fun swap(xs: MutableList<Int>, i: Int, j: Int) {

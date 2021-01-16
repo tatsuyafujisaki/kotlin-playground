@@ -11,10 +11,13 @@ object ArrayUtil {
         return indexOfMin
     }
 
-    fun printArray(xs: Array<*>) = xs.forEach { println(it) }
+    fun printlnArray(xs: Array<*>) = xs.forEach { println(it) }
+
+    fun <T> printArray(xs: Array<T>) {
+        xs.forEach { print("$it ") }
+    }
 
     fun printArray(xs: IntArray) {
         xs.forEach { print("$it ") }
-        println()
     }
 }

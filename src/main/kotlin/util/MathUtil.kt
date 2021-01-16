@@ -8,7 +8,7 @@ object MathUtil {
     fun Int.pow(n: Int) = toDouble().pow(n).toInt()
     fun Int.isEven() = (this % 2) == 0
     fun Int.isSquareNumber() = (sqrt(toDouble())) % 1.0 == 0.0
-    fun Int.sqrt(n: Int) = sqrt(n.toDouble()).toInt()
+    fun Int.sqrt() = sqrt(toDouble()).toInt()
     fun swap(a: Int, b: Int) = b to a
 
     fun swap(xs: MutableList<Int>, i: Int, j: Int) {
@@ -117,7 +117,7 @@ object MathUtil {
     // Spearman's rank correlation coefficient
     fun spearman(xs: List<Double>, ys: List<Double>): Double {
         val n = xs.size
-        return 1.0 - (6.0 * rank(xs).zip(rank(ys)) { rankX, rankY -> powInt(rankX - rankY, 2) }
+        return 1.0 - (6.0 * rank(xs).zip(rank(ys)) { rankX, rankY -> (rankX - rankY).pow(2) }
             .sum() / (n * (n * n - 1.0)))
     }
 
@@ -129,7 +129,7 @@ object MathUtil {
         if (n < 2 || n % 2 == 0) {
             return false
         }
-        for (i in 3..sqrtInt(n).toInt() step 2) {
+        for (i in 3..n.sqrt() step 2) {
             if (n % i == 0) {
                 return false
             }

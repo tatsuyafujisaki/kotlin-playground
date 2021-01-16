@@ -6,7 +6,7 @@ import kotlin.math.sqrt
 
 object MathUtil {
     fun Int.pow(n: Int) = toDouble().pow(n).toInt()
-    fun Int.isEven() = (this % 2) == 0
+    fun Int.isEven() = this % 2 == 0
     fun Int.isSquareNumber() = (sqrt(toDouble())) % 1.0 == 0.0
     fun Int.sqrt() = sqrt(toDouble()).toInt()
 

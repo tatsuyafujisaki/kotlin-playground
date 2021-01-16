@@ -9,7 +9,7 @@ object Heapsort {
 
         for (lastIndex in xs.lastIndex downTo 0) {
             // Move the largest node, which is at the first element of the array, to the end of the array.
-            swap(xs, 0, lastIndex)
+            xs.swap(0, lastIndex)
 
             // Create a binary max heap using all the nodes before the last index.
             heapify(xs, lastIndex, 0)
@@ -31,15 +31,15 @@ object Heapsort {
                 indexOfMax = rightChildIndex
             }
             if (currentNodeIndex != indexOfMax) {
-                swap(xs, currentNodeIndex, indexOfMax)
+                xs.swap(currentNodeIndex, indexOfMax)
                 heapify(xs, nodeCount, indexOfMax)
             }
         }
     }
 
-    private fun swap(xs: IntArray, i: Int, j: Int) {
-        val tmp = xs[i]
-        xs[i] = xs[j]
-        xs[j] = tmp
+    private fun IntArray.swap(i: Int, j: Int) {
+        val temp = this[i]
+        this[i] = this[j]
+        this[j] = temp
     }
 }

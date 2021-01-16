@@ -7,7 +7,7 @@ object BubbleSort {
             var lastSwappedIndex = 0
             for (i in 0..(n - 2)) {
                 if (xs[i + 1] < xs[i]) {
-                    swap(xs, i, i + 1)
+                    xs.swap(i, i + 1)
                     lastSwappedIndex = i + 1
                 }
             }
@@ -15,9 +15,9 @@ object BubbleSort {
         }
     }
 
-    private fun swap(xs: IntArray, i: Int, j: Int) {
-        val tmp = xs[i]
-        xs[i] = xs[j]
-        xs[j] = tmp
+    private fun IntArray.swap(i: Int, j: Int) {
+        val temp = this[i]
+        this[i] = this[j]
+        this[j] = temp
     }
 }

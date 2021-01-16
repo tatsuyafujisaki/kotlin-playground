@@ -27,14 +27,14 @@ object Quicksort {
             if (j < i) {
                 break
             }
-            swap(xs, i++, j--)
+            xs.swap(i++, j--)
         }
         return i
     }
 
-    private fun swap(xs: IntArray, i: Int, j: Int) {
-        val tmp = xs[i]
-        xs[i] = xs[j]
-        xs[j] = tmp
+    private fun IntArray.swap(i: Int, j: Int) {
+        val temp = this[i]
+        this[i] = this[j]
+        this[j] = temp
     }
 }

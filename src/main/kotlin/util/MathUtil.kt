@@ -9,18 +9,17 @@ object MathUtil {
     fun Int.isEven() = (this % 2) == 0
     fun Int.isSquareNumber() = (sqrt(toDouble())) % 1.0 == 0.0
     fun Int.sqrt() = sqrt(toDouble()).toInt()
-    fun swap(a: Int, b: Int) = b to a
 
-    fun swap(xs: MutableList<Int>, i: Int, j: Int) {
-        val tmp = xs[i]
-        xs[i] = xs[j]
-        xs[j] = tmp
+    fun MutableList<Int>.swap(i: Int, j: Int) {
+        val temp = this[i]
+        this[i] = this[j]
+        this[j] = temp
     }
 
-    fun swap(xs: IntArray, i: Int, j: Int) {
-        val tmp = xs[i]
-        xs[i] = xs[j]
-        xs[j] = tmp
+    private fun IntArray.swap(i: Int, j: Int) {
+        val temp = this[i]
+        this[i] = this[j]
+        this[j] = temp
     }
 
     fun largestDivisor(n: Int): Int {

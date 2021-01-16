@@ -1,6 +1,6 @@
 package util
 
-object MatrixUtil {
+object `2dArrayUtil` {
     fun rowCount(matrix: Array<DoubleArray>) = matrix.size
     fun columnCount(matrix: Array<DoubleArray>) = matrix[0].size
     fun isSquareMatrix(matrix: Array<DoubleArray>) = rowCount(matrix) == columnCount(matrix)

@@ -1,42 +1,92 @@
 package util
 
 object MatrixUtil {
+
     fun rowCount(matrix: Array<DoubleArray>) = matrix.size
     fun columnCount(matrix: Array<DoubleArray>) = matrix[0].size
     fun isSquareMatrix(matrix: Array<DoubleArray>) = rowCount(matrix) == columnCount(matrix)
     fun inverse(matrix: Array<DoubleArray>): Array<DoubleArray> = multiply(1.0 / determinant(matrix), transpose(cofactor(matrix)))
 
-    fun matrix(rowCount: Int, columnCount: Int) = Array(rowCount) {
+    fun create2dArray(vararg xs: IntArray): Array<IntArray> = arrayOf(*xs)
+    fun create2dArray(vararg xs: DoubleArray): Array<DoubleArray> = arrayOf(*xs)
+    inline fun <reified T> create2dArray(vararg xs: Array<T>): Array<Array<T>> = arrayOf(*xs)
+
+    fun createIntMatrix(rowCount: Int, columnCount: Int): Array<IntArray> = Array(rowCount) {
+        IntArray(columnCount)
+    }
+
+    fun createDoubleMatrix(rowCount: Int, columnCount: Int): Array<DoubleArray> = Array(rowCount) {
         DoubleArray(columnCount)
     }
 
-    // Helper method to create a 2x2 matrix
-    fun matrix2(a00: Double, a01: Double, a10: Double, a11: Double) =
-        matrix(2, 2).apply {
-            this[0][0] = a00
-            this[0][1] = a01
-            this[1][0] = a10
-            this[1][1] = a11
-        }
+    /**
+     * Creates a 2x2 matrix.
+     */
+    fun createMatrix(
+        a00: Int, a01: Int,
+        a10: Int, a11: Int
+    ): Array<IntArray> = createIntMatrix(2, 2).apply {
+        this[0][0] = a00
+        this[0][1] = a01
+        this[1][0] = a10
+        this[1][1] = a11
+    }
 
-    // Helper method to create a 3x3 matrix
-    fun matrix3(a00: Double, a01: Double, a02: Double, a10: Double, a11: Double, a12: Double, a20: Double, a21: Double, a22: Double) =
-        matrix(3, 3).apply {
-            this[0][0] = a00
-            this[0][1] = a01
-            this[0][2] = a02
-            this[1][0] = a10
-            this[1][1] = a11
-            this[1][2] = a12
-            this[2][0] = a20
-            this[2][1] = a21
-            this[2][2] = a22
-        }
+    /**
+     * Creates a 2x2 matrix.
+     */
+    fun createMatrix(
+        a00: Double, a01: Double,
+        a10: Double, a11: Double
+    ): Array<DoubleArray> = createDoubleMatrix(2, 2).apply {
+        this[0][0] = a00
+        this[0][1] = a01
+        this[1][0] = a10
+        this[1][1] = a11
+    }
+
+    /**
+     * Creates a 3x3 matrix.
+     */
+    fun createMatrix(
+        a00: Int, a01: Int, a02: Int,
+        a10: Int, a11: Int, a12: Int,
+        a20: Int, a21: Int, a22: Int
+    ): Array<IntArray> = createIntMatrix(3, 3).apply {
+        this[0][0] = a00
+        this[0][1] = a01
+        this[0][2] = a02
+        this[1][0] = a10
+        this[1][1] = a11
+        this[1][2] = a12
+        this[2][0] = a20
+        this[2][1] = a21
+        this[2][2] = a22
+    }
+
+    /**
+     * Creates a 3x3 matrix.
+     */
+    fun createMatrix(
+        a00: Double, a01: Double, a02: Double,
+        a10: Double, a11: Double, a12: Double,
+        a20: Double, a21: Double, a22: Double
+    ): Array<DoubleArray> = createDoubleMatrix(3, 3).apply {
+        this[0][0] = a00
+        this[0][1] = a01
+        this[0][2] = a02
+        this[1][0] = a10
+        this[1][1] = a11
+        this[1][2] = a12
+        this[2][0] = a20
+        this[2][1] = a21
+        this[2][2] = a22
+    }
 
     fun submatrix(matrix: Array<DoubleArray>, excludingRow: Int, excludingColumn: Int): Array<DoubleArray> {
         val rowCount = rowCount(matrix)
         val columnCount = columnCount(matrix)
-        val submatrix = matrix(rowCount - 1, columnCount - 1)
+        val submatrix = createDoubleMatrix(rowCount - 1, columnCount - 1)
 
         var submatrixRow = -1
         for (matrixRow in 0 until rowCount) {
@@ -59,7 +109,7 @@ object MatrixUtil {
     fun transpose(matrix: Array<DoubleArray>): Array<DoubleArray> {
         val rowCount = rowCount(matrix)
         val columnCount = columnCount(matrix)
-        val transposed = matrix(columnCount, rowCount)
+        val transposed = createDoubleMatrix(columnCount, rowCount)
 
         for (i in 0 until rowCount) {
             for (j in 0 until columnCount) {
@@ -89,7 +139,7 @@ object MatrixUtil {
 
         val rowCount1 = rowCount(matrix1)
         val columnCount2 = columnCount(matrix2)
-        val product = matrix(rowCount1, columnCount2)
+        val product = createDoubleMatrix(rowCount1, columnCount2)
 
         for (i in 0 until rowCount1) {
             for (j in 0 until columnCount2) {
@@ -120,7 +170,7 @@ object MatrixUtil {
     fun cofactor(matrix: Array<DoubleArray>): Array<DoubleArray> {
         val rowCount = rowCount(matrix)
         val columnCount = columnCount(matrix)
-        val cofactorMatrix = matrix(rowCount, columnCount)
+        val cofactorMatrix = createDoubleMatrix(rowCount, columnCount)
         for (row in 0 until rowCount) {
             for (column in 0 until columnCount) {
                 cofactorMatrix[row][column] = (if ((row + column) % 2 == 0) 1 else -1) * determinant(submatrix(matrix, row, column))

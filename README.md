@@ -82,6 +82,12 @@ val xs: Array<Int> = intArray.toTypedArray()
 val xs: IntArray = arrayInt.toIntArray()
 ```
 
+## How to deep-copy an Array
+```kotlin
+val xs: Array<String> = arrayOf("a", "b", "c")
+val ys: Array<String> = xs.clone()
+```
+
 # List
 ## How to create a List
 ```kotlin
@@ -146,13 +152,13 @@ val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 val zs: List<Sample> = listOf(Sample("c"), Sample("b"), Sample("a")).sortedBy { it.name } // [Sample(name=a), Sample(name=b), Sample(name=c)]
 ```
 
-## How to convert a List? to a List
+## How to convert List? to List
 ```kotlin
 val xs: List<Int>? = null
 val ys: List<Int> = x.orEmpty()
 ```
 
-## How to convert a List to a Map
+## How to convert List to Map
 ```kotlin
 val xs: List<Int> = listOf(1, 2, 3)
 val result1: Map<Int, Int> = xs.withIndex().associate { it.value to it.index } // {1=0, 2=1, 3=2}
@@ -176,8 +182,21 @@ val ys: List<String> = listOf("a", "b", "c")
 val zs: Map<Int, String> = xs.zip(ys).toMap() // {1=a, 2=b, 3=c}
 ```
 
-# Set
+## How to convert a List to a Pair
+```kotlin
+val pair: Pair<String, String> = listOf("a", "b", "c").zipWithNext().first() // (a, b)
+```
 
+## How to deep-copy a MutableList
+```kotlin
+val xs: MutableList<String> = mutableListOf("a", "b")
+val ys: MutableList<String> = xs.toMutableList()
+ys[1] = "c"
+println(xs) // [a, b]
+println(ys) // [a, c]
+```
+
+# Set
 ## How to create a Set
 ```kotlin
 val set1: Set<String> = setOf("a", "b", "b") // [a, b]

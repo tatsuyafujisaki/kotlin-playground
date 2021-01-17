@@ -11,13 +11,25 @@ object ArrayUtil {
         return indexOfMin
     }
 
-    fun printlnArray(xs: Array<*>) = xs.forEach { println(it) }
-
-    fun <T> printArray(xs: Array<T>) {
-        xs.forEach { print("$it ") }
+    fun Array<*>.printVertically() {
+        forEach { println(it) }
     }
 
-    fun printArray(xs: IntArray) {
-        xs.forEach { print("$it ") }
+    fun IntArray.printVertically() {
+        forEach { println("$it ") }
+    }
+
+    fun <T> Array<T>.printHorizontally() {
+        for (i in 0 until size - 1) {
+            print(this[i].toString() + " ")
+        }
+        println(this.last())
+    }
+
+    fun IntArray.printHorizontally() {
+        for (i in 0 until size - 1) {
+            print(this[i].toString() + " ")
+        }
+        println(this.last())
     }
 }

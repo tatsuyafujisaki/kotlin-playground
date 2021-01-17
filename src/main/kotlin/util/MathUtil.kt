@@ -5,7 +5,17 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 object MathUtil {
-    fun Int.pow(n: Int) = toDouble().pow(n).toInt()
+    fun Int.pow(n: Int): Int {
+        val powered = toDouble().pow(n).toInt()
+        require(powered < Int.MAX_VALUE) {
+            "Overflowed. Instead, use Int.powToLong()."
+        }
+        return powered
+    }
+
+    fun Long.pow(n: Int) = toDouble().pow(n).toLong()
+    fun Int.powToLong(n: Int) = toDouble().pow(n).toLong()
+
     fun Int.isEven() = this % 2 == 0
     fun Int.isSquareNumber() = (sqrt(toDouble())) % 1.0 == 0.0
     fun Int.sqrt() = sqrt(toDouble()).toInt()

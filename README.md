@@ -163,6 +163,11 @@ val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 val zs: List<Sample> = listOf(Sample("c"), Sample("b"), Sample("a")).sortedBy { it.name } // [Sample(name=a), Sample(name=b), Sample(name=c)]
 ```
 
+## How to count the occurrence of elements
+```kotlin
+val occurrences: Map<String, Int> = listOf("a", "b", "c", "b", "c", "c").groupingBy { it }.eachCount() // {a=1, b=2, c=3}
+```
+
 ## How to convert a List? to a List
 ```kotlin
 val xs: List<Int>? = null

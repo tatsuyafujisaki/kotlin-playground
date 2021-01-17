@@ -17,6 +17,9 @@
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
+# Int.MAX_VALUE
+10^9 (1,000,000,000) < `Int.MAX_VALUE` (2,147,483,647) < 10^10 < (10,000,000,000)
+
 # Scope functions
 A receiver is an object that invokes the method.
 

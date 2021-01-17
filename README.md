@@ -72,19 +72,19 @@ val ys: Array<Int> = Array(3) { it } // [0, 1, 2]
 val zs: Array<String> = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 ```
 
-## How to convert IntArray to Array\<Int>
+## How to convert an IntArray an to Array\<Int>
 ```kotlin
 val xs: IntArray = intArrayOf(1, 2, 3)
 val ys: Array<Int> = xs.toTypedArray()
 ```
 
-## How to convert Array\<Int> to IntArray
+## How to convert an Array\<Int> to an IntArray
 ```kotlin
 val xs: Array<Int> = arrayOf(1, 2, 3)
 val ys: IntArray = xs.toIntArray()
 ```
 
-## How to deep-copy IntArray
+## How to deep-copy an IntArray
 ```kotlin
 val xs: IntArray = intArrayOf(1, 2, 3)
 val ys: IntArray = xs.clone()
@@ -160,13 +160,13 @@ val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 val zs: List<Sample> = listOf(Sample("c"), Sample("b"), Sample("a")).sortedBy { it.name } // [Sample(name=a), Sample(name=b), Sample(name=c)]
 ```
 
-## How to convert List? to List
+## How to convert a List? to a List
 ```kotlin
 val xs: List<Int>? = null
 val ys: List<Int> = x.orEmpty()
 ```
 
-## How to convert List to Map
+## How to convert a List to a Map
 ```kotlin
 val xs: List<Int> = listOf(1, 2, 3)
 val result1: Map<Int, Int> = xs.withIndex().associate { it.value to it.index } // {1=0, 2=1, 3=2}
@@ -174,7 +174,7 @@ val result2: Map<Int, String> = xs.associateWith { "value$it" } // {1=value1, 2=
 val result3: Map<String, Int> = xs.associateBy { "key$it" } // {key1=1, key2=2, key3=3}
 ```
 
-## How to convert two List(s) to another List
+## How to convert two List(s) to a List
 ```kotlin
 val xs: List<Int> = listOf(1, 2, 3)
 val ys: List<String> = listOf("a", "b", "c")
@@ -265,7 +265,7 @@ val result: Map<String, String> = map.toSortedMap() // {a=x, b=y, c=z}
 ```
 
 # String
-## How to convert String? to String
+## How to convert a String? to a String
 ```kotlin
 val x: String? = null
 val y: String = x.orEmpty()
@@ -306,12 +306,6 @@ val s: String = buildString {
     appendLine("aaa")
     appendLine("bbb")
 }
-```
-
-# How to extract a double-quoted URL from a string
-```kotlin
-val html: String = "<a href=\"https://example.com\"><img src=\"sample.png\"></a>"
-val url: String = Regex("(https?://.*?)\"").find(s)?.groupValues?.last() // https://example.com
 ```
 
 # How to use function references and constructor references

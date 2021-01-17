@@ -165,7 +165,7 @@ val zs: List<Sample> = listOf(Sample("c"), Sample("b"), Sample("a")).sortedBy { 
 
 ## How to count the occurrence of elements
 ```kotlin
-val occurrences: Map<String, Int> = listOf("a", "b", "c", "b", "c", "c").groupingBy { it }.eachCount() // {a=1, b=2, c=3}
+val occurrences: Map<String, Int> = listOf("b", "c", "b", "c", "a", "c").groupingBy { it }.eachCount() // {a=1, b=2, c=3}
 ```
 
 ## How to convert a List? to a List

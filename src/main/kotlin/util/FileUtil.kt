@@ -6,14 +6,14 @@ import java.io.ObjectOutputStream
 
 object FileUtil {
     @Suppress("UNCHECKED_CAST")
-    fun <T> readFile(file: File): T {
-        ObjectInputStream(file.inputStream()).use {
+    fun <T> File.read(): T {
+        ObjectInputStream(inputStream()).use {
             return it.readObject() as T
         }
     }
 
-    fun <T> writeFile(file: File, xs: List<T>) {
-        ObjectOutputStream(file.outputStream()).use {
+    fun <T> File.write(xs: List<T>) {
+        ObjectOutputStream(outputStream()).use {
             it.writeObject(xs)
         }
     }

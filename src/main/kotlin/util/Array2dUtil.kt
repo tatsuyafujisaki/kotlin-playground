@@ -1,10 +1,10 @@
 package util
 
 object Array2dUtil {
-    fun rowCount(matrix: Array<DoubleArray>) = matrix.size
-    fun columnCount(matrix: Array<DoubleArray>) = matrix[0].size
-    fun isSquareMatrix(matrix: Array<DoubleArray>) = rowCount(matrix) == columnCount(matrix)
-    fun inverse(matrix: Array<DoubleArray>): Array<DoubleArray> = multiply(1.0 / determinant(matrix), transpose(cofactor(matrix)))
+    fun Array<DoubleArray>.rowCount() = size
+    fun Array<DoubleArray>.columnCount() = this.first().size
+    fun Array<DoubleArray>.isSquareMatrix() = rowCount() == columnCount()
+    fun Array<DoubleArray>.inverse(): Array<DoubleArray> = cofactor().transpose().multiply(1.0 / determinant())
 
     fun create2dIntArray(rowCount: Int, columnCount: Int): Array<IntArray> = Array(rowCount) {
         IntArray(columnCount)
@@ -82,62 +82,53 @@ object Array2dUtil {
         this[2][2] = a22
     }
 
-    fun submatrix(matrix: Array<DoubleArray>, excludingRow: Int, excludingColumn: Int): Array<DoubleArray> {
-        val rowCount = rowCount(matrix)
-        val columnCount = columnCount(matrix)
-        val submatrix = create2dDoubleMatrix(rowCount - 1, columnCount - 1)
-
-        var submatrixRow = -1
-        for (matrixRow in 0 until rowCount) {
+    fun Array<DoubleArray>.subMatrix(excludingRow: Int, excludingColumn: Int): Array<DoubleArray> {
+        val subMatrix = create2dDoubleMatrix(rowCount() - 1, columnCount() - 1)
+        var subMatrixRow = -1
+        for (matrixRow in indices) {
             if (matrixRow == excludingRow) {
                 continue
             }
-            submatrixRow++
-            var submatrixColumn = -1
-            for (matrixColumn in 0 until columnCount) {
+            subMatrixRow++
+            var subMatrixColumn = -1
+            for (matrixColumn in 0 until columnCount()) {
                 if (matrixColumn == excludingColumn) {
                     continue
                 }
-                submatrixColumn++
-                submatrix[submatrixRow][submatrixColumn] = matrix[matrixRow][matrixColumn]
+                subMatrixColumn++
+                subMatrix[subMatrixRow][subMatrixColumn] = this[matrixRow][matrixColumn]
             }
         }
-        return submatrix
+        return subMatrix
     }
 
-    fun transpose(matrix: Array<DoubleArray>): Array<DoubleArray> {
-        val rowCount = rowCount(matrix)
-        val columnCount = columnCount(matrix)
-        val transposed = create2dDoubleMatrix(columnCount, rowCount)
-
-        for (i in 0 until rowCount) {
-            for (j in 0 until columnCount) {
-                transposed[j][i] = matrix[i][j]
+    fun Array<DoubleArray>.transpose(): Array<DoubleArray> {
+        val transposed = create2dDoubleMatrix(columnCount(), rowCount())
+        for (i in indices) {
+            for (j in 0 until columnCount()) {
+                transposed[j][i] = this[i][j]
             }
         }
-
         return transposed
     }
 
-    fun multiply(x: Double, matrix: Array<DoubleArray>): Array<DoubleArray> {
-        val rowCount = rowCount(matrix)
-        val columnCount = columnCount(matrix)
-        for (row in 0 until rowCount) {
-            for (column in 0 until columnCount) {
-                matrix[row][column] = x * matrix[row][column]
+    fun Array<DoubleArray>.multiply(x: Double): Array<DoubleArray> {
+        for (row in indices) {
+            for (column in 0 until columnCount()) {
+                this[row][column] = x * this[row][column]
             }
         }
-        return matrix
+        return this
     }
 
     fun multiply(matrix1: Array<DoubleArray>, matrix2: Array<DoubleArray>): Array<DoubleArray> {
-        val columnCount1 = columnCount(matrix1)
-        val rowCount2 = rowCount(matrix2)
+        val columnCount1 = matrix1.columnCount()
+        val rowCount2 = matrix2.rowCount()
 
         require(columnCount1 == rowCount2)
 
-        val rowCount1 = rowCount(matrix1)
-        val columnCount2 = columnCount(matrix2)
+        val rowCount1 = matrix1.rowCount()
+        val columnCount2 = matrix2.columnCount()
         val product = create2dDoubleMatrix(rowCount1, columnCount2)
 
         for (i in 0 until rowCount1) {
@@ -150,36 +141,33 @@ object Array2dUtil {
         return product
     }
 
-    fun determinant(matrix: Array<DoubleArray>): Double {
-        require(isSquareMatrix(matrix))
-        val n = rowCount(matrix)
-        return when (n) {
-            1 -> matrix[0][0]
-            2 -> matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+    fun Array<DoubleArray>.determinant(): Double {
+        require(isSquareMatrix())
+        return when (val n = rowCount()) {
+            1 -> this[0][0]
+            2 -> this[0][0] * this[1][1] - this[0][1] * this[1][0]
             else -> {
                 var sum = 0.0
                 for (column in 0 until n) {
-                    sum += (if (column % 2 == 0) 1 else -1) * matrix[0][column] * determinant(submatrix(matrix, 0, column))
+                    sum += (if (column % 2 == 0) 1 else -1) * this[0][column] * subMatrix(0, column).determinant()
                 }
                 sum
             }
         }
     }
 
-    fun cofactor(matrix: Array<DoubleArray>): Array<DoubleArray> {
-        val rowCount = rowCount(matrix)
-        val columnCount = columnCount(matrix)
-        val cofactorMatrix = create2dDoubleMatrix(rowCount, columnCount)
-        for (row in 0 until rowCount) {
-            for (column in 0 until columnCount) {
-                cofactorMatrix[row][column] = (if ((row + column) % 2 == 0) 1 else -1) * determinant(submatrix(matrix, row, column))
+    fun Array<DoubleArray>.cofactor(): Array<DoubleArray> {
+        val cofactorMatrix = create2dDoubleMatrix(rowCount(), columnCount())
+        for (row in indices) {
+            for (column in 0 until columnCount()) {
+                cofactorMatrix[row][column] = (if ((row + column) % 2 == 0) 1 else -1) * subMatrix(row, column).determinant()
             }
         }
         return cofactorMatrix
     }
 
-    fun printMatrix(matrix: Array<DoubleArray>) {
-        for (row in matrix) {
+    fun Array<DoubleArray>.printMatrix() {
+        for (row in this) {
             for (column in row) {
                 print("%10.2f ".format(column))
             }

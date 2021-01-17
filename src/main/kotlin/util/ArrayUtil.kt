@@ -1,10 +1,10 @@
 package util
 
 object ArrayUtil {
-    fun getIndexOfMin(xs: IntArray): Int {
+    fun IntArray.getIndexOfMin(): Int {
         var indexOfMin = 0
-        for (i in 1 until xs.size) {
-            if (xs[i] < xs[indexOfMin]) {
+        for (i in 1 until size) {
+            if (this[i] < this[indexOfMin]) {
                 indexOfMin = i
             }
         }

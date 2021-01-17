@@ -74,15 +74,23 @@ val zs: Array<String> = Array(3) { "item$it" } // ["item0", "item1", "item2"]
 
 ## How to convert IntArray to Array\<Int>
 ```kotlin
-val xs: Array<Int> = intArray.toTypedArray()
+val xs: IntArray = intArrayOf(1, 2, 3)
+val ys: Array<Int> = xs.toTypedArray()
 ```
 
 ## How to convert Array\<Int> to IntArray
 ```kotlin
-val xs: IntArray = arrayInt.toIntArray()
+val xs: Array<Int> = arrayOf(1, 2, 3)
+val ys: IntArray = xs.toIntArray()
 ```
 
-## How to deep-copy an Array
+## How to deep-copy IntArray
+```kotlin
+val xs: IntArray = intArrayOf(1, 2, 3)
+val ys: IntArray = xs.clone()
+```
+
+## How to deep-copy an Array\<T>
 ```kotlin
 val xs: Array<String> = arrayOf("a", "b", "c")
 val ys: Array<String> = xs.clone()

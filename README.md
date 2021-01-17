@@ -204,6 +204,11 @@ println(xs) // [a, b]
 println(ys) // [a, c]
 ```
 
+## How to destruct a List to values
+```kotlin
+val (a, b) = listOf("a", "b", "c")
+```
+
 # Set
 ## How to create a Set
 ```kotlin

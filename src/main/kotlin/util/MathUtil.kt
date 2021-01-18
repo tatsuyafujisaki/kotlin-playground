@@ -147,5 +147,5 @@ object MathUtil {
     }
 
     fun fibonacci() =
-        generateSequence(0 to 1, { it.second to it.first + it.second }).map { it.first }
+        generateSequence(0 to 1) { it.second to it.first + it.second }.map { it.first }
 }

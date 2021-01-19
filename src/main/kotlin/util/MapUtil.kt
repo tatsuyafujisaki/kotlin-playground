@@ -1,9 +1,8 @@
 package util
 
 object MapUtil {
-    fun sortByValue(map: Map<Any, Int>) = map.toList().sortedBy { it.second }.toMap()
-
-    fun sortByValueDescending(map: Map<Any, Int>) = map.toList().sortedByDescending { it.second }.toMap()
-
-    fun getEntryOfMaxValue(map: Map<Any, Int>) = map.maxByOrNull { it.value }
+    fun <T> MutableMap<T, Int>.increment(key: T) = merge(key, 1, Int::plus)
+    fun <T> Map<T, Int>.sortByValue() = toList().sortedBy { it.second }.toMap()
+    fun <T> Map<T, Int>.sortByValueDescending() = toList().sortedByDescending { it.second }.toMap()
+    fun <T> Map<T, Int>.getEntryOfMaxValue() = maxByOrNull { it.value }
 }

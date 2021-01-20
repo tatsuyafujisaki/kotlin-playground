@@ -12,5 +12,5 @@ object StringUtil {
                 yield(substring(i, j))
             }
         }
-    }.toList()
+    }
 }

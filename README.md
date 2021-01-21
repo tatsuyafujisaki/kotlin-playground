@@ -322,6 +322,7 @@ val s: String = buildString {
 ```
 
 # Enum
+## Sample 1
 ```kotlin
 enum class Fruit {
     APPLE,
@@ -334,23 +335,46 @@ enum class Fruit {
 }
 ```
 
-## How to convert a String to an Enum
+### How to convert a String to an Enum
 ```kotlin
 val apple: Fruit = Fruit.valueOf("APPLE") // APPLE
 ```
 
-## How to convert an ordinal to an Enum
+### How to convert an ordinal to an Enum
 ```kotlin
 val apple: Fruit = Fruit.from(0) // APPLE
 val nil: Fruit? = Fruit.fromOrNull(2) // null
 ```
 
-## How to get all the values of an Enum
+### How to get all the values of an Enum
 ```kotlin
 val fruits: Array<Fruit> = Fruit.values() // APPLE ORANGE
 ```
 
-## How to create
+## Sample 2
+```kotlin
+private enum class RGB(val value: Int) {
+    RED(0xFF0000),
+    GREEN(0x00FF00),
+    BLUE(0x0000FF);
+
+    companion object {
+        fun from(value: Int): RGB = values().first { it.value == value }
+        fun fromOrNull(value: Int): RGB? = values().firstOrNull { it.value == value }
+    }
+}
+```
+
+### How to convert a String to an Enum
+```kotlin
+val red: RGB = Fruit.valueOf("RED") // RED
+```
+
+### How to convert a value to an Enum
+```kotlin
+val red: RGB = RGB.from(0xFF0000) // RED
+val nil: RGB? = RGB.fromOrNull(0xFFFFF) // null
+```
 
 # How to use function references and constructor references
 ```kotlin

@@ -481,8 +481,7 @@ x*?|0+|reluctant
 x+|1+|greedy
 x+?|1+|reluctant
 
-## References
-* Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
+Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
 
 # How to print the name of the current method
 ```kotlin

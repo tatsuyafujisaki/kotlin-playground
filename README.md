@@ -483,16 +483,16 @@ x+?|1+|reluctant
 
 Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
 
-# How to print the name of the current method
+# How to print the name of the current function
 ```kotlin
-fun method1 {
-    println(object {}.javaClass.enclosingMethod?.name) // prints "method1".
+fun sample() {
+    println(object {}.javaClass.enclosingMethod?.name) // sample
 }
 ```
 
-# How to show the name of the current thread
+# How to get the name of the current thread
 ```kotlin
-val currentThreadName: String = Thread.currentThread().name
+val name: String = Thread.currentThread().name
 ```
 * The preceding code also shows the name of the current coroutine after the following preparation:
   * IntelliJ IDEA > Menu bar > Run > Edit Configurations > Configurations > VM options > add `-Dkotlinx.coroutines.debug`.

@@ -23,13 +23,13 @@ object ArrayUtil {
         for (i in 0 until size - 1) {
             print(this[i].toString() + " ")
         }
-        println(this.last())
+        println(last())
     }
 
     fun IntArray.printHorizontally() {
         for (i in 0 until size - 1) {
             print(this[i].toString() + " ")
         }
-        println(this.last())
+        println(last())
     }
 }

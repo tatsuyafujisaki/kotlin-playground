@@ -578,8 +578,8 @@ is normally used in a database instance.
 @Volatile
 private var INSTANCE: MyDatabase? = null
 ```
-* Volatile fields are thread-safe. They are never cached, and all writes and reads will be done to and from the main memory. It means that changes made by one thread to shared data are visible to other threads.
-* The increment operator "++" in JVM languages is not thread-safe even when the field is volatile because "++" is not an atomic operation as it consists of a read, an increment, and a write.
-* `Volatiles are of no help. There is a common misconception that making a variable volatile solves concurrency problem.`
-  * https://kotlinlang.org/docs/reference/coroutines/shared-mutable-state-and-concurrency.html#volatiles-are-of-no-help
-* https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.1.4
+* Volatile fields are thread-safe. They are never cached, and all writes and reads will be done to and from the main memory. It means that changes made by one thread to the field are immediately made visible to other threads.
+* The increment operator "++" in JVM languages is not thread-safe even when the field is volatile because "++" is not an atomic operation because it consists of a read, an increment, and a write.
+* https://kotlinlang.org/docs/reference/coroutines/shared-mutable-state-and-concurrency.html#volatiles-are-of-no-help
+  * > Volatiles are of no help. There is a common misconception that making a variable volatile solves concurrency problem.
+* https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-volatile/

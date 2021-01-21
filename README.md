@@ -433,6 +433,18 @@ data class Sample(val x: Int) {
 }
 ```
 
+# `<reified T>` (Reified type parameters)
+enables you to use `is` and `as` on `T`.
+```kotlin
+inline fun <reified T> f(a: Any) {
+    if (a is T) {
+        // Do something
+    }
+    val t = a as T
+}
+```
+https://kotlinlang.org/docs/reference/inline-functions.html#reified-type-parameters
+
 # Delegate
 ## How to use Delegates.observable(...)
 ```kotlin

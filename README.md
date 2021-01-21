@@ -321,6 +321,37 @@ val s: String = buildString {
 }
 ```
 
+# Enum
+```kotlin
+enum class Fruit {
+    APPLE,
+    ORANGE;
+
+    companion object {
+        fun from(ordinal: Int): Fruit = values()[ordinal]
+        fun fromOrNull(ordinal: Int): Fruit? = values().getOrNull(ordinal)
+    }
+}
+```
+
+## How to convert a String to an Enum
+```kotlin
+val apple: Fruit = Fruit.valueOf("APPLE") // APPLE
+```
+
+## How to convert an ordinal to an Enum
+```kotlin
+val apple: Fruit = Fruit.from(0) // APPLE
+val nil: Fruit? = Fruit.fromOrNull(2) // null
+```
+
+## How to get all the values of an Enum
+```kotlin
+val fruits: Array<Fruit> = Fruit.values() // APPLE ORANGE
+```
+
+## How to create
+
 # How to use function references and constructor references
 ```kotlin
 fun main() {

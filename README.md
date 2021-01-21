@@ -322,7 +322,7 @@ val s: String = buildString {
 ```
 
 # Enum
-## Sample 1
+## Sample (Simple Enum)
 ```kotlin
 enum class Fruit {
     APPLE,
@@ -351,7 +351,7 @@ val nil: Fruit? = Fruit.fromOrNull(2) // null
 val fruits: Array<Fruit> = Fruit.values() // APPLE ORANGE
 ```
 
-## Sample 2
+## Sample (Enum with values)
 ```kotlin
 private enum class RGB(val value: Int) {
     RED(0xFF0000),

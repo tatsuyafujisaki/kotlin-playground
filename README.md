@@ -424,24 +424,3 @@ checkNotNull(T?)|IllegalStateException
 error(Any)|IllegalStateException
 require(Boolean)|IllegalArgumentException
 requireNotNull(T?)|IllegalArgumentException
-
-# How to remove comments
-1. Command+Shift+F in IntelliJ IDEA.
-2. Check `Regex`.
-3. Put one of the following regexes.
-4. Click `Replace All`.
-
-## Regex to match all the comments (/* \*/ including /** \*/)
-```
-/\*([\S\s]+?)\*/
-```
-
-## Regex to match copyright comments (/* \*/ including /** \*/)
-```
-/\*([\S\s]+?Copyright[\S\s]+?)\*/
-```
-
-## Regex to match copyright comments in XML
-```
-<!--([\S\s]+?Copyright[\S\s]+?)-->
-```

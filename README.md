@@ -530,6 +530,29 @@ checkNotNull(T?)|IllegalStateException
 error(Any)|IllegalStateException
 require(Boolean)|IllegalArgumentException
 requireNotNull(T?)|IllegalArgumentException
+ 
+# Function type "(A.(B) -> C)"
+* is called `a function literal with receiver`
+* https://kotlinlang.org/docs/reference/lambdas.html#function-literals-with-receiver
+
+# Interoperability between Kotlin and Java
+Java sees functions defined in Kotlin only through bytecode.
+
+# Kotlin Standard Library
+is the Java Standard Library + extension functions for built-in classes such as `String` and `Collection`.
+
+# Module
+is a set of Kotlin files compiled together.
+
+# Kotlin.Result
+* Android Studio says `'Kotlin.Result' cannot be used as a return type.`.
+* https://github.com/Kotlin/KEEP/blob/master/proposals/stdlib/result.md#limitations
+
+# `fold` versus `reduce`
+&nbsp;|fold|reduce
+---|---|---
+Takes an initial value?|Yes (the type of the initial value doesn't have to be the same as the type of the collection)|No
+Result type|Same as the type of the initial value|Same as the type of the collection
 
 # Declaration-site variance
 * Invariant
@@ -548,32 +571,9 @@ requireNotNull(T?)|IllegalArgumentException
     * Consumer<in Dog>
     * If a signature of a function is supposed to receive a Dog, it can receive a Pug but not an Animal.
 * https://kotlinlang.org/docs/reference/generics.html#declaration-site-variance
- 
-# Function type "(A.(B) -> C)"
-* is called `a function literal with receiver`
-* https://kotlinlang.org/docs/reference/lambdas.html#function-literals-with-receiver
-
-# Interoperability between Kotlin and Java
-Java sees functions defined in Kotlin only through bytecode.
-
-# Kotlin Standard Library
-is the Java Standard Library + extension functions for built-in classes such as String and Collection.
-
-# Module
-is a set of Kotlin files compiled together.
-
-# Result aka Kotlin.Result
-* Android Studio says `'Kotlin.Result' cannot be used as a return type.`.
-* https://github.com/Kotlin/KEEP/blob/master/proposals/stdlib/result.md#limitations
-
-# Sealed class
-* is enum + abstract class according to https://www.youtube.com/watch?v=OyIRuxjBORY
-
-# Smart cast
-is only available to local variables.
 
 # @Volatile
-* is normally used in a database instance.
+is normally used in a database instance.
 ```
 @Volatile
 private var INSTANCE: MyDatabase? = null
@@ -583,9 +583,3 @@ private var INSTANCE: MyDatabase? = null
 * `Volatiles are of no help. There is a common misconception that making a variable volatile solves concurrency problem.`
   * https://kotlinlang.org/docs/reference/coroutines/shared-mutable-state-and-concurrency.html#volatiles-are-of-no-help
 * https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.1.4
-
-# fold vs reduce
-.|fold|reduce
----|---|---
-Takes an initial value?|Yes (the type of the initial value doesn't have to be the same as the type of the collection)|No
-Result type|Same as the type of the initial value|Same as the type of the collection

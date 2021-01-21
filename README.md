@@ -322,7 +322,7 @@ val s: String = buildString {
 ```
 
 # Enum
-## Sample (Simple Enum)
+## Sample 1 (simple Enum)
 ```kotlin
 enum class Fruit {
     APPLE,
@@ -351,7 +351,7 @@ val nil: Fruit? = Fruit.fromOrNull(2) // null
 val fruits: Array<Fruit> = Fruit.values() // APPLE ORANGE
 ```
 
-## Sample (Enum with values)
+## Sample 2 (Enum with values)
 ```kotlin
 private enum class RGB(val value: Int) {
     RED(0xFF0000),
@@ -376,7 +376,34 @@ val red: RGB = RGB.from(0xFF0000) // RED
 val nil: RGB? = RGB.fromOrNull(0xFFFFF) // null
 ```
 
-# How to use function references and constructor references
+## Sample 3 (Enum with properties and methods)
+```kotlin
+enum class Fruit {
+    APPLE {
+        override fun toString() = "🍎"
+        override val producer: String = "👨‍🌾"
+        override fun printSimilarFruit() {
+            println("🍏")
+        }
+    },
+    ORANGE {
+        override fun toString() = "🍊"
+        override val producer: String = "👩‍🌾"
+        override fun printSimilarFruit() {
+            println("🍋")
+        }
+    };
+
+    abstract val producer: String
+    abstract fun printSimilarFruit()
+}
+
+println(apple) // 🍎
+println(apple.producer) // 👨‍🌾
+apple.printSimilarFruit() // 🍏
+```
+
+# Function references / constructor references
 ```kotlin
 fun main() {
     val xs: List<Int> = listOf(1, 2)

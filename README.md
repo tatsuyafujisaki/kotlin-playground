@@ -380,7 +380,7 @@ private enum class RGB(val value: Int) {
 
 ### How to convert a String to an Enum
 ```kotlin
-val red: RGB = Fruit.valueOf("RED") // RED
+val red: RGB = RGB.valueOf("RED") // RED
 ```
 
 ### How to convert a value to an Enum

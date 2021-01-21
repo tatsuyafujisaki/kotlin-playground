@@ -31,8 +31,7 @@ Function|How to reference receiver|Can receiver be nullable?|Return value
 `with`|`this` (optional)|no|last expression
 `let`|`it`|yes|last expression
 
-# `init` and second `constructor`
-`init` is called before the secondary `constructor`.
+# Initializer / Constructors
 ```kotlin
 class Sample(val s: String) /* Primary constructor */ {
     constructor(s: String, n: Int) /* Secondary constructor */ : this(s) {
@@ -50,6 +49,20 @@ fun main() {
 // Result:
 // init is called.
 // Secondary constructor is called.
+```
+
+## Initializer (`init`)
+is called before the secondary `constructor`.
+
+## Primary constructor
+* is the constructor declared in the class header.
+* cannot contain any code.
+* can be implicit whether or not a secondary constructor exists.
+
+## Secondary constructors
+must call the explicit primary constructor (if it exists) directly or indirectly through another secondary constructor.
+```kotlin
+constructor(...) : this(parameters of the primary constructor)
 ```
 
 # Type mapping between Kotlin and Java
@@ -403,7 +416,7 @@ println(apple.producer) // 👨‍🌾
 apple.printSimilarFruit() // 🍏
 ```
 
-# Function references / constructor references
+# Function references / Constructor references
 ```kotlin
 fun main() {
     val xs: List<Int> = listOf(1, 2)
@@ -517,3 +530,62 @@ checkNotNull(T?)|IllegalStateException
 error(Any)|IllegalStateException
 require(Boolean)|IllegalArgumentException
 requireNotNull(T?)|IllegalArgumentException
+
+# Declaration-site variance
+* Invariant
+  * is a type parameter without the "in" or "out" modifier.
+  * If a type parameter is invariant, the exact same type is required.
+* Covariant
+  * is a type parameter with the "out" modifier.
+  * can only be returned (produced) and never referenced (consumed).
+  * can return a subtype.
+    * Producer<out Dog>
+    * If a signature of a function is supposed to return a Dog, it can return a Pug but not an Animal.
+* Contravariant
+  * is a type parameter with the "in" modifier.
+  * can only be referenced (consumed) and never returned (produced).
+  * can receive a subtype.
+    * Consumer<in Dog>
+    * If a signature of a function is supposed to receive a Dog, it can receive a Pug but not an Animal.
+* https://kotlinlang.org/docs/reference/generics.html#declaration-site-variance
+ 
+# Function type "(A.(B) -> C)"
+* is called `a function literal with receiver`
+* https://kotlinlang.org/docs/reference/lambdas.html#function-literals-with-receiver
+
+# Interoperability between Kotlin and Java
+Java sees functions defined in Kotlin only through bytecode.
+
+# Kotlin Standard Library
+is the Java Standard Library + extension functions for built-in classes such as String and Collection.
+
+# Module
+is a set of Kotlin files compiled together.
+
+# Result aka Kotlin.Result
+* Android Studio says `'Kotlin.Result' cannot be used as a return type.`.
+* https://github.com/Kotlin/KEEP/blob/master/proposals/stdlib/result.md#limitations
+
+# Sealed class
+* is enum + abstract class according to https://www.youtube.com/watch?v=OyIRuxjBORY
+
+# Smart cast
+is only available to local variables.
+
+# @Volatile
+* is normally used in a database instance.
+```
+@Volatile
+private var INSTANCE: MyDatabase? = null
+```
+* Volatile fields are thread-safe. They are never cached, and all writes and reads will be done to and from the main memory. It means that changes made by one thread to shared data are visible to other threads.
+* The increment operator "++" in JVM languages is not thread-safe even when the field is volatile because "++" is not an atomic operation as it consists of a read, an increment, and a write.
+* `Volatiles are of no help. There is a common misconception that making a variable volatile solves concurrency problem.`
+  * https://kotlinlang.org/docs/reference/coroutines/shared-mutable-state-and-concurrency.html#volatiles-are-of-no-help
+* https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.1.4
+
+# fold vs reduce
+.|fold|reduce
+---|---|---
+Takes an initial value?|Yes (the type of the initial value doesn't have to be the same as the type of the collection)|No
+Result type|Same as the type of the initial value|Same as the type of the collection

@@ -5,9 +5,6 @@
      * https://kotlinlang.org/docs/reference/coding-conventions.html#chained-call-wrapping
 
 # Best practices
-* Use `emptyList()` rather than `listOf()` for clarity.
-* Use `Collection<T>.size` rather than `Collection<T>.count()` for simplicity.
-* Use `A to B` rather than `Pair(A, B)` for simplicity.
 * Use `with(...)` rather than `run(...)` if the receiver is not nullable because, in my opinion, the former is slightly more readable.
 * Use `filterIsInstance<Foo>()` rather than `filterIsInstance(Foo::class.java)` for simplicity.
 * Use infix notation for simplicity. e.g. Use `x !in xs` rather than `!xs.contains(x)`.
@@ -67,12 +64,17 @@ val ys: Array<String> = xs.clone()
 # List
 ## How to create a List
 ```kotlin
-val xs: List<Int> = listOf(1, 2, 3) // [1, 2, 3]
-val ys: List<Int> = listOfNotNull(1, null, 2) // [1, 2]
+val a: List<Int> = emptyList() // equivalent of listOf(). [].
+val b: List<Int> = listOf(1, 2, 3) // [1, 2, 3]
+val c: List<Int> = listOfNotNull(1, null, 2) // [1, 2]
+val d: List<Int> = List(3) { it } // The lambda is not optional. [0, 1, 2]
+val e: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
+```
 
-// The lambda is not optional.
-val xs: List<Int> = List(3) { it } // [0, 1, 2]
-val ys: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
+## How to get the size of a List
+```kotlin
+val xs: List<Int> = listOf(1, 2 ,3)
+val size: Int = xs.size // 3. simpler than xs.count().
 ```
 
 ## How to add/remove an element to/from a List
@@ -366,6 +368,12 @@ enum class Fruit {
 println(apple) // 🍎
 println(apple.producer) // 👨‍🌾
 apple.printSimilarFruit() // 🍏
+```
+
+# How to create a pair
+```kotlin
+val pair1: Pair<String, Int> = "answer" to 42 // (answer, 42)
+val pair2: Pair<String, Int> = Pair("answer", 42) // old-school way
 ```
 
 # Function references / Constructor references

@@ -88,7 +88,7 @@ val size: Int = xs.size // 3. simpler than xs.count().
 ```kotlin
 listOf('a', 'b', 'c')
     .onEach { println(it) } // a b c
-    .map { it.toUpperCase() }
+    .map(Char::toUpperCase)
     .forEach { println(it) } // A B C
 ```
 

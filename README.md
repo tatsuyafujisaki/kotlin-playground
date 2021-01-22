@@ -17,54 +17,6 @@
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
-# Int.MAX_VALUE
-10^9 (1,000,000,000) < `Int.MAX_VALUE` (2,147,483,647) < 10^10 < (10,000,000,000)
-
-# Scope functions
-A receiver is an object that invokes the method.
-
-Function|How to reference receiver|Can receiver be nullable?|Return value
----|---|---|---
-`apply`|`this` (optional)|yes|receiver (`this`)
-`also`|`it`|yes|reciever (`it`)
-`run`|`this` (optional)|yes|last expression
-`with`|`this` (optional)|no|last expression
-`let`|`it`|yes|last expression
-
-# Initializer / Constructors
-```kotlin
-class Sample(val s: String) /* Primary constructor */ {
-    constructor(s: String, n: Int) /* Secondary constructor */ : this(s) {
-        println("Secondary constructor is called.")
-    }
-    init {
-        println("init is called.")
-    }
-}
-
-fun main() {
-    val sample = Sample("Alice", 18)
-}
-
-// Result:
-// init is called.
-// Secondary constructor is called.
-```
-
-## Initializer (`init`)
-is called before the secondary `constructor`.
-
-## Primary constructor
-* is the constructor declared in the class header.
-* cannot contain any code.
-* can be implicit whether or not a secondary constructor exists.
-
-## Secondary constructors
-must call the explicit primary constructor (if it exists) directly or indirectly through another secondary constructor.
-```kotlin
-constructor(...) : this(parameters of the primary constructor)
-```
-
 # Type mapping between Kotlin and Java
 Kotlin|Java
 ---|---
@@ -530,29 +482,61 @@ checkNotNull(T?)|IllegalStateException
 error(Any)|IllegalStateException
 require(Boolean)|IllegalArgumentException
 requireNotNull(T?)|IllegalArgumentException
- 
-# Function type "(A.(B) -> C)"
-* is called `a function literal with receiver`
-* https://kotlinlang.org/docs/reference/lambdas.html#function-literals-with-receiver
 
-# Interoperability between Kotlin and Java
-Java sees functions defined in Kotlin only through bytecode.
+# Initializer(`init`) / Primary constructor / Secondary constructor (`constructor`)
+```kotlin
+class Sample(val s: String) /* Primary constructor */ {
+    constructor(s: String, n: Int) /* Secondary constructor */ : this(s) {
+        println("Secondary constructor is called.")
+    }
+    init {
+        println("init is called.")
+    }
+}
 
-# Kotlin Standard Library
-is the Java Standard Library + extension functions for built-in classes such as `String` and `Collection`.
+fun main() {
+    val sample = Sample("Alice", 18)
+}
 
-# Module
-is a set of Kotlin files compiled together.
+// Result:
+// init is called.
+// Secondary constructor is called.
+```
 
-# Kotlin.Result
-* Android Studio says `'Kotlin.Result' cannot be used as a return type.`.
-* https://github.com/Kotlin/KEEP/blob/master/proposals/stdlib/result.md#limitations
+## Initializer (`init`)
+is called before the secondary `constructor`.
+
+## Primary constructor
+* is the constructor declared in the class header.
+* cannot contain any code.
+* can be implicit whether or not a secondary constructor exists.
+
+## Secondary constructors (`constructor`)
+* must call the explicit primary constructor (if it exists) directly or indirectly through another secondary constructor.
+```kotlin
+constructor(...) : this(parameters of the primary constructor)
+```
+* There can be more than one secondary constructor.
+
+# Scope functions
+A receiver is an object that invokes the method.
+
+Function|How to reference receiver|Can receiver be nullable?|Return value
+---|---|---|---
+`apply`|`this` (optional)|yes|receiver (`this`)
+`also`|`it`|yes|reciever (`it`)
+`run`|`this` (optional)|yes|last expression
+`with`|`this` (optional)|no|last expression
+`let`|`it`|yes|last expression
 
 # `fold` versus `reduce`
-&nbsp;|fold|reduce
----|---|---
-Takes an initial value?|Yes (the type of the initial value doesn't have to be the same as the type of the collection)|No
-Result type|Same as the type of the initial value|Same as the type of the collection
+&nbsp;|Takes the initial value?|Return type
+--|--|--
+fold|yes (can be different from the type of the input array)|same as the type of the initial value
+reduce|no|same as the type of the input array
+
+* https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
+* https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html
 
 # Declaration-site variance
 * Invariant
@@ -583,3 +567,25 @@ private var INSTANCE: MyDatabase? = null
 * https://kotlinlang.org/docs/reference/coroutines/shared-mutable-state-and-concurrency.html#volatiles-are-of-no-help
   * > Volatiles are of no help. There is a common misconception that making a variable volatile solves concurrency problem.
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-volatile/
+
+# Tidbits
+## Module
+is a set of Kotlin files compiled together.
+
+## Kotlin Standard Library
+is the Java Standard Library + extension functions for built-in classes such as `String` and `Collection`.
+
+## Function type "(A.(B) -> C)"
+* is called `a function literal with receiver`
+* https://kotlinlang.org/docs/reference/lambdas.html#function-literals-with-receiver
+
+## Kotlin.Result
+* Android Studio says `'Kotlin.Result' cannot be used as a return type.`.
+* https://github.com/Kotlin/KEEP/blob/master/proposals/stdlib/result.md#limitations
+
+## Interoperability between Kotlin and Java
+Java sees functions defined in Kotlin only through bytecode.
+
+## Int.MAX_VALUE
+* 10^9 (1,000,000,000) < `Int.MAX_VALUE` (2,147,483,647) < 10^10 < (10,000,000,000)
+* This knowledge is necessary in competitive programming

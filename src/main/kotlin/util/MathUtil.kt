@@ -94,11 +94,13 @@ object MathUtil {
     fun poissonProbability(lambda: Double, k: Int) = lambda.pow(k) * E.pow(-lambda) / factorial(k)
 
     /**
+     * If the number of elements is odd, the median element is excluded.
      * @receiver must be sorted.
      */
     fun Collection<Int>.firstQuartile() = take(size / 2).median()
 
     /**
+     * If the number of elements is odd, the median element is excluded.
      * @receiver xs must be sorted.
      */
     fun List<Int>.thirdQuartile() = takeLast(size / 2).median()

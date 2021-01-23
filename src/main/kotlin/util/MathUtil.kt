@@ -41,26 +41,20 @@ object MathUtil {
         return 1
     }
 
-    fun round(x: Double, decimals: Int) = "%.${decimals}f".format(x)
+    fun Double.roundFormat(decimals: Int) = "%.${decimals}f".format(this)
 
     fun weightedMean(xs: List<Int>, weights: List<Int>) =
         (xs.zip(weights) { x, weight -> x * weight }).sum() / weights.sum().toDouble()
 
     /**
-     * @param xs must be sorted.
+     * @receiver must be sorted.
      */
-    fun median(xs: List<Int>): Double {
-        val i = xs.size / 2
-        return when (xs.size % 2) {
-            0 -> (xs[i - 1] + xs[i]) / 2.0
-            else -> xs[i].toDouble()
-        }
+    fun List<Int>.median(): Double {
+        val i = size / 2
+        return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
     }
 
-    /**
-     * @param xs must be sorted if you want to return the smallest mode.
-     */
-    fun mode(xs: List<Int>) = xs.groupingBy { it }.eachCount().maxByOrNull { it.value }!!.key
+    fun Collection<Int>.mode() = groupingBy { it }.eachCount().maxBy { it.value }?.key
 
     fun standardDeviation(xs: List<Double>): Double {
         val mean = xs.average()
@@ -101,22 +95,19 @@ object MathUtil {
     fun poissonProbability(lambda: Double, k: Int) = lambda.pow(k) * E.pow(-lambda) / factorial(k)
 
     /**
-     * @param xs must be sorted.
+     * @receiver must be sorted.
      */
-    fun firstQuartile(xs: List<Int>) = median(xs.subList(0, (xs.size / 2.0).toInt()))
+    fun Collection<Int>.firstQuartile() = take(size / 2).median()
 
     /**
-     * @param xs must be sorted.
+     * @receiver xs must be sorted.
      */
-    fun thirdQuartile(xs: List<Int>): Double {
-        val n = xs.size
-        return median(xs.subList(n - (n / 2.0).toInt(), n))
-    }
+    fun Collection<Int>.thirdQuartile() = takeLast(size / 2).median()
 
     /**
-     * @param xs must be sorted.
+     * @receiver xs must be sorted.
      */
-    fun interquartileRange(xs: List<Int>) = thirdQuartile(xs) - firstQuartile(xs)
+    fun Collection<Int>.interquartileRange() = thirdQuartile() - firstQuartile()
 
     fun rank(xs: List<Double>): List<Int> {
         val sorted = xs.sorted()

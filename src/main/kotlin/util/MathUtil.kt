@@ -77,13 +77,13 @@ object MathUtil {
     fun pearson(xs: List<Double>, ys: List<Double>) = cov(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
 
     /**
-     * Iterative approach
+     * Iterative method
      * @param n must be greater than or equal to 0.
      */
     fun factorial(n: Int) = if (n <= 1) 1 else (2..n).reduce(Int::times)
 
     /**
-     * Tail recursive approach
+     * Tail recursive method
      * @param n must be greater than or equal to 0.
      */
     tailrec fun factorial(n: Int, acc: Int = 1): Int = if (n <= 1) acc else factorial(n - 1, acc * n)

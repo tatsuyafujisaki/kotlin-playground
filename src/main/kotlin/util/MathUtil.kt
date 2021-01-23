@@ -102,12 +102,12 @@ object MathUtil {
     /**
      * @receiver xs must be sorted.
      */
-    fun Collection<Int>.thirdQuartile() = takeLast(size / 2).median()
+    fun List<Int>.thirdQuartile() = takeLast(size / 2).median()
 
     /**
      * @receiver xs must be sorted.
      */
-    fun Collection<Int>.interquartileRange() = thirdQuartile() - firstQuartile()
+    fun List<Int>.interquartileRange() = thirdQuartile() - firstQuartile()
 
     fun rank(xs: List<Double>): List<Int> {
         val sorted = xs.sorted()

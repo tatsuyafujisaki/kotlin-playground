@@ -43,8 +43,7 @@ object MathUtil {
 
     fun Double.roundFormat(decimals: Int) = "%.${decimals}f".format(this)
 
-    fun weightedMean(xs: List<Int>, weights: List<Int>) =
-        (xs.zip(weights) { x, weight -> x * weight }).sum() / weights.sum().toDouble()
+    fun weightedMean(xs: List<Int>, weights: List<Int>) = xs.zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
     /**
      * @receiver must be sorted.

@@ -76,17 +76,17 @@ object MathUtil {
     // Pearson correlation coefficient
     fun pearson(xs: List<Double>, ys: List<Double>) = cov(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
 
-    // Imperative
-    fun factorial(n: Int): Int {
-        require(n >= 0)
-        return if (n <= 1) 1 else (2..n).reduce(Int::times)
-    }
+    /**
+     * Iterative approach
+     * @param n must be greater than or equal to 0.
+     */
+    fun factorial(n: Int) = if (n <= 1) 1 else (2..n).reduce(Int::times)
 
-    // Tail recursive
-    tailrec fun factorial(n: Int, acc: Int = 1): Int {
-        require(n >= 0)
-        return if (n <= 1) acc else factorial(n - 1, acc * n)
-    }
+    /**
+     * Tail recursive approach
+     * @param n must be greater than or equal to 0.
+     */
+    tailrec fun factorial(n: Int, acc: Int = 1): Int = if (n <= 1) acc else factorial(n - 1, acc * n)
 
     fun nPr(n: Int, r: Int) = factorial(n) / factorial(n - r).toDouble()
     fun nCr(n: Int, r: Int) = factorial(n) / (factorial(r) * factorial(n - r).toDouble())

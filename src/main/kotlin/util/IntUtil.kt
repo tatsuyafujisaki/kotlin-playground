@@ -1,6 +1,8 @@
 package util
 
 object IntUtil {
+    fun Int.between(fromInclusive: Int, toExclusive: Int) = this in fromInclusive until toExclusive
+
     fun Int.nth(): String {
         val lastDigit = this % 10
         return toString() + when {

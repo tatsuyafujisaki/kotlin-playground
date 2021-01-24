@@ -47,7 +47,7 @@ object MathUtil {
         return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
     }
 
-    fun Collection<Int>.mode() = groupingBy { it }.eachCount().maxBy { it.value }?.key
+    fun Collection<Int>.mode() = groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
 
     fun List<Int>.standardDeviation(): Double {
         val mean = average()
@@ -101,12 +101,12 @@ object MathUtil {
 
     /**
      * If the number of elements is odd, the median element is excluded.
-     * @receiver xs must be sorted.
+     * @receiver must be sorted.
      */
     fun List<Int>.thirdQuartile() = takeLast(size / 2).median()
 
     /**
-     * @receiver xs must be sorted.
+     * @receiver must be sorted.
      */
     fun List<Int>.interquartileRange() = thirdQuartile() - firstQuartile()
 

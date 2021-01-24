@@ -8,6 +8,7 @@
 ## Use A rather than B for simplicity or clarity
 A|B|Note
 --|--|--
+`Int.abs(...)`|`Int.absoluteValue`
 `emptyList()`|`listOf()`
 `Collection<T>.size`|`Collection<T>.count()`
 `A to B`|`Pair(A, B)`
@@ -15,7 +16,7 @@ A|B|Note
 `repeat(n)`|`while(n--)`
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
 infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
-`xs.lastIndex`|`xs.indices.last` or `xs.size - 1`
+`List<T>.lastIndex`|`Collection<*>.indices.last` or `List<T>.size - 1`
 `copyRangeOf(...)`|`sliceArray(...)`
 `intArray.toCollection(mutableList)`|`mutableList.addAll(intArray.toTypedArray())`
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`

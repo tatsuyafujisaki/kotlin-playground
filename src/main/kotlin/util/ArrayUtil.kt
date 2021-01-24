@@ -22,19 +22,19 @@ object ArrayUtil {
     }
 
     fun IntArray.printVertically() {
-        forEach { println("$it ") }
+        forEach { println(it) }
     }
 
     fun <T> Array<T>.printHorizontally() {
-        for (i in 0 until size - 1) {
-            print(this[i].toString() + " ")
+        dropLast(1).forEach {
+            print("$it ")
         }
         println(last())
     }
 
     fun IntArray.printHorizontally() {
-        for (i in 0 until size - 1) {
-            print(this[i].toString() + " ")
+        dropLast(1).forEach {
+            print("$it ")
         }
         println(last())
     }

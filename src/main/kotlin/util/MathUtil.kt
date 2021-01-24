@@ -99,6 +99,7 @@ object MathUtil {
      * @param p probability of having a boy
      * @return probability that families with [n] children have [rs] boys.
      * e.g. If [n] is 6 and [rs] is [4, 5, 6], the returned value is the probability of having 4 boys + probability of having 5 boys + ... + probability of having 6 boys.
+     * i.e. probability of having at least 6 boys
      */
     fun cumulativeBinomialProbability(n: Int, rs: IntRange, p: Double) = rs.sumByDouble { binomialProbability(n, it, p) }
 

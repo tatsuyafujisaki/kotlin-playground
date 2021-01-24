@@ -59,11 +59,20 @@ object MathUtil {
     fun cumulativeBinomialProbability(p: Double, n: Int, ks: IntRange) = ks.sumByDouble { binomialProbability(p, n, it) }
 
     /**
+     * Redundant wrapper for geometric probability
      * @param p probability of success
      * @param k number of trials
      * @return probability of the first success on the [k]th trial.
      */
-    fun geometricProbability(p: Double, k: Int) = (1 - p).pow(k - 1) * p
+    fun firstSuccessOnKthTrialProbability(p: Double, k: Int) = (1 - p).pow(k - 1) * p
+
+    /**
+     * Redundant wrapper for geometric probability
+     * @param p probability of success
+     * @param k number of trials
+     * @return probability that all the trials fail
+     */
+    fun allTrialsFailProbability(p: Double, k: Int) = (1 - p).pow(k)
 
     /**
      * @param lambda average number of successes

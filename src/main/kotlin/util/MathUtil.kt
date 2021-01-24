@@ -4,6 +4,7 @@ import kotlin.math.E
 import kotlin.math.pow
 import kotlin.math.sqrt
 import util.IntegerUtil.factorial
+import util.IntegerUtil.nCr
 import util.IntegerUtil.pow
 
 object MathUtil {
@@ -58,6 +59,13 @@ object MathUtil {
      * i.e. probability of having at least 6 boys
      */
     fun cumulativeBinomialProbability(n: Int, rs: IntRange, p: Double) = rs.sumByDouble { binomialProbability(n, it, p) }
+
+    /**
+     * @param p probability of success
+     * @param k trials
+     * @return probability of the first success on the [k]th trial.
+     */
+    fun geometricProbability(p: Double, k: Int) = (1 - p).pow(k - 1) * p
 
     /**
      * @param lambda average number of successes

@@ -82,20 +82,10 @@ object Array2dUtil {
         this[2][2] = a22
     }
 
-    fun Array<DoubleArray>.subMatrix(excludingRow: Int, excludingColumn: Int): Array<DoubleArray> {
+    fun Array<DoubleArray>.subMatrix(rowToExclude: Int, columnToExclude: Int): Array<DoubleArray> {
         val subMatrix = create2dDoubleArray(rowCount() - 1, columnCount() - 1)
-        var subMatrixRow = -1
-        for (matrixRow in indices) {
-            if (matrixRow == excludingRow) {
-                continue
-            }
-            subMatrixRow++
-            var subMatrixColumn = -1
-            for (matrixColumn in 0 until columnCount()) {
-                if (matrixColumn == excludingColumn) {
-                    continue
-                }
-                subMatrixColumn++
+        for ((subMatrixRow, matrixRow) in indices.filterNot { it == rowToExclude }.withIndex()) {
+            for ((subMatrixColumn, matrixColumn) in first().indices.filterNot { it == columnToExclude }.withIndex()) {
                 subMatrix[subMatrixRow][subMatrixColumn] = this[matrixRow][matrixColumn]
             }
         }
@@ -114,7 +104,7 @@ object Array2dUtil {
 
     fun Array<DoubleArray>.multiply(x: Double): Array<DoubleArray> {
         for (row in indices) {
-            for (column in 0 until columnCount()) {
+            for (column in first().indices) {
                 this[row][column] = x * this[row][column]
             }
         }

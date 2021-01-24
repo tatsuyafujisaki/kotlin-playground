@@ -81,6 +81,15 @@ object MathUtil {
     fun poissonProbability(mean: Double, k: Int) = mean.pow(k) * E.pow(-mean) / k.factorial()
 
     /**
+     * E\[X] in the Poisson distribution = [mean] (average number of successes)
+     * Var(X) in the Poisson distribution = [mean] (actual number of successes)
+     *
+     * Var(X) = E[X^2] - E\[X]^2
+     * -> E[X^2] = Var(X) + E\[X]^2 = [mean] + [mean]^2
+     */
+    fun squaredPoissonProbability(mean: Double) = mean + mean.pow(2)
+
+    /**
      * If the number of elements is odd, the median element is excluded.
      * @receiver must be sorted.
      */

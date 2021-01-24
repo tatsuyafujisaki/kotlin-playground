@@ -34,7 +34,7 @@ object MathUtil {
     fun covariance(xs: Collection<Double>, ys: Collection<Double>): Double {
         val meanX = xs.average()
         val meanY = ys.average()
-        return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
+        return xs.zip(ys).sumByDouble { (it.first - meanX) * (it.second - meanY) } / xs.size
     }
 
     fun correlationCoefficient(xs: List<Double>, ys: List<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())

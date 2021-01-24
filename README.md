@@ -9,9 +9,11 @@
 A|B|Note
 --|--|--
 `Int.abs(...)`|`Int.absoluteValue`
+`A to B`|`Pair(A, B)`
 `emptyList()`|`listOf()`
 `Collection<T>.size`|`Collection<T>.count()`
-`A to B`|`Pair(A, B)`
+`nullableList.orEmpty()`|`nullableList ?: emptyList()`
+`nullableString.orEmpty()`|`nullableString ?: ""`
 `with(...)`|`run(...)`|if the receiver is not nullable.
 `repeat(n)`|`while(n--)`
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`

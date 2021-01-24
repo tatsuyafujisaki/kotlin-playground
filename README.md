@@ -4,15 +4,23 @@
   * Note that Kotlin Coding Conventions' continuation indent is a single indent (four spaces). 
      * https://kotlinlang.org/docs/reference/coding-conventions.html#chained-call-wrapping
 
-# Which to use
-* Use `with(...)` rather than `run(...)` if the receiver is not nullable because, in my opinion, the former is slightly more readable.
-* Use `filterIsInstance<Foo>()` rather than `filterIsInstance(Foo::class.java)` for simplicity.
-* Use infix notation for simplicity. e.g. Use `x !in xs` rather than `!xs.contains(x)`.
-* Use `repeat(n)` rather than `while(n--)` for simplicity.
-* Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for simplicity.
-* Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.
-* Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
-* Use `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}` rather than `List<Int>.map {...}.sum()` for simplicity.
+# Best practices
+## Use A rather than B for simplicity or clarity
+A|B|Note
+--|--|--
+`emptyList()`|`listOf()`
+`Collection<T>.size`|`Collection<T>.count()`
+`A to B`|`Pair(A, B)`
+`with(...)`|`run(...)`|if the receiver is not nullable.
+`repeat(n)`|`while(n--)`
+`filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
+infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
+`xs.lastIndex`|`xs.indices.last` or `xs.size - 1`
+`copyRangeOf(...)`|`sliceArray(...)`
+`intArray.toCollection(mutableList)`|`mutableList.addAll(intArray.toTypedArray())`
+`List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
+
+## Misc
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
 # Type mapping between Kotlin and Java

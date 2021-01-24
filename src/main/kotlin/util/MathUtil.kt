@@ -71,18 +71,18 @@ object MathUtil {
 
     /**
      * Iterative method
-     * @param n must be greater than or equal to 0.
+     * @receiver must be greater than or equal to 0.
      */
-    fun factorial(n: Int) = if (n <= 1) 1 else (2..n).reduce(Int::times)
+    fun Int.factorial() = if (this <= 1) 1 else (2..this).reduce(Int::times)
 
     /**
      * Tail recursive method
-     * @param n must be greater than or equal to 0.
+     * @receiver must be greater than or equal to 0.
      */
-    tailrec fun factorial(n: Int, acc: Int = 1): Int = if (n <= 1) acc else factorial(n - 1, acc * n)
+    tailrec fun Int.factorialRecursive(acc: Int = 1): Int = if (this <= 1) acc else (this - 1).factorialRecursive(acc * this)
 
-    fun nPr(n: Int, r: Int) = factorial(n) / factorial(n - r).toDouble()
-    fun nCr(n: Int, r: Int) = factorial(n) / (factorial(r) * factorial(n - r).toDouble())
+    fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
+    fun nCr(n: Int, r: Int) = n.factorial().toDouble() / (r.factorial() * n - r.factorial())
 
     fun cumulativeBinomialProbability(n: Int, rs: IntRange, p: Double) =
         rs.sumByDouble { nCr(n, it) * p.pow(it) * (1 - p).pow(n - it) }
@@ -91,7 +91,7 @@ object MathUtil {
      * @param lambda average number of successes
      * @param k actual number of successes
      */
-    fun poissonProbability(lambda: Double, k: Int) = lambda.pow(k) * E.pow(-lambda) / factorial(k)
+    fun poissonProbability(lambda: Double, k: Int) = lambda.pow(k) * E.pow(-lambda) / k.factorial()
 
     /**
      * If the number of elements is odd, the median element is excluded.

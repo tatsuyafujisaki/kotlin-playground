@@ -8,11 +8,13 @@
 ## Use A rather than B for simplicity or clarity
 A|B|Note
 --|--|--
-`<*>`|`<T>`|if star-projections suffices.
+`<*>`|`<T>`|if star-projections suffice.
 `Int.abs(...)`|`Int.absoluteValue`
 `A to B`|`Pair(A, B)`
 `emptyList()`|`listOf()`
 `Collection<*>.size`|`Collection<*>.count()`
+`Collection<*>`|`List<*>`|as an argument of a function if `Collection<*>` suffices.
+`Set<*>`|`List<*>`|if elements are unique and unordered.
 `nullableList.orEmpty()`|`nullableList ?: emptyList()`
 `nullableString.orEmpty()`|`nullableString ?: ""`
 `with(...)`|`run(...)`|if the receiver is not nullable.

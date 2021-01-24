@@ -149,7 +149,7 @@ object Array2dUtil {
     fun Array<DoubleArray>.cofactor(): Array<DoubleArray> {
         val cofactorMatrix = create2dDoubleArray(rowCount(), columnCount())
         for (row in indices) {
-            for (column in 0 until columnCount()) {
+            for (column in first().indices) {
                 cofactorMatrix[row][column] = (if ((row + column) % 2 == 0) 1 else -1) * subMatrix(row, column).determinant()
             }
         }

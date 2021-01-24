@@ -41,28 +41,26 @@ object MathUtil {
     fun pearson(xs: List<Double>, ys: List<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
 
     /**
-     * @param n number of children
-     * @param r number of boys
-     * @param p probability of having a boy
-     * @return probability that families with [n] children have [r] boys.
-     * i.e. probability of having [r] boys + probability of having ([r] + 1) boys + ... + probability of having [n] boys
+     * @param p probability of success
+     * @param n number of trials
+     * @param k number of successes
+     * @return probability of [k] successes on [n] trials
      */
-    fun binomialProbability(n: Int, r: Int, p: Double) = nCr(n, r) * p.pow(r) * (1 - p).pow(n - r)
-
-    /**
-     * Redundant wrapper
-     * @param n number of children
-     * @param rs range of numbers of boys
-     * @param p probability of having a boy
-     * @return probability that families with [n] children have [rs] boys.
-     * e.g. If [n] is 6 and [rs] is [4, 5, 6], the returned value is the probability of having 4 boys + probability of having 5 boys + ... + probability of having 6 boys.
-     * i.e. probability of having at least 6 boys
-     */
-    fun cumulativeBinomialProbability(n: Int, rs: IntRange, p: Double) = rs.sumByDouble { binomialProbability(n, it, p) }
+    fun binomialProbability(p: Double, n: Int, k: Int) = nCr(n, k) * p.pow(k) * (1 - p).pow(n - k)
 
     /**
      * @param p probability of success
-     * @param k trials
+     * @param n number of trials
+     * @param ks number of successes
+     * @return probability of at least [ks] successes on [n] trials
+     * e.g. If [n] is 6 and [ks] is [4, 5, 6], the returned value is the probability of 4 successes + probability of 5 successes + probability of 6 successes.
+     * i.e. probability of at least 6 successes
+     */
+    fun cumulativeBinomialProbability(p: Double, n: Int, ks: IntRange) = ks.sumByDouble { binomialProbability(p, n, it) }
+
+    /**
+     * @param p probability of success
+     * @param k number of trials
      * @return probability of the first success on the [k]th trial.
      */
     fun geometricProbability(p: Double, k: Int) = (1 - p).pow(k - 1) * p

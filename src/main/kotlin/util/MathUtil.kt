@@ -75,10 +75,10 @@ object MathUtil {
     fun allTrialsFailProbability(p: Double, k: Int) = (1 - p).pow(k)
 
     /**
-     * @param lambda average number of successes
+     * @param mean average number of successes
      * @param k actual number of successes
      */
-    fun poissonProbability(lambda: Double, k: Int) = lambda.pow(k) * E.pow(-lambda) / k.factorial()
+    fun poissonProbability(mean: Double, k: Int) = mean.pow(k) * E.pow(-mean) / k.factorial()
 
     /**
      * If the number of elements is odd, the median element is excluded.

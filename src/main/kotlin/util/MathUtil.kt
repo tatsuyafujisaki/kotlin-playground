@@ -34,11 +34,10 @@ object MathUtil {
     fun covariance(xs: Collection<Double>, ys: Collection<Double>): Double {
         val meanX = xs.average()
         val meanY = ys.average()
-        return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.count()
+        return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
     }
 
-    // Pearson correlation coefficient
-    fun pearson(xs: List<Double>, ys: List<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
+    fun correlationCoefficient(xs: List<Double>, ys: List<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
 
     /**
      * @param p probability of success

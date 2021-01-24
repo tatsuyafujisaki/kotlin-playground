@@ -1,31 +1,14 @@
 package util
 
-import factorial
 import kotlin.math.E
 import kotlin.math.pow
 import kotlin.math.sqrt
+import util.IntegerUtil.factorial
+import util.IntegerUtil.pow
 
 object MathUtil {
-    fun MutableList<Int>.swap(i: Int, j: Int) {
-        val temp = this[i]
-        this[i] = this[j]
-        this[j] = temp
-    }
-
-    fun IntArray.swap(i: Int, j: Int) {
-        val temp = this[i]
-        this[i] = this[j]
-        this[j] = temp
-    }
-
-    fun largestDivisor(n: Int): Int {
-        for (i in 2..n) {
-            if (n % i == 0) {
-                return n / i
-            }
-        }
-        return 1
-    }
+    fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
+    fun nCr(n: Int, r: Int) = n.factorial().toDouble() / (r.factorial() * (n - r).factorial())
 
     fun Collection<Int>.weightedMean(weights: Collection<Int>) = zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
@@ -41,13 +24,13 @@ object MathUtil {
 
     fun List<Int>.standardDeviation(): Double {
         val mean = average()
-        return sqrt(map { (it - mean).pow(2) }.sum() / size)
+        return sqrt(sumByDouble { (it - mean).pow(2) } / size)
     }
 
     @JvmName("standardDeviationDouble")
     fun List<Double>.standardDeviation(): Double {
         val mean = average()
-        return sqrt(map { (it - mean).pow(2) }.sum() / size)
+        return sqrt(sumByDouble { (it - mean).pow(2) } / size)
     }
 
     fun cov(xs: List<Double>, ys: List<Double>): Double {
@@ -59,8 +42,6 @@ object MathUtil {
     // Pearson correlation coefficient
     fun pearson(xs: List<Double>, ys: List<Double>) = cov(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
 
-    fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
-    fun nCr(n: Int, r: Int) = n.factorial().toDouble() / (r.factorial() * (n - r).factorial())
 
     /**
      * @param n number of children
@@ -113,24 +94,7 @@ object MathUtil {
     // Spearman's rank correlation coefficient
     fun spearman(xs: List<Double>, ys: List<Double>): Double {
         val n = xs.size
-        return 1.0 - (6.0 * rank(xs).zip(rank(ys)) { rankX, rankY -> (rankX - rankY).pow(2) }
-            .sum() / (n * (n * n - 1.0)))
-    }
-
-    // O(sqrt(n))
-    fun isPrime(n: Int): Boolean {
-        if (n == 2) {
-            return true
-        }
-        if (n < 2 || n % 2 == 0) {
-            return false
-        }
-        for (i in 3..n.sqrt() step 2) {
-            if (n % i == 0) {
-                return false
-            }
-        }
-        return true
+        return 1.0 - (6.0 * rank(xs).zip(rank(ys)) { rankX, rankY -> (rankX - rankY).pow(2) }.sum() / (n * (n * n - 1.0)))
     }
 
     fun fibonacci() =

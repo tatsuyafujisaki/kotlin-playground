@@ -84,8 +84,14 @@ object MathUtil {
     fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
     fun nCr(n: Int, r: Int) = n.factorial().toDouble() / (r.factorial() * (n - r).factorial())
 
-    fun cumulativeBinomialProbability(n: Int, rs: IntRange, p: Double) =
-        rs.sumByDouble { nCr(n, it) * p.pow(it) * (1 - p).pow(n - it) }
+    /**
+     * @param n number of children
+     * @param r number of boys
+     * @param p probability of having a boy
+     * @return probability that families with exactly [n] children have at least [r] boys.
+     * i.e. probability of having [r] boys + probability of having ([r] + 1) boys + ... + probability of having [n] boys
+     */
+    fun cumulativeBinomialProbability(n: Int, r: Int, p: Double) = (r..n).sumByDouble { nCr(n, it) * p.pow(it) * (1 - p).pow(n - it) }
 
     /**
      * @param lambda average number of successes

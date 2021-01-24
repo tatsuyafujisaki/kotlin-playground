@@ -8,7 +8,7 @@ import util.IntegerUtil.nCr
 import util.IntegerUtil.pow
 
 object MathUtil {
-    fun Collection<Int>.weightedMean(weights: Collection<Int>) = zip(weights).sumBy { it.first * it.second }.toDouble() / weights.sum()
+    fun Collection<Int>.weightedMean(weights: Collection<Int>) = zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
     /**
      * @receiver must be sorted.

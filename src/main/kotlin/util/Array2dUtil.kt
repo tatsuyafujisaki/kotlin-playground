@@ -2,7 +2,7 @@ package util
 
 object Array2dUtil {
     fun Array<DoubleArray>.rowCount() = size
-    fun Array<DoubleArray>.columnCount() = this.first().size
+    fun Array<DoubleArray>.columnCount() = first().size
     fun Array<DoubleArray>.isSquareMatrix() = rowCount() == columnCount()
     fun Array<DoubleArray>.inverse(): Array<DoubleArray> = cofactor().transpose().multiply(1.0 / determinant())
 
@@ -10,7 +10,7 @@ object Array2dUtil {
         IntArray(columnCount)
     }
 
-    fun create2dDoubleMatrix(rowCount: Int, columnCount: Int): Array<DoubleArray> = Array(rowCount) {
+    fun create2dDoubleArray(rowCount: Int, columnCount: Int): Array<DoubleArray> = Array(rowCount) {
         DoubleArray(columnCount)
     }
 
@@ -37,7 +37,7 @@ object Array2dUtil {
     fun createMatrix(
         a00: Double, a01: Double,
         a10: Double, a11: Double
-    ): Array<DoubleArray> = create2dDoubleMatrix(2, 2).apply {
+    ): Array<DoubleArray> = create2dDoubleArray(2, 2).apply {
         this[0][0] = a00
         this[0][1] = a01
         this[1][0] = a10
@@ -70,7 +70,7 @@ object Array2dUtil {
         a00: Double, a01: Double, a02: Double,
         a10: Double, a11: Double, a12: Double,
         a20: Double, a21: Double, a22: Double
-    ): Array<DoubleArray> = create2dDoubleMatrix(3, 3).apply {
+    ): Array<DoubleArray> = create2dDoubleArray(3, 3).apply {
         this[0][0] = a00
         this[0][1] = a01
         this[0][2] = a02
@@ -83,7 +83,7 @@ object Array2dUtil {
     }
 
     fun Array<DoubleArray>.subMatrix(excludingRow: Int, excludingColumn: Int): Array<DoubleArray> {
-        val subMatrix = create2dDoubleMatrix(rowCount() - 1, columnCount() - 1)
+        val subMatrix = create2dDoubleArray(rowCount() - 1, columnCount() - 1)
         var subMatrixRow = -1
         for (matrixRow in indices) {
             if (matrixRow == excludingRow) {
@@ -103,9 +103,9 @@ object Array2dUtil {
     }
 
     fun Array<DoubleArray>.transpose(): Array<DoubleArray> {
-        val transposed = create2dDoubleMatrix(columnCount(), rowCount())
+        val transposed = create2dDoubleArray(columnCount(), rowCount())
         for (i in indices) {
-            for (j in 0 until columnCount()) {
+            for (j in first().indices) {
                 transposed[j][i] = this[i][j]
             }
         }
@@ -129,7 +129,7 @@ object Array2dUtil {
 
         val rowCount1 = matrix1.rowCount()
         val columnCount2 = matrix2.columnCount()
-        val product = create2dDoubleMatrix(rowCount1, columnCount2)
+        val product = create2dDoubleArray(rowCount1, columnCount2)
 
         for (i in 0 until rowCount1) {
             for (j in 0 until columnCount2) {
@@ -157,7 +157,7 @@ object Array2dUtil {
     }
 
     fun Array<DoubleArray>.cofactor(): Array<DoubleArray> {
-        val cofactorMatrix = create2dDoubleMatrix(rowCount(), columnCount())
+        val cofactorMatrix = create2dDoubleArray(rowCount(), columnCount())
         for (row in indices) {
             for (column in 0 until columnCount()) {
                 cofactorMatrix[row][column] = (if ((row + column) % 2 == 0) 1 else -1) * subMatrix(row, column).determinant()

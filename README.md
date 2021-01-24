@@ -11,14 +11,14 @@ A|B|Note
 `Int.abs(...)`|`Int.absoluteValue`
 `A to B`|`Pair(A, B)`
 `emptyList()`|`listOf()`
-`Collection<T>.size`|`Collection<T>.count()`
+`Collection<*>.size`|`Collection<*>.count()`
 `nullableList.orEmpty()`|`nullableList ?: emptyList()`
 `nullableString.orEmpty()`|`nullableString ?: ""`
 `with(...)`|`run(...)`|if the receiver is not nullable.
 `repeat(n)`|`while(n--)`
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
 infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
-`List<T>.lastIndex`|`Collection<*>.indices.last` or `List<T>.size - 1`
+`List<*>.lastIndex`|`Collection<*>.indices.last` or `List<*>.size - 1`
 `copyRangeOf(...)`|`sliceArray(...)`
 `intArray.toCollection(mutableList)`|`mutableList.addAll(intArray.toTypedArray())`
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`

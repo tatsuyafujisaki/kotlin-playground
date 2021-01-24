@@ -24,7 +24,7 @@ object MapUtil {
         }
     }
 
-    fun <T> Map<T, Int>.sortByValue() = toList().sortedBy { it.second }.toMap()
-    fun <T> Map<T, Int>.sortByValueDescending() = toList().sortedByDescending { it.second }.toMap()
-    fun <T> Map<T, Int>.getEntryOfMaxValue() = maxByOrNull { it.value }
+    fun Map<*, Int>.sortByValue() = toList().sortedBy { it.second }.toMap()
+    fun Map<*, Int>.sortByValueDescending() = toList().sortedByDescending { it.second }.toMap()
+    fun Map<*, Int>.getEntryOfMaxValue() = maxByOrNull { it.value }
 }

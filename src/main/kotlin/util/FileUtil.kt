@@ -12,7 +12,7 @@ object FileUtil {
         }
     }
 
-    fun <T> File.write(xs: List<T>) {
+    fun File.write(xs: List<*>) {
         ObjectOutputStream(outputStream()).use {
             it.writeObject(xs)
         }

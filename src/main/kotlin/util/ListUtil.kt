@@ -8,8 +8,8 @@ object ListUtil {
         this[i] = this[j]
         this[j] = temp
     }
-    
-    fun <T> List<T>.rotate(distance: Int): List<T> {
+
+    fun List<*>.rotate(distance: Int): List<*> {
         with(toList()) {
             Collections.rotate(this, distance)
             return this

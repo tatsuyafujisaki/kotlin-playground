@@ -40,7 +40,7 @@ val ys: IntArray = IntArray(3) // [0, 0, 0]
 val zs: IntArray = IntArray(3) { it * 2 } // [0, 2, 4]
 ```
 
-## How to create an Array\<T>
+## How to create an Array\<*>
 ```kotlin
 val xs: Array<Int> = arrayOf(1, 2, 3) // [1, 2, 3]
 
@@ -67,7 +67,7 @@ val xs: IntArray = intArrayOf(1, 2, 3)
 val ys: IntArray = xs.clone()
 ```
 
-## How to deep-copy an Array\<T>
+## How to deep-copy an Array\<*>
 ```kotlin
 val xs: Array<String> = arrayOf("a", "b", "c")
 val ys: Array<String> = xs.clone()

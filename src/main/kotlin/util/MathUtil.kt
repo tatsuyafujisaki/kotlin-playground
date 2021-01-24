@@ -5,9 +5,10 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 import util.IntegerUtil.factorial
 import util.IntegerUtil.nCr
-import util.IntegerUtil.pow
 
 object MathUtil {
+    fun fibonacci() = generateSequence(0 to 1) { it.second to it.first + it.second }.map { it.first }
+    fun Collection<Int>.mode() = groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
     fun Collection<Int>.weightedMean(weights: Collection<Int>) = zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
     /**
@@ -18,7 +19,6 @@ object MathUtil {
         return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
     }
 
-    fun Collection<Int>.mode() = groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
 
     fun Collection<Int>.standardDeviation(): Double {
         val mean = average()
@@ -105,17 +105,16 @@ object MathUtil {
      */
     fun List<Int>.interquartileRange() = thirdQuartile() - firstQuartile()
 
-    fun rank(xs: List<Double>): List<Int> {
-        val sorted = xs.sorted()
-        return xs.map { sorted.indexOf(it) + 1 }
-    }
-
-    // Spearman's rank correlation coefficient
+    /**
+     * Spearman's rank correlation coefficient
+     */
     fun spearman(xs: List<Double>, ys: List<Double>): Double {
-        val n = xs.size
-        return 1.0 - (6.0 * rank(xs).zip(rank(ys)) { rankX, rankY -> (rankX - rankY).pow(2) }.sum() / (n * (n * n - 1.0)))
-    }
+        fun List<Double>.rank(): List<Int> {
+            val sorted = sorted()
+            return map { sorted.indexOf(it) + 1 }
+        }
 
-    fun fibonacci() =
-        generateSequence(0 to 1) { it.second to it.first + it.second }.map { it.first }
+        val n = xs.size
+        return 1 - (6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }.sum() / (n * (n * n - 1)))
+    }
 }

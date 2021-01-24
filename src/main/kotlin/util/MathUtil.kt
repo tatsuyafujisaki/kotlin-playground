@@ -82,7 +82,7 @@ object MathUtil {
     tailrec fun Int.factorialRecursive(acc: Int = 1): Int = if (this <= 1) acc else (this - 1).factorialRecursive(acc * this)
 
     fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
-    fun nCr(n: Int, r: Int) = n.factorial().toDouble() / (r.factorial() * n - r.factorial())
+    fun nCr(n: Int, r: Int) = n.factorial().toDouble() / (r.factorial() * (n - r).factorial())
 
     fun cumulativeBinomialProbability(n: Int, rs: IntRange, p: Double) =
         rs.sumByDouble { nCr(n, it) * p.pow(it) * (1 - p).pow(n - it) }

@@ -16,26 +16,4 @@ object ArrayUtil {
         }
         return indexOfMin
     }
-
-    fun Array<*>.printVertically() {
-        forEach { println(it) }
-    }
-
-    fun IntArray.printVertically() {
-        forEach { println(it) }
-    }
-
-    fun <T> Array<T>.printHorizontally() {
-        dropLast(1).forEach {
-            print("$it ")
-        }
-        println(last())
-    }
-
-    fun IntArray.printHorizontally() {
-        dropLast(1).forEach {
-            print("$it ")
-        }
-        println(last())
-    }
 }

@@ -1,6 +1,6 @@
 package enum
 
-import util.ArrayUtil.printHorizontally
+import util.StandardOutputUtil.printHorizontally
 
 enum class Fruit {
     APPLE,

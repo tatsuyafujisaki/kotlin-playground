@@ -4,7 +4,7 @@
   * Note that Kotlin Coding Conventions' continuation indent is a single indent (four spaces). 
      * https://kotlinlang.org/docs/reference/coding-conventions.html#chained-call-wrapping
 
-# Best practices
+# Which to use
 * Use `with(...)` rather than `run(...)` if the receiver is not nullable because, in my opinion, the former is slightly more readable.
 * Use `filterIsInstance<Foo>()` rather than `filterIsInstance(Foo::class.java)` for simplicity.
 * Use infix notation for simplicity. e.g. Use `x !in xs` rather than `!xs.contains(x)`.
@@ -12,6 +12,7 @@
 * Use `xs.lastIndex` rather than `xs.indices.last` or `xs.size - 1` for simplicity.
 * Use `copyRangeOf(...)` rather than `sliceArray(...)` for simplicity.
 * Use `intArray.toCollection(mutableList)` rather than `mutableList.addAll(intArray.toTypedArray())` for simplicity.
+* Use `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}` rather than `List<Int>.map {...}.sum()` for simplicity.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
 # Type mapping between Kotlin and Java

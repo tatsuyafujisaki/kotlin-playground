@@ -3,7 +3,7 @@ package rx
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import util.IntUtil.nth
+import util.IntLongUtil.nth
 
 object ObservableExamples {
     private val compositeDisposable = CompositeDisposable()

@@ -1,19 +1,11 @@
 package util
 
+import factorial
 import kotlin.math.E
 import kotlin.math.pow
 import kotlin.math.sqrt
 
 object MathUtil {
-    /** If overflowed, returns Int.MAX_VALUE. */
-    fun Int.pow(n: Int) = toDouble().pow(n).toInt()
-    fun Int.powToLong(n: Int) = toDouble().pow(n).toLong()
-    fun Long.pow(n: Int) = toDouble().pow(n).toLong()
-
-    fun Int.isEven() = this % 2 == 0
-    fun Int.isSquareNumber() = (sqrt(toDouble())) % 1.0 == 0.0
-    fun Int.sqrt() = sqrt(toDouble()).toInt()
-
     fun MutableList<Int>.swap(i: Int, j: Int) {
         val temp = this[i]
         this[i] = this[j]
@@ -34,8 +26,6 @@ object MathUtil {
         }
         return 1
     }
-
-    fun Double.roundFormat(decimals: Int) = "%.${decimals}f".format(this)
 
     fun Collection<Int>.weightedMean(weights: Collection<Int>) = zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
@@ -69,18 +59,6 @@ object MathUtil {
     // Pearson correlation coefficient
     fun pearson(xs: List<Double>, ys: List<Double>) = cov(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
 
-    /**
-     * Iterative method
-     * @receiver must be greater than or equal to 0.
-     */
-    fun Int.factorial() = if (this <= 1) 1 else (2..this).reduce(Int::times)
-
-    /**
-     * Tail recursive method
-     * @receiver must be greater than or equal to 0.
-     */
-    tailrec fun Int.factorialRecursive(acc: Int = 1): Int = if (this <= 1) acc else (this - 1).factorialRecursive(acc * this)
-
     fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
     fun nCr(n: Int, r: Int) = n.factorial().toDouble() / (r.factorial() * (n - r).factorial())
 
@@ -94,6 +72,7 @@ object MathUtil {
     fun binomialProbability(n: Int, r: Int, p: Double) = nCr(n, r) * p.pow(r) * (1 - p).pow(n - r)
 
     /**
+     * Redundant wrapper
      * @param n number of children
      * @param rs range of numbers of boys
      * @param p probability of having a boy

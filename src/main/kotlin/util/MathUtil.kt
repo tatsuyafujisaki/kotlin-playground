@@ -88,10 +88,19 @@ object MathUtil {
      * @param n number of children
      * @param r number of boys
      * @param p probability of having a boy
-     * @return probability that families with exactly [n] children have at least [r] boys.
+     * @return probability that families with [n] children have [r] boys.
      * i.e. probability of having [r] boys + probability of having ([r] + 1) boys + ... + probability of having [n] boys
      */
-    fun cumulativeBinomialProbability(n: Int, r: Int, p: Double) = (r..n).sumByDouble { nCr(n, it) * p.pow(it) * (1 - p).pow(n - it) }
+    fun binomialProbability(n: Int, r: Int, p: Double) = nCr(n, r) * p.pow(r) * (1 - p).pow(n - r)
+
+    /**
+     * @param n number of children
+     * @param rs range of numbers of boys
+     * @param p probability of having a boy
+     * @return probability that families with [n] children have [rs] boys.
+     * e.g. If [n] is 6 and [rs] is [4, 5, 6], the returned value is the probability of having 4 boys + probability of having 5 boys + ... + probability of having 6 boys.
+     */
+    fun cumulativeBinomialProbability(n: Int, rs: IntRange, p: Double) = rs.sumByDouble { binomialProbability(n, it, p) }
 
     /**
      * @param lambda average number of successes

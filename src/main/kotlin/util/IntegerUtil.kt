@@ -27,6 +27,9 @@ object IntegerUtil {
      */
     tailrec fun Int.factorialRecursive(acc: Int = 1): Int = if (this <= 1) acc else (this - 1).factorialRecursive(acc * this)
 
+    fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
+    fun nCr(n: Int, r: Int) = nPr(n, r) / r.factorial()
+
     // O(sqrt(n))
     fun Int.isPrime(): Boolean {
         if (this == 2) return true

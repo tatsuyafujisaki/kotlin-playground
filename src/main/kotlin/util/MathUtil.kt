@@ -7,9 +7,6 @@ import util.IntegerUtil.factorial
 import util.IntegerUtil.pow
 
 object MathUtil {
-    fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
-    fun nCr(n: Int, r: Int) = n.factorial().toDouble() / (r.factorial() * (n - r).factorial())
-
     fun Collection<Int>.weightedMean(weights: Collection<Int>) = zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
     /**
@@ -22,26 +19,25 @@ object MathUtil {
 
     fun Collection<Int>.mode() = groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
 
-    fun List<Int>.standardDeviation(): Double {
+    fun Collection<Int>.standardDeviation(): Double {
         val mean = average()
         return sqrt(sumByDouble { (it - mean).pow(2) } / size)
     }
 
     @JvmName("standardDeviationDouble")
-    fun List<Double>.standardDeviation(): Double {
+    fun Collection<Double>.standardDeviation(): Double {
         val mean = average()
         return sqrt(sumByDouble { (it - mean).pow(2) } / size)
     }
 
-    fun cov(xs: List<Double>, ys: List<Double>): Double {
+    fun covariance(xs: Collection<Double>, ys: Collection<Double>): Double {
         val meanX = xs.average()
         val meanY = ys.average()
         return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.count()
     }
 
     // Pearson correlation coefficient
-    fun pearson(xs: List<Double>, ys: List<Double>) = cov(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
-
+    fun pearson(xs: List<Double>, ys: List<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
 
     /**
      * @param n number of children

@@ -19,7 +19,6 @@ object MathUtil {
         return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
     }
 
-
     fun Collection<Int>.standardDeviation(): Double {
         val mean = average()
         return sqrt(sumByDouble { (it - mean).pow(2) } / size)
@@ -31,13 +30,23 @@ object MathUtil {
         return sqrt(sumByDouble { (it - mean).pow(2) } / size)
     }
 
+    fun covariance(xs: Collection<Int>, ys: Collection<Int>): Double {
+        val meanX = xs.average()
+        val meanY = ys.average()
+        return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
+    }
+
+    @JvmName("covarianceDouble")
     fun covariance(xs: Collection<Double>, ys: Collection<Double>): Double {
         val meanX = xs.average()
         val meanY = ys.average()
         return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
     }
 
-    fun correlationCoefficient(xs: List<Double>, ys: List<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
+    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
+
+    @JvmName("correlationCoefficientDouble")
+    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
 
     /**
      * @param p probability of success

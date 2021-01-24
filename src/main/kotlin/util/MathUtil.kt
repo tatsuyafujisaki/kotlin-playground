@@ -5,16 +5,10 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 object MathUtil {
-    fun Int.pow(n: Int): Int {
-        val powered = toDouble().pow(n).toInt()
-        require(powered < Int.MAX_VALUE) {
-            "Overflowed. Instead, use Int.powToLong()."
-        }
-        return powered
-    }
-
-    fun Long.pow(n: Int) = toDouble().pow(n).toLong()
+    /** If overflowed, returns Int.MAX_VALUE. */
+    fun Int.pow(n: Int) = toDouble().pow(n).toInt()
     fun Int.powToLong(n: Int) = toDouble().pow(n).toLong()
+    fun Long.pow(n: Int) = toDouble().pow(n).toLong()
 
     fun Int.isEven() = this % 2 == 0
     fun Int.isSquareNumber() = (sqrt(toDouble())) % 1.0 == 0.0
@@ -55,9 +49,15 @@ object MathUtil {
 
     fun Collection<Int>.mode() = groupingBy { it }.eachCount().maxBy { it.value }?.key
 
-    fun standardDeviation(xs: List<Double>): Double {
-        val mean = xs.average()
-        return sqrt(xs.map { (it - mean).pow(2) }.sum() / xs.size)
+    fun List<Int>.standardDeviation(): Double {
+        val mean = average()
+        return sqrt(map { (it - mean).pow(2) }.sum() / size)
+    }
+
+    @JvmName("standardDeviationDouble")
+    fun List<Double>.standardDeviation(): Double {
+        val mean = average()
+        return sqrt(map { (it - mean).pow(2) }.sum() / size)
     }
 
     fun cov(xs: List<Double>, ys: List<Double>): Double {
@@ -67,7 +67,7 @@ object MathUtil {
     }
 
     // Pearson correlation coefficient
-    fun pearson(xs: List<Double>, ys: List<Double>) = cov(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
+    fun pearson(xs: List<Double>, ys: List<Double>) = cov(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
 
     /**
      * Iterative method

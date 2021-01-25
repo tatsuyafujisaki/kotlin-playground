@@ -18,7 +18,7 @@ object ArrayUtil {
     }
 
     fun IntArray.medianByCountingSort(): Double {
-        fun median(callback: (IntArray, Int) -> Double): Double {
+        fun median(onMiddleIndex: (IntArray, Int) -> Double): Double {
             val occurrences = IntArray(maxOrNull()!! + 1)
             for (x in this) {
                 occurrences[x]++
@@ -28,7 +28,7 @@ object ArrayUtil {
             occurrences.forEachIndexed { j, x ->
                 repeat(x) {
                     this[i] = j
-                    if (i == middleIndex) return callback(this, i)
+                    if (i == middleIndex) return onMiddleIndex(this, i)
                     i++
                 }
             }

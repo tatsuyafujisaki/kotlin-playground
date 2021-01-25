@@ -9,6 +9,8 @@ object ListUtil {
         this[j] = temp
     }
 
+    fun List<*>.rotateRight(distance: Int): List<*> = takeLast(distance) + dropLast(distance)
+
     fun List<*>.rotate(distance: Int): List<*> {
         with(toList()) {
             Collections.rotate(this, distance)

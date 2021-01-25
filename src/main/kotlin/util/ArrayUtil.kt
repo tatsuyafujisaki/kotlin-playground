@@ -16,4 +16,28 @@ object ArrayUtil {
         }
         return indexOfMin
     }
+
+    fun IntArray.medianByCountingSort(): Double {
+        fun median(callback: (IntArray, Int) -> Double): Double {
+            val occurrences = IntArray(maxOrNull()!! + 1)
+            for (x in this) {
+                occurrences[x]++
+            }
+            val middleIndex = size / 2
+            var i = 0
+            occurrences.forEachIndexed { j, x ->
+                repeat(x) {
+                    this[i] = j
+                    if (i == middleIndex) return callback(this, i)
+                    i++
+                }
+            }
+            return Double.MIN_VALUE
+        }
+        return if (size % 2 == 0) {
+            median { ys, j -> (ys[j - 1] + ys[j]) / 2.0 }
+        } else {
+            median { ys, j -> ys[j].toDouble() }
+        }
+    }
 }

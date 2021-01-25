@@ -10,14 +10,14 @@ object SelectionSort {
                 }
             }
             if (i != indexOfMin) {
-                swap(xs, i, indexOfMin)
+                xs.swap(i, indexOfMin)
             }
         }
     }
 
-    private fun swap(xs: IntArray, i: Int, j: Int) {
-        val tmp = xs[i]
-        xs[i] = xs[j]
-        xs[j] = tmp
+    private fun IntArray.swap(i: Int, j: Int) {
+        val temp = this[i]
+        this[i] = this[j]
+        this[j] = temp
     }
 }

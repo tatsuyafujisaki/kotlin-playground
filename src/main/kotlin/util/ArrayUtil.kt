@@ -32,10 +32,10 @@ object ArrayUtil {
                     i++
                 }
             }
-            return Double.MIN_VALUE
+            error("Unexpected to reach here.")
         }
         return if (size % 2 == 0) {
-            median { ys, j -> (ys[j - 1] + ys[j]) / 2.0 }
+            median { xs, i -> (xs[i - 1] + xs[i]) / 2.0 }
         } else {
             median { ys, j -> ys[j].toDouble() }
         }

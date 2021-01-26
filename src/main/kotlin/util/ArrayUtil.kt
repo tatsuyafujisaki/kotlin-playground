@@ -23,12 +23,12 @@ object ArrayUtil {
             for (x in this) {
                 occurrences[x]++
             }
-            val middleIndex = size / 2
+            val indexOfMedian = size / 2
             var i = 0
             occurrences.forEachIndexed { j, x ->
                 repeat(x) {
                     this[i] = j
-                    if (i == middleIndex) return onMiddleIndex(this, i)
+                    if (i == indexOfMedian) return onMiddleIndex(this, i)
                     i++
                 }
             }
@@ -37,7 +37,7 @@ object ArrayUtil {
         return if (size % 2 == 0) {
             median { xs, i -> (xs[i - 1] + xs[i]) / 2.0 }
         } else {
-            median { ys, j -> ys[j].toDouble() }
+            median { xs, j -> xs[j].toDouble() }
         }
     }
 }

@@ -26,6 +26,15 @@ object StandardOutputUtil {
         }
     }
 
+    fun LongArray.printHorizontally() {
+        if (isNotEmpty()) {
+            for (i in 0 until size - 1) {
+                print("${this[i]} ")
+            }
+            println(this[size - 1])
+        }
+    }
+
     fun DoubleArray.printHorizontally() {
         if (isNotEmpty()) {
             for (i in 0 until size - 1) {

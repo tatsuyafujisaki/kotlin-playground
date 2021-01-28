@@ -7,15 +7,23 @@ object ArrayUtil {
         this[j] = temp
     }
 
-    fun IntArray.getIndexOfMin(): Int {
-        var indexOfMin = 0
-        for (i in 1 until size) {
-            if (this[i] < this[indexOfMin]) {
-                indexOfMin = i
+    val IntArray.indexOfMin: Int
+        get() {
+            var indexOfMin = 0
+            for (i in 1 until size) {
+                if (this[i] < this[indexOfMin]) indexOfMin = i
             }
+            return indexOfMin
         }
-        return indexOfMin
-    }
+
+    val IntArray.indexOfMax: Int
+        get() {
+            var indexOfMax = 0
+            for (i in 1 until size) {
+                if (this[i] > this[indexOfMax]) indexOfMax = i
+            }
+            return indexOfMax
+        }
 
     fun IntArray.medianByCountingSort(): Double {
         fun median(onMiddleIndex: (IntArray, Int) -> Double): Double {

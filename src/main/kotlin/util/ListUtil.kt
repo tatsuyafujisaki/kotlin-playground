@@ -18,4 +18,10 @@ object ListUtil {
             return this
         }
     }
+
+    fun List<*>.pairs() = sequence {
+        for (i in indices) {
+            for (j in i + 1 until size) yield(this@pairs[i] to this@pairs[j])
+        }
+    }
 }

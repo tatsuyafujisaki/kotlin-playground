@@ -22,7 +22,7 @@ A|B|Note
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
 infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
 `List<*>.lastIndex`|`List<*>.size - 1`
-`CharSequence.lastIndex`|`String.size - 1`
+`CharSequence.lastIndex`|`String.length - 1`
 `intArray.toCollection(mutableList)`|`mutableList.addAll(intArray.toTypedArray())`
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
 

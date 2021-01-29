@@ -24,4 +24,17 @@ object ListUtil {
             for (j in i + 1 until size) yield(this@pairs[i] to this@pairs[j])
         }
     }
+
+    /**
+     * @receiver must not be empty.
+     */
+    fun List<Int>.minMax(): Pair<Int, Int> {
+        var min = this[0]
+        var max = this[0]
+        for (i in 1 until size) {
+            if (this[i] < min) min = this[i]
+            if (this[i] > max) max = this[i]
+        }
+        return min to max
+    }
 }

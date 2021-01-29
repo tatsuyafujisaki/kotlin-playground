@@ -3,7 +3,7 @@ package util
 object StringUtil {
     fun String?.isNeitherNullNorEmpty(): Boolean = this != null && isNotEmpty()
     fun String?.isNeitherNullNorBlank(): Boolean = this != null && isNotBlank()
-    fun String.splitLast(): Pair<String, Char> = if (lastIndex == 0) "" to first() else with(chunked(lastIndex)) { first() to last().last() }
+    fun String.splitLast() = if (lastIndex == 0) "" to first() else with(chunked(lastIndex)) { first() to last().last() }
     fun String.equalsIgnoreCase(s2: String) = equals(s2, true)
     fun String.alphabetized() = toCharArray().sorted().joinToString("")
     fun String.substrings() = sequence {

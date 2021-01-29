@@ -1,5 +1,7 @@
 package util
 
+import kotlin.math.max
+
 object StringUtil {
     fun String?.isNeitherNullNorEmpty(): Boolean = this != null && isNotEmpty()
     fun String?.isNeitherNullNorBlank(): Boolean = this != null && isNotBlank()
@@ -21,6 +23,7 @@ object StringUtil {
         return true
     }
 
+    // https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
     fun lcs(s1: String, s2: String): String {
         if (s1.isEmpty() || s2.isEmpty()) return ""
         val (s1_, s1last) = s1.splitLast()
@@ -29,5 +32,14 @@ object StringUtil {
         val lcs1 = lcs(s1, s2_)
         val lcs2 = lcs(s1_, s2)
         return if (lcs1.length > lcs2.length) lcs1 else lcs2
+    }
+
+    // https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
+    fun lcsLength(s1: String, s2: String): Int {
+        val matrix = Array(s1.length + 1) { IntArray(s2.length + 1) }
+        for (i in s1.indices) {
+            for (j in s2.indices) matrix[i + 1][j + 1] = if (s1[i] == s2[j]) matrix[i][j] + 1 else max(matrix[i + 1][j], matrix[i][j + 1])
+        }
+        return matrix[s1.length][s2.length]
     }
 }

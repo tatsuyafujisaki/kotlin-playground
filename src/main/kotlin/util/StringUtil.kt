@@ -35,11 +35,9 @@ object StringUtil {
     }
 
     // https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
-    fun lcsLength(s1: String, s2: String): Int {
-        val matrix = Array(s1.length + 1) { IntArray(s2.length + 1) }
+    fun lcsLength(s1: String, s2: String) = Array(s1.length + 1) { IntArray(s2.length + 1) }.also {
         for (i in s1.indices) {
-            for (j in s2.indices) matrix[i + 1][j + 1] = if (s1[i] == s2[j]) matrix[i][j] + 1 else max(matrix[i + 1][j], matrix[i][j + 1])
+            for (j in s2.indices) it[i + 1][j + 1] = if (s1[i] == s2[j]) it[i][j] + 1 else max(it[i + 1][j], it[i][j + 1])
         }
-        return matrix[s1.length][s2.length]
-    }
+    }[s1.length][s2.length]
 }

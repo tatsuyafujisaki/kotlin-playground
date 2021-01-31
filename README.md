@@ -14,7 +14,8 @@ A|B|Note
 `emptyList()`|`listOf()`
 `repeat(n)`|`while(n--)`
 `Collection<*>.size`|`Collection<*>.count()`
-`Set<*>`|`List<*>`|if elements are unique and unordered.
+`Set<T>`|`List<T>`|if elements are unique and unordered.
+`Iterable<T>.forEachIndexed { ... }`|`Iterable<T>.forEach { ... }`|if you access both indices and elements.
 `nullableList.orEmpty()`<br>`nullableString.orEmpty()`|`nullableList ?: emptyList()`<br>`nullableString ?: ""`
 `with(...)`|`run(...)`|if the receiver is not nullable.
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`

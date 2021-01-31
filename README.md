@@ -245,12 +245,19 @@ val result6: String? = map.getOrDefault("d", "not found") // not found
 val result7: String? = map.getOrElse("d") { "not found" } // not found
 ```
 
+## How to map a Map
+```kotlin
+val map: Map<String, Int> = mapOf("apple" to 10, "orange" to 20)
+val result1: Map<String, Int> = map.mapValues { it.value * 10 } // {apple=100, orange=200}
+val result2: Map<String, Int> = map.mapKeys { it.key.toUpperCase() } // {APPLE=10, ORANGE=20}
+```
+
 ## How to filter a Map
 ```kotlin
-val map: Map<String, String> = mapOf("a" to "x", "b" to "y", "c" to "z").withDefault { "default" }
-val result1 = map.filterKeys { it == "b" } // {b=y}
-val result2 = map.filterValues { it == "y" } // {b=y}
-val result3 = map.filter { it.key == "b" && it.value == "y" } // {b=y}
+val map: Map<String, Int> = mapOf("apple" to 1, "orange" to 2)
+val result1: Map<String, Int> = map.filterKeys { it == "apple" } // {apple=1}
+val result2: Map<String, Int> = map.filterValues { it == 2 } // {orange=2}
+val result3: Map<String, Int> = map.filter { it.key == "orange" && it.value == 2 } // {orange=2}
 ```
 
 ## How to sort a Map

@@ -15,8 +15,7 @@ A|B|Note
 `Collection<*>.size`|`Collection<*>.count()`
 `Collection<*>`|`List<*>`|as an argument of a function if `Collection<*>` suffices.
 `Set<*>`|`List<*>`|if elements are unique and unordered.
-`nullableList.orEmpty()`|`nullableList ?: emptyList()`
-`nullableString.orEmpty()`|`nullableString ?: ""`
+`nullableList.orEmpty()`<br>`nullableString.orEmpty()`|`nullableList ?: emptyList()`<br>`nullableString ?: ""`
 `with(...)`|`run(...)`|if the receiver is not nullable.
 `repeat(n)`|`while(n--)`
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`

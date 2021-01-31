@@ -25,6 +25,7 @@ infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
 
 ## Misc
+* When define a function, make the types of parameters as abstract as possible. e.g. Use `Collection<*>` instead of `List<*>` if possible.
 * Mark a function with `suspend` rather than call a coroutine builder inside the function.
 
 # Type mapping between Kotlin and Java

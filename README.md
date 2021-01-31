@@ -12,12 +12,11 @@ A|B|Note
 `Int.abs(...)`|`Int.absoluteValue`
 `A to B`|`Pair(A, B)`
 `emptyList()`|`listOf()`
+`repeat(n)`|`while(n--)`
 `Collection<*>.size`|`Collection<*>.count()`
-`Collection<*>`|`List<*>`|as an argument of a function if `Collection<*>` suffices.
 `Set<*>`|`List<*>`|if elements are unique and unordered.
 `nullableList.orEmpty()`<br>`nullableString.orEmpty()`|`nullableList ?: emptyList()`<br>`nullableString ?: ""`
 `with(...)`|`run(...)`|if the receiver is not nullable.
-`repeat(n)`|`while(n--)`
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
 infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
 `List<*>.lastIndex`<br>`CharSequence.lastIndex`|`List<*>.size - 1`<br>`String.length - 1`

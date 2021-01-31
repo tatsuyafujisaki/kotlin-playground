@@ -21,9 +21,7 @@ A|B|Note
 `repeat(n)`|`while(n--)`
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
 infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
-`List<*>.lastIndex`|`List<*>.size - 1`
-`CharSequence.lastIndex`|`String.length - 1`
-`intArray.toCollection(mutableList)`|`mutableList.addAll(intArray.toTypedArray())`
+`List<*>.lastIndex`<br>`CharSequence.lastIndex`|`List<*>.size - 1`<br>`String.length - 1`
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
 
 ## Misc

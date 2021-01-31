@@ -250,6 +250,7 @@ val result7: String? = map.getOrElse("d") { "not found" } // not found
 val map: Map<String, Int> = mapOf("apple" to 10, "orange" to 20)
 val result1: Map<String, Int> = map.mapValues { it.value * 10 } // {apple=100, orange=200}
 val result2: Map<String, Int> = map.mapKeys { it.key.toUpperCase() } // {APPLE=10, ORANGE=20}
+val result3: Map<String, Int> = map.map { it.key.toUpperCase() to it.value * 10 }.toMap() // {APPLE=100, ORANGE=200}
 ```
 
 ## How to filter a Map

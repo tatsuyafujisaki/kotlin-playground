@@ -3,8 +3,8 @@ package util
 import kotlin.math.E
 import kotlin.math.pow
 import kotlin.math.sqrt
-import util.IntegerUtil.factorial
-import util.IntegerUtil.nCr
+import util.IntLongUtil.factorial
+import util.IntLongUtil.nCr
 
 object MathUtil {
     fun fibonacci() = generateSequence(0 to 1) { it.second to it.first + it.second }.map { it.first }

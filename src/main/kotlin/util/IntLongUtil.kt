@@ -3,7 +3,7 @@ package util
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-object IntegerUtil {
+object IntLongUtil {
     fun Int.between(fromInclusive: Int, toExclusive: Int) = this in fromInclusive until toExclusive
 
     /** If overflowed, returns Int.MAX_VALUE. */
@@ -57,4 +57,18 @@ object IntegerUtil {
             else -> error("Impossible state")
         }
     }
+
+    /**
+     * @receiver decibinary
+     */
+    fun Int.fromDeciBinaryToDecimal() = toString().toCharArray().reversed().mapIndexed { i, c ->
+        c.toString().toInt() * 2.0.pow(i.toDouble()).toLong()
+    }.sum()
+
+    /**
+     * @receiver decibinary
+     */
+    fun Long.fromDeciBinaryToDecimal() = toString().toCharArray().reversed().mapIndexed { i, c ->
+        c.toString().toInt() * 2.0.pow(i.toDouble()).toLong()
+    }.sum()
 }

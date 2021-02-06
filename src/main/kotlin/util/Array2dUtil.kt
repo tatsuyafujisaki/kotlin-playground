@@ -86,14 +86,4 @@ object Array2dUtil {
         }
         return cofactor().transpose().multiply(1 / determinant())
     }
-
-    fun Array<DoubleArray>.printMatrix() {
-        for (row in indices) {
-            val columns = first().indices.toList()
-            for (column in columns.dropLast(1)) {
-                print("%10.2f ".format(this[row][column]))
-            }
-            println(this[row][columns.last()])
-        }
-    }
 }

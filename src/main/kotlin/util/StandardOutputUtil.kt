@@ -20,38 +20,33 @@ object StandardOutputUtil {
     }
 
     fun IntArray.printHorizontally() {
-        if (isNotEmpty()) {
-            for (i in 0 until lastIndex) print("${this[i]} ")
-            println(this[lastIndex])
-        }
+        if (isEmpty()) return
+        for (i in 0 until lastIndex) print("${this[i]} ")
+        println(last())
     }
 
     fun LongArray.printHorizontally() {
-        if (isNotEmpty()) {
-            for (i in 0 until lastIndex) print("${this[i]} ")
-            println(this[lastIndex])
-        }
+        if (isEmpty()) return
+        for (i in 0 until lastIndex) print("${this[i]} ")
+        println(last())
     }
 
     fun DoubleArray.printHorizontally() {
-        if (isNotEmpty()) {
-            for (i in 0 until lastIndex) print("${this[i]} ")
-            println(this[lastIndex])
-        }
+        if (isEmpty()) return
+        for (i in 0 until lastIndex) print("${this[i]} ")
+        println(last())
     }
 
     fun Array<*>.printHorizontally() {
-        if (isNotEmpty()) {
-            for (i in 0 until lastIndex) print("${this[i]} ")
-            println(this[lastIndex])
-        }
+        if (isEmpty()) return
+        for (i in 0 until lastIndex) print("${this[i]} ")
+        println(last())
     }
 
     fun List<*>.printHorizontally() {
-        if (isNotEmpty()) {
-            for (i in 0 until lastIndex) print("${this[i]} ")
-            println(this[lastIndex])
-        }
+        if (isEmpty()) return
+        for (i in 0 until lastIndex) print("${this[i]} ")
+        println(last())
     }
 
     fun printTime(times: Int = 1, action: () -> Unit) {

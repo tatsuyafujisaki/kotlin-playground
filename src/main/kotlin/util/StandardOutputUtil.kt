@@ -51,6 +51,10 @@ object StandardOutputUtil {
         println(last())
     }
 
+    fun IntRange.printHorizontally() {
+        toList().printHorizontally()
+    }
+
     fun Array<BooleanArray>.printMatrix() {
         if (isEmpty() || first().isEmpty()) return
         for (row in indices) {

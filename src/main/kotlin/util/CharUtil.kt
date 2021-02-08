@@ -4,8 +4,9 @@ object CharUtil {
     val Char.alphabeticalIndex: Int get() = this - 'a'
 
     /**
+     * For a competitive programming platform that does not support Char.digitToInt() of Kotlin 1.4.30
      * '1'.toInt() -> 49
-     * '1'.toIntAsDigit() -> 1
+     * '1'.digitToInt() -> 1
      */
-    fun Char.toIntAsDigit() = toString().toInt()
+    fun Char.digitToInt() = toString().toInt()
 }

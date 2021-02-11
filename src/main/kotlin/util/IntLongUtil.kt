@@ -86,4 +86,7 @@ object IntLongUtil {
         } while (q > 0)
         return result
     }
+
+    /** @return 1, 2, ..., or 6, if sides is 6 */
+    fun rollDice(sides: Int = 6) = (1..sides).random()
 }

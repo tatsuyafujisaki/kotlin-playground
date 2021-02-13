@@ -30,7 +30,7 @@ dependencies {
 
     implementation 'com.squareup.moshi:moshi-kotlin:1.10.0'
     implementation 'com.google.code.gson:gson:2.8.6'
-    testImplementation 'io.mockk:mockk:1.10.4'
+    testImplementation 'io.mockk:mockk:1.10.6'
 
     implementation 'io.reactivex.rxjava3:rxjava:3.0.9'
 }

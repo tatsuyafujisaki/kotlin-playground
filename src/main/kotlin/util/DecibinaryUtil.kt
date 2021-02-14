@@ -5,9 +5,9 @@ import util.IntLongUtil.pow
 
 object DecibinaryUtil {
     /**
-     * @param d upper limit of the number of digits of a decibinary
+     * @param d the upper limit of the number of digits of a decibinary
      * @param s decimal
-     * @return the number of decibinaries, which consist of [d] or less digits and evaluate to [s]
+     * @return the number of decibinaries, which consist of [d] or less digits, and evaluate to [s]
      */
     fun getDecibinaryCount(d: Long, s: Long): Long = when {
         d == 0L && s == 0L -> 1

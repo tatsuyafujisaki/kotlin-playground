@@ -1,5 +1,7 @@
 package util
 
+import kotlin.math.ceil
+import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -11,6 +13,9 @@ object IntLongUtil {
     fun Int.pow(n: Long) = toDouble().pow(n.toInt()).toLong()
     fun Long.pow(n: Int) = toDouble().pow(n).toLong()
     fun Long.pow(n: Long) = toDouble().pow(n.toInt()).toLong()
+
+    fun Long.divideAndCeil(divisor: Long) = ceil(toDouble() / divisor).toLong()
+    fun Long.divideAndFloor(divisor: Long) = floor(toDouble() / divisor).toLong()
 
     fun Int.isEven() = this % 2 == 0
     fun Int.isSquareNumber() = sqrt(toDouble()) % 1.0 == 0.0

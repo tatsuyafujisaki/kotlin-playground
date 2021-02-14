@@ -8,8 +8,9 @@ object IntLongUtil {
 
     /** If overflowed, returns Int.MAX_VALUE. */
     fun Int.pow(n: Int) = toDouble().pow(n).toInt()
-    fun Int.powToLong(n: Int) = toDouble().pow(n).toLong()
+    fun Int.pow(n: Long) = toDouble().pow(n.toInt()).toLong()
     fun Long.pow(n: Int) = toDouble().pow(n).toLong()
+    fun Long.pow(n: Long) = toDouble().pow(n.toInt()).toLong()
 
     fun Int.isEven() = this % 2 == 0
     fun Int.isSquareNumber() = sqrt(toDouble()) % 1.0 == 0.0
@@ -57,34 +58,6 @@ object IntLongUtil {
             lastDigit == 3 -> "rd"
             else -> error("Impossible state")
         }
-    }
-
-    /**
-     * @receiver decibinary
-     */
-    fun Int.fromDeciBinaryToDecimal(): Int {
-        var result = 0
-        var q = this
-        var i = 0
-        do {
-            result += (q % 10) * 2.0.pow(i++.toDouble()).toInt()
-            q /= 10
-        } while (q > 0)
-        return result
-    }
-
-    /**
-     * @receiver decibinary
-     */
-    fun Long.fromDeciBinaryToDecimal(): Long {
-        var result = 0L
-        var q = this
-        var i = 0
-        do {
-            result += (q % 10) * 2.0.pow(i++.toDouble()).toInt()
-            q /= 10
-        } while (q > 0)
-        return result
     }
 
     /** @return 1, 2, ..., or 6, if sides is 6 */

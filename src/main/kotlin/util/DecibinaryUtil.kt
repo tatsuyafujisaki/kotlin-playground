@@ -12,7 +12,7 @@ object DecibinaryUtil {
     fun getDecibinaryCount(d: Long, s: Long): Long = when {
         d == 0L && s == 0L -> 1
         d == 0L && s != 0L -> 0
-        else -> LongRange(0, 9).map { // .map(...).sum() cannot be replaced by sumBy(...) because it does support Long.
+        else -> LongRange(0, 9).map { // .map(...).sum() cannot be replaced by sumBy(...) because the latter does support Long.
             getDecibinaryCount(d - 1L, s - it * 2L.pow(d.toInt() - 1))
         }.sum()
     }

@@ -10,9 +10,8 @@ object DecibinaryUtil {
      * @return the number of decibinaries, which consist of [d] or less digits and evaluate to [s]
      */
     fun getDecibinaryCount(d: Long, s: Long): Long = when {
-        s < 0 -> 0
+        d == 0L && s != 0L -> 0
         d == 0L && s == 0L -> 1
-        d == 0L && s >= 1 -> 0
         else -> LongRange(0, 9).map { // .map(...).sum() cannot be replaced by sumBy(...) because it does support Long.
             getDecibinaryCount(d - 1L, s - it * 2L.pow(d.toInt() - 1))
         }.sum()

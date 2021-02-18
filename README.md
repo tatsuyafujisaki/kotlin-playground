@@ -629,3 +629,6 @@ Java sees functions defined in Kotlin only through bytecode.
 ## Int.MAX_VALUE
 * 10^9 (1,000,000,000) < `Int.MAX_VALUE` (2,147,483,647) < 10^10 < (10,000,000,000)
 * This knowledge is necessary in competitive programming
+
+# RxJava
+[rxjava.md](markdown/rxjava.md)

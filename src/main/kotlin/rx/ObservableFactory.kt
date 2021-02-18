@@ -8,7 +8,7 @@ object ObservableFactory {
     val observable2: Observable<Any> = Observable.never()
     val observable3: Observable<Any> = Observable.error(Throwable())
 
-    private val items = listOf("apple", "banana", "orange")
+    private val items = listOf("aaa", "bbb", "ccc")
 
     fun createObservable(
         transformer: ObservableTransformer<String, String> = createObservableTransformer()

@@ -1,69 +1,57 @@
 package rx
 
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
+import io.reactivex.rxjava3.subjects.ReplaySubject
 import io.reactivex.rxjava3.subjects.Subject
+import rx.ObservableExamples.mySubscribe
 
 object SubjectExamples {
-    private val compositeDisposable = CompositeDisposable()
+    /**
+     * Shows the difference among PublishSubject, BehaviorSubject, and ReplySubject
+     * PublishSubject ignores past emissions before the subscription.
+     * BehaviorSubject takes the latest emission before the subscription.
+     * ReplySubject ignores all the past emissions before the subscription.
+     */
+    fun example1() {
+        fun demo(subject: Subject<String>) {
+            val observable = subject.share().hide()
+            subject.onNext("a")
+            subject.onNext("b")
+            observable.mySubscribe()
+            subject.onNext("c")
+            subject.onComplete()
+        }
 
-    fun example() {
-        val subject = PublishSubject.create<Unit>()
-        val observable = subject.hide()
-        var firstExecution = true
-
-        observable
-            .map {
-                if (firstExecution) {
-                    firstExecution = false
-                } else {
-                    throw Throwable("wtf")
-                }
-            }
-            .onErrorResumeNext {
-                println("onErrorResumeNext")
-                Observable.empty()
-            }
-            .subscribe {
-                println("subscribe")
-            }.let(compositeDisposable::add)
-
-        subject.onNext(Unit) // prints "subscribe".
-        subject.onNext(Unit) // prints "onErrorResumeNext".
-        subject.onNext(Unit) // does nothing.
-
-        compositeDisposable.clear()
+        println("-- PublishSubject --")
+        demo(PublishSubject.create())
+        println("-- BehaviorSubject --")
+        demo(BehaviorSubject.create())
+        println("-- ReplySubject --")
+        demo(ReplaySubject.create())
     }
 
     fun example2() {
-        val subject = PublishSubject.create<Unit>()
-
-        subject.subscribe({
-            println("onNext")
-        }, {
-            println("onError")
-        }, {
-            println("onComplete")
-        }).let(compositeDisposable::add)
-
-        subject.onNext(Unit) // prints "onNext".
-        subject.onNext(Unit) // prints "onNext".
-        subject.onComplete() // prints "Complete".
-
-        compositeDisposable.clear()
+        val subject = PublishSubject.create<String>()
+        val observable = subject.share().hide()
+        observable.mySubscribe()
+        subject.onNext("a")
+        observable.mySubscribe()
+        subject.onNext("b")
+        subject.onComplete()
     }
 
     fun example3() {
-        val subject: PublishSubject<Unit> = PublishSubject.create()
-
-        val observable1: Observable<Unit> = subject
-        val subject2: Subject<Unit>? = observable1 as? Subject // PublishSubject
-
-        val observable2: Observable<Unit> = subject.hide()
-        val subject3: Subject<Unit>? = observable2 as? Subject // null because of hide()
-
-        println(subject2)
-        println(subject3)
+        val subject = PublishSubject.create<String>()
+        val observable = subject.share().hide()
+        observable.mySubscribe()
+        observable.onErrorResumeNext {
+            println("onErrorResumeNext: $it")
+            return@onErrorResumeNext Observable.just("")
+        }
+        subject.onNext("a")
+        observable.mySubscribe()
+        subject.onNext("b")
     }
 }

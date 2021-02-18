@@ -3,7 +3,7 @@ package rx
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import util.IntLongUtil.nth
+import io.reactivex.rxjava3.disposables.Disposable
 
 object ObservableExamples {
     private val compositeDisposable = CompositeDisposable()
@@ -47,16 +47,16 @@ object ObservableExamples {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
         var emitter: ObservableEmitter<String>? = null
         with(Observable.create<String> { emitter = it }) {
-            myCountingSubscribe()
+            mySubscribe()
             emitter?.onNext("apple")
-            myCountingSubscribe()
+            mySubscribe()
             emitter?.onNext("banana")
         }
         // Note share().
         with(Observable.create<String> { emitter = it }.share()) {
-            myCountingSubscribe()
+            mySubscribe()
             emitter?.onNext("grape")
-            myCountingSubscribe()
+            mySubscribe()
             emitter?.onNext("orange")
         }
         compositeDisposable.clear()
@@ -85,7 +85,7 @@ object ObservableExamples {
         ObservableFactory.createObservable()
             .error()
             .onErrorResumeNext {
-                println("Observable.onErrorResumeNext (Instead, onError() is not called.): $it")
+                println("Observable.onErrorResumeNext (prevents onError() from being called.): $it")
                 Observable.just("peach")
             }
             .mySubscribe(2)
@@ -138,24 +138,24 @@ object ObservableExamples {
             }
         }
 
-    private fun Observable<*>.mySubscribe(n: Int = 1) {
+    fun Observable<*>.mySubscribe(n: Int): List<Disposable> {
+        val disposables = mutableListOf<Disposable>()
         for (i in 1..n) {
-            val nthObserver = i.nth()
-            subscribe(
-                { println("Observer($nthObserver).onNext: $it") },
-                { println("Observer($nthObserver).onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
-                { println("Observer($nthObserver).onComplete (After this, Observer.onNext() will never be called.)") }
-            ).let(compositeDisposable::add)
+            disposables.add(subscribe(
+                { println("Observer[$i].onNext: $it") },
+                { println("Observer[$i].onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
+                { println("Observer[$i].onComplete (After this, Observer.onNext() will never be called.)") }
+            ))
         }
+        return disposables
     }
 
-    private fun Observable<*>.myCountingSubscribe() {
+    fun Observable<*>.mySubscribe(): Disposable {
         observerCount += 1
-        val nthObserver = observerCount.nth()
-        subscribe(
-            { println("Observer($nthObserver).onNext: $it") },
-            { println("Observer($nthObserver).onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
-            { println("Observer($nthObserver).onComplete (After this, Observer.onNext() will never be called.)") }
-        ).let(compositeDisposable::add)
+        return subscribe(
+            { println("Observer[$observerCount].onNext: $it") },
+            { println("Observer[$observerCount].onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
+            { println("Observer[$observerCount].onComplete (After this, Observer.onNext() will never be called.)") }
+        )
     }
 }

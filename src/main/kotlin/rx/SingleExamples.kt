@@ -38,7 +38,7 @@ object SingleExamples {
         compositeDisposable.clear()
     }
 
-    private fun Single<*>.mySubscribe(compositeDisposable: CompositeDisposable) {
+    fun Single<*>.mySubscribe(compositeDisposable: CompositeDisposable) {
         subscribe(
             { println("onSuccess: $it") },
             { it.printStackTrace() },

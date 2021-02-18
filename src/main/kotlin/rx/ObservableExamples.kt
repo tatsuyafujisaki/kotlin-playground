@@ -92,19 +92,6 @@ object ObservableExamples {
         compositeDisposable.clear()
     }
 
-    fun errorExample5() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createObservable()
-            .error()
-            .onErrorResumeNext {
-                println("Observable.onErrorResumeNext: $it")
-                println("Observable.empty (Immediately after this, Observer.onComplete() will be called without Observer.onNext(). Calling Observable.onComplete() means subsequent items will be discarded.)")
-                Observable.empty()
-            }
-            .mySubscribe(2)
-        compositeDisposable.clear()
-    }
-
     fun errorExample6() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
         ObservableFactory.createObservable()
@@ -143,8 +130,8 @@ object ObservableExamples {
         for (i in 1..n) {
             disposables.add(subscribe(
                 { println("Observer[$i].onNext: $it") },
-                { println("Observer[$i].onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
-                { println("Observer[$i].onComplete (After this, Observer.onNext() will never be called.)") }
+                { println("Observer[$i].onError (Afterwards, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
+                { println("Observer[$i].onComplete (Afterwards, Observer.onNext() will never be called.)") }
             ))
         }
         return disposables
@@ -154,8 +141,8 @@ object ObservableExamples {
         observerCount += 1
         return subscribe(
             { println("Observer[$observerCount].onNext: $it") },
-            { println("Observer[$observerCount].onError (After this, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
-            { println("Observer[$observerCount].onComplete (After this, Observer.onNext() will never be called.)") }
+            { println("Observer[$observerCount].onError (Afterwards, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
+            { println("Observer[$observerCount].onComplete (Afterwards, Observer.onNext() will never be called.)") }
         )
     }
 }

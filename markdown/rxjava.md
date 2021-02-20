@@ -19,7 +19,7 @@ fun demo(subject: Subject<String>) {
     }
     subject.onNext("c")
     subject.onNext("d")
-    subject.onComplete()
+    subject.onComplete() // Without onComplete(), AsyncSubject will never emit a value.
 }
 
 println("-- AsyncSubject --")

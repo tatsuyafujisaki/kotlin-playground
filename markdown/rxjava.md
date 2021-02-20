@@ -19,6 +19,7 @@ fun demo(subject: Subject<String>) {
     }
     subject.onNext("c")
     subject.onNext("d")
+    subject.onComplete()
 }
 
 println("-- AsyncSubject --")

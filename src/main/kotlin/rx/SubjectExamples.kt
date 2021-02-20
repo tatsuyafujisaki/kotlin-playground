@@ -2,6 +2,7 @@ package rx
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.subjects.AsyncSubject
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.ReplaySubject
@@ -22,9 +23,11 @@ object SubjectExamples {
             subject.onNext("b")
             observable.mySubscribe()
             subject.onNext("c")
+            subject.onNext("d")
             subject.onComplete()
         }
-
+        println("-- AsyncSubject --")
+        demo(AsyncSubject.create())
         println("-- PublishSubject --")
         demo(PublishSubject.create())
         println("-- BehaviorSubject --")
@@ -40,11 +43,9 @@ object SubjectExamples {
         val subject = PublishSubject.create<String>()
         val observable = subject.share().hide()
         observable
-            // One way to throw an error.
-            .map {
-                throw Throwable("wtf1")
+            .doOnNext {
+                println("doOnNext")
             }
-            // Another way to throw an error.
             .flatMap {
                 Observable.error<String>(Throwable("wtf2"))
             }
@@ -79,6 +80,9 @@ object SubjectExamples {
         val subject = PublishSubject.create<String>()
         val observable = subject.share().hide()
         val disposable = observable
+            .doOnNext {
+                println("doOnNext")
+            }
             .flatMap {
                 Observable
                     .error<String>(Throwable("wtf"))
@@ -101,6 +105,9 @@ object SubjectExamples {
         val subject = PublishSubject.create<String>()
         val observable = subject.share().hide()
         val disposable = observable
+            .doOnNext {
+                println("doOnNext")
+            }
             .flatMap {
                 Observable.error<String>(Throwable("wtf"))
             }
@@ -109,9 +116,9 @@ object SubjectExamples {
                 Observable.just("phoenix")
             }
             .mySubscribe()
-        println(disposable.isDisposed) // true
         subject.onNext("a")
         subject.onNext("b")
+        println(disposable.isDisposed) // true
         observable.mySubscribe()
         subject.onNext("c")
         subject.onNext("d")

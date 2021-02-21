@@ -15,6 +15,4 @@ fun main() {
     ObservableExamples.errorExample2()
     ObservableExamples.errorExample3()
     ObservableExamples.errorExample4()
-    ObservableExamples.errorExample5()
-    ObservableExamples.errorExample6()
 }

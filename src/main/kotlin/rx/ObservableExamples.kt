@@ -92,19 +92,6 @@ object ObservableExamples {
         compositeDisposable.clear()
     }
 
-    fun errorExample6() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createObservable()
-            .error()
-            .onErrorResumeNext {
-                println("Observable.onErrorResumeNext: $it")
-                println("Observable.never (None of Observer's methods will be called for this item, but the effect is independent of subsequent items.)")
-                Observable.never()
-            }
-            .mySubscribe(2)
-        compositeDisposable.clear()
-    }
-
     private fun Observable<String>.error() =
         map {
             if (it != "apple") {

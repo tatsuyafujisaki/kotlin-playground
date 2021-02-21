@@ -1,20 +1,16 @@
 package rx
 
 import io.reactivex.rxjava3.core.Maybe
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import rx.DisposeUtil.print
 
 object MaybeExamples {
-    private val compositeDisposable = CompositeDisposable()
     private var observerCount = 0
 
     fun example() {
         val maybe = Maybe.just("a")
-
-        compositeDisposable.add(maybe.mySubscribe())
-        compositeDisposable.add(maybe.mySubscribe())
-
-        compositeDisposable.clear()
+        val disposable = maybe.mySubscribe()
+        disposable.print() // true
     }
 
     private fun Maybe<*>.mySubscribe(): Disposable {

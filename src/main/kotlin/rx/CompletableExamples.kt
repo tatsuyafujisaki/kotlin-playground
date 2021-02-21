@@ -1,23 +1,22 @@
 package rx
 
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import rx.DisposeUtil.print
 
 object CompletableExamples {
-    private val compositeDisposable = CompositeDisposable()
     private var observerCount = 0
 
     fun example1() {
         val completable = Completable.complete()
-        compositeDisposable.add(completable.mySubscribe())
-        compositeDisposable.dispose()
+        val disposable = completable.mySubscribe()
+        disposable.print() // true
     }
 
     fun example2() {
         val completable = Completable.error(Throwable("WTF"))
-        compositeDisposable.add(completable.mySubscribe())
-        compositeDisposable.dispose()
+        val disposable = completable.mySubscribe()
+        disposable.print() // true
     }
 
     private fun Completable.mySubscribe(): Disposable {

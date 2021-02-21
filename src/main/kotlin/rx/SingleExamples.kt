@@ -2,6 +2,7 @@ package rx
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 
 /**
  * There is no such thing as Single#doOnNext(...) and Single#doOnComplete(...)
@@ -15,33 +16,30 @@ object SingleExamples {
             .just(item)
             // .map { throw Throwable("wtf") }
             .doOnSuccess {
-                // Called on success whenever a new subscriber is added.
                 println("doOnSuccess: $it")
             }
             .doOnError {
-                // Called on error whenever a new subscriber is added.
                 println("doOnError: ${it.message}")
                 it.printStackTrace()
             }
             .onErrorResumeNext {
-                // Called on error whenever a new subscriber is added.
                 println("onErrorResumeNext: ${it.message}")
                 it.printStackTrace()
                 Single.never()
             }
-
         with(single) {
-            mySubscribe(compositeDisposable)
-            mySubscribe(compositeDisposable)
+            compositeDisposable.add(mySubscribe())
+            compositeDisposable.add(mySubscribe())
         }
-
         compositeDisposable.clear()
     }
 
-    fun Single<*>.mySubscribe(compositeDisposable: CompositeDisposable) {
-        subscribe(
-            { println("onSuccess: $it") },
-            { it.printStackTrace() },
-        ).let(compositeDisposable::add)
-    }
+    fun Single<*>.mySubscribe(): Disposable = subscribe(
+        {
+            println("onSuccess: $it")
+        },
+        {
+            it.printStackTrace()
+        },
+    )
 }

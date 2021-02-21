@@ -7,8 +7,14 @@ import rx.DisposeUtil.print
 object MaybeExamples {
     private var observerCount = 0
 
-    fun example() {
+    fun example1() {
         val maybe = Maybe.just("a")
+        val disposable = maybe.mySubscribe()
+        disposable.print() // true
+    }
+
+    fun example2() {
+        val maybe = Maybe.error<Unit>(Throwable("WTF"))
         val disposable = maybe.mySubscribe()
         disposable.print() // true
     }

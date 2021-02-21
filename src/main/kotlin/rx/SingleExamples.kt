@@ -7,13 +7,19 @@ import rx.DisposeUtil.print
 object SingleExamples {
     private var observerCount = 0
 
-    fun example() {
+    fun example1() {
         val single = Single.just("a")
         val disposable = single.mySubscribe()
         disposable.print() // true
     }
 
-    fun Single<*>.mySubscribe(): Disposable {
+    fun example2() {
+        val single = Single.error<Unit>(Throwable("WTF"))
+        val disposable = single.mySubscribe()
+        disposable.print() // true
+    }
+
+    private fun Single<*>.mySubscribe(): Disposable {
         observerCount++
         return subscribe(
             { println("SingleObserver[$observerCount].onSuccess: $it") },

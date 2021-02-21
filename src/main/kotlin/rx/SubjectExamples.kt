@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.ReplaySubject
 import io.reactivex.rxjava3.subjects.Subject
+import rx.DisposeUtil.print
 import rx.ObservableExamples.mySubscribe
 
 object SubjectExamples {
@@ -118,12 +119,12 @@ object SubjectExamples {
             .mySubscribe()
         subject.onNext("a")
         subject.onNext("b")
-        println(disposable.isDisposed) // true
-        observable.mySubscribe()
+        disposable.print() // true
+        val disposable2 = observable.mySubscribe()
         subject.onNext("c")
         subject.onNext("d")
-        println(disposable.isDisposed) // false
+        disposable2.print() // false
         subject.onComplete()
-        println(disposable.isDisposed) // true
+        disposable2.print() // true
     }
 }

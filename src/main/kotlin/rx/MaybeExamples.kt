@@ -2,25 +2,27 @@ package rx
 
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 
 object MaybeExamples {
     private val compositeDisposable = CompositeDisposable()
+    private var observerCount = 0
 
     fun example() {
-        val maybe = Maybe.just("apple")
-        val single = maybe.defaultIfEmpty("orange")
+        val maybe = Maybe.just("a")
 
-        maybe.mySubscribe(compositeDisposable)
-        maybe.mySubscribe(compositeDisposable)
+        compositeDisposable.add(maybe.mySubscribe())
+        compositeDisposable.add(maybe.mySubscribe())
 
         compositeDisposable.clear()
     }
 
-    private fun Maybe<*>.mySubscribe(compositeDisposable: CompositeDisposable) {
-        subscribe(
-            { println("onNext: $it") },
-            { it.printStackTrace() },
-            { println("onComplete") }
-        ).let(compositeDisposable::add)
+    private fun Maybe<*>.mySubscribe(): Disposable {
+        observerCount++
+        return subscribe(
+            { println("MaybeObserver[$observerCount].onNext: $it") },
+            { println("MaybeObserver[$observerCount].onError: $it") },
+            { println("MaybeObserver[$observerCount].onComplete") }
+        )
     }
 }

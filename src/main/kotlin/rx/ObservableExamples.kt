@@ -95,7 +95,7 @@ object ObservableExamples {
     private fun Observable<String>.error() =
         map {
             if (it != "apple") {
-                throw Throwable("wtf")
+                throw Throwable("WTF")
             }
             it
         }
@@ -106,7 +106,7 @@ object ObservableExamples {
     private fun Observable<String>.error2() =
         flatMap {
             if (it != "apple") {
-                Observable.error(Throwable("wtf"))
+                Observable.error(Throwable("WTF"))
             } else {
                 Observable.just(it)
             }
@@ -125,7 +125,7 @@ object ObservableExamples {
     }
 
     fun Observable<*>.mySubscribe(): Disposable {
-        observerCount += 1
+        observerCount++
         return subscribe(
             { println("Observer[$observerCount].onNext: $it") },
             { println("Observer[$observerCount].onError (Afterwards, Observer.onNext() and Observer.onComplete() will never be called.): $it") },

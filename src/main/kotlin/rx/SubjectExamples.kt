@@ -47,7 +47,7 @@ object SubjectExamples {
                 println("doOnNext")
             }
             .flatMap {
-                Observable.error<String>(Throwable("wtf2"))
+                Observable.error<String>(Throwable("WTF2"))
             }
             .mySubscribe()
         subject.onNext("a")
@@ -62,7 +62,7 @@ object SubjectExamples {
         val observable = subject.share().hide()
         observable
             .flatMap {
-                Observable.error<String>(Throwable("wtf"))
+                Observable.error<String>(Throwable("WTF"))
             }
             .onErrorResumeNext {
                 println("Observable.onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
@@ -85,7 +85,7 @@ object SubjectExamples {
             }
             .flatMap {
                 Observable
-                    .error<String>(Throwable("wtf"))
+                    .error<String>(Throwable("WTF"))
                     .onErrorResumeNext {
                         println("Observable.onErrorResumeNext (Because this onErrorResumeNext is inside flatMap, the outer Observable will continue as if no error occurred.)")
                         Observable.just("phoenix")
@@ -109,7 +109,7 @@ object SubjectExamples {
                 println("doOnNext")
             }
             .flatMap {
-                Observable.error<String>(Throwable("wtf"))
+                Observable.error<String>(Throwable("WTF"))
             }
             .onErrorResumeNext {
                 println("Observable.onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")

@@ -10,11 +10,12 @@ import io.reactivex.rxjava3.disposables.Disposable
  */
 object SingleExamples {
     private val compositeDisposable = CompositeDisposable()
+    private var observerCount = 0
 
     fun example(item: String = "apple") {
         val single = Single
             .just(item)
-            // .map { throw Throwable("wtf") }
+            // .map { throw Throwable("WTF") }
             .doOnSuccess {
                 println("doOnSuccess: $it")
             }
@@ -34,12 +35,11 @@ object SingleExamples {
         compositeDisposable.clear()
     }
 
-    fun Single<*>.mySubscribe(): Disposable = subscribe(
-        {
-            println("onSuccess: $it")
-        },
-        {
-            it.printStackTrace()
-        },
-    )
+    fun Single<*>.mySubscribe(): Disposable {
+        observerCount++
+        return subscribe(
+            { println("SingleObserver[$observerCount].onSuccess: $it") },
+            { println("SingleObserver[$observerCount].onError: $it") },
+        )
+    }
 }

@@ -20,7 +20,7 @@ object ObservableFactory {
     ) = Observable.fromIterable(items).compose(transformer)
 
     fun <T> createErrorObservable(transformer: ObservableTransformer<T, T> = createObservableTransformer()) =
-        Observable.error<T>(Throwable("wtf")).compose(transformer)
+        Observable.error<T>(Throwable("WTF")).compose(transformer)
 
     private fun <T> createObservableTransformer() = ObservableTransformer<T, T> { observable ->
         observable

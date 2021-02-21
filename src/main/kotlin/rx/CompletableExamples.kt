@@ -9,25 +9,13 @@ object CompletableExamples {
     private var observerCount = 0
 
     fun example1() {
-        val completable = Completable.create { emitter ->
-            try {
-                emitter.onComplete()
-            } catch (e: Exception) {
-                emitter.onError(e)
-            }
-        }
+        val completable = Completable.complete()
         compositeDisposable.add(completable.mySubscribe())
         compositeDisposable.dispose()
     }
 
     fun example2() {
-        val completable = Completable.create { emitter ->
-            try {
-                throw Exception("WTF")
-            } catch (e: Exception) {
-                emitter.onError(e)
-            }
-        }
+        val completable = Completable.error(Throwable("WTF"))
         compositeDisposable.add(completable.mySubscribe())
         compositeDisposable.dispose()
     }

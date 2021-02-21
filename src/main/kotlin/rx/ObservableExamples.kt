@@ -11,7 +11,8 @@ object ObservableExamples {
 
     fun example1() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createObservable().mySubscribe(2)
+        ObservableFactory.createObservable().mySubscribe()
+        ObservableFactory.createObservable().mySubscribe()
         compositeDisposable.clear()
     }
 
@@ -64,31 +65,33 @@ object ObservableExamples {
 
     fun errorExample1() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createErrorObservable<String>().mySubscribe(2)
+        ObservableFactory.createErrorObservable<String>().mySubscribe()
+        ObservableFactory.createErrorObservable<String>().mySubscribe()
         compositeDisposable.clear()
     }
 
     fun errorExample2() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createObservable().error().mySubscribe(2)
+        ObservableFactory.createObservable().error().mySubscribe()
+        ObservableFactory.createObservable().error().mySubscribe()
         compositeDisposable.clear()
     }
 
     fun errorExample3() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createObservable().error2().mySubscribe(2)
+        ObservableFactory.createObservable().error2().mySubscribe()
+        ObservableFactory.createObservable().error2().mySubscribe()
         compositeDisposable.clear()
     }
 
     fun errorExample4() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createObservable()
+        val observable = ObservableFactory.createObservable()
             .error()
             .onErrorResumeNext {
                 println("Observable.onErrorResumeNext (prevents onError() from being called.): $it")
                 Observable.just("peach")
             }
-            .mySubscribe(2)
+        observable.mySubscribe()
+        observable.mySubscribe()
         compositeDisposable.clear()
     }
 
@@ -111,18 +114,6 @@ object ObservableExamples {
                 Observable.just(it)
             }
         }
-
-    fun Observable<*>.mySubscribe(n: Int): List<Disposable> {
-        val disposables = mutableListOf<Disposable>()
-        for (i in 1..n) {
-            disposables.add(subscribe(
-                { println("Observer[$i].onNext: $it") },
-                { println("Observer[$i].onError (Afterwards, Observer.onNext() and Observer.onComplete() will never be called.): $it") },
-                { println("Observer[$i].onComplete (Afterwards, Observer.onNext() will never be called.)") }
-            ))
-        }
-        return disposables
-    }
 
     fun Observable<*>.mySubscribe(): Disposable {
         observerCount++

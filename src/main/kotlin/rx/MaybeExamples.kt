@@ -19,7 +19,7 @@ object MaybeExamples {
         disposable.print() // true
     }
 
-    private fun Maybe<*>.mySubscribe(): Disposable {
+    fun Maybe<*>.mySubscribe(): Disposable {
         observerCount++
         return subscribe(
             { println("MaybeObserver[$observerCount].onNext: $it") },

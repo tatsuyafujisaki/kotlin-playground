@@ -1,14 +1,20 @@
 package rx
 
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.subjects.AsyncSubject
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.ReplaySubject
 import io.reactivex.rxjava3.subjects.Subject
+import rx.CompletableExamples.mySubscribe
 import rx.DisposeUtil.print
+import rx.MaybeExamples.mySubscribe
 import rx.ObservableExamples.mySubscribe
+import rx.SingleExamples.mySubscribe
 
 object SubjectExamples {
     /**
@@ -126,5 +132,31 @@ object SubjectExamples {
         disposable2.print() // false
         subject.onComplete()
         disposable2.print() // true
+    }
+
+    fun example6() {
+        val subject = PublishSubject.create<Unit>()
+        val completable = Completable.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
+        val disposable = completable.mySubscribe()
+        subject.onComplete()
+        disposable.print() // true
+    }
+
+    fun example7() {
+        val subject = PublishSubject.create<String>()
+        val maybe = Maybe.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
+        val disposable = maybe.mySubscribe()
+        subject.onNext("a")
+        subject.onComplete()
+        disposable.print() // true
+    }
+
+    fun example8() {
+        val subject = PublishSubject.create<String>()
+        val single = Single.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
+        val disposable = single.mySubscribe()
+        subject.onNext("a")
+        subject.onComplete()
+        disposable.print() // true
     }
 }

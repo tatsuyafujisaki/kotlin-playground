@@ -19,7 +19,7 @@ object SingleExamples {
         disposable.print() // true
     }
 
-    private fun Single<*>.mySubscribe(): Disposable {
+    fun Single<*>.mySubscribe(): Disposable {
         observerCount++
         return subscribe(
             { println("SingleObserver[$observerCount].onSuccess: $it") },

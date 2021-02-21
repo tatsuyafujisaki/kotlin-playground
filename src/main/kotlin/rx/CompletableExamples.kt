@@ -19,7 +19,7 @@ object CompletableExamples {
         disposable.print() // true
     }
 
-    private fun Completable.mySubscribe(): Disposable {
+    fun Completable.mySubscribe(): Disposable {
         observerCount++
         return subscribe(
             { println("CompletableObserver[$observerCount].onComplete") },

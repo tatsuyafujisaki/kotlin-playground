@@ -11,8 +11,8 @@ object ObservableExamples {
 
     fun example1() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createObservable().mySubscribe()
-        ObservableFactory.createObservable().mySubscribe()
+        RxJavaIngredients.createObservable().mySubscribe()
+        RxJavaIngredients.createObservable().mySubscribe()
         compositeDisposable.clear()
     }
 
@@ -63,28 +63,22 @@ object ObservableExamples {
         compositeDisposable.clear()
     }
 
-    fun errorExample1() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createErrorObservable<String>().mySubscribe()
-        ObservableFactory.createErrorObservable<String>().mySubscribe()
-        compositeDisposable.clear()
-    }
 
     fun errorExample2() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-        ObservableFactory.createObservable().error().mySubscribe()
-        ObservableFactory.createObservable().error().mySubscribe()
+        RxJavaIngredients.createObservable().error().mySubscribe()
+        RxJavaIngredients.createObservable().error().mySubscribe()
         compositeDisposable.clear()
     }
 
     fun errorExample3() {
-        ObservableFactory.createObservable().error2().mySubscribe()
-        ObservableFactory.createObservable().error2().mySubscribe()
+        RxJavaIngredients.createObservable().error2().mySubscribe()
+        RxJavaIngredients.createObservable().error2().mySubscribe()
         compositeDisposable.clear()
     }
 
     fun errorExample4() {
-        val observable = ObservableFactory.createObservable()
+        val observable = RxJavaIngredients.createObservable()
             .error()
             .onErrorResumeNext {
                 println("Observable.onErrorResumeNext (prevents onError() from being called.): $it")

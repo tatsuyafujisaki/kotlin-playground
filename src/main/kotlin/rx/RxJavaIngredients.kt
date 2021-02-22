@@ -26,7 +26,7 @@ object RxJavaIngredients {
         it.doOnMisc()
     }
 
-    private fun <T> Observable<T>.doOnMisc() =
+    fun <T> Observable<T>.doOnMisc() =
         doOnSubscribe {
             println("doOnSubscribe")
         }.doOnNext {

@@ -14,6 +14,7 @@ import rx.CompletableExamples.mySubscribe
 import rx.DisposeUtil.print
 import rx.MaybeExamples.mySubscribe
 import rx.ObservableExamples.mySubscribe
+import rx.RxJavaIngredients.doOnMisc
 import rx.SingleExamples.mySubscribe
 
 object SubjectExamples {
@@ -51,7 +52,7 @@ object SubjectExamples {
         val observable = subject.share().hide()
         observable
             .doOnNext {
-                println("doOnNext")
+                println("doOnNext: $it")
             }
             .flatMap {
                 Observable.error<String>(Throwable("WTF2"))
@@ -88,7 +89,7 @@ object SubjectExamples {
         val observable = subject.share().hide()
         val disposable = observable
             .doOnNext {
-                println("doOnNext")
+                println("doOnNext: $it")
             }
             .flatMap {
                 Observable
@@ -137,7 +138,7 @@ object SubjectExamples {
     /** Example of converting Observable to Completable */
     fun example6() {
         val subject = PublishSubject.create<Unit>()
-        val completable = Completable.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
+        val completable = Completable.fromObservable(subject.share().hide())
         val disposable = completable.mySubscribe()
         subject.onComplete()
         disposable.print() // true
@@ -146,7 +147,7 @@ object SubjectExamples {
     /** Example of converting Observable to Maybe */
     fun example7() {
         val subject = PublishSubject.create<String>()
-        val maybe = Maybe.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
+        val maybe = Maybe.fromObservable(subject.share().hide())
         val disposable = maybe.mySubscribe()
         subject.onNext("a")
         subject.onComplete()
@@ -159,6 +160,30 @@ object SubjectExamples {
         val single = Single.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
         val disposable = single.mySubscribe()
         subject.onNext("a")
+        subject.onComplete()
+        disposable.print() // true
+    }
+
+    /** Example of Observable.retry() */
+    fun example9() {
+        var firstRun = true
+        val subject = PublishSubject.create<String>()
+        val observable = subject
+            .share()
+            .hide()
+            .doOnMisc()
+            .flatMap {
+                if(firstRun) {
+                    firstRun = false
+                    Observable.error(Throwable("WTF"))
+                } else {
+                    Observable.just(it)
+                }
+            }
+            .retry()
+        val disposable = observable.mySubscribe()
+        subject.onNext("a")
+        subject.onNext("b")
         subject.onComplete()
         disposable.print() // true
     }

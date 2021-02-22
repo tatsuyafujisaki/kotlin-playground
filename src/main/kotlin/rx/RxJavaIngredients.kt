@@ -2,6 +2,7 @@ package rx
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableTransformer
+import io.reactivex.rxjava3.subjects.Subject
 
 object RxJavaIngredients {
     val observable: Observable<Any> = Observable.empty()
@@ -26,7 +27,7 @@ object RxJavaIngredients {
         it.doOnMisc()
     }
 
-    fun <T> Observable<T>.doOnMisc() =
+    fun <T> Observable<T>.doOnMisc(): Observable<T> =
         doOnSubscribe {
             println("doOnSubscribe")
         }.doOnNext {
@@ -36,4 +37,6 @@ object RxJavaIngredients {
         }.doOnComplete {
             println("doOnComplete")
         }
+
+    fun <T> Subject<T>.toObservable(): Observable<T> = share().hide().doOnMisc()
 }

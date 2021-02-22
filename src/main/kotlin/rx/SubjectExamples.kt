@@ -15,6 +15,7 @@ import rx.DisposeUtil.print
 import rx.MaybeExamples.mySubscribe
 import rx.ObservableExamples.mySubscribe
 import rx.RxJavaIngredients.doOnMisc
+import rx.RxJavaIngredients.toObservable
 import rx.SingleExamples.mySubscribe
 
 object SubjectExamples {
@@ -49,13 +50,10 @@ object SubjectExamples {
      */
     fun example2() {
         val subject = PublishSubject.create<String>()
-        val observable = subject.share().hide()
-        observable
-            .doOnNext {
-                println("doOnNext: $it")
-            }
+        subject
+            .toObservable()
             .flatMap {
-                Observable.error<String>(Throwable("WTF2"))
+                Observable.error<String>(Throwable("WTF"))
             }
             .mySubscribe()
         subject.onNext("a")
@@ -67,13 +65,13 @@ object SubjectExamples {
      */
     fun example3() {
         val subject = PublishSubject.create<String>()
-        val observable = subject.share().hide()
-        observable
+        subject
+            .toObservable()
             .flatMap {
                 Observable.error<String>(Throwable("WTF"))
             }
             .onErrorResumeNext {
-                println("Observable.onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
+                println("onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
                 Observable.just("phoenix")
             }
             .mySubscribe()
@@ -86,23 +84,19 @@ object SubjectExamples {
      */
     fun example4() {
         val subject = PublishSubject.create<String>()
-        val observable = subject.share().hide()
-        val disposable = observable
-            .doOnNext {
-                println("doOnNext: $it")
-            }
+        subject
+            .toObservable()
             .flatMap {
                 Observable
                     .error<String>(Throwable("WTF"))
                     .onErrorResumeNext {
-                        println("Observable.onErrorResumeNext (Because this onErrorResumeNext is inside flatMap, the outer Observable will continue as if no error occurred.)")
+                        println("onErrorResumeNext (Because this onErrorResumeNext is inside flatMap, the outer Observable will continue as if no error occurred.)")
                         Observable.just("phoenix")
                     }
             }
             .mySubscribe()
         subject.onNext("a")
         subject.onNext("b")
-        disposable.dispose()
     }
 
     /**
@@ -111,16 +105,13 @@ object SubjectExamples {
      */
     fun example5() {
         val subject = PublishSubject.create<String>()
-        val observable = subject.share().hide()
+        val observable = subject.toObservable()
         val disposable = observable
-            .doOnNext {
-                println("doOnNext")
-            }
             .flatMap {
                 Observable.error<String>(Throwable("WTF"))
             }
             .onErrorResumeNext {
-                println("Observable.onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
+                println("onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
                 Observable.just("phoenix")
             }
             .mySubscribe()
@@ -173,7 +164,7 @@ object SubjectExamples {
             .hide()
             .doOnMisc()
             .flatMap {
-                if(firstRun) {
+                if (firstRun) {
                     firstRun = false
                     Observable.error(Throwable("WTF"))
                 } else {

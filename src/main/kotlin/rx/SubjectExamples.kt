@@ -134,6 +134,7 @@ object SubjectExamples {
         disposable2.print() // true
     }
 
+    /** Example of converting Observable to Completable */
     fun example6() {
         val subject = PublishSubject.create<Unit>()
         val completable = Completable.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
@@ -142,6 +143,7 @@ object SubjectExamples {
         disposable.print() // true
     }
 
+    /** Example of converting Observable to Maybe */
     fun example7() {
         val subject = PublishSubject.create<String>()
         val maybe = Maybe.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
@@ -151,6 +153,7 @@ object SubjectExamples {
         disposable.print() // true
     }
 
+    /** Example of converting Observable to Single */
     fun example8() {
         val subject = PublishSubject.create<String>()
         val single = Single.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.

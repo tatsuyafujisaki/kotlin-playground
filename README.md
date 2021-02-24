@@ -1,8 +1,6 @@
 # Official style guides
 * https://developer.android.com/kotlin/style-guide
 * https://kotlinlang.org/docs/reference/coding-conventions.html
-  * Note that Kotlin Coding Conventions' continuation indent is a single indent (four spaces). 
-     * https://kotlinlang.org/docs/reference/coding-conventions.html#chained-call-wrapping
 
 # Best practices
 ## Use A rather than B for simplicity or clarity

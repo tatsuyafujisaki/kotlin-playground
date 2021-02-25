@@ -36,6 +36,8 @@ object RxJavaIngredients {
             println("doOnError: $it")
         }.doOnComplete {
             println("doOnComplete")
+        }.doOnDispose {
+            println("doOnDispose")
         }
 
     fun <T> Subject<T>.toObservable(): Observable<T> = share().hide().doOnMisc()

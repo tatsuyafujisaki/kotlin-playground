@@ -3,73 +3,71 @@ package util
 import kotlin.system.measureTimeMillis
 
 object StandardOutputUtil {
-    fun p(x: Any?) = println(x)
-
     fun IntArray.printVertically() {
-        forEach { println(it) }
+        forEach {
+            println(it)
+        }
+    }
+
+    fun LongArray.printVertically() {
+        forEach {
+            println(it)
+        }
     }
 
     fun DoubleArray.printVertically() {
-        forEach { println(it) }
+        forEach {
+            println(it)
+        }
     }
 
     fun Array<*>.printVertically() {
-        forEach { println(it) }
+        forEach {
+            println(it)
+        }
     }
 
-    fun List<*>.printVertically() {
-        forEach { println(it) }
+    fun Iterable<*>.printVertically() {
+        forEach {
+            println(it)
+        }
     }
 
     fun IntArray.printHorizontally() {
-        if (isEmpty()) return
-        for (i in 0 until lastIndex) print("${this[i]} ")
-        println(last())
+        println(joinToString(" "))
     }
 
     fun LongArray.printHorizontally() {
-        if (isEmpty()) return
-        for (i in 0 until lastIndex) print("${this[i]} ")
-        println(last())
+        println(joinToString(" "))
     }
 
     fun DoubleArray.printHorizontally() {
-        if (isEmpty()) return
-        for (i in 0 until lastIndex) print("${this[i]} ")
-        println(last())
+        println(joinToString(" "))
     }
 
     fun Array<*>.printHorizontally() {
-        if (isEmpty()) return
-        for (i in 0 until lastIndex) print("${this[i]} ")
-        println(last())
+        println(joinToString(" "))
     }
 
-    fun List<*>.printHorizontally() {
-        if (isEmpty()) return
-        for (i in 0 until lastIndex) print("${this[i]} ")
-        println(last())
+    fun Iterable<*>.printHorizontally() {
+        println(joinToString(" "))
     }
 
-    fun IntRange.printHorizontally() {
-        toList().printHorizontally()
+    fun Array<IntArray>.printMatrix() {
+        forEach {
+            println(it.joinToString(" "))
+        }
     }
 
-    fun Array<BooleanArray>.printMatrix() {
-        if (isEmpty() || first().isEmpty()) return
-        for (row in indices) {
-            val lastColumn = first().lastIndex
-            for (column in 0 until lastColumn) print("${this[row][column]} ")
-            println(this[row][lastColumn])
+    fun Array<LongArray>.printMatrix() {
+        forEach {
+            println(it.joinToString(" "))
         }
     }
 
     fun Array<DoubleArray>.printMatrix() {
-        if (isEmpty() || first().isEmpty()) return
-        for (row in indices) {
-            val lastColumn = first().lastIndex
-            for (column in 0 until lastColumn) print("${this[row][column]} ")
-            println("%10.2f ".format(this[row][lastColumn]))
+        forEach {
+            println(it.joinToString(" "))
         }
     }
 

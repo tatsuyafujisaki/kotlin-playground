@@ -2,6 +2,7 @@ package rx
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableTransformer
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.Subject
 
 object RxJavaIngredients {
@@ -32,10 +33,25 @@ object RxJavaIngredients {
             println("doOnSubscribe")
         }.doOnNext {
             println("doOnNext: $it")
-        }.doOnError {
-            println("doOnError: $it")
         }.doOnComplete {
             println("doOnComplete")
+        }.doOnError {
+            println("doOnError: $it")
+        }.doOnTerminate {
+            println("doOnTerminate")
+        }.doOnDispose {
+            println("doOnDispose")
+        }
+
+    fun <T> Single<T>.doOnMisc(): Single<T> =
+        doOnSubscribe {
+            println("doOnSubscribe")
+        }.doOnSuccess {
+            println("doOnSuccess: $it")
+        }.doOnError {
+            println("doOnError: $it")
+        }.doOnTerminate {
+            println("doOnTerminate")
         }.doOnDispose {
             println("doOnDispose")
         }

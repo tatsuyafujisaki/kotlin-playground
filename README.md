@@ -2,8 +2,7 @@
 * https://developer.android.com/kotlin/style-guide
 * https://kotlinlang.org/docs/reference/coding-conventions.html
 
-# Best practices
-## Use A rather than B for simplicity or clarity
+# Use A rather than B for simplicity or clarity
 A|B|Note
 --|--|--
 `<*>`|`<T>`|if star-projections suffice.

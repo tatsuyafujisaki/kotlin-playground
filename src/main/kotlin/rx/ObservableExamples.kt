@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import rx.RxJavaIngredients.doOnMisc
 
 object ObservableExamples {
     private val compositeDisposable = CompositeDisposable()
@@ -63,21 +64,34 @@ object ObservableExamples {
         compositeDisposable.clear()
     }
 
+    /**
+     * Example of Observable.empty()
+     */
+    fun observableEmptyExample() {
+        val disposable = Observable
+            .just("a", "b", "c", "d")
+            .flatMap {
+                if (it == "b") Observable.empty() else Observable.just(it)
+            }
+            .doOnMisc()
+            .mySubscribe()
+        println(disposable.isDisposed)
+    }
 
-    fun errorExample2() {
+    fun errorExample1() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
         RxJavaIngredients.createObservable().error().mySubscribe()
         RxJavaIngredients.createObservable().error().mySubscribe()
         compositeDisposable.clear()
     }
 
-    fun errorExample3() {
+    fun errorExample2() {
         RxJavaIngredients.createObservable().error2().mySubscribe()
         RxJavaIngredients.createObservable().error2().mySubscribe()
         compositeDisposable.clear()
     }
 
-    fun errorExample4() {
+    fun errorExample3() {
         val observable = RxJavaIngredients.createObservable()
             .error()
             .onErrorResumeNext {

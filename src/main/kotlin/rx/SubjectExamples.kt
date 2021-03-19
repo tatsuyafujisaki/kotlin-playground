@@ -20,9 +20,10 @@ import rx.SingleExamples.mySubscribe
 
 object SubjectExamples {
     /**
-     * It shows the difference among PublishSubject, BehaviorSubject, and ReplySubject
+     * It shows the difference among several types of subjects.
+     * AsyncSubject emits the last value just after onComplete().
      * PublishSubject ignores past emissions before the subscription.
-     * BehaviorSubject takes the latest emission before the subscription.
+     * BehaviorSubject takes the last emission before the subscription.
      * ReplySubject ignores all the past emissions before the subscription.
      */
     fun example1() {

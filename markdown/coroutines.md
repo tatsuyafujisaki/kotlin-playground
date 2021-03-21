@@ -117,7 +117,7 @@
 # Job
 * is a cancelable unit of work.
 * is a coroutine in source code.
-* can be created by a coroutine builder like `launch` or by `Job()`.
+* can be created by a coroutine builder like `launch()` or `Job()`.
 * implements `CoroutineContext.Element`, which is a key-value pair containing "Job = coroutine A".
 * has a parent job and zero or more child jobs.
 * Cancelling a parent job cancels all the child jobs.

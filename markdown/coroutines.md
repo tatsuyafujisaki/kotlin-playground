@@ -74,7 +74,7 @@
 * is a default dispatcher of Dispatchers.Main.
 
 # CoroutineDispatcher
-* manages a backing thread where coroutines run.
+* specify a thread where a coroutine runs.
 * knows how to resume suspended coroutines in it.
 * is a CoroutineContext.Element where the key is "Dispatcher" and the value is something like "Dispatchers.Default".
 * has three variants.

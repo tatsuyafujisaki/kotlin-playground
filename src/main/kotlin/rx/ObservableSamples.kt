@@ -27,13 +27,13 @@ object ObservableSamples {
     fun example2() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
         var emitter: ObservableEmitter<String>? = null
-        with(Observable.create<String> { emitter = it }) {
-            emitter?.onNext("a") // has no effect because the observable is not subscribed to yet.
-            mySubscribe()
-            emitter?.onNext("b")
-            emitter?.onComplete()
+        val observable = Observable.create<String> {
+            emitter = it
         }
-        compositeDisposable.clear()
+        emitter?.onNext("a") // has no effect because the observable is not subscribed to yet.
+        observable.mySubscribe()
+        emitter?.onNext("b")
+        emitter?.onComplete()
     }
 
     /**
@@ -55,20 +55,23 @@ object ObservableSamples {
     fun example3() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
         var emitter: ObservableEmitter<String>? = null
-        with(Observable.create<String> { emitter = it }) {
-            mySubscribeWithId()
-            emitter?.onNext("a")
-            mySubscribeWithId()
-            emitter?.onNext("b")
+        val observable = Observable.create<String> {
+            emitter = it
         }
+
+        observable.mySubscribeWithId()
+        emitter?.onNext("a")
+        observable.mySubscribeWithId()
+        emitter?.onNext("b")
+
         // Note share().
-        with(Observable.create<String> { emitter = it }.share()) {
-            mySubscribeWithId()
-            emitter?.onNext("c")
-            mySubscribeWithId()
-            emitter?.onNext("d")
-        }
-        compositeDisposable.clear()
+        val observable2 = Observable.create<String> {
+            emitter = it
+        }.share()
+        observable2.mySubscribeWithId()
+        emitter?.onNext("c")
+        observable2.mySubscribeWithId()
+        emitter?.onNext("d")
     }
 
     /**
@@ -105,11 +108,11 @@ object ObservableSamples {
     fun errorExample3() {
         val observable =
             Observable.just("a", "b", "c")
-            .errorWhen("b")
-            .onErrorResumeNext {
-                println("Observable#onErrorResumeNext: $it")
-                Observable.just("z")
-            }
+                .errorWhen("b")
+                .onErrorResumeNext {
+                    println("Observable#onErrorResumeNext: $it")
+                    Observable.just("z")
+                }
         observable.mySubscribe()
         observable.mySubscribe()
         compositeDisposable.clear()

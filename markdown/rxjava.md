@@ -12,4 +12,4 @@ Afterwards, `Observer#onNext()` will never be called.
 Afterwards, `Observer#onNext()` and `Observer.onComplete()` will never be called.
 
 # Subscribe and dispose
-* Even after a subscription's `Disposable` is disposed (e.g. by `Observer.onError()`), you can subscribe to the same `Observable` and it works as if no error occurred before.
+Even after a subscription's `Disposable` is disposed (e.g. by `Observer.onError()`), you can subscribe to the same `Observable` and it works as if no error occurred before.

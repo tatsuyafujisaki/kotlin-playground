@@ -6,7 +6,7 @@ object StringUtil {
     fun String?.isNeitherNullNorEmpty(): Boolean = this != null && isNotEmpty()
     fun String?.isNeitherNullNorBlank(): Boolean = this != null && isNotBlank()
     fun String.splitLast() = if (lastIndex == 0) "" to first() else with(chunked(lastIndex)) { first() to last().last() }
-    fun String.equalsIgnoreCase(s2: String) = equals(s2, true)
+    fun String.equalsIgnoreCase(s: String) = equals(s, true)
     fun String.alphabetized() = toCharArray().sorted().joinToString("")
     fun String.substrings() = sequence {
         for (i in indices) {

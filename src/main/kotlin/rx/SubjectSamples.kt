@@ -10,15 +10,12 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.ReplaySubject
 import io.reactivex.rxjava3.subjects.Subject
-import rx.CompletableExamples.mySubscribe
-import rx.DisposeUtil.print
-import rx.MaybeExamples.mySubscribe
-import rx.ObservableExamples.mySubscribe
-import rx.RxJavaIngredients.doOnMisc
-import rx.RxJavaIngredients.toObservable
-import rx.SingleExamples.mySubscribe
+import util.RxJavaUtil.doOnMisc
+import util.RxJavaUtil.mySubscribe
+import util.RxJavaUtil.print
+import util.RxJavaUtil.toObservable
 
-object SubjectExamples {
+object SubjectSamples {
     /**
      * It shows the difference among several types of subjects.
      * AsyncSubject emits the last value just after onComplete().
@@ -28,7 +25,7 @@ object SubjectExamples {
      */
     fun example1() {
         fun demo(subject: Subject<String>) {
-            val observable = subject.share().hide()
+            val observable = subject.toObservable()
             subject.onNext("a")
             subject.onNext("b")
             observable.mySubscribe()
@@ -130,7 +127,7 @@ object SubjectExamples {
     /** Example of converting Observable to Completable */
     fun example6() {
         val subject = PublishSubject.create<Unit>()
-        val completable = Completable.fromObservable(subject.share().hide())
+        val completable = Completable.fromObservable(subject.toObservable())
         val disposable = completable.mySubscribe()
         subject.onComplete()
         disposable.print() // true
@@ -139,7 +136,7 @@ object SubjectExamples {
     /** Example of converting Observable to Maybe */
     fun example7() {
         val subject = PublishSubject.create<String>()
-        val maybe = Maybe.fromObservable(subject.share().hide())
+        val maybe = Maybe.fromObservable(subject.toObservable())
         val disposable = maybe.mySubscribe()
         subject.onNext("a")
         subject.onComplete()
@@ -149,7 +146,7 @@ object SubjectExamples {
     /** Example of converting Observable to Single */
     fun example8() {
         val subject = PublishSubject.create<String>()
-        val single = Single.fromObservable(subject.share().hide()) // Unlike Observable.single(), you don't have to set the default value.
+        val single = Single.fromObservable(subject.toObservable()) // Unlike Observable.single(), you don't have to set the default value.
         val disposable = single.mySubscribe()
         subject.onNext("a")
         subject.onComplete()
@@ -161,8 +158,7 @@ object SubjectExamples {
         var firstRun = true
         val subject = PublishSubject.create<String>()
         val observable = subject
-            .share()
-            .hide()
+            .toObservable()
             .doOnMisc()
             .flatMap {
                 if (firstRun) {

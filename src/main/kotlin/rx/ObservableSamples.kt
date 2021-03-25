@@ -30,7 +30,7 @@ object ObservableSamples {
         val observable = Observable.create<String> {
             emitter = it
         }
-        emitter?.onNext("a") // has no effect because the observable is not subscribed to yet.
+        emitter?.onNext("a") // emitter is null because observable is not subscribed to yet.
         observable.mySubscribe()
         emitter?.onNext("b")
         emitter?.onComplete()

@@ -4,14 +4,12 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observables.ConnectableObservable
-import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlin.random.Random
 import util.RxJavaUtil.doOnMisc
 import util.RxJavaUtil.errorWhen
 import util.RxJavaUtil.errorWhen2
 import util.RxJavaUtil.mySubscribe
 import util.RxJavaUtil.mySubscribeWithId
-import util.RxJavaUtil.toObservable
 
 object ObservableSamples {
     private val compositeDisposable = CompositeDisposable()
@@ -121,58 +119,23 @@ object ObservableSamples {
         compositeDisposable.clear()
     }
 
-    /**
-     * TODO: Check why this function keeps retrying.
-     */
     fun retrySample() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-
-        val subject = PublishSubject.create<String>()
-        subject
-            .toObservable()
+        Observable
+            .just(Unit)
             .flatMap {
                 if (Random.nextBoolean()) {
-                    Observable.just(it)
+                    Observable.just(Unit)
                 } else {
                     Observable.error(Throwable())
-                }.retryWhen {
-                    it.flatMap {
-                        println("retryWhen")
-                        Observable.just(Unit)
-                    }
+                }
+            }.retryWhen {
+                it.flatMap {
+                    println("retryWhen")
+                    Observable.just(Unit)
                 }
             }
-            .doOnMisc()
-            .mySubscribe()
-
-        subject.onNext("a")
-        subject.onNext("b")
-        subject.onNext("c")
-    }
-
-    /**
-     * TODO: Check why this function throw unexpected exceptions.
-     */
-    fun retrySample2() {
-        fun <T> ObservableEmitter<T>.onNextOrError(item: T) {
-            if (Random.nextBoolean()) {
-                onNext(item)
-            } else {
-                onError(Throwable())
+            .subscribe {
+                println("onNext")
             }
-        }
-
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
-
-        Observable.create<String> {
-            it.onNextOrError("a")
-            it.onNextOrError("b")
-        }.retryWhen {
-            it.flatMap {
-                println("retryWhen")
-                Observable.just(Unit)
-            }
-        }.doOnMisc()
-            .mySubscribe()
     }
 }

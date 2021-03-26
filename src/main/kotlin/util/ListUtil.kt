@@ -41,6 +41,6 @@ object ListUtil {
         return min to max
     }
 
-    fun List<Int>.permute(left: List<Int> = listOf(), right: List<Int> = toList()): List<List<Int>> =
+    fun <T> List<T>.permute(left: List<T> = listOf(), right: List<T> = toList()): List<List<T>> =
         if (right.size == 1) listOf(left + right) else right.flatMap { permute(left + it, right - it) }
 }

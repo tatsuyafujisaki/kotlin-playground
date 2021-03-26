@@ -69,4 +69,7 @@ object ArrayUtil {
             median { xs, j -> xs[j].toDouble() }
         }
     }
+
+    fun IntArray.permute(left: List<Int> = listOf(), right: List<Int> = toList()): List<List<Int>> =
+        if (right.size == 1) listOf(left + right) else right.flatMap { permute(left + it, right - it) }
 }

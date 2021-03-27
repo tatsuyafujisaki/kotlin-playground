@@ -44,6 +44,5 @@ object ListUtil {
     fun <T> List<T>.permute(left: List<T> = emptyList(), right: List<T> = toList()): List<List<T>> =
         if (right.isEmpty()) listOf(left) else right.flatMap { permute(left + it, right - it) }
 
-    fun <T> List<T>.permuteWithoutDuplicates(left: List<T> = emptyList(), right: List<T> = toList()): List<List<T>> =
-        permute(left, right).distinct()
+    fun <T> List<T>.permuteWithoutDuplicates() = permute().distinct()
 }

@@ -72,4 +72,6 @@ object ArrayUtil {
 
     fun IntArray.permute(left: List<Int> = emptyList(), right: List<Int> = toList()): List<List<Int>> =
         if (right.isEmpty()) listOf(left) else right.flatMap { permute(left + it, right - it) }
+
+    fun IntArray.permuteWithoutDuplicates() = permute().distinct()
 }

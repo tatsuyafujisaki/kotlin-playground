@@ -20,10 +20,11 @@ object MathUtil {
         return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
     }
 
-    fun Collection<Int>.standardDeviation(): Double {
-        val mean = average()
-        return sqrt(sumByDouble { (it - mean).pow(2) } / size)
-    }
+    val Collection<Int>.standardDeviation: Double
+        get() {
+            val mean = average()
+            return sqrt(sumByDouble { (it - mean).pow(2) } / size)
+        }
 
     @JvmName("standardDeviationDouble")
     fun Collection<Double>.standardDeviation(): Double {
@@ -44,7 +45,7 @@ object MathUtil {
         return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
     }
 
-    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
+    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) = covariance(xs, ys) / (xs.standardDeviation * ys.standardDeviation)
 
     @JvmName("correlationCoefficientDouble")
     fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())

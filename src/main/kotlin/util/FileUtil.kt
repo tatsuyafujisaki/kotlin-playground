@@ -5,6 +5,8 @@ import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
 object FileUtil {
+    fun readLines(pathname: String) = File(pathname).readLines()
+
     @Suppress("UNCHECKED_CAST")
     fun <T> File.read(): T {
         ObjectInputStream(inputStream()).use {

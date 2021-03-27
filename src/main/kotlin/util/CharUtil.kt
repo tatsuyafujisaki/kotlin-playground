@@ -1,7 +1,7 @@
 package util
 
 object CharUtil {
-    val Char.alphabeticalIndex: Int get() = this - 'a'
+    val Char.alphabeticalIndex get() = this - 'a'
 
     /**
      * For a competitive programming platform that does not support Char.digitToInt() of Kotlin 1.4.30

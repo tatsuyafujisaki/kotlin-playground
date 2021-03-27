@@ -3,29 +3,32 @@ package util
 import kotlin.math.max
 
 object StringUtil {
-    fun String?.isNeitherNullNorEmpty(): Boolean = this != null && isNotEmpty()
-    fun String?.isNeitherNullNorBlank(): Boolean = this != null && isNotBlank()
-    fun String.splitLast() = if (lastIndex == 0) "" to first() else with(chunked(lastIndex)) { first() to last().last() }
-    fun String.equalsIgnoreCase(s: String) = equals(s, true)
-    fun String.alphabetized() = toCharArray().sorted().joinToString("")
-    fun String.substrings() = sequence {
-        for (i in indices) {
-            for (j in i + 1..length) yield(substring(i, j))
+    val String?.isNeitherNullNorEmpty get() = this != null && isNotEmpty()
+    val String?.isNeitherNullNorBlank get() = this != null && isNotBlank()
+    val String.alphabetized get() = toCharArray().sorted().joinToString("")
+    val String.splitLast get() = if (lastIndex == 0) "" to first() else with(chunked(lastIndex)) { first() to last().last() }
+    val String.substrings
+        get() = sequence {
+            for (i in indices) {
+                for (j in i + 1..length) yield(substring(i, j))
+            }
         }
-    }
+    val String.isAllSameChars: Boolean
+        get() {
+            if (isEmpty()) return true
+            val firstChar = first()
+            for (i in 1 until length) if (this[i] != firstChar) return false
+            return true
+        }
 
-    fun String.isAllSameChars(): Boolean {
-        if (length == 0) return true
-        val firstChar = first()
-        for (i in 1 until length) if (this[i] != firstChar) return false
-        return true
-    }
+    fun String.replaceAt(index: Int, replacement: Char) = replaceRange(index, index + 1, replacement.toString())
+    fun String.equalsIgnoreCase(s: String) = equals(s, true)
 
     // https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
     fun lcs(s1: String, s2: String): String {
         if (s1.isEmpty() || s2.isEmpty()) return ""
-        val (s1_, s1last) = s1.splitLast()
-        val (s2_, s2last) = s2.splitLast()
+        val (s1_, s1last) = s1.splitLast
+        val (s2_, s2last) = s2.splitLast
         if (s1last == s2last) return lcs(s1_, s2_) + s1last
         val lcs1 = lcs(s1, s2_)
         val lcs2 = lcs(s1_, s2)

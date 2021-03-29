@@ -4,6 +4,7 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.sqrt
+import util.ListUtil.permute
 
 object IntLongUtil {
     fun Int.between(fromInclusive: Int, toExclusive: Int) = this in fromInclusive until toExclusive
@@ -20,6 +21,7 @@ object IntLongUtil {
     fun Int.isEven() = this % 2 == 0
     fun Int.isSquareNumber() = sqrt(toDouble()) % 1.0 == 0.0
     fun Int.sqrtInt() = sqrt(toDouble()).toInt()
+    fun Int.permute() = (1..this).toList().permute()
     fun divMod(a: Int, b: Int) = a / b to a % b
 
     /**

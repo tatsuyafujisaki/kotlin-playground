@@ -42,6 +42,9 @@ object StringUtil {
         }
     }[s1.length][s2.length]
 
-    fun String.permute(result: String = ""): List<String> =
-        if (isEmpty()) listOf(result) else flatMap { replaceFirst(it.toString(), "").permute(result + it) }
+    fun String.permute(): List<String> {
+        fun String.permute(result: String = ""): List<String> =
+            if (isEmpty()) listOf(result) else flatMap { replaceFirst(it.toString(), "").permute(result + it) }
+        return permute()
+    }
 }

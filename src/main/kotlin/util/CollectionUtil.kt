@@ -1,8 +1,7 @@
 package util
 
 object CollectionUtil {
-    fun <T> Collection<T>.permute(left: List<T> = emptyList(), right: Collection<T> = this): List<List<T>> =
-        if (right.isEmpty()) listOf(left) else right.flatMap { permute(left + it, right - it) }
-
+    fun <T> Collection<T>.permute(result: List<T> = emptyList()): List<List<T>> =
+        if (isEmpty()) listOf(result) else flatMap { (this - it).permute(result + it) }
     fun <T> Collection<T>.permuteWithoutDuplicates() = permute().distinct()
 }

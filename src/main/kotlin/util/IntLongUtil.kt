@@ -4,7 +4,7 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.sqrt
-import util.ListUtil.permute
+import util.CollectionUtil.permute
 
 object IntLongUtil {
     val Int.isEven get() = this % 2 == 0

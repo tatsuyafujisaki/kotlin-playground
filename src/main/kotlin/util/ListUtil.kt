@@ -40,9 +40,4 @@ object ListUtil {
         }
         return min to max
     }
-
-    fun <T> List<T>.permute(left: List<T> = emptyList(), right: List<T> = toList()): List<List<T>> =
-        if (right.isEmpty()) listOf(left) else right.flatMap { permute(left + it, right - it) }
-
-    fun <T> List<T>.permuteWithoutDuplicates() = permute().distinct()
 }

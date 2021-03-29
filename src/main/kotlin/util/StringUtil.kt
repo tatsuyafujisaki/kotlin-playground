@@ -41,4 +41,7 @@ object StringUtil {
             for (j in s2.indices) it[i + 1][j + 1] = if (s1[i] == s2[j]) it[i][j] + 1 else max(it[i + 1][j], it[i][j + 1])
         }
     }[s1.length][s2.length]
+
+    fun String.permute(result: String = ""): List<String> =
+        if (isEmpty()) listOf(result) else flatMap { replaceFirst(it.toString(), "").permute(result + it) }
 }

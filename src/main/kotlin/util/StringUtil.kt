@@ -43,8 +43,13 @@ object StringUtil {
     }[s1.length][s2.length]
 
     fun String.permute(): List<String> {
-        fun String.permute(result: String = ""): List<String> =
-            if (isEmpty()) listOf(result) else flatMapIndexed { i, c -> removeRange(i, i + 1).permute(result + c) }
+        fun String.permute(result: String = ""): List<String> = if (isEmpty()) {
+            listOf(result)
+        } else {
+            flatMapIndexed { i, c ->
+                removeRange(i, i + 1).permute(result + c)
+            }
+        }
         return permute()
     }
 }

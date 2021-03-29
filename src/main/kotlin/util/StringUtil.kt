@@ -44,7 +44,7 @@ object StringUtil {
 
     fun String.permute(): List<String> {
         fun String.permute(result: String = ""): List<String> =
-            if (isEmpty()) listOf(result) else flatMap { replaceFirst(it.toString(), "").permute(result + it) }
+            if (isEmpty()) listOf(result) else flatMapIndexed { i, c -> removeRange(i, i + 1).permute(result + c) }
         return permute()
     }
 }

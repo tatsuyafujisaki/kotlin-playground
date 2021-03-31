@@ -39,14 +39,14 @@ val ys: IntArray = xs.toIntArray()
 
 ## How to iterate through an IntArray in reverse order
 ```kotlin
-val xs: IntArray = intArrayOf(10, 20, 30)
-for (i in xs.lastIndex downTo 0) println(i) // 2 1 0
+val xs: IntArray = intArrayOf(1, 2, 3)
+for (i in xs.lastIndex downTo 0) println(xs[i]) // 3 2 1
 ```
 
 ## How to iterate through an Array\<T> in reverse order
 ```kotlin
 val xs: Array<String> = arrayOf("a", "b", "c")
-for (i in xs.lastIndex downTo 0) println(i) // 2 1 0
+for (i in xs.lastIndex downTo 0) println(xs[i]) // c b a
 ```
 
 ## How to deep-copy an IntArray

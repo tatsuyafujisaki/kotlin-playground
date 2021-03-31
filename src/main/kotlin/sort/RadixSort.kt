@@ -12,24 +12,20 @@ object RadixSort {
 
     private fun countingSort(xs: IntArray, place: Int) {
         val sorted = IntArray(xs.size)
-        val frequency = IntArray(10)
-        for (x in xs) {
-            frequency[getDigit(x, place)]++
-        }
-        for (i in 1 until frequency.size) {
-            frequency[i] += frequency[i - 1]
-        }
+        val appearances = IntArray(10)
+        for (x in xs) appearances[getDigit(x, place)]++
+        for (i in 1 until appearances.size) appearances[i] += appearances[i - 1]
         /**
          * At this point,
-         * frequency[0] ... frequency of '0'
-         * frequency[1] ... frequency of '0' + frequency of '1'
+         * appearances[0] ... appearances of '0'
+         * appearances[1] ... appearances of '0' + appearances of '1'
          * ⋮
-         * frequency[9] ... frequency of '0' + frequency of '1' + ... + frequency of '9'
+         * appearances[9] ... appearances of '0' + appearances of '1' + ... + appearances of '9'
          */
         for (i in xs.lastIndex downTo 0) {
             val digit = getDigit(xs[i], place)
-            sorted[frequency[digit] - 1] = xs[i]
-            frequency[digit]--
+            sorted[appearances[digit] - 1] = xs[i]
+            appearances[digit]--
         }
         sorted.copyInto(xs)
     }

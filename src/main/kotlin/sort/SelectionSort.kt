@@ -5,13 +5,9 @@ object SelectionSort {
         for (i in xs.indices) {
             var indexOfMin = i
             for (j in i + 1 until xs.size) {
-                if (xs[j] < xs[indexOfMin]) {
-                    indexOfMin = j
-                }
+                if (xs[j] < xs[indexOfMin]) indexOfMin = j
             }
-            if (i != indexOfMin) {
-                xs.swap(i, indexOfMin)
-            }
+            if (i != indexOfMin) xs.swap(i, indexOfMin)
         }
     }
 

@@ -2,9 +2,7 @@ package sort
 
 object MergeSort {
     fun sort(xs: IntArray): IntArray {
-        if (xs.size < 2) {
-            return xs
-        }
+        if (xs.size < 2) return xs
         val middle = xs.size / 2
         return merge(sort(xs.copyOfRange(0, middle)), sort(xs.copyOfRange(middle, xs.size)))
     }
@@ -16,13 +14,13 @@ object MergeSort {
         while (true) {
             if (left[leftIndex] <= right[rightIndex]) {
                 merged.add(left[leftIndex++])
-                if(leftIndex == left.size) {
+                if (leftIndex == left.size) {
                     right.copyOfRange(rightIndex, right.size).toCollection(merged)
                     break
                 }
             } else {
                 merged.add(right[rightIndex++])
-                if(rightIndex == right.size) {
+                if (rightIndex == right.size) {
                     left.copyOfRange(leftIndex, left.size).toCollection(merged)
                     break
                 }

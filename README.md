@@ -16,7 +16,7 @@ val ys: IntArray = IntArray(3) // [0, 0, 0]
 val zs: IntArray = IntArray(3) { it * 2 } // [0, 2, 4]
 ```
 
-## How to create an Array\<*>
+## How to create an Array\<T>
 ```kotlin
 val xs: Array<Int> = arrayOf(1, 2, 3) // [1, 2, 3]
 
@@ -37,13 +37,25 @@ val xs: Array<Int> = arrayOf(1, 2, 3)
 val ys: IntArray = xs.toIntArray()
 ```
 
+## How to iterate through an IntArray in reverse order
+```kotlin
+val xs: IntArray = intArrayOf(10, 20, 30)
+for (i in xs.lastIndex downTo 0) println(i) // 2 1 0
+```
+
+## How to iterate through an Array\<T> in reverse order
+```kotlin
+val xs: Array<String> = arrayOf("a", "b", "c")
+for (i in xs.lastIndex downTo 0) println(i) // 2 1 0
+```
+
 ## How to deep-copy an IntArray
 ```kotlin
 val xs: IntArray = intArrayOf(1, 2, 3)
 val ys: IntArray = xs.clone()
 ```
 
-## How to deep-copy an Array\<*>
+## How to deep-copy an Array\<T>
 ```kotlin
 val xs: Array<String> = arrayOf("a", "b", "c")
 val ys: Array<String> = xs.clone()
@@ -63,6 +75,12 @@ val e: List<String> = List(3) { "item$it" } // ["item0", "item1", "item2"]
 ```kotlin
 val xs: List<Int> = listOf(1, 2 ,3)
 val size: Int = xs.size // 3. simpler than xs.count().
+```
+
+## How to iterate through a List in reverse order
+```kotlin
+val xs = listOf("a", "b", "c")
+for (i in xs.lastIndex downTo 0) println(i) // 2 1 0
 ```
 
 ## How to add/remove an element to/from a List

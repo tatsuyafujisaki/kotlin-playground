@@ -2,28 +2,6 @@
 * https://developer.android.com/kotlin/style-guide
 * https://kotlinlang.org/docs/reference/coding-conventions.html
 
-# Use A rather than B for simplicity or clarity
-A|B|Note
---|--|--
-`<*>`|`<T>`|if star-projections suffice.
-`Int.abs(...)`|`Int.absoluteValue`
-`A to B`|`Pair(A, B)`
-`emptyList()`|`listOf()`
-`repeat(n)`|`while(n--)`
-`Collection<*>.size`|`Collection<*>.count()`
-`Set<T>`|`List<T>`|if elements are unique and unordered.
-`Iterable<T>.forEachIndexed { i, x -> ... }`|`Iterable<T>.forEach { ... }`|if you access both indices and elements.
-`nullableList.orEmpty()`<br>`nullableString.orEmpty()`|`nullableList ?: emptyList()`<br>`nullableString ?: ""`
-`with(...)`|`run(...)`|if the receiver is not nullable.
-`filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
-infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
-`List<*>.lastIndex`<br>`CharSequence.lastIndex`|`List<*>.size - 1`<br>`String.length - 1`
-`List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
-
-## Misc
-* When define a function, make the types of parameters as abstract as possible. e.g. Use `Collection<*>` instead of `List<*>` if possible.
-* Mark a function with `suspend` rather than call a coroutine builder inside the function.
-
 # Type mapping between Kotlin and Java
 Kotlin|Java
 ---|---
@@ -605,30 +583,14 @@ private var INSTANCE: MyDatabase? = null
 * provides an elegant relief of this chore.
   * https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4
 
-# Misc
-## Module
-is a set of Kotlin files compiled together.
-
-## Kotlin Standard Library
-is the Java Standard Library + extension functions for built-in classes such as `String` and `Collection`.
-
-## Function type "(A.(B) -> C)"
-* is called `a function literal with receiver`
-* https://kotlinlang.org/docs/reference/lambdas.html#function-literals-with-receiver
-
-## Kotlin.Result
-* Android Studio says `'Kotlin.Result' cannot be used as a return type.`.
-* https://github.com/Kotlin/KEEP/blob/master/proposals/stdlib/result.md#limitations
-
-## Interoperability between Kotlin and Java
-Java sees functions defined in Kotlin only through bytecode.
-
-## Int.MAX_VALUE
-* 10^9 (1,000,000,000) < `Int.MAX_VALUE` (2,147,483,647) < 10^10 < (10,000,000,000)
-* This knowledge is necessary in competitive programming
+# Best practices
+[best-practices.md](markdown/best-practices.md)
 
 # Coroutines
 [coroutines.md](markdown/coroutines.md)
+
+# Misc
+[misc.md](markdown/misc.md)
 
 # RxJava
 [rxjava.md](markdown/rxjava.md)

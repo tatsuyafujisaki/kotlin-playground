@@ -8,17 +8,16 @@ import util.IntLongUtil.factorial
 import util.IntLongUtil.nCr
 
 object MathUtil {
-    fun fibonacci() = generateSequence(0 to 1) { it.second to it.first + it.second }.map { it.first }
-    fun Collection<Int>.mode() = groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
-    fun Collection<Int>.weightedMean(weights: Collection<Int>) = zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
+    val Collection<Int>.mode get() = groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
 
     /**
      * @receiver must be sorted.
      */
-    fun List<Int>.median(): Double {
-        val i = size / 2
-        return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
-    }
+    val List<Int>.median: Double
+        get() {
+            val i = size / 2
+            return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
+        }
 
     val Collection<Int>.standardDeviation: Double
         get() {
@@ -26,11 +25,16 @@ object MathUtil {
             return sqrt(sumByDouble { (it - mean).pow(2) } / size)
         }
 
-    @JvmName("standardDeviationDouble")
-    fun Collection<Double>.standardDeviation(): Double {
-        val mean = average()
-        return sqrt(sumByDouble { (it - mean).pow(2) } / size)
-    }
+    val Collection<Double>.standardDeviationDouble: Double
+        get() {
+            val mean = average()
+            return sqrt(sumByDouble { (it - mean).pow(2) } / size)
+        }
+
+    fun fibonacci() = generateSequence(0 to 1) { it.second to it.first + it.second }.map { it.first }
+
+    fun Collection<Int>.weightedMean(weights: Collection<Int>) =
+        zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
     fun covariance(xs: Collection<Int>, ys: Collection<Int>): Double {
         val meanX = xs.average()
@@ -45,10 +49,12 @@ object MathUtil {
         return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
     }
 
-    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) = covariance(xs, ys) / (xs.standardDeviation * ys.standardDeviation)
+    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) =
+        covariance(xs, ys) / (xs.standardDeviation * ys.standardDeviation)
 
     @JvmName("correlationCoefficientDouble")
-    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) = covariance(xs, ys) / (xs.standardDeviation() * ys.standardDeviation())
+    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) =
+        covariance(xs, ys) / (xs.standardDeviationDouble * ys.standardDeviationDouble)
 
     /**
      * @param p probability of success
@@ -66,7 +72,8 @@ object MathUtil {
      * e.g. If [n] is 6 and [ks] is [4, 5, 6], the returned value is the probability of 4 successes + probability of 5 successes + probability of 6 successes.
      * i.e. probability of at least 6 successes
      */
-    fun cumulativeBinomialProbability(p: Double, n: Int, ks: IntRange) = ks.sumByDouble { binomialProbability(p, n, it) }
+    fun cumulativeBinomialProbability(p: Double, n: Int, ks: IntRange) =
+        ks.sumByDouble { binomialProbability(p, n, it) }
 
     /**
      * Redundant wrapper for geometric probability
@@ -103,13 +110,13 @@ object MathUtil {
      * If the number of elements is odd, the median element is excluded.
      * @receiver must be sorted.
      */
-    fun Collection<Int>.firstQuartile() = take(size / 2).median()
+    fun Collection<Int>.firstQuartile() = take(size / 2).median
 
     /**
      * If the number of elements is odd, the median element is excluded.
      * @receiver must be sorted.
      */
-    fun List<Int>.thirdQuartile() = takeLast(size / 2).median()
+    fun List<Int>.thirdQuartile() = takeLast(size / 2).median
 
     /**
      * @receiver must be sorted.

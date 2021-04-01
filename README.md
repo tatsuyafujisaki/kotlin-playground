@@ -305,7 +305,7 @@ val s: String = buildString {
 # Do while loop
 ```kotlin
 do {
-    var cont = true // Unlike a while loop, the condition flag can be declared inside the braces of a do-while loop.
+    var cont = true // The condition flag can be declared inside the braces of a do-while loop, unlike a while loop.
     if(Random.nextBoolean()) cont = false
 } while(cont)
 ```

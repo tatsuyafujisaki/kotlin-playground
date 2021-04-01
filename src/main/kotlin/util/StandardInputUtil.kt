@@ -1,6 +1,10 @@
 package util
 
 object StandardInputUtil {
+    /** redundant wrapper */
+    fun readAndDiscard() {
+        readLine() // Read and discard
+    }
     fun readInt() = readLine().orEmpty().toInt()
     fun readIntegers() = readLine().orEmpty().split(' ').map(String::toInt)
     fun readDoubles() = readLine().orEmpty().split(' ').map(String::toDouble)

@@ -302,6 +302,14 @@ val s: String = buildString {
 }
 ```
 
+# Do while loop
+```kotlin
+do {
+    var cont = true // The condition flag can be declared inside the braces of do-while.
+    if(Random.nextBoolean()) cont = false
+} while(cont)
+```
+
 # Enum
 ## Sample 1 (simple Enum)
 ```kotlin

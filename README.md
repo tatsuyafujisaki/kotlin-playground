@@ -151,6 +151,10 @@ val ys: List<Int> = x.orEmpty()
 ```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c')
 val result1: Map<Char, Int> = xs.withIndex().associate { it.value to it.index } // {a=0, b=1, c=2}
+
+// FYI, mapIndexed() returns a List instead of a Map.
+// val result1: List<Pair<Char, Int>> = xs.mapIndexed { i, x -> x to i } // [(a, 0), (b, 1), (c, 2)]
+
 val result2: Map<Char, Char> = xs.associateWith { it.toUpperCase() } // {a=A, b=B, c=C}
 val result3: Map<Char, Char> = xs.associateBy { it.toUpperCase() } // {A=a, B=b, C=c}
 

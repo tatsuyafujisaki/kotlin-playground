@@ -136,7 +136,7 @@ val ys: List<Int> = listOf(1, 3, 2).sortedDescending() // [3, 2, 1]
 val zs: List<Sample> = listOf(Sample("c"), Sample("b"), Sample("a")).sortedBy { it.name } // [Sample(name=a), Sample(name=b), Sample(name=c)]
 ```
 
-## How to count the occurrence of elements
+## How to count the appearance of elements
 ```kotlin
 val occurrences: Map<String, Int> = listOf("b", "c", "b", "c", "a", "c").groupingBy { it }.eachCount() // {a=1, b=2, c=3}
 ```
@@ -149,10 +149,16 @@ val ys: List<Int> = x.orEmpty()
 
 ## How to convert a List to a Map
 ```kotlin
-val xs: List<Int> = listOf(1, 2, 3)
-val result1: Map<Int, Int> = xs.withIndex().associate { it.value to it.index } // {1=0, 2=1, 3=2}
-val result2: Map<Int, String> = xs.associateWith { "value$it" } // {1=value1, 2=value2, 3=value3}
-val result3: Map<String, Int> = xs.associateBy { "key$it" } // {key1=1, key2=2, key3=3}
+val xs: List<Char> = listOf('a', 'b', 'c')
+val result1: Map<Char, Int> = xs.withIndex().associate { it.value to it.index } // {a=0, b=1, c=2}
+val result2: Map<Char, Char> = xs.associateWith { it.toUpperCase() } // {a=A, b=B, c=C}
+val result3: Map<Char, Char> = xs.associateBy { it.toUpperCase() } // {A=a, B=b, C=c}
+
+val ys: List<String> = listOf("fruit" to "apple", "fruit" to "orange", "vegetable" to "carrot", "vegetable" to "potato")
+val result4: Map<String, List<String>> = ys.groupBy({ it.first }, { it.second }) // {fruit=[apple, orange], vegetable=[carrot, potato]}
+
+val zs: List<String> = listOf("key1", "key2", "key1", "key2")
+val result5: Map<String, List<Int>> = zs.mapIndexed { i, x -> x to i }.groupBy({ it.first }, { it.second }) // {key1=[0, 2], key2=[1, 3]}
 ```
 
 ## How to convert two List(s) to a List

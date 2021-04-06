@@ -2,13 +2,34 @@
 * https://developer.android.com/kotlin/style-guide
 * https://kotlinlang.org/docs/reference/coding-conventions.html
 
-# Type mapping between Kotlin and Java
+# Iterable
+## How to loop with indices
+```kotlin
+val xs: List<Char> = listOf('a', 'b', 'c')
+for((i, x) in xs.withIndex()) println("$i $x")
+
+// Alternatively
+xs.forEachIndexed { i, x -> println("$i $x") }
+
+// Alternatively
+xs.mapIndexed { i, x -> "$i $x" }.forEach(::println)
+```
+
+## Do while loop
+```kotlin
+do {
+    var cont = true // The condition flag can be declared inside the do while loop!
+    if(Random.nextBoolean()) cont = false
+} while(cont)
+```
+
+# Array
+## Type mapping between Kotlin and Java
 Kotlin|Java
 ---|---
 IntArray|int[]
 Array\<Int>|Integer[]
 
-# Array
 ## How to create an IntArray
 ```kotlin
 val xs: IntArray = intArrayOf(1, 2, 3) // [1, 2, 3]
@@ -310,14 +331,6 @@ val s: String = buildString {
     appendLine("aaa")
     appendLine("bbb")
 }
-```
-
-# Do while loop
-```kotlin
-do {
-    var cont = true // The condition flag can be declared inside the braces of a do-while loop, unlike a while loop.
-    if(Random.nextBoolean()) cont = false
-} while(cont)
 ```
 
 # Enum

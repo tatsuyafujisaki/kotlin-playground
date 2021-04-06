@@ -7,7 +7,7 @@ class DisjointSets(n: Int) {
     private val parents = IntArray(n) { it }
     private val ranks = IntArray(n)
 
-    val disjointSets get() = parents
+    val result get() = parents
         .mapIndexed { i, x -> x to i }
         .groupBy({ it.first }, { it.second })
         .values.map { it.toSet() }

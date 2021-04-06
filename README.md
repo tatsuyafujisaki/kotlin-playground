@@ -633,5 +633,5 @@ private var INSTANCE: MyDatabase? = null
 # RxJava
 [rxjava.md](markdown/rxjava.md)
 
-# Scope funcdtions
+# Scope functions
 [scope-functions.md](markdown/scope-functions.md)

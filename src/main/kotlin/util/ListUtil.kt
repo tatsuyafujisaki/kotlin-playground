@@ -19,6 +19,10 @@ object ListUtil {
         }
     }
 
+    fun List<*>.toPair() = let {
+        it[0] to it[1]
+    }
+
     fun List<*>.pairs() = sequence {
         for (i in indices) {
             for (j in i + 1 until size) yield(this@pairs[i] to this@pairs[j])

@@ -5,15 +5,9 @@ object StandardInputUtil {
     fun readAndDiscard() {
         readLine() // Read and discard
     }
-    fun readInt() = readLine().orEmpty().toInt()
-    fun readIntegers() = readLine().orEmpty().split(' ').map(String::toInt)
-    fun readDoubles() = readLine().orEmpty().split(' ').map(String::toDouble)
-
-    /** Handle multiple spaces */
-    fun safeReadIntegers() = readLine().orEmpty().split(' ').filterNot(String::isEmpty).map(String::toInt)
-
-    /** Handle multiple spaces */
-    fun safeReadDoubles() = readLine().orEmpty().split(' ').filterNot(String::isEmpty).map(String::toDouble)
+    fun readInt() = readLine().orEmpty().trim().toInt()
+    fun readIntegers() = readLine().orEmpty().split("\\s+".toRegex()).map(String::toInt)
+    fun readDoubles() = readLine().orEmpty().split("\\s+".toRegex()).map(String::toDouble)
 
     /**
      * Read all the lines.

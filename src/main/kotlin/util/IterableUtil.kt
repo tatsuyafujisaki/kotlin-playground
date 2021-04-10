@@ -6,6 +6,7 @@ object IterableUtil {
     fun <T> Iterable<T>.addOrRemove(x: T) = run { if (any { it == x }) minus(x) else plus(x) }
     fun Iterable<*>.hasDuplicates() = groupingBy { it }.eachCount().any { it.value > 1 }
     fun Iterable<*>.rotateLeft(distance: Int): List<*> = drop(distance) + take(distance)
+    fun Iterable<Int>.toZeroBased() = map { it - 1 }
     fun Iterable<Int>.prefixSum() = scan(0) { acc, x -> acc + x }
 
     /** For a competitive programming platform that does not support scan() of Kotlin 1.4 */

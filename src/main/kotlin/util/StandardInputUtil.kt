@@ -2,8 +2,8 @@ package util
 
 object StandardInputUtil {
     fun readInt() = readLine().orEmpty().toInt()
-    fun readIntegers() = readLine().orEmpty().split("\\s+".toRegex()).map(String::toInt)
-    fun readDoubles() = readLine().orEmpty().split("\\s+".toRegex()).map(String::toDouble)
+    fun readIntegers() = readLine().orEmpty().split(' ').map(String::toInt)
+    fun readDoubles() = readLine().orEmpty().split(' ').map(String::toDouble)
 
     /**
      * val xs = " 1  2 ".split("\\s+".toRegex()).map(String::toInt) // throw a NumberFormatException because of leading and trailing spaces.
@@ -21,10 +21,14 @@ object StandardInputUtil {
      */
     fun readLines() = generateSequence(::readLine)
 
-    fun readMatrixSample() {
-        val rows = readLine().orEmpty().toInt()
-        val matrix = Array(rows) {
-            readLine().orEmpty().split(' ').map(String::toInt).toIntArray()
-        }
+    /**
+     * Read a matrix when the standard input is as follows.
+     * 3 <- number of rows
+     * a00 a01 a02 a03
+     * a10 a11 a12 a13
+     * a20 a21 a22 a23
+     */
+    fun readMatrix() = Array(readLine().orEmpty().toInt()) {
+        readLine().orEmpty().split(' ').map(String::toInt).toIntArray()
     }
 }

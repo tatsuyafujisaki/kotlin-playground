@@ -3,6 +3,14 @@
 * https://kotlinlang.org/docs/reference/coding-conventions.html
 
 # Iterable
+## The condition flag can be declared inside a do while loop.
+```kotlin
+do {
+    var cont = true // The condition flag can be declared inside a do while loop!
+    if(Random.nextBoolean()) cont = false
+} while(cont)
+```
+
 ## How to loop with indices
 ```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c')
@@ -15,12 +23,9 @@ xs.forEachIndexed { i, x -> println("$i $x") }
 xs.mapIndexed { i, x -> "$i $x" }.forEach(::println)
 ```
 
-## Do while loop
+## How to filter an Iterable by index
 ```kotlin
-do {
-    var cont = true // The condition flag can be declared inside the do while loop!
-    if(Random.nextBoolean()) cont = false
-} while(cont)
+val xs: List<Char> = listOf('a', 'b', 'c').filterIndexed { i, _ -> i != 1 } // [a, c]
 ```
 
 # Array

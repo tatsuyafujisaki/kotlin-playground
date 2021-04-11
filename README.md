@@ -11,7 +11,7 @@ do {
 } while(cont)
 ```
 
-## How to loop with indices
+## How to iterate through an Iterable with index
 ```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c')
 for((i, x) in xs.withIndex()) println("$i $x")

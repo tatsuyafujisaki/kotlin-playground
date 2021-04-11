@@ -51,7 +51,7 @@ object ArrayUtil {
         return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
     }
 
-    fun IntArray.mode() = toList().groupingBy { it }.eachCount().maxBy { it.value }?.key
+    fun IntArray.mode() = toList().groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
 
     fun IntArray.medianByCountingSort(): Double {
         fun median(onMiddleIndex: (IntArray, Int) -> Double): Double {

@@ -23,10 +23,8 @@ object StandardInputUtil {
 
     fun readMatrixSample() {
         val rows = readLine().orEmpty().toInt()
-        val columns = readLine().orEmpty().toInt()
-        val matrix = Array(rows) { IntArray(columns) }
-        for (row in matrix) {
-            readLine().orEmpty().split(' ').map(String::toInt).toIntArray().copyInto(row)
+        val matrix = Array(rows) {
+            readLine().orEmpty().split(' ').map(String::toInt).toIntArray()
         }
     }
 }

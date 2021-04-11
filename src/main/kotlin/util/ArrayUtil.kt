@@ -46,6 +46,13 @@ object ArrayUtil {
             return indexOfMax
         }
 
+    fun IntArray.median(): Double {
+        val i = size / 2
+        return if (size % 2 == 0) (this[i - 1] + this[i]) / 2.0 else this[i].toDouble()
+    }
+
+    fun IntArray.mode() = groupingBy { it }.eachCount().maxBy { it.value }?.key
+
     fun IntArray.medianByCountingSort(): Double {
         fun median(onMiddleIndex: (IntArray, Int) -> Double): Double {
             val counts = IntArray(maxOrNull()!! + 1)

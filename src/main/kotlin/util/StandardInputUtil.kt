@@ -20,4 +20,13 @@ object StandardInputUtil {
      * Read all the lines.
      */
     fun readLines() = generateSequence(::readLine)
+
+    fun readMatrixSample() {
+        val rows = readLine().orEmpty().toInt()
+        val columns = readLine().orEmpty().toInt()
+        val matrix = Array(rows) { IntArray(columns) }
+        for (row in matrix) {
+            readLine().orEmpty().split(' ').map(String::toInt).toIntArray().copyInto(row)
+        }
+    }
 }

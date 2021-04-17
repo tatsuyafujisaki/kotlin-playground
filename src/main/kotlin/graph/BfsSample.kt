@@ -2,8 +2,8 @@ package graph
 
 fun bfs(vertices: List<Set<Int>>, startVertex: Int): IntArray {
     val unknown = -1
-    val distancesFromStartVertex = IntArray(vertices.size) {
-        if (it == startVertex) 0 else unknown
+    val distancesFromStartVertex = IntArray(vertices.size) { unknown }.also {
+        it[startVertex] = 0
     }
     val verticesToVisit = mutableListOf(startVertex)
     while (verticesToVisit.isNotEmpty()) {

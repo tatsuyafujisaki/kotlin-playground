@@ -4,7 +4,7 @@ data class Tree(val ancestors: List<List<Int>>, val children: List<Set<Int>>, va
 
 fun convertUndirectedAcyclicGraphToTree(
     undirectedGraph: List<Set<Int>>,
-    data: IntArray,
+    data: List<Int>,
     root: Int
 ): Tree {
     val n = undirectedGraph.size

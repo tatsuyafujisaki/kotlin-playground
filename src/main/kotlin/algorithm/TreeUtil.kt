@@ -40,3 +40,28 @@ fun findLCA(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int): Int {
     }
     return v1
 }
+
+/**
+ * returns one or two elements as the roots of minimum height tree(s).
+ * https://www.geeksforgeeks.org/roots-tree-gives-minimum-height/
+ */
+fun findRootOfMinHeightTree(graph: List<Set<Int>>): Set<Int> {
+    val removed = BooleanArray(graph.size)
+    var leaves = graph.withIndex().filter { (_, x) -> x.size == 1 }.map { (i, _) -> i }.toMutableList()
+    do {
+        val semiLeaves = mutableSetOf<Int>() // avoids adding duplicate elements.
+        while (leaves.isNotEmpty()) {
+            val leaf = leaves.removeFirst()
+            removed[leaf] = true
+            graph[leaf]
+                .filterNot {
+                    removed[it]
+                }
+                .forEach {
+                    semiLeaves.add(it)
+                }
+        }
+        leaves = semiLeaves.toMutableList()
+    } while (leaves.size > 2)
+    return leaves.toSet()
+}

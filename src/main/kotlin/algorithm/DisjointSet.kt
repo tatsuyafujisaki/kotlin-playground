@@ -7,11 +7,13 @@ class DisjointSets(n: Int) {
     private val parents = IntArray(n) { it }
     private val ranks = IntArray(n)
 
-    val result get() = parents
-        .mapIndexed { i, x -> x to i }
-        .groupBy({ it.first }, { it.second })
-        .values.map { it.toSet() }
-        .toSet()
+    val result
+        get() = parents
+            .mapIndexed { i, x -> x to i }
+            .groupBy({ it.first }, { it.second })
+            .values
+            .map { it.toSet() }
+            .toSet()
 
     /** Using the technique "path compression" */
     private fun findRoot(x: Int): Int {

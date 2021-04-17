@@ -13,7 +13,7 @@ object TreeSample2 {
         fun createVertex(parent: Int, id: Int): Vertex {
             parents[id] = parent
             val children = undirectedGraph[id]
-                .filterNot {
+                .filter {
                     parents[it] == Int.MIN_VALUE
                 }.map {
                     createVertex(id, it)

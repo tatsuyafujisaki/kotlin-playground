@@ -1,6 +1,6 @@
 package algorithm
 
-class Vertex(val parent: Vertex?, val value: Int, var children: Set<Vertex>)
+class Vertex(val parent: Vertex?, val id: Int, var children: Set<Vertex>)
 
 fun convertUndirectedGraphToTree(undirectedGraph: List<Set<Int>>, root: Int): Vertex {
     val visited = BooleanArray(undirectedGraph.size)

@@ -20,7 +20,6 @@ fun convertUndirectedAcyclicGraphToTree(
     }
 
     visitVertex(-1, root)
-
     return Tree(ancestors.toList(), children.toList(), subtreeData.toList())
 }
 

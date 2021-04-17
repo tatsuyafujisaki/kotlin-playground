@@ -1,22 +1,26 @@
 package algorithm
 
 object TreeSample2 {
-    class Vertex(val id: Int, val data: Int, val children: Set<Vertex>)
+    class Vertex(val id: Int, val subtreeData: Int /* includes data of this vertex */, val children: Set<Vertex>)
 
-    fun convertUndirectedGraphToTree(undirectedGraph: List<Set<Int>>, data: List<Int>, root: Int): Vertex {
-        val visited = BooleanArray(undirectedGraph.size)
+    fun convertUndirectedGraphToTree(
+        undirectedGraph: List<Set<Int>>,
+        data: List<Int>,
+        root: Int
+    ): Pair<IntArray, Vertex> {
+        val parents = IntArray(undirectedGraph.size) { Int.MIN_VALUE }
 
-        fun createVertex(id: Int): Vertex {
-            visited[id] = true
+        fun createVertex(parent: Int, id: Int): Vertex {
+            parents[id] = parent
             val children = undirectedGraph[id]
                 .filterNot {
-                    visited[it]
+                    parents[it] == Int.MIN_VALUE
                 }.map {
-                    createVertex(it)
+                    createVertex(id, it)
                 }.toSet()
-            return Vertex(id, data[id], children)
+            return Vertex(id, data[id] + children.map { it.subtreeData }.sum(), children)
         }
 
-        return createVertex(root)
+        return parents to createVertex(-1, root)
     }
 }

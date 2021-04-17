@@ -1,14 +1,14 @@
 package graph
 
-fun bfs(undirectedGraph: List<Set<Int>>, startVertex: Int): IntArray {
+fun bfs(vertices: List<Set<Int>>, startVertex: Int): IntArray {
     val unknown = -1
-    val distancesFromStartVertex = IntArray(undirectedGraph.size) {
+    val distancesFromStartVertex = IntArray(vertices.size) {
         if (it == startVertex) 0 else unknown
     }
     val verticesToVisit = mutableListOf(startVertex)
     while (verticesToVisit.isNotEmpty()) {
         val vertex = verticesToVisit.removeAt(0) // TODO: Use removeFirst() in Kotlin 1.4+.
-        undirectedGraph[vertex]
+        vertices[vertex]
             .filter {
                 distancesFromStartVertex[it] == unknown
             }

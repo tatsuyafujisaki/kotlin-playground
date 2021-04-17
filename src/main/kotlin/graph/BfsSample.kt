@@ -7,7 +7,7 @@ fun bfs(vertices: List<Set<Int>>, startVertex: Int): IntArray {
     }
     val verticesToVisit = mutableListOf(startVertex)
     while (verticesToVisit.isNotEmpty()) {
-        val vertex = verticesToVisit.removeAt(0) // TODO: Use removeFirst() in Kotlin 1.4+.
+        val vertex = verticesToVisit.removeFirst()
         vertices[vertex]
             .filter {
                 distancesFromStartVertex[it] == unknown
@@ -22,18 +22,18 @@ fun bfs(vertices: List<Set<Int>>, startVertex: Int): IntArray {
 
 fun main() {
     val (vertexCount, edgeCount) = readLine().orEmpty().split(' ').map(String::toInt)
-    val undirectedGraph = Array(vertexCount) { mutableSetOf<Int>() }
+    val vertices = List(vertexCount) { mutableSetOf<Int>() }
     repeat(edgeCount) {
         val (v1, v2) = readLine()
             .orEmpty()
             .split(' ')
             .map(String::toInt)
             .map { it - 1 } // converts to zero-based numbering.
-        undirectedGraph[v1].add(v2)
-        undirectedGraph[v2].add(v1)
+        vertices[v1].add(v2)
+        vertices[v2].add(v1)
     }
     val startVertex = readLine().orEmpty().toInt() - 1 // converts to zero-based numbering.
-    bfs(undirectedGraph.map { it.toSet() }, startVertex)
+    bfs(vertices.map { it.toSet() }, startVertex)
         .filterIndexed { i, _ ->
             i != startVertex
         }

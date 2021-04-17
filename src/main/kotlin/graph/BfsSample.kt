@@ -22,18 +22,18 @@ fun bfs(vertices: List<Set<Int>>, startVertex: Int): IntArray {
 
 fun main() {
     val (vertexCount, edgeCount) = readLine().orEmpty().split(' ').map(String::toInt)
-    val vertices = List(vertexCount) { mutableSetOf<Int>() }
+    val undirectedGraph = List(vertexCount) { mutableSetOf<Int>() }
     repeat(edgeCount) {
         val (v1, v2) = readLine()
             .orEmpty()
             .split(' ')
             .map(String::toInt)
             .map { it - 1 } // converts to zero-based numbering.
-        vertices[v1].add(v2)
-        vertices[v2].add(v1)
+        undirectedGraph[v1].add(v2)
+        undirectedGraph[v2].add(v1)
     }
     val startVertex = readLine().orEmpty().toInt() - 1 // converts to zero-based numbering.
-    bfs(vertices.map { it.toSet() }, startVertex)
+    bfs(undirectedGraph.map { it.toSet() }, startVertex)
         .filterIndexed { i, _ ->
             i != startVertex
         }

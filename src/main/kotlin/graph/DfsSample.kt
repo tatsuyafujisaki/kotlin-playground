@@ -1,11 +1,11 @@
 package graph
 
-fun dfs(vertices: List<Set<Int>>, startVertex: Int) {
-    val visited = BooleanArray(vertices.size) { false }
+fun dfs(undirectedGraph: List<Set<Int>>, startVertex: Int) {
+    val visited = BooleanArray(undirectedGraph.size) { false }
 
     fun dfs(vertex: Int) {
         visited[vertex] = true
-        vertices[vertex]
+        undirectedGraph[vertex]
             .filterNot {
                 visited[it]
             }

@@ -4,7 +4,7 @@ import java.io.File
 
 /**
  * Usage:
- * val stdin = SimulatedStandardInput("inpout.txt")
+ * val stdin = SimulatedStandardInput("input.txt")
  * fun readLine() = stdin.readLine()
  *
  * @param pathname is expected to exist as the src folder's sibling.

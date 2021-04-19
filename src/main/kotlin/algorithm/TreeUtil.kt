@@ -4,7 +4,7 @@ data class Vertex(val ancestors: List<Int>, val children: Set<Int>, val subtreeD
     val depth get() = ancestors.size
 }
 
-fun convertUndirectedAcyclicGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<Vertex> {
+fun convertGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<Vertex> {
     val n = graph.size
     val ancestors = Array<List<Int>>(n) { emptyList() }
     val vertices = Array<Vertex?>(n) { null }

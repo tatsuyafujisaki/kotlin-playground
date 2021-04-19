@@ -18,7 +18,6 @@ fun convertGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<
     }
 
     visitVertex(root, -1)
-
     return vertices.filterNotNull()
 }
 

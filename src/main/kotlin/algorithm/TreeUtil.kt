@@ -1,26 +1,25 @@
 package algorithm
 
-data class Tree(val ancestors: List<List<Int>>, val children: List<Set<Int>>, val subtreeData: List<Long>)
+data class Vertex(val ancestors: List<Int>, val children: Set<Int>, val subtreeData: Long) {
+    val depth get() = ancestors.size
+}
 
-fun convertUndirectedAcyclicGraphToTree(
-    undirectedGraph: List<Set<Int>>,
-    data: List<Int>,
-    root: Int
-): Tree {
-    val n = undirectedGraph.size
+fun convertUndirectedAcyclicGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<Vertex> {
+    val n = graph.size
     val ancestors = Array<List<Int>>(n) { emptyList() }
-    val children = Array<Set<Int>>(n) { emptySet() }
-    val subtreeData = LongArray(n)
+    val vertices = Array<Vertex?>(n) { null }
 
-    fun visitVertex(parent: Int, id: Int) {
-        if (parent != -1) ancestors[id] = listOf(parent) + ancestors[parent]
-        children[id] = undirectedGraph[id].filter { it != root && ancestors[it].isEmpty() }.toSet()
-        for (child in children[id]) visitVertex(id, child)
-        subtreeData[id] = data[id] + children[id].map { subtreeData[it] }.sum()
+    fun visitVertex(id: Int, parent: Int) {
+        ancestors[id] = if (parent == -1) emptyList() else listOf(parent) + ancestors[parent]
+        val children = graph[id].filter { it != root && ancestors[it].isEmpty() }.toSet()
+        for (child in children) visitVertex(child, id)
+        val subtreeData = data[id] + children.map { vertices[it]!!.subtreeData }.sum()
+        vertices[id] = Vertex(ancestors[id], children, subtreeData)
     }
 
-    visitVertex(-1, root)
-    return Tree(ancestors.toList(), children.toList(), subtreeData.toList())
+    visitVertex(root, -1)
+
+    return vertices.filterNotNull()
 }
 
 /** finds the lowest common ancestor (LCA). */

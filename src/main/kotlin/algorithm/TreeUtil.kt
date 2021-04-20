@@ -6,9 +6,8 @@ data class Vertex(val ancestors: List<Int>, val children: List<Int>, val subtree
 }
 
 fun convertGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<Vertex> {
-    val n = graph.size
-    val ancestors = Array<List<Int>>(n) { emptyList() }
-    val vertices = Array<Vertex?>(n) { null }
+    val ancestors = Array<List<Int>>(graph.size) { emptyList() }
+    val vertices = Array<Vertex?>(graph.size) { null }
 
     fun visitVertex(id: Int, parent: Int) {
         ancestors[id] = if (parent == -1) emptyList() else listOf(parent) + ancestors[parent]

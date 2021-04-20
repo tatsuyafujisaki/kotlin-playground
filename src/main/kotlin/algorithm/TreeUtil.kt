@@ -40,6 +40,11 @@ fun findLCA(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int): Int {
     return v1
 }
 
+fun isParentChildRelationship(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int) =
+    findLCA(ancestors, vertex1, vertex2).let {
+        it == vertex1 || it == vertex2
+    }
+
 /**
  * returns one or two roots of minimum height tree(s).
  * https://www.geeksforgeeks.org/roots-tree-gives-minimum-height/

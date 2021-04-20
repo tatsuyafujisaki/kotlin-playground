@@ -1,6 +1,7 @@
 package algorithm
 
 data class Vertex(val ancestors: List<Int>, val children: Set<Int>, val subtreeData: Long) {
+    val isRoot get() = ancestors.isEmpty()
     val depth get() = ancestors.size
 }
 

@@ -1,6 +1,6 @@
 package algorithm
 
-data class Vertex(val ancestors: List<Int>, val children: List<Int>, val subtreeData: Long) {
+data class Vertex(val ancestors: List<Int>, val children: List<Int>, val subtreeSum: Long) {
     val isRoot get() = ancestors.isEmpty()
     val depth get() = ancestors.size
 }
@@ -13,8 +13,8 @@ fun convertGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<
         ancestors[id] = if (parent == -1) emptyList() else listOf(parent) + ancestors[parent]
         val children = graph[id].filter { it != root && ancestors[it].isEmpty() }
         for (child in children) visitVertex(child, id)
-        val subtreeData = data[id] + children.map { vertices[it]!!.subtreeData }.sum()
-        vertices[id] = Vertex(ancestors[id], children.sortedBy { vertices[it]!!.subtreeData }, subtreeData)
+        val subtreeData = data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+        vertices[id] = Vertex(ancestors[id], children.sortedBy { vertices[it]!!.subtreeSum }, subtreeData)
     }
 
     visitVertex(root, -1)

@@ -8,7 +8,9 @@ import kotlin.math.sqrt
 
 object IntLongUtil {
     val Int.isEven get() = this % 2 == 0
+    val Long.isEven get() = this % 2 == 0L
     val Int.isOdd get() = this % 2 == 1
+    val Long.isOdd get() = this % 2 == 1L
     val Int.isSquareNumber get() = sqrt(toDouble()) % 1.0 == 0.0
 
     /** O(sqrt(n)) */

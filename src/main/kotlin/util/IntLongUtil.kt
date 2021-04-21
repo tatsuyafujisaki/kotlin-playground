@@ -1,13 +1,14 @@
 package util
 
+import util.CollectionUtil.permute
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.sqrt
-import util.CollectionUtil.permute
 
 object IntLongUtil {
     val Int.isEven get() = this % 2 == 0
+    val Int.isOdd get() = this % 2 == 1
     val Int.isSquareNumber get() = sqrt(toDouble()) % 1.0 == 0.0
 
     /** O(sqrt(n)) */
@@ -62,7 +63,8 @@ object IntLongUtil {
      * Tail recursive method
      * @receiver must be greater than or equal to 0.
      */
-    tailrec fun Int.factorialRecursive(acc: Int = 1): Int = if (this <= 1) acc else (this - 1).factorialRecursive(acc * this)
+    tailrec fun Int.factorialRecursive(acc: Int = 1): Int =
+        if (this <= 1) acc else (this - 1).factorialRecursive(acc * this)
 
     fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
     fun nCr(n: Int, r: Int) = nPr(n, r) / r.factorial()

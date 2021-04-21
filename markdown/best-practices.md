@@ -1,7 +1,6 @@
 # Use A rather than B for simplicity or clarity
 A|B|Note
 --|--|--
-`<*>`|`<T>`|if star-projections suffice.
 `Int.abs(...)`|`Int.absoluteValue`
 `A to B`|`Pair(A, B)`
 `emptyList()`|`listOf()`

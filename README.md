@@ -274,24 +274,32 @@ val result7: String? = map.getOrElse("d") { "not found" } // not found
 
 ## How to map a Map
 ```kotlin
-val map: Map<String, Int> = mapOf("apple" to 10, "orange" to 20)
-val result1: Map<String, Int> = map.mapValues { it.value * 10 } // {apple=100, orange=200}
-val result2: Map<String, Int> = map.mapKeys { it.key.toUpperCase() } // {APPLE=10, ORANGE=20}
-val result3: Map<String, Int> = map.map { it.key.toUpperCase() to it.value * 10 }.toMap() // {APPLE=100, ORANGE=200}
+val map: Map<Char, Int> = mapOf('a' to 10, 'b' to 20)
+val result1: Map<Char, Int> = map.mapValues { it.value * 10 } // {a=100, b=200}
+val result2: Map<Char, Int> = map.mapKeys { it.key.toUpperCase() } // {A=10, B=20}
+val result3: Map<Char, Int> = map.map { it.key.toUpperCase() to it.value * 10 }.toMap() // {A=100, B=200}
 ```
 
 ## How to filter a Map
 ```kotlin
-val map: Map<String, Int> = mapOf("apple" to 1, "orange" to 2)
-val result1: Map<String, Int> = map.filterKeys { it == "apple" } // {apple=1}
-val result2: Map<String, Int> = map.filterValues { it == 2 } // {orange=2}
-val result3: Map<String, Int> = map.filter { it.key == "orange" && it.value == 2 } // {orange=2}
+val map: Map<Char, Char> = mapOf('A' to 'a', 'B' to 'b')
+val result1: Map<Char, Char> = map.filterKeys { it == 'A' } // {A=a}
+val result2: Map<Char, Char> = map.filterValues { it == 'b' } // {B=b}
+val result3: Map<Char, Char> = map.filter { it.key == 'B' && it.value == 'b' } // {B=b}
 ```
 
 ## How to sort a Map
 ```kotlin
-val map: Map<String, String> = mapOf("a" to "x", "b" to "y", "c" to "z")
-val result: Map<String, String> = map.toSortedMap() // {a=x, b=y, c=z}
+val map: Map<Char, Char> = mapOf('A' to 'a', 'B' to 'b', 'C' to 'c')
+val sorted: Map<Char, Char> = map.toSortedMap() // {A=a, B=b, C=c}
+```
+
+## How to flatten a list of Map(s)
+```kotlin
+val map1: Map<Char, Char> = mapOf('A' to 'a')
+val map2: Map<Char, Char> = mapOf('B' to 'b')
+val maps: List<Map<Char, Char>> = listOf(map1, map2)
+val map: Map<Char, Char> = maps.reduce { acc, x -> acc + x } // {A=a, B=b}
 ```
 
 # String

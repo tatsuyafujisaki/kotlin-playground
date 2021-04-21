@@ -297,7 +297,7 @@ val sorted: Map<Char, Char> = map.toSortedMap() // {A=a, B=b}
 ## How to sort a Map by value
 ```kotlin
 val map: Map<Char, Int> = mapOf('a' to 2, 'b' to 1)
-val sorted = map.toList().sortedBy { it.second }.toMap() // {b=1, a=2}
+val sorted: Map<Char, Int> = map.toList().sortedBy { it.second }.toMap() // {b=1, a=2}
 ```
 
 ## How to flatten a list of Map(s)

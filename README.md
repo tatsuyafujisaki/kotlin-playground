@@ -631,17 +631,6 @@ private var INSTANCE: MyDatabase? = null
   * > Volatiles are of no help. There is a common misconception that making a variable volatile solves concurrency problem.
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-volatile/
 
-# Stream
-## Hot stream
-* is like a touchless faucet.
-* has all the pains of resource management (once you open it, you must not forget to close it)
-  * https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4
-
-## Cold stream
-* is like a touchless faucet.
-* provides an elegant relief of this chore.
-  * https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4
-
 # Best practices
 [best-practices.md](markdown/best-practices.md)
 

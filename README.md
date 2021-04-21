@@ -290,14 +290,16 @@ val result3: Map<Char, Char> = map.filter { it.key == 'B' && it.value == 'b' } /
 
 ## How to sort a Map
 ```kotlin
-val map: Map<Char, Char> = mapOf('A' to 'a', 'B' to 'b')
-val sorted: Map<Char, Char> = map.toSortedMap() // {A=a, B=b}
+val map: Map<Char, Char> = mapOf('A' to 'a', 'C' to 'c', 'B' to 'b')
+val sorted: Map<Char, Char> = map.toSortedMap() // {A=a, B=b, C=c}
+val sortedDescending: Map<Char, Char> = map.toSortedMap(reverseOrder()) // {C=c, B=b, A=a}
 ```
 
 ## How to sort a Map by value
 ```kotlin
-val map: Map<Char, Int> = mapOf('a' to 2, 'b' to 1)
-val sorted: Map<Char, Int> = map.toList().sortedBy { it.second }.toMap() // {b=1, a=2}
+val map: Map<Char, Int> = mapOf('a' to 2, 'b' to 1, 'c' to 3)
+val sorted: Map<Char, Int> = map.toList().sortedBy { it.second }.toMap() // {b=1, a=2, c=3}
+val sortedDescending: Map<Char, Int> = map.toList().sortedByDescending { it.second }.toMap() // {c=3, a=2, b=1}
 ```
 
 ## How to flatten a list of Map(s)

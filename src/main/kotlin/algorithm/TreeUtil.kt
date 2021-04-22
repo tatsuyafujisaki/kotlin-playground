@@ -50,6 +50,8 @@ object TreeUtil {
      * https://www.geeksforgeeks.org/roots-tree-gives-minimum-height/
      */
     fun findRootOfMinHeightTree(graph: List<Set<Int>>): Set<Int> {
+        // Early return if the graph has only one vertex because the rest of findRootOfMinHeightTree() mistakenly returns an empty set in the scenario.
+        if (graph.size == 1) return setOf(0)
         var remainingVertices = graph.size
         val degrees = graph.map { it.size }.toMutableList()
         val leaves = graph.indices.filter { graph[it].size == 1 }.toMutableList()

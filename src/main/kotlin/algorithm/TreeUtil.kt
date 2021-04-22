@@ -1,67 +1,69 @@
 package algorithm
 
-data class Vertex(val ancestors: List<Int>, val children: List<Int>, val subtreeSum: Long) {
-    val isRoot get() = ancestors.isEmpty()
-    val depth get() = ancestors.size
-}
-
-fun convertGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<Vertex> {
-    val ancestors = Array<List<Int>>(graph.size) { emptyList() }
-    val vertices = Array<Vertex?>(graph.size) { null }
-
-    fun visitVertex(id: Int, parent: Int) {
-        ancestors[id] = if (parent == -1) emptyList() else listOf(parent) + ancestors[parent]
-        val children = graph[id].filter { it != root && ancestors[it].isEmpty() }
-        for (child in children) visitVertex(child, id)
-        val subtreeData = data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
-        vertices[id] = Vertex(ancestors[id], children.sortedBy { vertices[it]!!.subtreeSum }, subtreeData)
+object TreeUtil {
+    data class Vertex(val ancestors: List<Int>, val children: List<Int>, val subtreeSum: Long) {
+        val isRoot get() = ancestors.isEmpty()
+        val depth get() = ancestors.size
     }
 
-    visitVertex(root, -1)
-    return vertices.filterNotNull()
-}
+    fun convertGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<Vertex> {
+        val ancestors = Array<List<Int>>(graph.size) { emptyList() }
+        val vertices = Array<Vertex?>(graph.size) { null }
 
-/** finds the lowest common ancestor (LCA). */
-fun findLCA(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int): Int {
-    var v1 = vertex1
-    var v2 = vertex2
-    while (ancestors[v1].size != ancestors[v2].size) {
-        if (ancestors[v1].size < ancestors[v2].size) {
-            v2 = ancestors[v2].first()
-        } else {
-            v1 = ancestors[v1].first()
+        fun visitVertex(id: Int, parent: Int) {
+            ancestors[id] = if (parent == -1) emptyList() else listOf(parent) + ancestors[parent]
+            val children = graph[id].filter { it != root && ancestors[it].isEmpty() }
+            for (child in children) visitVertex(child, id)
+            val subtreeData = data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+            vertices[id] = Vertex(ancestors[id], children.sortedBy { vertices[it]!!.subtreeSum }, subtreeData)
         }
-    }
-    while (v1 != v2) {
-        v1 = ancestors[v1].first()
-        v2 = ancestors[v2].first()
-    }
-    return v1
-}
 
-fun isParentChildRelationship(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int) =
-    findLCA(ancestors, vertex1, vertex2).let {
-        it == vertex1 || it == vertex2
+        visitVertex(root, -1)
+        return vertices.filterNotNull()
     }
 
-/**
- * returns one or two roots of minimum height tree(s).
- * https://www.geeksforgeeks.org/roots-tree-gives-minimum-height/
- */
-fun findRootOfMinHeightTree(graph: List<Set<Int>>): Set<Int> {
-    var remainingVertices = graph.size
-    val degrees = graph.map { it.size }.toMutableList()
-    val leaves = graph.indices.filter { graph[it].size == 1 }.toMutableList()
-    while (remainingVertices > 2) {
-        val leafCount = leaves.size
-        remainingVertices -= leaves.size
-        repeat(leafCount) {
-            val leaf = leaves.removeFirst()
-            for (semiLeaf in graph[leaf]) {
-                degrees[semiLeaf]--
-                if (degrees[semiLeaf] == 1) leaves.add(semiLeaf)
+    /** finds the lowest common ancestor (LCA). */
+    fun findLCA(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int): Int {
+        var v1 = vertex1
+        var v2 = vertex2
+        while (ancestors[v1].size != ancestors[v2].size) {
+            if (ancestors[v1].size < ancestors[v2].size) {
+                v2 = ancestors[v2].first()
+            } else {
+                v1 = ancestors[v1].first()
             }
         }
+        while (v1 != v2) {
+            v1 = ancestors[v1].first()
+            v2 = ancestors[v2].first()
+        }
+        return v1
     }
-    return leaves.toSet()
+
+    fun isParentChildRelationship(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int) =
+        findLCA(ancestors, vertex1, vertex2).let {
+            it == vertex1 || it == vertex2
+        }
+
+    /**
+     * returns one or two roots of minimum height tree(s).
+     * https://www.geeksforgeeks.org/roots-tree-gives-minimum-height/
+     */
+    fun findRootOfMinHeightTree(graph: List<Set<Int>>): Set<Int> {
+        var remainingVertices = graph.size
+        val degrees = graph.map { it.size }.toMutableList()
+        val leaves = graph.indices.filter { graph[it].size == 1 }.toMutableList()
+        while (remainingVertices > 2) {
+            val leafCount = leaves.size
+            remainingVertices -= leaves.size
+            repeat(leafCount) {
+                val leaf = leaves.removeFirst()
+                for (semiLeaf in graph[leaf]) {
+                    degrees[semiLeaf]--
+                    if (degrees[semiLeaf] == 1) leaves.add(semiLeaf)
+                }
+            }
+        }
+        return leaves.toSet()
+    }
 }

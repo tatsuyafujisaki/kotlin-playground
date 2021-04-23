@@ -1,6 +1,6 @@
 package algorithm
 
-import sortedByValue
+import util.MapUtil.sortedByValue
 
 object TreeUtil2 {
     data class Vertex(

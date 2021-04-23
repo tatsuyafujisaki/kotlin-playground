@@ -23,6 +23,26 @@ object TreeUtil {
         return vertices.filterNotNull()
     }
 
+    /** Faster but has more code */
+    fun fastConvertGraphToTree(graph: List<List<Int>>, data: List<Int>, root: Int): List<Vertex> {
+        val ancestors = Array<List<Int>>(graph.size) { emptyList() }
+        val vertices = Array<Vertex?>(graph.size) { null }
+
+        fun visitVertex(id: Int, parent: Int) {
+            ancestors[id] = listOf(parent) + ancestors[parent]
+            val children = graph[id].filter { it != root && ancestors[it].isEmpty() }
+            for (child in children) visitVertex(child, id)
+            val subtreeData = data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+            vertices[id] = Vertex(ancestors[id], children, subtreeData)
+        }
+
+        for (child in graph[root]) visitVertex(child, root)
+        val subtreeData = data[root] + graph[root].map { vertices[it]!!.subtreeSum }.sum()
+        vertices[root] = Vertex(ancestors[root], graph[root], subtreeData)
+
+        return vertices.filterNotNull()
+    }
+
     /** finds the lowest common ancestor (LCA). */
     fun findLCA(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int): Int {
         var v1 = vertex1

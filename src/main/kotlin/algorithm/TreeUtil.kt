@@ -4,6 +4,7 @@ object TreeUtil {
     data class Vertex(val ancestors: List<Int>, val children: List<Int>, val subtreeSum: Long) {
         val isRoot get() = ancestors.isEmpty()
         val depth get() = ancestors.size
+        val isLeaf get() = children.isEmpty()
     }
 
     fun convertGraphToTree(graph: List<Set<Int>>, data: List<Int>, root: Int): List<Vertex> {

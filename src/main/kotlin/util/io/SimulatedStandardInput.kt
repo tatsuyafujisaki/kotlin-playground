@@ -1,11 +1,11 @@
-package util
+package util.io
 
 import java.io.File
 
 /**
  * Usage:
- * val stdin = SimulatedStandardInput("input.txt")
- * fun readLine() = stdin.readLine()
+val stdin = SimulatedStandardInput("input.txt")
+fun readLine() = stdin.readLine()
  *
  * @param pathname is expected to exist as the src folder's sibling.
  */

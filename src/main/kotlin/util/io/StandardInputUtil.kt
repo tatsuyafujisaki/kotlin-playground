@@ -1,4 +1,4 @@
-package util
+package util.io
 
 object StandardInputUtil {
     fun readInt() = readLine().orEmpty().toInt()

@@ -44,4 +44,18 @@ object ListUtil {
         }
         return min to max
     }
+
+    /**
+     * @return the number of the given element in a sorted list
+     */
+    fun <T : Comparable<T>> List<T>.count(element: T): Int {
+        val i = binarySearch(element)
+        if (i < 0) return 0
+        var j = i
+        var k = i
+        var count = 1
+        while (j-- > 0 && this[j] == element) count++
+        while (k++ < lastIndex && this[k] == element) count++
+        return count
+    }
 }

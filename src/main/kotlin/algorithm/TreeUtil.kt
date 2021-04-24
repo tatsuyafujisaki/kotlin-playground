@@ -13,7 +13,7 @@ object TreeUtil {
 
         fun visitVertex(id: Int, parent: Int) {
             ancestors[id] = if (parent == -1) emptyList() else listOf(parent) + ancestors[parent]
-            val children = graph[id].filter { it != root && ancestors[it].isEmpty() }
+            val children = graph[id].filter { parent != it }
             for (child in children) visitVertex(child, id)
             val subtreeData = data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
             vertices[id] = Vertex(ancestors[id], children.sortedBy { vertices[it]!!.subtreeSum }, subtreeData)
@@ -30,7 +30,7 @@ object TreeUtil {
 
         fun visitVertex(id: Int, parent: Int) {
             ancestors[id] = listOf(parent) + ancestors[parent]
-            val children = graph[id].filter { it != root && ancestors[it].isEmpty() }
+            val children = graph[id].filter { parent != it }
             for (child in children) visitVertex(child, id)
             val subtreeData = data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
             vertices[id] = Vertex(ancestors[id], children, subtreeData)

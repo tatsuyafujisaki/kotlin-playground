@@ -15,8 +15,11 @@ object TreeUtil {
             ancestors[id] = if (parent == -1) emptyList() else listOf(parent) + ancestors[parent]
             val children = graph[id].filter { parent != it }
             for (child in children) visitVertex(child, id)
-            val subtreeData = data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
-            vertices[id] = Vertex(ancestors[id], children.sortedBy { vertices[it]!!.subtreeSum }, subtreeData)
+            vertices[id] = Vertex(
+                ancestors[id],
+                children,
+                data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+            )
         }
 
         visitVertex(root, -1)
@@ -32,13 +35,19 @@ object TreeUtil {
             ancestors[id] = listOf(parent) + ancestors[parent]
             val children = graph[id].filter { parent != it }
             for (child in children) visitVertex(child, id)
-            val subtreeData = data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
-            vertices[id] = Vertex(ancestors[id], children, subtreeData)
+            vertices[id] = Vertex(
+                ancestors[id],
+                children,
+                data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+            )
         }
 
         for (child in graph[root]) visitVertex(child, root)
-        val subtreeData = data[root] + graph[root].map { vertices[it]!!.subtreeSum }.sum()
-        vertices[root] = Vertex(ancestors[root], graph[root], subtreeData)
+        vertices[root] = Vertex(
+            ancestors[root],
+            graph[root],
+            data[root] + graph[root].map { vertices[it]!!.subtreeSum }.sum()
+        )
 
         return vertices.filterNotNull()
     }
@@ -88,5 +97,13 @@ object TreeUtil {
             }
         }
         return leaves.toSet()
+    }
+
+    fun List<Vertex>.getDescendants(i: Int): List<Int> {
+        fun getDescendants(vertex: Vertex): List<Int> {
+            if (vertex.children.isEmpty()) return emptyList()
+            return vertex.children + vertex.children.map { getDescendants(it) }.flatten()
+        }
+        return getDescendants(this[i])
     }
 }

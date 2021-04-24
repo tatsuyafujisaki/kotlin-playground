@@ -1,16 +1,19 @@
 package util.io
 
 import java.io.Closeable
+import java.io.PrintWriter
 import java.util.StringTokenizer
 
-/** Usage
-FastScanner().use { fs ->
-    PrintWriter(System.out, false /* writes at once */).use {  pw ->
-        val n = fs.nextInt()
-        pw.println()
+// Usage of FastScanner
+fun main() {
+    FastScanner().use { fs ->
+        PrintWriter(System.out, false /* writes at once */).use { pw ->
+            val n = fs.nextInt()
+            pw.println("Hello, World!")
+        }
     }
 }
- */
+
 class FastScanner : Closeable {
     private val br = System.`in`.bufferedReader()
     private var st = StringTokenizer("")
@@ -22,18 +25,13 @@ class FastScanner : Closeable {
 
     fun nextInt() = next().toInt()
     fun nextZeroBasedInt() = next().toInt() - 1
-    fun nextDouble() = next().toDouble()
 
-    fun nextIntegers(n: Int): IntArray {
-        val xs = IntArray(n)
-        for (i in 0 until n) xs[i] = nextInt()
-        return xs
+    fun nextIntegers(n: Int) = IntArray(n) {
+        nextInt()
     }
 
-    fun nextZeroBasedIntegers(n: Int): IntArray {
-        val xs = IntArray(n)
-        for (i in 0 until n) xs[i] = nextZeroBasedInt()
-        return xs
+    fun nextZeroBasedIntegers(n: Int) = IntArray(n) {
+        nextZeroBasedInt()
     }
 
     override fun close() {

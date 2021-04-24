@@ -20,21 +20,10 @@ object FastScanner {
         return st.nextToken()
     }
 
-    fun nextInt(): Int {
-        return next().toInt()
-    }
-
-    fun nextZeroBasedInt(): Int {
-        return next().toInt() - 1
-    }
-
-    fun nextLong(): Long {
-        return next().toLong()
-    }
-
-    fun nextDouble(): Double {
-        return next().toDouble()
-    }
+    fun nextInt() = next().toInt()
+    fun nextZeroBasedInt() = next().toInt() - 1
+    fun nextLong() = next().toLong()
+    fun nextDouble() = next().toDouble()
 
     fun nextIntegers(n: Int): IntArray {
         val xs = IntArray(n)

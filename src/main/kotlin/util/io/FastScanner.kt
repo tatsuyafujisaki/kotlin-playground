@@ -1,17 +1,17 @@
 package util.io
 
+import java.io.Closeable
 import java.util.StringTokenizer
 
-/**
- * Usage:
- * fun main(args: Array<String>) {
- *     val n = FastScanner.nextInt()
- *     val pw = PrintWriter(System.out, false /* disables autoFlush to write at once */)
- *     FastScanner.close()
- *     pw.close()
- * }
+/** Usage
+FastScanner().use { fs ->
+    PrintWriter(System.out, false /* writes at once */).use {  pw ->
+        val n = fs.nextInt()
+        pw.println()
+    }
+}
  */
-object FastScanner {
+class FastScanner : Closeable {
     private val br = System.`in`.bufferedReader()
     private var st = StringTokenizer("")
 
@@ -22,7 +22,6 @@ object FastScanner {
 
     fun nextInt() = next().toInt()
     fun nextZeroBasedInt() = next().toInt() - 1
-    fun nextLong() = next().toLong()
     fun nextDouble() = next().toDouble()
 
     fun nextIntegers(n: Int): IntArray {
@@ -37,13 +36,7 @@ object FastScanner {
         return xs
     }
 
-    fun nextLongs(n: Int): LongArray {
-        val xs = LongArray(n)
-        for (i in 0 until n) xs[i] = nextInt().toLong()
-        return xs
-    }
-
-    fun close() {
+    override fun close() {
         br.close()
     }
 }

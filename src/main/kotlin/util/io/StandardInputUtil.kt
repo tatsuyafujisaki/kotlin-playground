@@ -3,7 +3,7 @@ package util.io
 object StandardInputUtil {
     fun readInt() = readLine().orEmpty().toInt()
     fun readIntegers() = readLine().orEmpty().split(' ').map(String::toInt)
-    fun readDoubles() = readLine().orEmpty().split(' ').map(String::toDouble)
+    fun readZeroBasedIntegers() = readLine().orEmpty().split(' ').map(String::toInt).map { it - 1 }
 
     /**
      * val xs = " 1  2 ".split("\\s+".toRegex()).map(String::toInt) // throw a NumberFormatException because of leading and trailing spaces.
@@ -12,9 +12,6 @@ object StandardInputUtil {
      */
     fun safeReadIntegers1() = readLine().orEmpty().trim().split("\\s+".toRegex()).map(String::toInt)
     fun safeReadIntegers2() = readLine().orEmpty().split(' ').filterNot(String::isEmpty).map(String::toInt)
-
-    fun safeReadDoubles1() = readLine().orEmpty().trim().split("\\s+".toRegex()).map(String::toDouble)
-    fun safeReadDoubles2() = readLine().orEmpty().split(' ').filterNot(String::isEmpty).map(String::toInt)
 
     /**
      * Read all the lines.

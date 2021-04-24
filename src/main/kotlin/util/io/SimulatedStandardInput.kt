@@ -8,6 +8,7 @@ fun main() {
     fun readLine() = stdin.readLine()
 }
 
+/** @param pathname a sibling of the src folder */
 class SimulatedStandardInput(pathname: String) {
     private var lines = File(pathname).readLines()
     private var i = 0

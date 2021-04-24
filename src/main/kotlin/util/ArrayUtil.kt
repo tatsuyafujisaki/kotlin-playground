@@ -81,4 +81,15 @@ object ArrayUtil {
         if (right.isEmpty()) listOf(left) else right.flatMap { permute(left + it, right - it) }
 
     fun IntArray.permuteWithoutDuplicates() = permute().distinct()
+
+    /** @return the number of the given element in a sorted array */
+    fun LongArray.count(element: Long): Int {
+        var i = binarySearch(element)
+        if (i < 0) return 0
+        var count = 1
+        var j = i
+        while (getOrNull(--i) == element) count++
+        while (getOrNull(++j) == element) count++
+        return count
+    }
 }

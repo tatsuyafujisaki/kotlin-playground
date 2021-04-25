@@ -9,6 +9,7 @@ fun main() {
     FastScanner().use { fs ->
         PrintWriter(System.out, false /* writes at once */).use { pw ->
             val n = fs.nextInt()
+            val xs = fs.nextIntegers(n)
             pw.println("Hello, World!")
         }
     }

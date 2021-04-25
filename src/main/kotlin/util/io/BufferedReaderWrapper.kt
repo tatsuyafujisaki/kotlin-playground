@@ -33,11 +33,6 @@ class BufferedReaderWrapper : Closeable {
     fun safeReadIntegers2() = br.readLine().split(' ').filterNot(String::isEmpty).map(String::toInt)
 
     /**
-     * Read all the lines.
-     */
-    fun readLines() = generateSequence(::readLine)
-
-    /**
      * Read a matrix when the standard input is as follows.
      * 3 <- number of rows
      * a00 a01 a02 a03

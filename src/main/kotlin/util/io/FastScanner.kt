@@ -18,6 +18,10 @@ class FastScanner : Closeable {
     private val br = System.`in`.bufferedReader()
     private var st = StringTokenizer("")
 
+    override fun close() {
+        br.close()
+    }
+
     private fun next(): String {
         while (!st.hasMoreTokens()) st = StringTokenizer(br.readLine())
         return st.nextToken()
@@ -32,9 +36,5 @@ class FastScanner : Closeable {
 
     fun nextZeroBasedIntegers(n: Int) = IntArray(n) {
         nextZeroBasedInt()
-    }
-
-    override fun close() {
-        br.close()
     }
 }

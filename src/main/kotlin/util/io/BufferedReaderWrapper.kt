@@ -39,7 +39,7 @@ class BufferedReaderWrapper : Closeable {
      * a10 a11 a12 a13
      * a20 a21 a22 a23
      */
-    fun readMatrix() = Array(br.readLine().toInt()) {
+    fun readMatrix() = List(br.readLine().toInt()) {
         br.readLine().split(' ').map(String::toInt).toIntArray()
     }
 }

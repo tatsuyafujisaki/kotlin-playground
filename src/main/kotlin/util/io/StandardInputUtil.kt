@@ -12,7 +12,10 @@ object StandardInputUtil {
      * val ys = " 1  2 ".trim().split(' ').map(String::toInt) // throw a NumberFormatException because of more than one space between integers.
      * val zs = " 1  2 ".trim().split("\\s+".toRegex()).map(String::toInt) // succeeds.
      */
-    @Deprecated(message = "Use safeReadIntegers() because it is faster.", replaceWith = ReplaceWith("safeReadIntegers()"))
+    @Deprecated(
+        message = "Use safeReadIntegers() because it is faster.",
+        replaceWith = ReplaceWith("safeReadIntegers()")
+    )
     fun safeReadIntegersSlow() = readLine().orEmpty().trim().split("\\s+".toRegex()).map(String::toInt)
 
     /**
@@ -22,7 +25,7 @@ object StandardInputUtil {
      * a10 a11 a12 a13
      * a20 a21 a22 a23
      */
-    fun readMatrix() = Array(readLine().orEmpty().toInt()) {
+    fun readMatrix() = List(readLine().orEmpty().toInt()) {
         readLine().orEmpty().split(' ').map(String::toInt).toIntArray()
     }
 

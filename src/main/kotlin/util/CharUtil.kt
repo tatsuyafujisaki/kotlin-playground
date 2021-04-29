@@ -4,9 +4,12 @@ object CharUtil {
     val Char.alphabeticalIndex get() = this - 'a'
 
     /**
-     * For a competitive programming platform that does not support Char.digitToInt() of Kotlin 1.4.30
      * '1'.toInt() -> 49
      * '1'.digitToInt() -> 1
      */
-    fun Char.digitToInt() = toString().toInt()
+    @Deprecated(
+        message = "Use Char.digitToInt() in Kotlin 1.4.30+. A Java alternative is Character.getNumericValue().",
+        replaceWith = ReplaceWith("Char.digitToInt()")
+    )
+    fun Char.myDigitToInt() = toString().toInt()
 }

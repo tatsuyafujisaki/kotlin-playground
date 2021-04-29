@@ -7,14 +7,6 @@ class DisjointSets(n: Int) {
     private val parents = IntArray(n) { it }
     private val ranks = IntArray(n)
 
-    val result
-        get() = parents
-            .mapIndexed { i, x -> x to i }
-            .groupBy({ it.first }, { it.second })
-            .values
-            .map { it.toSet() }
-            .toSet()
-
     /** Using the technique "path compression" */
     private fun find(x: Int): Int {
         if (parents[x] == x) return x
@@ -35,4 +27,14 @@ class DisjointSets(n: Int) {
             }
         }
     }
+
+    val components: Collection<List<Int>>
+        get() {
+            // Make each parent the direct child of its root ancestor.
+            for (i in parents.indices) parents[i] = find(parents[i])
+            return parents
+                .mapIndexed { i, x -> x to i }
+                .groupBy({ it.first }, { it.second })
+                .values
+        }
 }

@@ -1,10 +1,10 @@
 package util
 
-import util.CollectionUtil.permute
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.sqrt
+import util.CollectionUtil.permute
 
 object IntLongUtil {
     val Int.isEven get() = this % 2 == 0
@@ -14,14 +14,11 @@ object IntLongUtil {
     val Int.isSquareNumber get() = sqrt(toDouble()) % 1.0 == 0.0
 
     /** O(sqrt(n)) */
-    val Int.isPrime: Boolean
-        get() {
-            if (this == 2) return true
-            if (this < 2 || this % 2 == 0) return false
-            for (i in 3..sqrt(toDouble()).toInt() step 2) {
-                if (this % i == 0) return false
-            }
-            return true
+    val Int.isPrime
+        get() = when {
+            this == 2 -> true
+            this < 2 || this % 2 == 0 -> false
+            else -> (3..sqrt(toDouble()).toInt() step 2).none { this % it == 0 }
         }
 
     val Int.largestDivisor: Int

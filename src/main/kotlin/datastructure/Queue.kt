@@ -1,4 +1,4 @@
-package algorithm
+package datastructure
 
 import java.util.Stack
 

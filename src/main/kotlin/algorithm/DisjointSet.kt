@@ -16,16 +16,16 @@ class DisjointSets(n: Int) {
             .toSet()
 
     /** Using the technique "path compression" */
-    private fun findRoot(x: Int): Int {
+    private fun find(x: Int): Int {
         if (parents[x] == x) return x
-        parents[x] = findRoot(parents[x])
+        parents[x] = find(parents[x])
         return parents[x]
     }
 
     /** Using the technique "union by rank" */
     fun union(x: Int, y: Int) {
-        val xRoot = findRoot(x)
-        val yRoot = findRoot(y)
+        val xRoot = find(x)
+        val yRoot = find(y)
         when {
             ranks[xRoot] < ranks[yRoot] -> parents[xRoot] = yRoot
             ranks[xRoot] > ranks[yRoot] -> parents[yRoot] = xRoot

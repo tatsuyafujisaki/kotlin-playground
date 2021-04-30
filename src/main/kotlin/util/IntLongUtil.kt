@@ -14,6 +14,9 @@ object IntLongUtil {
     val Int.isSquareNumber get() = sqrt(toDouble()) % 1.0 == 0.0
     val Int.bits get() = Integer.toBinaryString(this).padStart(Int.SIZE_BITS, '0')
 
+    /** @receiver must be 0 or positive. */
+    val Int.bitsForNonNegativeInt get() = toString(2).padStart(Int.SIZE_BITS, '0')
+
     /** O(sqrt(n)) */
     val Int.isPrime
         get() = when {

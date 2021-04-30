@@ -14,6 +14,9 @@ object IntLongUtil {
     val Int.isSquareNumber get() = sqrt(toDouble()) % 1.0 == 0.0
     val Int.bits get() = Integer.toBinaryString(this).padStart(Int.SIZE_BITS, '0')
 
+    /** @receiver must be 0 or positive. */
+    val Int.bitsForNonNegativeInt get() = toString(2).padStart(Int.SIZE_BITS, '0')
+
     /**
      * converts 1 to 0.
      * converts 0 to 1.
@@ -21,9 +24,6 @@ object IntLongUtil {
      * @reciever must be 0 or 1.
      */
     val Int.inverted get() = this - 1
-
-    /** @receiver must be 0 or positive. */
-    val Int.bitsForNonNegativeInt get() = toString(2).padStart(Int.SIZE_BITS, '0')
 
     /** O(sqrt(n)) */
     val Int.isPrime
@@ -66,7 +66,7 @@ object IntLongUtil {
     fun divMod(a: Int, b: Int) = a / b to a % b
 
     /** returns the least significant bit when i = 0. */
-    fun Int.bit(i: Int) = (this shr i) and 1
+    fun Int.bits(i: Int) = (this shr i) and 1
 
     /**
      * Iterative method

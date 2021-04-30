@@ -14,6 +14,14 @@ object IntLongUtil {
     val Int.isSquareNumber get() = sqrt(toDouble()) % 1.0 == 0.0
     val Int.bits get() = Integer.toBinaryString(this).padStart(Int.SIZE_BITS, '0')
 
+    /**
+     * converts 1 to 0.
+     * converts 0 to 1.
+     *
+     * @reciever must be 0 or 1.
+     */
+    val Int.inverted get() = this - 1
+
     /** @receiver must be 0 or positive. */
     val Int.bitsForNonNegativeInt get() = toString(2).padStart(Int.SIZE_BITS, '0')
 

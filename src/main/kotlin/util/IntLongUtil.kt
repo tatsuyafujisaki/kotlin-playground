@@ -12,6 +12,7 @@ object IntLongUtil {
     val Int.isOdd get() = this % 2 == 1
     val Long.isOdd get() = this % 2 == 1L
     val Int.isSquareNumber get() = sqrt(toDouble()) % 1.0 == 0.0
+    val Int.bits get() = Integer.toBinaryString(this).padStart(Int.SIZE_BITS, '0')
 
     /** O(sqrt(n)) */
     val Int.isPrime

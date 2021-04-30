@@ -3,21 +3,27 @@ package util
 import java.util.Collections
 
 object ListUtil {
-    fun List<*>.splitLast() = with(chunked(lastIndex)) { first() to last().last() }
-    fun List<*>.rotateRight(distance: Int): List<*> = takeLast(distance) + dropLast(distance)
+    object RotationUtil {
+        /** @param distance must be less than or equal to the length of the list. */
+        fun <T> List<T>.rotateLeft(distance: Int) = drop(distance) + take(distance)
+
+        /** @param distance must be less than or equal to the length of the list. */
+        fun <T> List<T>.rotateRight(distance: Int) = takeLast(distance) + dropLast(distance)
+
+
+        fun <T> List<T>.rotate(distance: Int) =
+            toList().also { // toList() is a deep copy to avoid changing the original array.
+                Collections.rotate(it, distance)
+            }
+    }
+
+    fun <T> List<T>.splitLast() = with(chunked(lastIndex)) { first() to last().last() }
     fun List<CharArray>.deepCopy() = map { it.clone() }
 
     fun MutableList<Int>.swap(i: Int, j: Int) {
         val temp = this[i]
         this[i] = this[j]
         this[j] = temp
-    }
-
-    fun List<*>.rotate(distance: Int): List<*> {
-        with(toList()) {
-            Collections.rotate(this, distance)
-            return this
-        }
     }
 
     fun List<*>.toPair() = let {

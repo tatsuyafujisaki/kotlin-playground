@@ -1,6 +1,21 @@
 package util
 
+import java.util.Collections
+
 object ArrayUtil {
+    object RotationUtil {
+        /** @param distance must be less than or equal to the length of the array. */
+        fun <T> Array<T>.rotateLeft(distance: Int) = drop(distance) + take(distance)
+
+        /** @param distance must be less than or equal to the length of the array. */
+        fun <T> Array<T>.rotateRight(distance: Int) = takeLast(distance) + dropLast(distance)
+
+        fun <T> Array<T>.rotate(distance: Int) =
+            toList().also { // toList() is a deep copy to avoid changing the original array.
+                Collections.rotate(it, distance)
+            }
+    }
+
     val pow2 = intArrayOf(
         1, 2, 4, 8, 16, 32, 64, 128, 256, 512,
         1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288

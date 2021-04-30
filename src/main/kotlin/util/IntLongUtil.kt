@@ -7,23 +7,29 @@ import kotlin.math.sqrt
 import util.CollectionUtil.permute
 
 object IntLongUtil {
+    object BitUtil {
+        val Int.bits get() = Integer.toBinaryString(this).padStart(Int.SIZE_BITS, '0')
+
+        /** @receiver must be 0 or positive. */
+        val Int.bitsForNonNegativeInt get() = toString(2).padStart(Int.SIZE_BITS, '0')
+
+        /**
+         * converts 1 to 0.
+         * converts 0 to 1.
+         *
+         * @reciever must be 0 or 1.
+         */
+        val Int.inverted get() = 1 - this
+
+        /** returns the least significant bit when i = 0. */
+        fun Int.bits(i: Int) = (this shr i) and 1
+    }
+
     val Int.isEven get() = this % 2 == 0
     val Long.isEven get() = this % 2 == 0L
     val Int.isOdd get() = this % 2 == 1
     val Long.isOdd get() = this % 2 == 1L
     val Int.isSquareNumber get() = sqrt(toDouble()) % 1.0 == 0.0
-    val Int.bits get() = Integer.toBinaryString(this).padStart(Int.SIZE_BITS, '0')
-
-    /** @receiver must be 0 or positive. */
-    val Int.bitsForNonNegativeInt get() = toString(2).padStart(Int.SIZE_BITS, '0')
-
-    /**
-     * converts 1 to 0.
-     * converts 0 to 1.
-     *
-     * @reciever must be 0 or 1.
-     */
-    val Int.inverted get() = this - 1
 
     /** O(sqrt(n)) */
     val Int.isPrime
@@ -64,9 +70,6 @@ object IntLongUtil {
     fun Long.divideAndFloor(divisor: Long) = floor(toDouble() / divisor).toLong()
     fun pow2(n: Int) = 1 shl n
     fun divMod(a: Int, b: Int) = a / b to a % b
-
-    /** returns the least significant bit when i = 0. */
-    fun Int.bits(i: Int) = (this shr i) and 1
 
     /**
      * Iterative method

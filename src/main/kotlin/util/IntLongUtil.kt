@@ -65,6 +65,9 @@ object IntLongUtil {
     fun pow2(n: Int) = 1 shl n
     fun divMod(a: Int, b: Int) = a / b to a % b
 
+    /** returns the least significant bit when i = 0. */
+    fun Int.bit(i: Int) = (this shr i) and 1
+
     /**
      * Iterative method
      * @receiver must be greater than or equal to 0.

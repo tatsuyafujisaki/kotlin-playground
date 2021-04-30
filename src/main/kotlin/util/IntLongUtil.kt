@@ -62,6 +62,7 @@ object IntLongUtil {
     fun Long.pow(n: Long) = toDouble().pow(n.toInt()).toLong()
     fun Long.divideAndCeil(divisor: Long) = ceil(toDouble() / divisor).toLong()
     fun Long.divideAndFloor(divisor: Long) = floor(toDouble() / divisor).toLong()
+    fun pow2(n: Int) = 1 shl n
     fun divMod(a: Int, b: Int) = a / b to a % b
 
     /**

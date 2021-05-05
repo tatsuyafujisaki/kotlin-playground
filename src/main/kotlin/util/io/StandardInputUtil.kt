@@ -30,7 +30,7 @@ object StandardInputUtil {
     }
 
     /**
-     * Read all the lines.
+     * Read all the lines from standard input (stdin).
      */
     fun readLines() = generateSequence(::readLine)
 }

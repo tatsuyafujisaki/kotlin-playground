@@ -127,7 +127,7 @@
 
 # Suspending function
 * is a function that can suspend a coroutine without blocking the thread.
-* must be called from a coroutine or another suspending function.
+* can run only inside a coroutine or another suspending function.
 
 # Coroutine builder
 * creates a coroutine.

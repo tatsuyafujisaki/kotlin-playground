@@ -6,12 +6,14 @@
 
 # Cold stream
 * is like an automatic faucet.
-* is in action only when the receiver exists.
+* is active only when any consumer exists.
+* emits values whenever a new consumer is added.
 * e.g. Kotlin Flow.
 
 # Hot stream
 * is like a normal faucet.
-* is in action whether or not the receiver exists.
+* is active whether or not any consumer exists.
+* emits values, reagardless when a new consumer is added.
 * e.g. Kotlin Channel.
 
 # Coroutine

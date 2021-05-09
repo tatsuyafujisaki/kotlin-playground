@@ -129,25 +129,24 @@
 * is a function that can suspend a coroutine without blocking the thread.
 * must be called from a coroutine or another suspending function.
 
-# Resume
-* is the opposite of "suspend".
-
 # Coroutine builder
+* creates a coroutine.
 * is an extension function of CoroutineScope meaning a coroutine builder must be used inside a CoroutineScope.
 * is where you can start a coroutine and run a given lambda in it.
 * is where you can start a coroutine and run a suspending function in it.
-* launch {...}
-  * creates a coroutine.
-  * returns immediately (fire-and-forget).
-  * does not return the result.
-  * starts a coroutine and returns the coroutine as a job on which you can use "join" if you want to wait for the job to complete.
-  * A lambda inside launch{} is automatically marked with "suspend".
-* async {...}
-  * creates a coroutine.
-  * returns the future result as a Deferred on which you must await().
-  * A big difference between launch and async is how they handle exceptions. async returns an exception instead of throwing it.
-* future {...}
-  * returns a Future.
+
+## launch
+* returns immediately, but does not return the result (fire-and-forget).
+* starts a coroutine and returns the coroutine as a job on which you can use "join" if you want to wait for the job to complete.
+* A lambda inside launch{} is automatically marked with "suspend".
+* When creating a coroutine from a non-coroutine, start with `launch`.
+
+## async
+* returns the future result as a Deferred on which you must await().
+* A big difference between launch and async is how they handle exceptions. async returns an exception instead of throwing it.
+
+## future
+returns a Future.
 
 # Structured concurrency
 * is to avoid a leaked coroutine.
@@ -163,6 +162,7 @@
 * can waste memory, CPU, disk, or even make an unnecessary network request.
 
 # How to run a coroutine from regular blocking code and await it.
+Don't use `runBlocking` and `GlobalScope` in real code.
 ```kotlin
 runBlocking {
     GlobalScope.launch() {

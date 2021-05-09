@@ -145,9 +145,6 @@
 * returns the future result as a Deferred on which you must await().
 * A big difference between launch and async is how they handle exceptions. async returns an exception instead of throwing it.
 
-## future
-returns a Future.
-
 # Structured concurrency
 * is to avoid a leaked coroutine.
 * guarantees that when a suspending function returns, all of its work is done.

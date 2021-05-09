@@ -158,17 +158,6 @@
 * occurs when you lose track of a coroutine.
 * can waste memory, CPU, disk, or even make an unnecessary network request.
 
-# How to run a coroutine from regular blocking code and await it.
-Don't use `runBlocking` and `GlobalScope` in real code.
-```kotlin
-runBlocking {
-    GlobalScope.launch() {
-        /* Do something */
-    }.join()
-}
-```
---
-
 # yield()
 * forcibly start child jobs. If yield() is not called before child.cancel(), the child job may not start by the time child.cancel() is called, so the "finally" block won't be executed when child.cancel() is called.
 * https://kotlinlang.org/docs/reference/coroutines/exception-handling.html#cancellation-and-exceptions

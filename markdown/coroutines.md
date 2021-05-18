@@ -1,4 +1,9 @@
-# Flow and Channel
+# Flow
+* > A Flow is an async sequence of values
+  * https://developer.android.com/codelabs/android-paging#2
+
+
+## Flow and Channel
 * Both are for sending multiple values.
 * Channel has no use case because Flow is forward compatible with Channel.
 * Developers will use a channelFlow in Flow.

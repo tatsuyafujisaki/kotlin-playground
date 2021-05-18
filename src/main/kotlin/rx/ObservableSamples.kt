@@ -4,20 +4,16 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observables.ConnectableObservable
-import kotlin.random.Random
-import util.RxJavaUtil.doOnMisc
+import util.RxJavaUtil.DoOn.doOnMisc
+import util.RxJavaUtil.SubscribeUtil.mySubscribe
+import util.RxJavaUtil.SubscribeUtil.mySubscribeWithId
 import util.RxJavaUtil.errorWhen
 import util.RxJavaUtil.errorWhen2
-import util.RxJavaUtil.mySubscribe
-import util.RxJavaUtil.mySubscribeWithId
+import kotlin.random.Random
 
 object ObservableSamples {
     private val compositeDisposable = CompositeDisposable()
     private var observerCount = 0
-
-    fun <T> Observable<T>.mySubscribeWithId() {
-        return mySubscribeWithId(observerCount++)
-    }
 
     fun example1() {
         println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
@@ -60,18 +56,18 @@ object ObservableSamples {
             emitter = it
         }
 
-        observable.mySubscribeWithId()
+        observable.mySubscribeWithId(observerCount++)
         emitter?.onNext("a")
-        observable.mySubscribeWithId()
+        observable.mySubscribeWithId(observerCount++)
         emitter?.onNext("b")
 
         // Note share().
         val observable2 = Observable.create<String> {
             emitter = it
         }.share()
-        observable2.mySubscribeWithId()
+        observable2.mySubscribeWithId(observerCount++)
         emitter?.onNext("c")
-        observable2.mySubscribeWithId()
+        observable2.mySubscribeWithId(observerCount++)
         emitter?.onNext("d")
     }
 

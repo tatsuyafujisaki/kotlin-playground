@@ -1,8 +1,8 @@
 package rx
 
 import io.reactivex.rxjava3.core.Maybe
-import util.RxJavaUtil.mySubscribe
-import util.RxJavaUtil.print
+import util.RxJavaUtil.DoOn.print
+import util.RxJavaUtil.SubscribeUtil.mySubscribe
 
 object MaybeSamples {
     fun example1() {

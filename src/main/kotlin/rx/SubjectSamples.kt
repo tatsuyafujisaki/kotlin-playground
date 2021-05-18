@@ -10,9 +10,9 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.ReplaySubject
 import io.reactivex.rxjava3.subjects.Subject
-import util.RxJavaUtil.doOnMisc
-import util.RxJavaUtil.mySubscribe
-import util.RxJavaUtil.print
+import util.RxJavaUtil.DoOn.doOnMisc
+import util.RxJavaUtil.DoOn.print
+import util.RxJavaUtil.SubscribeUtil.mySubscribe
 import util.RxJavaUtil.toObservable
 
 object SubjectSamples {
@@ -146,7 +146,8 @@ object SubjectSamples {
     /** Example of converting Observable to Single */
     fun example8() {
         val subject = PublishSubject.create<String>()
-        val single = Single.fromObservable(subject.toObservable()) // Unlike Observable.single(), you don't have to set the default value.
+        val single =
+            Single.fromObservable(subject.toObservable()) // Unlike Observable.single(), you don't have to set the default value.
         val disposable = single.mySubscribe()
         subject.onNext("a")
         subject.onComplete()

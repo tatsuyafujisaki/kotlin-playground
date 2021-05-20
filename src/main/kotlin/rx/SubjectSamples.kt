@@ -10,10 +10,10 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.ReplaySubject
 import io.reactivex.rxjava3.subjects.Subject
-import util.RxJavaUtil.DoOn.doOnMisc
-import util.RxJavaUtil.DoOn.print
-import util.RxJavaUtil.SubscribeUtil.mySubscribe
-import util.RxJavaUtil.toObservable
+import util.RxUtil.DoOn.doOnMisc
+import util.RxUtil.DoOn.print
+import util.RxUtil.SubscribeUtil.mySubscribe
+import util.RxUtil.toObservable
 
 object SubjectSamples {
     /**

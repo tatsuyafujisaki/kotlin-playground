@@ -1,8 +1,8 @@
 package rx
 
 import io.reactivex.rxjava3.core.Single
-import util.RxJavaUtil.DoOn.print
-import util.RxJavaUtil.SubscribeUtil.mySubscribe
+import util.RxUtil.DoOn.print
+import util.RxUtil.SubscribeUtil.mySubscribe
 
 object SingleSamples {
     fun example1() {

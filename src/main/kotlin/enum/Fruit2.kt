@@ -1,5 +1,6 @@
 package enum
 
+/** @sample Fruit2Samples */
 enum class Fruit2 {
     APPLE {
         override fun toString() = "🍎"
@@ -18,13 +19,4 @@ enum class Fruit2 {
 
     abstract val producer: String
     abstract fun printSimilarFruit()
-}
-
-object Fruit2Examples {
-    fun example() {
-        val apple: Fruit2 = Fruit2.APPLE
-        println(apple) // 🍎
-        println(apple.producer) // 👨‍🌾
-        apple.printSimilarFruit() // 🍏
-    }
 }

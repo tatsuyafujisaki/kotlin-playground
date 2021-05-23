@@ -2,6 +2,7 @@ package converters
 
 import com.google.gson.Gson
 
+/** @see GsonConverterSamples */
 object GsonConverter {
     val gson = Gson()
     fun <T> encodeToString(src: T): String = gson.toJson(src)

@@ -1,7 +1,7 @@
 package converters
 
-object MoshiConverterExamples {
-    fun example() {
+object MoshiConverterSamples {
+    fun sample() {
         val person = Person("Jane", 18)
         println(person)
 

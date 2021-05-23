@@ -1,7 +1,7 @@
 package converters
 
-object GsonConverterExamples {
-    fun example() {
+object GsonConverterSamples {
+    fun sample() {
         val person = Person("Jane", 18)
         println(person)
 

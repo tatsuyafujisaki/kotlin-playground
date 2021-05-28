@@ -489,11 +489,13 @@ https://kotlinlang.org/docs/reference/inline-functions.html#reified-type-paramet
 ```kotlin
 // The type can be omitted.
 var observed: String by Delegates.observable("a") { _, old, new ->
+    if (old == new) return@observable // In case you only want to react to the value change.
     println("$old -> $new")
 }
-println(observed) // a
-observed = "b" // a -> b
-observed = "c" // b -> c
+println(observed) // "a"
+observed = "b" // "a -> b"
+observed = "b" // (none)
+observed = "c" // "b -> c"
 ```
 
 ## How to use Delegates.vetoable(...)

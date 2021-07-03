@@ -9,6 +9,12 @@
 * Developers will use a channelFlow in Flow.
   * https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/channel-flow.html
 
+# StateFlow versus SharedFlow
+&nbsp;|StateFlow|SharedFlow
+--|--|--
+Has the default value?|Yes|No
+Emits the default value when someone starts collecting?|Yes|No
+
 # Cold stream
 * is like an automatic faucet.
 * is active only when any consumer exists.

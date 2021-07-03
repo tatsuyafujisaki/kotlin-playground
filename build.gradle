@@ -32,6 +32,3 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.12'
 }
-
-compileKotlin.kotlinOptions.jvmTarget = '13'
-compileTestKotlin.kotlinOptions.jvmTarget = '13'

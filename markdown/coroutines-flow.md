@@ -1,7 +1,7 @@
 # Flow
 * > A Flow is an async sequence of values
   * https://developer.android.com/codelabs/android-paging#2
-
+* is not lifecycle-aware because Flow is part of Kotlin and not part of the Android Framework.
 
 ## Flow and Channel
 * Both are for sending multiple values.

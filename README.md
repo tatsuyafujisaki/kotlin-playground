@@ -636,8 +636,8 @@ private var INSTANCE: MyDatabase? = null
 # Best practices
 [best-practices.md](markdown/best-practices.md)
 
-# Coroutines
-[coroutines.md](markdown/coroutines.md)
+# Coroutines and Flow
+[coroutines-flow.md](markdown/coroutines-flow.md)
 
 # Misc
 [misc.md](markdown/misc.md)

@@ -1,6 +1,6 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.5.20'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.20'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.21'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.21'
 }
 
 repositories {
@@ -15,20 +15,20 @@ dependencies {
      * Starting from Kotlin 1.1.2, the versions of artifacts of the group "org.jetbrains.kotlin" are optional and inferred from the applied plugin.
      * (No documentation is found about it)
      */
-    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5' // includes kotlin-test.
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
 
     /*
      * org.jetbrains.kotlinx
      */
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2'
 
-    def coroutines_version = '1.5.0'
+    def coroutines_version = '1.5.1'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:$coroutines_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 
     implementation 'com.squareup.moshi:moshi-kotlin:1.12.0'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.12'
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.13'
 }

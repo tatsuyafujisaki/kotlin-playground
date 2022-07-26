@@ -5,8 +5,8 @@ enum class Fruit {
     ORANGE;
 
     companion object {
-        fun valueOfOrNull(value: String): Fruit? = values().find { it.name == value }
-        fun from(ordinal: Int): Fruit = values()[ordinal]
-        fun fromOrNull(ordinal: Int): Fruit? = values().getOrNull(ordinal)
+        fun fromName(name: String): Fruit? = values().find { it.name == name }
+        fun fromOrdinal(ordinal: Int): Fruit = values()[ordinal]
+        fun fromOrdinalOrNull(ordinal: Int): Fruit? = values().getOrNull(ordinal)
     }
 }

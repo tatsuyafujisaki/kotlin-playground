@@ -762,4 +762,4 @@ private var INSTANCE: MyDatabase? = null
 # Use A rather than B for simplicity
 A|B|Note
 --|--|--
-`this.javaClass.simpleName`|`this::class.java.simpleName`
+`(this.)javaClass.simpleName`|`this::class.java.simpleName`

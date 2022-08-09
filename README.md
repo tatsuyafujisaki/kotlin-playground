@@ -758,3 +758,8 @@ private var INSTANCE: MyDatabase? = null
 # Scope functions
 
 [scope-functions.md](markdown/scope-functions.md)
+
+# Use A rather than B for simplicity
+A|B|Note
+--|--|--
+this.javaClass.simpleName|this::class.java.simpleName

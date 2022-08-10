@@ -420,70 +420,43 @@ val s: String = buildString {
 ```
 
 # Enum
-
-## Sample 1 (simple Enum)
-
+## Enum without a value
 ```kotlin
 enum class Fruit {
-    APPLE,
-    ORANGE;
+    APPLE, ORANGE, UNKNOWN;
 
     companion object {
-        fun from(ordinal: Int): Fruit = values()[ordinal]
-        fun fromOrNull(ordinal: Int): Fruit? = values().getOrNull(ordinal)
+        fun fromOrdinal(ordinal: Int): Fruit = values()[ordinal]
+        fun fromOrdinalOrNull(ordinal: Int): Fruit? = values().getOrNull(ordinal)
+        fun fromOrdinalWithDefault(ordinal: Int): Fruit = values().getOrElse(ordinal) { UNKNOWN }
+        fun fromName(name: String): Fruit = valueOf(name)
+        fun fromNameIgnoreCase(name: String): Fruit = valueOf(name.uppercase())
+        fun fromNameOrNull(name: String): Fruit? = values().find { it.name == name }
+        fun fromNameIgnoreCaseOrNull(name: String): Fruit? = values().find { it.name == name.uppercase() }
     }
 }
 ```
 
-### How to convert a String to an Enum
-
+## Enum with a value
 ```kotlin
-val apple: Fruit = Fruit.valueOf("APPLE") // APPLE
-```
-
-### How to convert an ordinal to an Enum
-
-```kotlin
-val apple: Fruit = Fruit.from(0) // APPLE
-val nil: Fruit? = Fruit.fromOrNull(2) // null
-```
-
-### How to get all the values of an Enum
-
-```kotlin
-val fruits: Array<Fruit> = Fruit.values() // APPLE ORANGE
-```
-
-## Sample 2 (Enum with values)
-
-```kotlin
-private enum class RGB(val value: Int) {
-    RED(0xFF0000),
-    GREEN(0x00FF00),
-    BLUE(0x0000FF);
+enum class MyColor(val value: Int) {
+    BLACK(0x000000), WHITE(0xffffff), UNKNOWN(Int.MIN_VALUE);
 
     companion object {
-        fun from(value: Int): RGB = values().first { it.value == value }
-        fun fromOrNull(value: Int): RGB? = values().find { it.value == value }
+        fun fromOrdinal(ordinal: Int): MyColor = values()[ordinal]
+        fun fromOrdinalOrNull(ordinal: Int): MyColor? = values().getOrNull(ordinal)
+        fun fromOrdinalWithDefault(ordinal: Int): MyColor = values().getOrElse(ordinal) { UNKNOWN }
+        fun fromName(name: String): MyColor = valueOf(name)
+        fun fromNameIgnoreCase(name: String): MyColor = valueOf(name.uppercase())
+        fun fromNameOrNull(name: String): MyColor? = values().find { it.name == name }
+        fun fromNameIgnoreCaseOrNull(name: String): MyColor? = values().find { it.name == name.uppercase() }
+        fun fromValue(value: Int): MyColor = values().first { it.value == value }
+        fun fromValueOrNull(value: Int): MyColor? = values().find { it.value == value }
     }
 }
 ```
 
-### How to convert a String to an Enum
-
-```kotlin
-val red: RGB = RGB.valueOf("RED") // RED
-```
-
-### How to convert a value to an Enum
-
-```kotlin
-val red: RGB = RGB.from(0xFF0000) // RED
-val nil: RGB? = RGB.fromOrNull(0xFFFFF) // null
-```
-
-## Sample 3 (Enum with properties and methods)
-
+## Enum with properties and functions
 ```kotlin
 enum class Fruit {
     APPLE {
@@ -511,14 +484,12 @@ apple.printSimilarFruit() // 🍏
 ```
 
 # How to create a pair
-
 ```kotlin
 val pair1: Pair<String, Int> = "answer" to 42 // (answer, 42)
 val pair2: Pair<String, Int> = Pair("answer", 42) // old-school way
 ```
 
 # Function references / Constructor references
-
 ```kotlin
 fun main() {
     val xs: List<Int> = listOf(1, 2)

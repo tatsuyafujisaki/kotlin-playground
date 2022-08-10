@@ -484,12 +484,6 @@ println(apple.producer) // 👨‍🌾
 apple.printSimilarFruit() // 🍏
 ```
 
-# How to create a pair
-```kotlin
-val pair1: Pair<String, Int> = "answer" to 42 // (answer, 42)
-val pair2: Pair<String, Int> = Pair("answer", 42) // old-school way
-```
-
 # Function references / Constructor references
 ```kotlin
 fun main() {

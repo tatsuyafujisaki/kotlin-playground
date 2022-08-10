@@ -4,6 +4,7 @@ enum class MyColor(val value: Int) {
     BLACK(0x000000), WHITE(0xffffff), UNKNOWN(Int.MIN_VALUE);
 
     companion object {
+        // Verbose for illustrative purposes
         fun fromOrdinalOrThrow(ordinal: Int): MyColor = values()[ordinal]
         fun fromOrdinalOrNull(ordinal: Int): MyColor? = values().getOrNull(ordinal)
         fun fromOrdinalOrDefault(ordinal: Int): MyColor = values().getOrElse(ordinal) { UNKNOWN }

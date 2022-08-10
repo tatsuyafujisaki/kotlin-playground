@@ -4,6 +4,7 @@ enum class Fruit {
     APPLE, ORANGE, UNKNOWN;
 
     companion object {
+        // Verbose for illustrative purposes
         fun fromOrdinalOrThrow(ordinal: Int): Fruit = values()[ordinal]
         fun fromOrdinalOrNull(ordinal: Int): Fruit? = values().getOrNull(ordinal)
         fun fromOrdinalOrDefault(ordinal: Int): Fruit = values().getOrElse(ordinal) { UNKNOWN }

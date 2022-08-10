@@ -10,6 +10,6 @@ enum class Fruit {
         fun fromName(name: String): Fruit = valueOf(name)
         fun fromNameIgnoreCase(name: String): Fruit = valueOf(name.uppercase())
         fun fromNameOrNull(name: String): Fruit? = values().find { it.name == name }
-        fun fromNameOrNullIgnoreCase(name: String): Fruit? = values().find { it.name == name.uppercase() }
+        fun fromNameIgnoreCaseOrNull(name: String): Fruit? = values().find { it.name == name.uppercase() }
     }
 }

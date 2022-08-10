@@ -10,7 +10,7 @@ enum class MyColor(val value: Int) {
         fun fromName(name: String): MyColor = valueOf(name)
         fun fromNameIgnoreCase(name: String): MyColor = valueOf(name.uppercase())
         fun fromNameOrNull(name: String): MyColor? = values().find { it.name == name }
-        fun fromNameOrNullIgnoreCase(name: String): MyColor? = values().find { it.name == name.uppercase() }
+        fun fromNameIgnoreCaseOrNull(name: String): MyColor? = values().find { it.name == name.uppercase() }
         fun fromValue(value: Int): MyColor = values().first { it.value == value }
         fun fromValueOrNull(value: Int): MyColor? = values().find { it.value == value }
     }

@@ -706,23 +706,21 @@ private var INSTANCE: MyDatabase? = null
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-volatile/
 
 # Best practices
-
 [best-practices.md](markdown/best-practices.md)
 
 # Coroutines and Flow
-
 [coroutines-flow.md](markdown/coroutines-flow.md)
 
-# Misc
+# ktlint
+[ktlint.md](markdown/ktlint.md)
 
+# Misc
 [misc.md](markdown/misc.md)
 
 # RxJava
-
 [rxjava.md](markdown/rxjava.md)
 
 # Scope functions
-
 [scope-functions.md](markdown/scope-functions.md)
 
 # Use A rather than B for simplicity

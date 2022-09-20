@@ -16,13 +16,13 @@ object ObservableExample {
     private var observerCount = 0
 
     fun example1() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
+        println("-- " + object {}::class.java.enclosingMethod?.name + " --")
         Observable.just("a", "b", "c").mySubscribe()
         compositeDisposable.clear()
     }
 
     fun example2() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
+        println("-- " + object {}::class.java.enclosingMethod?.name + " --")
         var emitter: ObservableEmitter<String>? = null
         val observable = Observable.create<String> {
             emitter = it
@@ -50,7 +50,7 @@ object ObservableExample {
      * Observer[3]#onNext: d
      */
     fun example3() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
+        println("-- " + object {}::class.java.enclosingMethod?.name + " --")
         var emitter: ObservableEmitter<String>? = null
         val observable = Observable.create<String> {
             emitter = it
@@ -86,7 +86,7 @@ object ObservableExample {
     }
 
     fun errorExample1() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
+        println("-- " + object {}::class.java.enclosingMethod?.name + " --")
         Observable
             .just("a", "b", "c")
             .errorWhen("b")
@@ -95,7 +95,7 @@ object ObservableExample {
     }
 
     fun errorExample2() {
-        println("-- " + object {}.javaClass.enclosingMethod?.name + " --")
+        println("-- " + object {}::class.java.enclosingMethod?.name + " --")
         Observable.just("a", "b", "c")
             .errorWhen2("b")
             .mySubscribe()

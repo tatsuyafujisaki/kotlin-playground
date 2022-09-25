@@ -69,7 +69,7 @@ object MathUtil {
      * i.e. probability of at least 6 successes
      */
     fun cumulativeBinomialProbability(p: Double, n: Int, ks: IntRange) =
-        ks.sumByDouble { binomialProbability(p, n, it) }
+        ks.sumOf { binomialProbability(p, n, it) }
 
     /**
      * Redundant wrapper for geometric probability

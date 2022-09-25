@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.7.10"
-    kotlin("plugin.serialization") version "1.7.10"
+    kotlin("jvm") version libs.versions.kotlin
+    kotlin("plugin.serialization") version libs.versions.kotlin
     application
 }
 
@@ -19,17 +19,15 @@ dependencies {
      * (No documentation about it is found.)
      */
 
-    val coroutinesVersion = "1.6.3"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-rx3:$coroutinesVersion")
-
-    implementation("com.google.code.gson:gson:2.9.1")
-    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
-    implementation("io.reactivex.rxjava3:rxjava:3.1.5")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.rx3)
+    implementation(libs.gson)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.rxjava)
     testImplementation(kotlin("test"))
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.mockito)
 }
 
 tasks.test {

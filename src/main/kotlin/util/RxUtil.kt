@@ -82,7 +82,7 @@ object RxUtil {
             { println("Observer#onComplete") })
 
         fun <T : Any> Observable<T>.mySubscribeWithId(id: Int) {
-            fun <T> createObserver(id: Int) = object : Observer<T> {
+            fun <T : Any> createObserver(id: Int) = object : Observer<T> {
                 val id = id
                 override fun onSubscribe(d: Disposable) {
                     println("Observer[$id]#onSubscribe")

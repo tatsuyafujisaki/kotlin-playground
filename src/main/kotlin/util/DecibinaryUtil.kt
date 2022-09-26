@@ -1,7 +1,7 @@
 package util
 
-import kotlin.math.pow
 import util.IntLongUtil.pow
+import kotlin.math.pow
 
 object DecibinaryUtil {
     /**

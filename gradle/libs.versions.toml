@@ -16,3 +16,6 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 mockito = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+
+[plugins]
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "11.0.0" }

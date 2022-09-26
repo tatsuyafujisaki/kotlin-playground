@@ -4,12 +4,12 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observables.ConnectableObservable
-import kotlin.random.Random
 import util.RxUtil.DoOn.doOnMisc
 import util.RxUtil.SubscribeUtil.mySubscribe
 import util.RxUtil.SubscribeUtil.mySubscribeWithId
 import util.RxUtil.errorWhen
 import util.RxUtil.errorWhen2
+import kotlin.random.Random
 
 object ObservableExample {
     private val compositeDisposable = CompositeDisposable()

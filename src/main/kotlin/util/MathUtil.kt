@@ -1,11 +1,11 @@
 package util
 
+import util.IntLongUtil.factorial
+import util.IntLongUtil.nCr
 import kotlin.math.E
 import kotlin.math.exp
 import kotlin.math.pow
 import kotlin.math.sqrt
-import util.IntLongUtil.factorial
-import util.IntLongUtil.nCr
 
 object MathUtil {
     val fibonacci = generateSequence(0 to 1) { it.second to it.first + it.second }.map { it.first }
@@ -129,8 +129,10 @@ object MathUtil {
         }
 
         val n = xs.size
-        return 1 - (6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }
-            .sum() / (n * (n * n - 1)))
+        return 1 - (
+            6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }
+                .sum() / (n * (n * n - 1))
+            )
     }
 
     fun sigmoid(x: Double) = 1 / (1 + exp(-x))

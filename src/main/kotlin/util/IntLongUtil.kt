@@ -1,10 +1,10 @@
 package util
 
+import util.CollectionUtil.permute
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.sqrt
-import util.CollectionUtil.permute
 
 object IntLongUtil {
     fun bits(x: Int) = Integer.toBinaryString(x).padStart(Int.SIZE_BITS, '0')

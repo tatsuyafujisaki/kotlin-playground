@@ -320,8 +320,8 @@ val result7: String? = map.getOrElse("d") { "not found" } // not found
 
 ```kotlin
 val map: Map<Char, Int> = mapOf('a' to 10, 'b' to 20)
-val result1: Map<Char, Int> = map.mapValues { it.value * 10 } // {a=100, b=200}
-val result2: Map<Char, Int> = map.mapKeys { it.key.toUpperCase() } // {A=10, B=20}
+val result1: Map<Char, Int> = map.mapKeys { it.key.toUpperCase() } // {A=10, B=20}
+val result2: Map<Char, Int> = map.mapValues { it.value * 10 } // {a=100, b=200}
 val result3: Map<Char, Int> = map.map { it.key.toUpperCase() to it.value * 10 }.toMap() // {A=100, B=200}
 ```
 

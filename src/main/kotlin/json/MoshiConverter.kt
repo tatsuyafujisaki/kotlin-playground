@@ -24,26 +24,44 @@ object MoshiConverter {
     )
 }
 
-fun sample1() {
-    val json = File("data/object-of-numbers.json").readText()
-    val map = MoshiConverter.getMapAdapter<Int>().fromJson(json)
-    println(map)
+private fun sample1() {
+    readAndPrint("data/object-of-numbers.json") {
+        MoshiConverter.getMapAdapter<Double>().fromJson(it)
+    }
 }
 
-fun sample2() {
-    val json = File("data/object.json").readText()
-    val map = MoshiConverter.getMapAdapter<String>().fromJson(json)
-    println(map)
+private fun sample2() {
+    readAndPrint("data/object.json") {
+        MoshiConverter.getMapAdapter<String>().fromJson(it)
+    }
 }
 
-fun sample3() {
-    val json = File("data/array.json").readText()
-    val xs = MoshiConverter.getListAdapter<Int>().fromJson(json)
-    println(xs)
+private fun sample3() {
+    readAndPrint("data/array.json") {
+        MoshiConverter.getListAdapter<Double>().fromJson(it)
+    }
+}
+
+fun sample4() {
+    readAndPrint("data/comprehensive-object.json") {
+        MoshiConverter.fromJson<MySerializable>(it)
+    }
+}
+
+fun sample5() {
+    readAndPrint("data/comprehensive-array.json") {
+        MoshiConverter.getListAdapter<MySerializable2>().fromJson(it)
+    }
+}
+
+private fun <T> readAndPrint(pathname: String, block: (String) -> T) {
+    println(block(File(pathname).readText()))
 }
 
 fun main() {
     sample1()
     sample2()
     sample3()
+    sample4()
+    sample5()
 }

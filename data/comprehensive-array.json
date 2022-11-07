@@ -1,0 +1,30 @@
+[
+  {
+    "null1": null,
+    "boolean1": true,
+    "boolean2": false,
+    "number1": -1,
+    "number2": 3.14,
+    "string1": "",
+    "string2": "a",
+    "array1": [ ],
+    "array2": [
+      -1,
+      3.14
+    ]
+  },
+  {
+    "null1": null,
+    "boolean1": true,
+    "boolean2": false,
+    "number1": -1,
+    "number2": 3.14,
+    "string1": "",
+    "string2": "a",
+    "array1": [ ],
+    "array2": [
+      -1,
+      3.14
+    ]
+  }
+]

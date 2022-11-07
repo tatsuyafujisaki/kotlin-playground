@@ -8,8 +8,7 @@ import util.FileUtil.readAndPrint
 
 object MoshiConverter {
     val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-    inline fun <reified T> toJson(value: T): String = moshi.adapter(T::class.java).toJson(value)
-    inline fun <reified T> fromJson(string: String) = moshi.adapter(T::class.java).fromJson(string)
+    inline fun <reified T> getAdapter(): JsonAdapter<T> = moshi.adapter(T::class.java)
 
     inline fun <reified T> getListAdapter(): JsonAdapter<List<T>> = moshi.adapter(
         Types.newParameterizedType(

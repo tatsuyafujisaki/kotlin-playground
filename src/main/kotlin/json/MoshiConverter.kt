@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import java.io.File
+import util.FileUtil.readAndPrint
 
 object MoshiConverter {
     val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -52,10 +52,6 @@ fun sample5() {
     readAndPrint("data/comprehensive-array.json") {
         MoshiConverter.getListAdapter<MySerializable2>().fromJson(it)
     }
-}
-
-private fun <T> readAndPrint(pathname: String, block: (String) -> T) {
-    println(block(File(pathname).readText()))
 }
 
 fun main() {

@@ -4,6 +4,9 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import util.FileUtil.readAndPrint
 
 object MoshiConverter {
@@ -23,6 +26,18 @@ object MoshiConverter {
     )
 }
 
+private fun sample0() {
+    val person = Person("Jane", 18)
+    println(person)
+
+    val json = Json.encodeToString(person)
+    println(json)
+
+    // Note that the returned value is not nullable unlike Moshi.
+    val person2: Person = Json.decodeFromString(json)
+    println(person2)
+}
+
 private fun sample1() {
     readAndPrint("data/object-of-numbers.json") {
         MoshiConverter.getMapAdapter<Double>().fromJson(it)
@@ -30,24 +45,18 @@ private fun sample1() {
 }
 
 private fun sample2() {
-    readAndPrint("data/object.json") {
-        MoshiConverter.getMapAdapter<String>().fromJson(it)
-    }
-}
-
-private fun sample3() {
-    readAndPrint("data/array.json") {
+    readAndPrint("data/array-of-numbers.json") {
         MoshiConverter.getListAdapter<Double>().fromJson(it)
     }
 }
 
-fun sample4() {
+private fun sample3() {
     readAndPrint("data/comprehensive-object.json") {
-        MoshiConverter.fromJson<MySerializable>(it)
+        MoshiConverter.getAdapter<MySerializable>().fromJson(it)
     }
 }
 
-fun sample5() {
+private fun sample4() {
     readAndPrint("data/comprehensive-array.json") {
         MoshiConverter.getListAdapter<MySerializable2>().fromJson(it)
     }
@@ -58,5 +67,4 @@ fun main() {
     sample2()
     sample3()
     sample4()
-    sample5()
 }

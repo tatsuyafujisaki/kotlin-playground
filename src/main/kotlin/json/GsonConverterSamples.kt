@@ -1,4 +1,4 @@
-package converters
+package json
 
 object GsonConverterSamples {
     fun sample() {

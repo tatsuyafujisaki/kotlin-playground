@@ -1,4 +1,4 @@
-package converters
+package json
 
 import kotlinx.serialization.Serializable
 

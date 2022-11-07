@@ -1,0 +1,17 @@
+{
+  "object1": {
+    "null1": null,
+    "boolean1": true,
+    "boolean2": false,
+    "string1": "",
+    "string2": "a",
+    "number1": -1,
+    "number2": 3.14,
+    "array1": [ ],
+    "array2": [
+      1,
+      2,
+      3
+    ]
+  }
+}

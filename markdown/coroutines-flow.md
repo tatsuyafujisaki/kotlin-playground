@@ -65,11 +65,6 @@ https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#sharedflow
 * wait for child coroutines to complete like coroutineScope.
 * won’t cancel other children when one of them fails. It's different from coroutineScope.
 
-# GlobalScope
-* is a scope.
-  * whose context does not inherit its outer scope's context.
-  * which is not canceled when the outer scope is canceled.
-
 # CoroutineContext
 * is key-value pairs.
   * "Dispatcher" = "Main"

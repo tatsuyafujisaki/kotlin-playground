@@ -17,17 +17,13 @@ https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#livedata
 
 https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#sharedflow
 
-# Cold stream
-* is like an automatic faucet.
-* is active only when any consumer exists.
-* emits values whenever a new consumer starts collecting.
-* e.g. Flow.
-
-# Hot stream
-* is like a normal faucet.
-* is active whether or not any consumer exists.
-* emits values, whenever a new consumer starts collecting.
-* e.g. Channel. StateFlow. LiveData.
+# Cold stream versus hot stream
+Cold stream|Hot stream
+--|--
+is like an automatic faucet.|is like a normal faucet.
+is active only when any consumer exists.|is active whether or not any consumer exists.
+emits values whenever a new consumer starts collecting.|emits values without a new consumer starts collecting.
+e.g. (regular) flow|e.g. Channel, StateFlow, LiveData
 
 # Coroutine
 * is represented as Job.

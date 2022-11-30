@@ -1,22 +1,27 @@
 package example
 
-sealed interface Shape2 {
+sealed interface Shape {
     val description: String
+    val onClick: () -> Unit
 }
 
-data class Circle2(val radius: Int) : Shape2 {
-    override val description = "circle!"
-}
+data class Circle(
+    val radius: Int,
+    override val description: String,
+    override val onClick: () -> Unit
+) : Shape
 
-data class Square2(val perimeter: Int) : Shape2 {
-    override val description = "square!"
-}
+data class Square(
+    val perimeter: Int,
+    override val description: String,
+    override val onClick: () -> Unit
+) : Shape
 
 fun main() {
-    val circle = Circle2(1)
-    val square = Square2(1)
-    println(circle) // Circle2(radius=1)
-    println(circle.description) // circle!
-    println(square) // Square2(perimeter=1)
-    println(square.description) // square!
+    val circle = Circle(1, "circle!") { println("Circle is clicked.") }
+    val square = Square(1, "square!") { println("Square is clicked.") }
+    println(circle) // Circle(radius=1, description=circle!, onClick=() -> kotlin.Unit)
+    circle.onClick() // Circle is clicked.
+    println(square) // Square(perimeter=1, description=square!, onClick=() -> kotlin.Unit)
+    square.onClick() // Square is clicked.
 }

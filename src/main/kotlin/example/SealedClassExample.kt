@@ -1,19 +1,31 @@
 package example
 
-sealed class Shape(val description: String) {
-    val common: String = "common!"
+sealed class Shape2(open val description: String, open val onClick: () -> Unit) {
+    val commonDescription: String = "common!"
+    val onCommonClick: () -> Unit = { println("Clicked.") }
 }
 
-data class Circle(val radius: Int) : Shape("circle!")
-data class Square(val perimeter: Int) : Shape("square!")
+data class Circle2(
+    val radius: Int,
+    override val description: String,
+    override val onClick: () -> Unit
+) : Shape2("circle!", onClick)
+
+data class Square2(
+    val perimeter: Int,
+    override val description: String,
+    override val onClick: () -> Unit
+) : Shape2("square!", onClick)
 
 fun main() {
-    val circle = Circle(1)
-    val square = Square(1)
-    println(circle) // Circle(radius=1)
-    println(circle.common) // shape!
-    println(circle.description) // common!
-    println(square) // Square(perimeter=1)
-    println(square.common) // common!
-    println(square.description) // square!
+    val circle = Circle2(1, "circle!") { println("Circle is clicked.") }
+    val square = Square2(1, "square!") { println("Square is clicked.") }
+    println(circle) // Circle2(radius=1, description=circle!, onClick=() -> kotlin.Unit)
+    println(circle.commonDescription) // Clicked.
+    circle.onCommonClick() // Circle is clicked.
+    circle.onClick() // Circle is clicked.
+    println(square) // Square2(perimeter=1, description=square!, onClick=() -> kotlin.Unit)
+    println(square.commonDescription) // common!
+    square.onCommonClick() // Clicked.
+    square.onClick() // Square is clicked.
 }

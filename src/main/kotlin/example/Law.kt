@@ -1,4 +1,4 @@
-package samples
+package example
 
 object Law {
     private fun japaneseNumeral(n: Int, isOnesPlace: Boolean) = when (n) {

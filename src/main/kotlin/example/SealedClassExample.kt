@@ -1,17 +1,17 @@
 package example
 
-sealed class Fruit(val name: String) {
-    val common: String = "This is a common property."
+sealed class Shape(val description: String) {
+    val common: String = "shape's common description"
 }
 
-data class Apple(val appleBrand: String) : Fruit("I am an apple.")
-data class Orange(val orangeBrand: String) : Fruit("I am an orange.")
+data class Circle(val radius: Int) : Shape("circle's description")
+data class Square(val perimeter: Int) : Shape("square's description")
 
 fun main() {
-    val apple = Apple("Fuji")
-    val orange = Orange("Unshu")
-    println(apple)
-    println(apple.common)
-    println(orange)
-    println(orange.common)
+    val circle = Circle(1)
+    val square = Square(1)
+    println(circle)
+    println(circle.common)
+    println(square)
+    println(square.common)
 }

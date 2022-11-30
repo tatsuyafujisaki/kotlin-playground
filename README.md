@@ -562,7 +562,9 @@ println(evenNumber) // 2
 
 ## Comparison among `lazy`, `Delegates.notNull()`, and `lateinit`
 
-&nbsp;|lazy|Delegates.notNull()|lateinit --|--|--|-- val|supported|not supported|not supported
+&nbsp;|lazy|Delegates.notNull()|lateinit
+--|--|--|--
+val|supported|not supported|not supported
 non-nullable|supported|supported|not supported primitive types|supported|supported|not supported performance|ok(※1)|ok(
 ※1)|good Dagger|supported|supported(※2)|supported
 
@@ -571,11 +573,12 @@ non-nullable|supported|supported|not supported primitive types|supported|support
 
 # Regex
 
-Construct|Matches|Greedy or reluctant --|--|-- x?|0,1|greedy x??|0,1|reluctant x*|0+|greedy x*?|0+|reluctant
+Construct|Matches|Greedy or reluctant
+--|--|--
+x?|0,1|greedy x??|0,1|reluctant x*|0+|greedy x*?|0+|reluctant
 x+|1+|greedy x+?|1+|reluctant
 
-Kotlin's regex pattern syntax is the same as Java'
-s [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
+Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
 
 # How to print the name of the current function
 
@@ -668,42 +671,6 @@ as the type of the initial value reduce|no|same as the type of the input array
 
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html
-
-# Declaration-site variance
-
-* Invariant
-    * is a type parameter without the "in" or "out" modifier.
-    * If a type parameter is invariant, the exact same type is required.
-* Covariant
-    * is a type parameter with the "out" modifier.
-    * can only be returned (produced) and never referenced (consumed).
-    * can return a subtype.
-        * Producer<out Dog>
-        * If a signature of a function is supposed to return a Dog, it can return a Pug but not an Animal.
-* Contravariant
-    * is a type parameter with the "in" modifier.
-    * can only be referenced (consumed) and never returned (produced).
-    * can receive a subtype.
-        * Consumer<in Dog>
-        * If a signature of a function is supposed to receive a Dog, it can receive a Pug but not an Animal.
-* https://kotlinlang.org/docs/reference/generics.html#declaration-site-variance
-
-# @Volatile
-
-is normally used in a database instance.
-
-```
-@Volatile
-private var INSTANCE: MyDatabase? = null
-```
-
-* Volatile fields are thread-safe. They are never cached, and all writes and reads will be done to and from the main
-  memory. It means that changes made by one thread to the field are immediately made visible to other threads.
-* The increment operator "++" in JVM languages is not thread-safe even when the field is volatile because "++" is not an
-  atomic operation because it consists of a read, an increment, and a write.
-* https://kotlinlang.org/docs/reference/coroutines/shared-mutable-state-and-concurrency.html#volatiles-are-of-no-help
-    * > Volatiles are of no help. There is a common misconception that making a variable volatile solves concurrency problem.
-* https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-volatile/
 
 # Best practices
 [best-practices.md](markdown/best-practices.md)

@@ -514,6 +514,27 @@ data class Sample(val x: Int) {
 }
 ```
 
+# Sealed class
+```kotlin
+sealed class Shape(val description: String) {
+    val common: String = "common!"
+}
+
+data class Circle(val radius: Int) : Shape("circle!")
+data class Square(val perimeter: Int) : Shape("square!")
+
+fun main() {
+    val circle = Circle(1)
+    val square = Square(1)
+    println(circle) // Circle(radius=1)
+    println(circle.common) // shape!
+    println(circle.description) // common!
+    println(square) // Square(perimeter=1)
+    println(square.common) // common!
+    println(square.description) // square!
+}
+```
+
 # `<reified T>` (Reified type parameters)
 
 enables you to use `is` and `as` on `T`.
@@ -620,49 +641,6 @@ checkNotNull(T?)|IllegalStateException
 error(Any)|IllegalStateException
 require(Boolean)|IllegalArgumentException
 requireNotNull(T?)|IllegalArgumentException
-
-# Initializer(`init`) / Primary constructor / Secondary constructor (`constructor`)
-
-```kotlin
-class Sample(val s: String) /* Primary constructor */ {
-    constructor(s: String, n: Int) /* Secondary constructor */ : this(s) {
-        println("Secondary constructor is called.")
-    }
-
-    init {
-        println("init is called.")
-    }
-}
-
-fun main() {
-    val sample = Sample("Alice", 18)
-}
-
-// Result:
-// init is called.
-// Secondary constructor is called.
-```
-
-## Initializer (`init`)
-
-is called before the secondary `constructor`.
-
-## Primary constructor
-
-* is the constructor declared in the class header.
-* cannot contain any code.
-* can be implicit whether or not a secondary constructor exists.
-
-## Secondary constructors (`constructor`)
-
-* must call the explicit primary constructor (if it exists) directly or indirectly through another secondary
-  constructor.
-
-```kotlin
-constructor(...) : this(parameters of the primary constructor)
-```
-
-* There can be more than one secondary constructor.
 
 # `fold` versus `reduce`
 

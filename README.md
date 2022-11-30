@@ -514,6 +514,30 @@ data class Sample(val x: Int) {
 }
 ```
 
+# Sealed interface
+```kotlin
+sealed interface Shape {
+    val description: String
+}
+
+data class Circle(val radius: Int) : Shape {
+    override val description = "circle!"
+}
+
+data class Square(val perimeter: Int) : Shape {
+    override val description = "square!"
+}
+
+fun main() {
+    val circle = Circle(1)
+    val square = Square(1)
+    println(circle) // Circle2(radius=1)
+    println(circle.description) // circle!
+    println(square) // Square2(perimeter=1)
+    println(square.description) // square!
+}
+```
+
 # Sealed class
 ```kotlin
 sealed class Shape(val description: String) {

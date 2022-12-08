@@ -518,61 +518,61 @@ data class Sample(val x: Int) {
 ```kotlin
 sealed interface Shape {
     val description: String
-    val onClick: () -> Unit
+    val print: () -> Unit
 }
 
 data class Circle(
     val radius: Int,
     override val description: String,
-    override val onClick: () -> Unit
+    override val print: () -> Unit
 ) : Shape
 
 data class Square(
     val perimeter: Int,
     override val description: String,
-    override val onClick: () -> Unit
+    override val print: () -> Unit
 ) : Shape
 
 fun main() {
-    val circle = Circle(1, "circle!") { println("Circle is clicked.") }
-    val square = Square(1, "square!") { println("Square is clicked.") }
-    println(circle) // Circle(radius=1, description=circle!, onClick=() -> kotlin.Unit)
-    circle.onClick() // Circle is clicked.
-    println(square) // Square(perimeter=1, description=square!, onClick=() -> kotlin.Unit)
-    square.onClick() // Square is clicked.
+    val circle = Circle(1, "circle!") { println("circle!") }
+    val square = Square(1, "square!") { println("square!") }
+    println(circle) // Circle(radius=1, description=circle!, print=() -> kotlin.Unit)
+    circle.print() // circle!
+    println(square) // Square(perimeter=1, description=square!, print=() -> kotlin.Unit)
+    square.print() // square!
 }
 ```
 
 # Sealed class
 ```kotlin
-sealed class Shape(open val description: String, open val onClick: () -> Unit) {
+sealed class Shape(open val description: String, open val print: () -> Unit) {
     val commonDescription: String = "common!"
-    val onCommonClick: () -> Unit = { println("Clicked.") }
+    val printCommon: () -> Unit = { println("common!") }
 }
 
 data class Circle(
     val radius: Int,
     override val description: String,
-    override val onClick: () -> Unit
-) : Shape("circle!", onClick)
+    override val print: () -> Unit
+) : Shape("circle!", print)
 
 data class Square(
     val perimeter: Int,
     override val description: String,
-    override val onClick: () -> Unit
-) : Shape("square!", onClick)
+    override val print: () -> Unit
+) : Shape("square!", print)
 
 fun main() {
-    val circle = Circle(1, "circle!") { println("Circle is clicked.") }
-    val square = Square(1, "square!") { println("Square is clicked.") }
-    println(circle) // Circle(radius=1, description=circle!, onClick=() -> kotlin.Unit)
-    println(circle.commonDescription) // Clicked.
-    circle.onCommonClick() // Circle is clicked.
-    circle.onClick() // Circle is clicked.
-    println(square) // Square(perimeter=1, description=square!, onClick=() -> kotlin.Unit)
+    val circle = Circle(1, "circle!") { println("circle!") }
+    val square = Square(1, "square!") { println("square!") }
+    println(circle) // Circle(radius=1, description=circle!, print=() -> kotlin.Unit)
+    println(circle.commonDescription) // common!
+    circle.printCommon() // common!
+    circle.print() // circle!
+    println(square) // Square(perimeter=1, description=square!, print=() -> kotlin.Unit)
     println(square.commonDescription) // common!
-    square.onCommonClick() // Clicked.
-    square.onClick() // Square is clicked.
+    square.printCommon() // common!
+    square.print() // square!
 }
 ```
 

@@ -1,5 +1,5 @@
 import kotlinx.coroutines.coroutineScope
 
-suspend fun main(): Unit = coroutineScope {
+private suspend fun main(): Unit = coroutineScope {
     println()
 }

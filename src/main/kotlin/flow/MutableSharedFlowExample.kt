@@ -3,12 +3,11 @@ package flow
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 private suspend fun mutableSharedFlowExample(): Unit = coroutineScope {
     val mutableSharedFlow = MutableSharedFlow<String>()
-    val sharedFlow: SharedFlow<String> = mutableSharedFlow
+    val sharedFlow: Flow<String> = mutableSharedFlow
 
     launch {
         sharedFlow.collect {

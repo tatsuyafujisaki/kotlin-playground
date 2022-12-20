@@ -1,13 +1,13 @@
 package flow
 
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 private suspend fun mutableStateFlowExample(): Unit = coroutineScope {
     val mutableStateFlow = MutableStateFlow("a")
-    val stateFlow: StateFlow<String> = mutableStateFlow
+    val stateFlow: Flow<String> = mutableStateFlow
 
     launch {
         stateFlow.collect {

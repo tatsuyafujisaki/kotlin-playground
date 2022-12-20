@@ -1,17 +1,9 @@
-# Flow and Channel
-* Both are for sending multiple values.
-* Channel has no use case because Flow is forward compatible with Channel.
-* Developers will use a channelFlow in Flow.
-  * https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/channel-flow.html
-
-# StateFlow, SharedFlow, and LiveData
-&nbsp;|StateFlow|SharedFlow|LiveData
---|--|--|--
-Requires an initial state?|Yes|No|No
-Emits the last state and subsequent states when a new consumer starts collecting?|Yes|No|Yes
-Stops collecting when the view goes to the `STOPPED` state.|No|?|Yes
-
-https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#livedata
+# Difference among PublishSubject, BehaviorSubject, MutableSharedFlow, and MutableStateFlow
+&nbsp;|PublishSubject<br>.create|BehaviorSubject<br>.create|BehaviorSubject<br>.createDefault|MutableSharedFlow|MutableSharedFlow<br>(replay=1)|MutableStateFlow
+--|--|--|--|--|--|--
+Requires a initial value|FALSE|FALSE|TRUE|FALSE|FALSE|TRUE
+Can collect the latest value when a collector starts|FALSE|TRUE|TRUE|FALSE|TRUE|TRUE
+Can emit the same value as the previous one|TRUE|TRUE|TRUE|TRUE|TRUE|FALSE
 
 > A SharedFlow is a highly-configurable generalization of StateFlow.
 

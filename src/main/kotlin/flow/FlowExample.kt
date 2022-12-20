@@ -9,26 +9,27 @@ import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-private suspend fun main(): Unit = coroutineScope {
-    val mutableFlow = MutableSharedFlow<String>()
-    val flow: Flow<String> = mutableFlow
+private suspend fun main() {
+    coroutineScope {
+        val mutableFlow = MutableSharedFlow<String>()
+        val flow: Flow<String> = mutableFlow
 
-    launch {
-        flow
-            .map {
-                if (it == "b") throw Throwable() else it
-            }.catch {
-                println("Catch: $it")
-                // Prevent the flow from completing.
-                emitAll(flow)
-            }.collect {
-                println("Collect: $it")
-            }
+        launch {
+            flow.map {
+                    if (it == "b") throw Throwable() else it
+                }.catch {
+                    println("Catch: $it")
+                    // Prevent the flow from completing.
+                    emitAll(flow)
+                }.collect {
+                    println("Collect: $it")
+                }
+        }
+
+        delay(1000)
+        mutableFlow.emit("a")
+        mutableFlow.emit("b")
+        delay(1000)
+        mutableFlow.emit("c")
     }
-
-    delay(1000)
-    mutableFlow.emit("a")
-    mutableFlow.emit("b")
-    delay(1000)
-    mutableFlow.emit("c")
 }

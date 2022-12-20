@@ -13,8 +13,10 @@ private fun infiniteFlow() = flow {
     }
 }
 
-private suspend fun main(): Unit = coroutineScope {
-    infiniteFlow().take(5).collect {
-        println(it)
+private suspend fun main() {
+    coroutineScope {
+        infiniteFlow().take(5).collect {
+            println(it)
+        }
     }
 }

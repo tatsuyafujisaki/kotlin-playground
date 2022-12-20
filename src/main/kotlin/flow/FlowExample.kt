@@ -16,14 +16,14 @@ private suspend fun main() {
 
         launch {
             flow.map {
-                    if (it == "b") throw Throwable() else it
-                }.catch {
-                    println("Catch: $it")
-                    // Prevent the flow from completing.
-                    emitAll(flow)
-                }.collect {
-                    println("Collect: $it")
-                }
+                if (it == "b") throw Throwable() else it
+            }.catch {
+                println("Catch: $it")
+                // Prevent the flow from completing.
+                emitAll(flow)
+            }.collect {
+                println("Collect: $it")
+            }
         }
 
         delay(1000)

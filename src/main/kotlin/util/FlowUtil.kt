@@ -16,7 +16,7 @@ object FlowUtil {
     }.onEmpty {
         println("onEmpty") // completes without emitting any elements.
     }.onCompletion {
-        println("onCompletion" + if (it == null) "without a throwable" else "with throwable: $it")
+        println("onCompletion: $it")
     }
 
     fun <T> buildFlow(interval: Long = 1000, emitter: () -> T) = flow {

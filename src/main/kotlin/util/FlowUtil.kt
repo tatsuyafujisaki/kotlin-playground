@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.onStart
 
 object FlowUtil {
     fun <T : Any> Flow<T>.onMisc() = onStart {
-        println("doOnSubscribe")
+        println("onStart")
     }.onEach {
         println("onEach: $it")
     }.onEmpty {

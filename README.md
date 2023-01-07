@@ -715,6 +715,6 @@ as the type of the initial value reduce|no|same as the type of the input array
 A|B|Note
 --|--|--
 `(this.)javaClass.simpleName`|`this::class.java.simpleName`
-`in`|`contains`|
+`in`|`contains`
 `emptyList()`|`listOf()`
 `emptyFlow()`|`flowOf()`

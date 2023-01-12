@@ -710,11 +710,3 @@ as the type of the initial value reduce|no|same as the type of the input array
 
 # Scope functions
 [scope-functions.md](markdown/scope-functions.md)
-
-# Use A rather than B for simplicity
-A|B|Note
---|--|--
-`(this.)javaClass.simpleName`|`this::class.java.simpleName`
-`in`|`contains`
-`emptyList()`|`listOf()`
-`emptyFlow()`|`flowOf()`

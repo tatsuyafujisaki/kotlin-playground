@@ -27,6 +27,7 @@ dependencies {
     implementation(libs.moshi.kotlin)
     implementation(libs.rxjava)
     testImplementation(kotlin("test"))
+    testImplementation(libs.hamcrest)
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockito)
 }

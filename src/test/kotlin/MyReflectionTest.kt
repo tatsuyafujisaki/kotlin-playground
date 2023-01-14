@@ -2,7 +2,7 @@ import kotlin.reflect.jvm.jvmName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class MyTest {
+class MyReflectionTest {
     @Test
     fun printTypeTest() {
         val x = 0

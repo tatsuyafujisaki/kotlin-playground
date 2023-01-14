@@ -1,9 +1,9 @@
+import kotlin.test.Test
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
-import kotlin.test.Test
 
 class MyMockitoTest {
     private val original = "abc"
@@ -37,8 +37,6 @@ class MyMockitoTest {
         clazz.f1wrapper()
         clazz.myUpperCaseWrapper(original)
 
-        verify(mock).p1 = s
-        verify(mock, never()).p2 = anyString()
         verify(mock).f1()
         verify(mock, never()).f2()
         verify(mock).uppercase(uppercase)

@@ -21,8 +21,8 @@ class MyKotlinTest {
 
     @Test
     fun assertNullTest() {
-        val x: String? = null
-        assertNull(x)
+        val actual: String? = null
+        assertNull(actual)
     }
 
     @Test
@@ -33,8 +33,8 @@ class MyKotlinTest {
 
     @Test
     fun assertContainsTest() {
-        val range = listOf("a", "b", "c")
-        val value = "b"
-        assertContains(range, value)
+        val iterable = listOf("a", "b", "c")
+        val element = "b"
+        assertContains(iterable, element)
     }
 }

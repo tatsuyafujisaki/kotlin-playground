@@ -1,38 +1,36 @@
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNull
-import org.junit.jupiter.api.Assertions.assertTrue
+import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 
-class MyJUnitTest {
+class MyTruthTest {
     @Test
     fun assertTrueTest() {
         val actual = true
-        assertTrue(actual)
+        assertThat(actual).isTrue()
     }
 
     @Test
     fun assertEqualsTest() {
         val expected = "a"
         val actual = "a"
-        assertEquals(expected, actual)
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun assertNullTest() {
-        val actual: String? = null
-        assertNull(actual)
+        val x: String? = null
+        assertThat(x).isNull()
     }
 
     @Test
     fun assertIsTest() {
         val value = ""
-        assertTrue(value is String)
+        assertThat(value).isInstanceOf(String::class.java)
     }
 
     @Test
     fun assertContainsTest() {
         val iterable = listOf("a", "b", "c")
-        val element = "b"
-        assertTrue(element in iterable)
+        val value = "b"
+        assertThat(value).isIn(iterable)
     }
 }

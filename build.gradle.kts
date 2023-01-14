@@ -30,6 +30,7 @@ dependencies {
     testImplementation(libs.hamcrest)
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockito)
+    testImplementation(libs.truth)
 }
 
 tasks.test {

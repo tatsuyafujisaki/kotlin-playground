@@ -1,6 +1,7 @@
 # Use A rather than B for simplicity or clarity
 A|B|Note
 --|--|--
+`kotlin.time.Duration`|`java.time.Duration`
 `with(...)`|`run(...)`|if the receiver is not nullable.
 `A to B`|`Pair(A, B)`
 `emptyList()`|`listOf()`

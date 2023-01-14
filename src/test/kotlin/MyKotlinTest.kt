@@ -20,15 +20,15 @@ class MyKotlinTest {
     }
 
     @Test
-    fun assertIsTest() {
-        val value = ""
-        assertIs<String>(value)
-    }
-
-    @Test
     fun assertNullTest() {
         val x: String? = null
         assertNull(x)
+    }
+
+    @Test
+    fun assertIsTest() {
+        val value = ""
+        assertIs<String>(value)
     }
 
     @Test

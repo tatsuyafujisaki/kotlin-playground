@@ -1,4 +1,5 @@
 import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.containsString
 import org.hamcrest.Matchers.hasItem
 import org.hamcrest.Matchers.instanceOf
 import org.hamcrest.Matchers.`is`
@@ -21,20 +22,27 @@ class MyHamcrestTest {
 
     @Test
     fun assertNullTest() {
-        val x: String? = null
-        assertThat(x, `is`(nullValue()))
+        val actual: String? = null
+        assertThat(actual, `is`(nullValue()))
     }
 
     @Test
     fun assertIsTest() {
-        val value = ""
-        assertThat(value, `is`(instanceOf(String::class.java)))
+        val actual = ""
+        assertThat(actual, `is`(instanceOf(String::class.java)))
     }
 
     @Test
-    fun assertContainsTest() {
-        val range = listOf("a", "b", "c")
-        val value = "b"
-        assertThat(range, hasItem(value))
+    fun assertContainsTestForCollection() {
+        val actual = listOf("a", "b", "c")
+        val item = "b"
+        assertThat(actual, hasItem(item))
+    }
+
+    @Test
+    fun assertContainsTestForString() {
+        val actual = "abc"
+        val substring = "b"
+        assertThat(actual, containsString(substring))
     }
 }

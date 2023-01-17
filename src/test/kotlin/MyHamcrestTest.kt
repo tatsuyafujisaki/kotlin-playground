@@ -33,16 +33,16 @@ class MyHamcrestTest {
     }
 
     @Test
-    fun assertContainsTestForCollection() {
-        val actual = listOf("a", "b", "c")
-        val item = "b"
-        assertThat(actual, hasItem(item))
+    fun assertCollectionContainsTest() {
+        val iterable = listOf("a", "b", "c")
+        val element = "b"
+        assertThat(iterable, hasItem(element))
     }
 
     @Test
-    fun assertContainsTestForString() {
-        val actual = "abc"
+    fun assertStringContainsTest() {
+        val string = "abc"
         val substring = "b"
-        assertThat(actual, containsString(substring))
+        assertThat(string, containsString(substring))
     }
 }

@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -8,13 +8,6 @@ class MyJUnitTest {
     fun assertTrueTest() {
         val actual = true
         assertTrue(actual)
-    }
-
-    @Test
-    fun assertEqualsTest() {
-        val expected = "a"
-        val actual = "a"
-        assertEquals(expected, actual)
     }
 
     @Test
@@ -30,9 +23,23 @@ class MyJUnitTest {
     }
 
     @Test
-    fun assertContainsTest() {
-        val collection = listOf("a", "b", "c")
+    fun assertEqualsTest() {
+        val expected = "a"
+        val actual = "a"
+        Assertions.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun assertCollectionContainsTest() {
+        val iterable = listOf("a", "b", "c")
         val element = "b"
-        assertTrue(element in collection)
+        assertTrue(element in iterable)
+    }
+
+    @Test
+    fun assertStringContainsTest() {
+        val string = "abc"
+        val substring = "b"
+        assertTrue(substring in string)
     }
 }

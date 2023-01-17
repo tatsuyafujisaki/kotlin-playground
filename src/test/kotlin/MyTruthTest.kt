@@ -9,13 +9,6 @@ class MyTruthTest {
     }
 
     @Test
-    fun assertEqualsTest() {
-        val expected = "a"
-        val actual = "a"
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @Test
     fun assertNullTest() {
         val actual: String? = null
         assertThat(actual).isNull()
@@ -28,9 +21,23 @@ class MyTruthTest {
     }
 
     @Test
-    fun assertContainsTest() {
+    fun assertEqualsTest() {
+        val expected = "a"
+        val actual = "a"
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun assertCollectionContainsTest() {
         val iterable = listOf("a", "b", "c")
-        val actual = "b"
-        assertThat(actual).isIn(iterable)
+        val element = "b"
+        assertThat(element).isIn(iterable)
+    }
+
+    @Test
+    fun assertStringContainsTest() {
+        val string = "abc"
+        val substring = "b"
+        assertThat(string).contains(substring)
     }
 }

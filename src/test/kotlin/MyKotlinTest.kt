@@ -40,8 +40,8 @@ class MyKotlinTest {
 
     @Test
     fun assertStringContainsTest() {
-        val string = "abc"
+        val actual = "abc"
         val substring = "b"
-        assertContains(string, substring)
+        assertContains(actual, substring)
     }
 }

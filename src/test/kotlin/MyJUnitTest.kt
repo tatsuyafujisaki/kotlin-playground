@@ -38,8 +38,8 @@ class MyJUnitTest {
 
     @Test
     fun assertStringContainsTest() {
-        val string = "abc"
+        val actual = "abc"
         val substring = "b"
-        assertTrue(substring in string)
+        assertTrue(substring in actual)
     }
 }

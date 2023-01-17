@@ -41,8 +41,8 @@ class MyHamcrestTest {
 
     @Test
     fun assertStringContainsTest() {
-        val string = "abc"
+        val actual = "abc"
         val substring = "b"
-        assertThat(string, containsString(substring))
+        assertThat(actual, containsString(substring))
     }
 }

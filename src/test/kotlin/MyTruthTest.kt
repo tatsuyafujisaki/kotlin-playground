@@ -36,8 +36,8 @@ class MyTruthTest {
 
     @Test
     fun assertStringContainsTest() {
-        val string = "abc"
+        val actual = "abc"
         val substring = "b"
-        assertThat(string).contains(substring)
+        assertThat(actual).contains(actual)
     }
 }

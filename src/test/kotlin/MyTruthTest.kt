@@ -17,20 +17,20 @@ class MyTruthTest {
 
     @Test
     fun assertNullTest() {
-        val x: String? = null
-        assertThat(x).isNull()
+        val actual: String? = null
+        assertThat(actual).isNull()
     }
 
     @Test
     fun assertIsTest() {
-        val value = ""
-        assertThat(value).isInstanceOf(String::class.java)
+        val actual = ""
+        assertThat(actual).isInstanceOf(String::class.java)
     }
 
     @Test
     fun assertContainsTest() {
         val iterable = listOf("a", "b", "c")
-        val value = "b"
-        assertThat(value).isIn(iterable)
+        val actual = "b"
+        assertThat(actual).isIn(iterable)
     }
 }

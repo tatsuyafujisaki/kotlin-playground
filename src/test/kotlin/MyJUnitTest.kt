@@ -25,14 +25,14 @@ class MyJUnitTest {
 
     @Test
     fun assertIsTest() {
-        val value = ""
-        assertTrue(value is String)
+        val actual = ""
+        assertTrue(actual is String)
     }
 
     @Test
     fun assertContainsTest() {
-        val iterable = listOf("a", "b", "c")
+        val collection = listOf("a", "b", "c")
         val element = "b"
-        assertTrue(element in iterable)
+        assertTrue(element in collection)
     }
 }

@@ -1,9 +1,9 @@
+import org.junit.jupiter.api.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import org.junit.jupiter.api.Test
 
 class MyKotlinTest {
     @Test
@@ -27,8 +27,8 @@ class MyKotlinTest {
 
     @Test
     fun assertIsTest() {
-        val value = ""
-        assertIs<String>(value)
+        val actual = ""
+        assertIs<String>(actual)
     }
 
     @Test

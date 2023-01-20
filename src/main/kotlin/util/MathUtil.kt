@@ -68,8 +68,7 @@ object MathUtil {
      * e.g. If [n] is 6 and [ks] is [4, 5, 6], the returned value is the probability of 4 successes + probability of 5 successes + probability of 6 successes.
      * i.e. probability of at least 6 successes
      */
-    fun cumulativeBinomialProbability(p: Double, n: Int, ks: IntRange) =
-        ks.sumOf { binomialProbability(p, n, it) }
+    fun cumulativeBinomialProbability(p: Double, n: Int, ks: IntRange) = ks.sumOf { binomialProbability(p, n, it) }
 
     /**
      * Redundant wrapper for geometric probability
@@ -129,10 +128,12 @@ object MathUtil {
         }
 
         val n = xs.size
-        return 1 - (
-            6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }
-                .sum() / (n * (n * n - 1))
-            )
+        return 1 - (6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }
+            .sum() / (n * (n * n - 1)))
+    }
+
+    fun <S, T> cartesianProduct(xs: Collection<S>, ys: Collection<T>): List<Pair<S, T>> {
+        return xs.flatMap { x -> ys.map { y -> x to y } }
     }
 
     fun sigmoid(x: Double) = 1 / (1 + exp(-x))

@@ -5,26 +5,33 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.take
-import java.time.LocalTime
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
-private fun infiniteFlow1() = flow {
+/**
+ * Usage: interval(1.seconds)
+ */
+private fun interval(period: Duration, initialDelay: Duration = Duration.ZERO) = flow {
+    delay(initialDelay)
     while (true) {
-        emit(LocalTime.now())
-        delay(1000)
+        emit(Unit)
+        delay(period)
     }
 }
 
-private fun infiniteFlow2(interval: Long = 1000) = generateSequence(0L, Long::inc).asFlow().onEach {
-    delay(interval)
-}
+private fun counter(period: Duration, initialDelay: Duration = Duration.ZERO) = generateSequence(0L, Long::inc)
+    .asFlow()
+    .onStart { delay(initialDelay) }
+    .onEach { delay(period) }
 
 private suspend fun main() = coroutineScope {
-    infiniteFlow1().take(3).collect {
+    interval(1.seconds).take(3).collect {
         println(it)
     }
 
-    infiniteFlow2().take(3).collect {
+    counter(1.seconds).take(3).collect {
         println(it)
     }
 }

@@ -19,7 +19,8 @@ infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
 `List<*>.lastIndex`<br>`CharSequence.lastIndex`|`List<*>.size - 1`<br>`String.length - 1`
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
 `(this.)javaClass.simpleName`|`this::class.java.simpleName`
-
+`Flow.filterNotNull()`|`Flow.flatMapConcat { if (it != null) flowOf(it) else emptyFlow() }`
+    
 # Tips
 - Decompose a pair whenever possible.
     - Recommended: `listOf("apple" to 100, "orange" to 200).map { it.first + it.second })`

@@ -688,7 +688,7 @@ requireNotNull(T?)|IllegalArgumentException
 &nbsp;|Type of initial value|Type of element of input array|Return type
 --|--|--|--
 fold|R|T|R
-reduce|n/a|T|S
+reduce|n/a|T|T or one of T's ancestors
 
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html

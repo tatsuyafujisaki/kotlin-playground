@@ -687,8 +687,8 @@ requireNotNull(T?)|IllegalArgumentException
 
 &nbsp;|Takes the initial value?|Return type
 --|--|--
-fold|yes (can be different from the type of the input array)|same
-as the type of the initial value reduce|no|same as the type of the input array
+fold|yes (can be different from the type of the input array)|same as the type of the initial value
+reduce|no|same as the type of the input
 
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html

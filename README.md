@@ -685,10 +685,10 @@ requireNotNull(T?)|IllegalArgumentException
 
 # `fold` versus `reduce`
 
-&nbsp;|Takes the initial value?|Return type
---|--|--
-fold|yes (can be different from the type of the input array)|same as the type of the initial value
-reduce|no|same as the type of the input
+&nbsp;|Type of initial value|Type of element of input array|Return type
+--|--|--|--
+fold|R|T|R
+reduce|n/a|T|S
 
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html

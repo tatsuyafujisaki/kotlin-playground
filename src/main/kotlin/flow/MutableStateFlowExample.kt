@@ -19,7 +19,5 @@ private suspend fun main() = coroutineScope {
     // No need to get delayed to ensure that a collector starts
     // because the collector can collect a value emitted before the collector starts.
     mutableFlow.emit("a")
-
-    // This will not be collected because, unlike MutableSharedFlow, MutableStateFlow CANNOT collect the same value.
-    mutableFlow.emit("a")
+    mutableFlow.emit("a") // MutableStateFlow CANNOT collect the same value as the previous one.
 }

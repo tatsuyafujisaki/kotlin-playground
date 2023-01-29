@@ -43,7 +43,7 @@ class MyMockitoTest {
     }
 }
 
-interface MockMeInterface {
+private interface MockMeInterface {
     var p1: String
     var p2: String
 
@@ -60,7 +60,7 @@ open class OpenMockMe {
     open fun uppercase(s: String) {}
 }
 
-class MyClass1(private val clazz: MockMeInterface) {
+private class MyClass1(private val clazz: MockMeInterface) {
     fun setP1(s: String) {
         clazz.p1 = s
     }
@@ -74,7 +74,7 @@ class MyClass1(private val clazz: MockMeInterface) {
     }
 }
 
-class MyClass2(private val clazz: OpenMockMe) {
+private class MyClass2(private val clazz: OpenMockMe) {
     fun setP1(s: String) {
         clazz.p1 = s
     }

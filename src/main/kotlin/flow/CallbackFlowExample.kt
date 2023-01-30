@@ -6,18 +6,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 
-private suspend fun main() = coroutineScope {
-    val countDownTimer = CountDownTimer(3_000)
-
-    launch {
-        flowFrom(countDownTimer).collect {
-            println("collect: $it")
-        }
-    }
-
-    countDownTimer.start()
-}
-
 private fun flowFrom(countDownTimer: CountDownTimer) = callbackFlow {
     countDownTimer.myCallback = object : MyCallback {
         override fun onTick(millisUntilFinished: Long) {
@@ -46,4 +34,16 @@ private class CountDownTimer(val millisInFuture: Long, val countDownInterval: Lo
         }
         myCallback?.onFinish()
     }
+}
+
+private suspend fun main() = coroutineScope {
+    val countDownTimer = CountDownTimer(3_000)
+
+    launch {
+        flowFrom(countDownTimer).collect {
+            println("collect: $it")
+        }
+    }
+
+    countDownTimer.start()
 }

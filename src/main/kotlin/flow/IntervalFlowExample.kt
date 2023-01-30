@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.take
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -21,26 +22,32 @@ private fun interval(period: Duration, initialDelay: Duration = Duration.ZERO) =
     }
 }
 
-private fun interval2(
-    period: Duration, interval: Duration, initialDelay: Duration = Duration.ZERO, onFinish: () -> Unit
+private fun countUp(period: Duration, initialDelay: Duration = Duration.ZERO) =
+    generateSequence(0L, Long::inc).asFlow().onStart { delay(initialDelay) }.onEach { delay(period) }
+
+private fun countDown(
+    millisInFuture: Long, countDownInterval: Long, initialDelay: Duration = Duration.ZERO, onFinish: () -> Unit
 ) = flow {
     delay(initialDelay)
-    for (t in period.inWholeMilliseconds downTo 0 step interval.inWholeMilliseconds) {
-        emit(Unit)
-        delay(period)
+    for (t in millisInFuture downTo 0 step countDownInterval) {
+        emit(t)
+        delay(countDownInterval)
     }
     onFinish()
 }
 
-private fun counter(period: Duration, initialDelay: Duration = Duration.ZERO) =
-    generateSequence(0L, Long::inc).asFlow().onStart { delay(initialDelay) }.onEach { delay(period) }
-
 private suspend fun main() = coroutineScope {
     interval(1.seconds).take(3).collect {
-        println(it)
+        println("collect $it")
     }
 
-    counter(1.seconds).take(3).collect {
-        println(it)
+    countUp(1.seconds).take(3).collect {
+        println("collect $it")
+    }
+
+    countDown(
+        millisInFuture = 10.seconds.inWholeMilliseconds, countDownInterval = 500.milliseconds.inWholeMilliseconds
+    ) { println("onFinish()") }.collect {
+        println("collect: $it")
     }
 }

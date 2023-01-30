@@ -14,6 +14,19 @@ private interface MyCallback {
 private class CountDownTimer(val total: Long, val interval: Long = 1_000) {
     var myCallback: MyCallback? = null
 
+    val flow = callbackFlow {
+        myCallback = object : MyCallback {
+            override fun onTick(millisUntilFinished: Long) {
+                trySend(millisUntilFinished)
+            }
+
+            override fun onFinish() {
+                println("onFinish")
+            }
+        }
+        awaitClose {}
+    }
+
     suspend fun start() {
         for (i in total downTo 0 step interval) {
             myCallback?.onTick(i)
@@ -27,18 +40,7 @@ private suspend fun main() = coroutineScope {
     val countDownTimer = CountDownTimer(3_000)
 
     launch {
-        callbackFlow {
-            countDownTimer.myCallback = object : MyCallback {
-                override fun onTick(millisUntilFinished: Long) {
-                    trySend(millisUntilFinished)
-                }
-
-                override fun onFinish() {
-                    println("onFinish")
-                }
-            }
-            awaitClose {}
-        }.collect {
+        countDownTimer.flow.collect {
             println("collect: $it")
         }
     }

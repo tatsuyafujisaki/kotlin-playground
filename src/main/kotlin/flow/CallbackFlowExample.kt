@@ -7,39 +7,43 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 
 private suspend fun main() = coroutineScope {
-    val myClass = MyClass()
+    val countDownTimer = CountDownTimer(3_000)
 
     launch {
-        flowFrom(myClass).collect {
+        flowFrom(countDownTimer).collect {
             println("collect: $it")
         }
     }
 
-    myClass.start()
+    countDownTimer.start()
 }
 
-private fun flowFrom(myClass: MyClass) = callbackFlow {
-    val myCallback = object : MyCallback {
-        override fun onChange(x: Long) {
-            trySend(x)
+private fun flowFrom(countDownTimer: CountDownTimer) = callbackFlow {
+    countDownTimer.myCallback = object : MyCallback {
+        override fun onTick(millisUntilFinished: Long) {
+            trySend(millisUntilFinished)
+        }
+
+        override fun onFinish() {
+            println("onFinish")
         }
     }
-    myClass.myCallback = myCallback
-
     awaitClose {}
 }
 
 private interface MyCallback {
-    fun onChange(x: Long)
+    fun onTick(millisUntilFinished: Long)
+    fun onFinish()
 }
 
-private class MyClass {
+private class CountDownTimer(val millisInFuture: Long, val countDownInterval: Long = 1_000) {
     var myCallback: MyCallback? = null
 
     suspend fun start() {
-        generateSequence(0L, Long::inc).forEach {
-            myCallback?.onChange(it)
-            delay(1000)
+        for (i in millisInFuture downTo 0 step countDownInterval) {
+            myCallback?.onTick(i)
+            delay(countDownInterval)
         }
+        myCallback?.onFinish()
     }
 }

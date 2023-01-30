@@ -1,27 +1,28 @@
 package flow
 
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 
 private interface MyCallback {
     fun onTick(millisUntilFinished: Long)
-    fun onFinish()
 }
 
-private class CountDownTimer(val total: Long, val interval: Long = 1_000) {
+private class CountDownTimer(
+    val total: Long,
+    val interval: Long,
+    val onFinish: () -> Unit
+) {
     var myCallback: MyCallback? = null
 
     val flow = callbackFlow {
         myCallback = object : MyCallback {
             override fun onTick(millisUntilFinished: Long) {
                 trySend(millisUntilFinished)
-            }
-
-            override fun onFinish() {
-                println("onFinish")
             }
         }
         awaitClose {}
@@ -32,18 +33,24 @@ private class CountDownTimer(val total: Long, val interval: Long = 1_000) {
             myCallback?.onTick(i)
             delay(interval)
         }
-        myCallback?.onFinish()
+        onFinish()
     }
 }
 
-private suspend fun main() = coroutineScope {
-    val countDownTimer = CountDownTimer(3_000)
+private suspend fun main() {
+    coroutineScope {
+        val countDownTimer = CountDownTimer(total = 3_000, interval = 1_000, ::cancel)
 
-    launch {
-        countDownTimer.flow.collect {
-            println("collect: $it")
+        launch {
+            countDownTimer
+                .flow
+                .onCompletion {
+                    println("onCompletion")
+                }.collect {
+                    println("collect: $it")
+                }
         }
-    }
 
-    countDownTimer.start()
+        countDownTimer.start()
+    }
 }

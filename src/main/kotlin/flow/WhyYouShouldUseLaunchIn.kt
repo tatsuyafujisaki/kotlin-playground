@@ -35,6 +35,6 @@ private suspend fun main() {
                 .launchIn(this)
         }
     }.let {
-        println("$it milliseconds") // prints almost 1 second because the two flows run concurrently.
+        println("$it milliseconds") // prints almost 1 second because the two flows run in parallel.
     }
 }

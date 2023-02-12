@@ -22,7 +22,7 @@ private suspend fun main() {
             }
         }
     }.let {
-        println("$it milliseconds") // almost 2 seconds because it is sequential.
+        println("$it milliseconds") // prints almost 2 seconds because the two flows run in sequence.
     }
 
     measureTimeMillis {
@@ -35,6 +35,6 @@ private suspend fun main() {
                 .launchIn(this)
         }
     }.let {
-        println("$it milliseconds") // almost 1 second because it is concurrent.
+        println("$it milliseconds") // prints almost 1 second because the two flows run concurrently.
     }
 }

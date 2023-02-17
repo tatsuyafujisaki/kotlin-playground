@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.onStart
 
 object FlowUtil {
     fun <T : Any> Flow<T>.onMisc() = onStart {
-        println("👀 onStart")
+        println("👀onStart")
     }.onEach {
-        println("👀 onEach: $it")
+        println("👀onEach: $it")
     }.onEmpty {
-        println("👀 onEmpty") // completes without emitting any elements.
+        println("👀onEmpty") // completes without emitting any elements.
     }.onCompletion {
         println("👀 onCompletion: $it")
     }

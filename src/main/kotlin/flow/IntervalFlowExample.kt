@@ -1,7 +1,5 @@
 package flow
 
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
@@ -10,10 +8,9 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.take
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
-/**
- * Usage: interval(1.seconds)
- */
 private fun interval(period: Duration, initialDelay: Duration = Duration.ZERO) = flow {
     delay(initialDelay)
     while (true) {

@@ -23,7 +23,7 @@ private fun interval(period: Duration, initialDelay: Duration = Duration.ZERO) =
 }
 
 private fun countUp(period: Duration, initialDelay: Duration = Duration.ZERO) =
-    generateSequence(0L, Long::inc).asFlow().onStart { delay(initialDelay) }.onEach { delay(period) }
+    generateSequence(0, Long::inc).asFlow().onStart { delay(initialDelay) }.onEach { delay(period) }
 
 private fun countDown(
     period: Long, interval: Long, initialDelay: Duration = Duration.ZERO

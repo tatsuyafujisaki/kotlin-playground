@@ -693,6 +693,21 @@ reduce|n/a|T|T or one of T's ancestors
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html
 
+# KDoc
+## How to add an external link
+```kotlin
+/**
+ * [Example](https://example.com)
+ */
+```
+After adding `@see`, KDoc still renders the external link. However, Android Studio issues a warning that "Example" in `[Example]` is invalid.
+```kotlin
+/**
+ * @see [Example](https://example.com)
+ */
+```
+https://github.com/Kotlin/dokka/issues/518#issuecomment-744062184
+
 # Best practices
 [best-practices.md](markdown/best-practices.md)
 

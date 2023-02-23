@@ -31,6 +31,7 @@ dependencies {
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockito)
     testImplementation(libs.truth)
+    testImplementation(libs.turbine)
 }
 
 java {

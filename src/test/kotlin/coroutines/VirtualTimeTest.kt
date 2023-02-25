@@ -53,9 +53,9 @@ class VirtualTimeTest {
     fun measureTimeTest() = runTest {
         val elapsed = TimeSource.Monotonic.measureTime {
             val job = launch {
-                delay(1.minutes) // skipped
+                delay(1.minutes) // skipped because this delay(...) is inside launch.
                 withContext(Dispatchers.Default) {
-                    delay(5.seconds) // not skipped because Dispatchers.Default does not know about TestCoroutineScheduler.
+                    delay(5.seconds) // not skipped because this delay(...) is in a dispatcher that doesn't use TestCoroutineScheduler.
                 }
             }
             job.join()

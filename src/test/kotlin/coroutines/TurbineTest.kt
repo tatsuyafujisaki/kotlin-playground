@@ -3,7 +3,7 @@ package coroutines
 import app.cash.turbine.test
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Duration.Companion.minutes
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
@@ -25,7 +25,7 @@ class TurbineTest {
     fun test2() = runTest {
         flow {
             emit("a")
-            delay(10.seconds) // skipped
+            delay(1.minutes) // skipped
             emit("b")
         }.test {
             assertEquals("a", awaitItem())

@@ -1,3 +1,10 @@
+# When `delay` in `runTest` is skipped in actual or virtual time
+runTest|Actual time to advance|Virtual time to advance
+--|--|--
+`delay(1_000)` not in `launch`|0s|0s
+`delay(1_000)` in `launch`|0s|1s
+`delay(1_000)` in a dispatcher that doesn't use `TestCoroutineScheduler` (e.g. using `withContext`)|1s|1s
+
 # Difference among PublishSubject, BehaviorSubject, MutableSharedFlow, and MutableStateFlow
 &nbsp;|PublishSubject<br>.create|BehaviorSubject<br>.create|BehaviorSubject<br>.createDefault|MutableSharedFlow|MutableSharedFlow<br>(replay=1)|MutableStateFlow
 --|--|--|--|--|--|--

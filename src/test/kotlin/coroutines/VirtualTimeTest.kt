@@ -9,7 +9,6 @@ import kotlin.time.TimeSource
 import kotlin.time.measureTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceTimeBy
@@ -39,13 +38,13 @@ class VirtualTimeTest {
     @Test
     fun measureTimeTest() = runTest {
         val elapsed = TimeSource.Monotonic.measureTime {
-            val deferred = async {
+            val job = launch {
                 delay(1.minutes) // skipped
                 withContext(Dispatchers.Default) {
                     delay(5.seconds) // not skipped because Dispatchers.Default does not know about TestCoroutineScheduler.
                 }
             }
-            deferred.await()
+            job.join()
         }
         println(elapsed) // about five seconds
     }

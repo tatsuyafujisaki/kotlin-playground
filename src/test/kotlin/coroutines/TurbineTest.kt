@@ -25,7 +25,7 @@ class TurbineTest {
     fun test2() = runTest {
         flow {
             emit("a")
-            delay(10.seconds)
+            delay(10.seconds) // skipped
             emit("b")
         }.test {
             assertEquals("a", awaitItem())

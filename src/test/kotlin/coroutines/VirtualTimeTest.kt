@@ -10,6 +10,9 @@ import kotlin.time.measureTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runTest
@@ -18,11 +21,11 @@ import kotlinx.coroutines.withContext
 @OptIn(ExperimentalCoroutinesApi::class, ExperimentalTime::class)
 class VirtualTimeTest {
     @Test
-    fun coroutineTest() = runTest {
+    fun test1() = runTest {
         var x = "a"
         launch {
             x = "b"
-            delay(1.seconds)
+            delay(1.seconds) // not skipped because this delay(...) is inside launch.
             x = "c"
         }
         assertEquals("a", x)
@@ -30,6 +33,17 @@ class VirtualTimeTest {
         assertEquals("b", x)
         advanceTimeBy(1_000)
         assertEquals("c", x)
+    }
+
+    @Test
+    fun test2() = runTest {
+        val flow = flow {
+            emit("a")
+            delay(1.minutes) // skipped because this delay(...) is not inside launch.
+            emit("b")
+        }
+        assertEquals("a", flow.first())
+        assertEquals("b", flow.drop(1).first())
     }
 
     /**

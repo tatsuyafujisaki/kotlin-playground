@@ -26,9 +26,9 @@ class VirtualTimeTest {
             x = "c"
         }
         assertEquals("a", x)
-        advanceTimeBy(1_000)
-        assertEquals("b", x)
         advanceTimeBy(1)
+        assertEquals("b", x)
+        advanceTimeBy(1_000)
         assertEquals("c", x)
     }
 

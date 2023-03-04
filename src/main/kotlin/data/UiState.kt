@@ -1,4 +1,4 @@
-package datastructure
+package data
 
 /**
  * [c.f.](https://developer.android.com/codelabs/basic-android-kotlin-compose-getting-data-internet#6)

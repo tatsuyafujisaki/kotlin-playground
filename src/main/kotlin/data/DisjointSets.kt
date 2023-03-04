@@ -1,4 +1,4 @@
-package datastructure
+package data
 
 /**
  * https://en.wikipedia.org/wiki/Disjoint-set_data_structure

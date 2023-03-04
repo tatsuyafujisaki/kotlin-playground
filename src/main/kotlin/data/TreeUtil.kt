@@ -1,4 +1,4 @@
-package datastructure
+package data
 
 object TreeUtil {
     data class Vertex(val ancestors: List<Int>, val children: List<Int>, val subtreeSum: Long) {

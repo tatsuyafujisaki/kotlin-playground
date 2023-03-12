@@ -1,6 +1,9 @@
 plugins {
+    @Suppress("DSL_SCOPE_VIOLATION") // https://youtrack.jetbrains.com/issue/KTIJ-19369
     kotlin("jvm") version libs.versions.kotlin
+    @Suppress("DSL_SCOPE_VIOLATION")
     kotlin("plugin.serialization") version libs.versions.kotlin
+    @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.ktlint)
     application
 }

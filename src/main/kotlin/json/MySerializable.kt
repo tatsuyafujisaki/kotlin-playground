@@ -3,9 +3,9 @@ package json
 import kotlinx.serialization.Serializable
 
 /**
- * "@Serializable" is required for Kotlin Serialization but not required for Gson and Moshi.
+ * Kotlin Serialization requires “@Serializable”.
  *
- * @see [https://kotlinlang.org/docs/reference/serialization.html]
+ * @see <a href="https://kotlinlang.org/docs/reference/serialization.html">Serialization</a>
  */
 @Serializable
 data class MySerializable(

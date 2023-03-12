@@ -2,7 +2,7 @@
 coroutines = "1.6.4"
 gson = "2.9.1"
 hamcrest = "2.2"
-kotlin = "1.8.0"
+kotlin = "1.8.10"
 kotlinx-serialization = "1.4.1"
 mockito = "4.0.0"
 moshi = "1.14.0"

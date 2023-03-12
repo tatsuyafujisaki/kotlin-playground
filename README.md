@@ -697,10 +697,10 @@ reduce|n/a|T|T or one of T's ancestors
 ## How to add an external link
 ```kotlin
 /**
- * [Example](https://example.com)
+ * @see <a href="https://example.com">Example</a>
  */
 ```
-After adding `@see`, KDoc still renders the external link. However, Android Studio issues a warning that "Example" in `[Example]` is invalid.
+Markdown also works. However, Intellij IDEA issues a warning that "Example" in `[Example]` is invalid.
 ```kotlin
 /**
  * @see [Example](https://example.com)

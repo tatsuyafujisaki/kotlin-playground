@@ -1,4 +1,15 @@
-# When `delay` in `runTest` is skipped in actual or virtual time
+# Flow's `count()`, `toList()`, `drop()`, `take()`, `first()`, and `single()`
+```kotlin
+val flow = flowOf("a", "b", "c")
+
+println(flow.count()) // 3
+println(flow.toList()) // [a, b, c]
+println(flow.drop(1).take(1).toList()) // [b]
+println(flow.first()) // a
+println(flow.single()) // IllegalArgumentException: Flow has more than one element
+```
+
+# How `delay` affects actual time and virtual time in `runTest`
 runTest|Actual time to advance|Virtual time to advance
 --|--|--
 `delay(1_000)` not in `launch`|0s|0s

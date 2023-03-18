@@ -8,29 +8,23 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 
-private interface MyCallback {
-    fun onTick(millisUntilFinished: Long)
-}
-
 private class CountDownTimer(
     val total: Long,
     val interval: Long,
     val onFinish: () -> Unit
 ) {
-    var myCallback: MyCallback? = null
+    var tick: ((millisUntilFinished: Long) -> Unit)? = null
 
     val flow = callbackFlow {
-        myCallback = object : MyCallback {
-            override fun onTick(millisUntilFinished: Long) {
-                trySend(millisUntilFinished)
-            }
+        tick = { millisUntilFinished: Long ->
+            trySend(millisUntilFinished)
         }
         awaitClose {}
     }
 
     suspend fun start() {
         for (i in total downTo 0 step interval) {
-            myCallback?.onTick(i)
+            tick?.invoke(i)
             delay(interval)
         }
         onFinish()

@@ -3,6 +3,7 @@
 val flow = flowOf("a", "b", "c")
 
 println(flow.count()) // 3
+println(flow.count { it == "b" }) // 1
 println(flow.toList()) // [a, b, c]
 println(flow.drop(1).take(1).toList()) // [b]
 println(flow.first()) // a

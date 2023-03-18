@@ -13,10 +13,10 @@ private class CountDownTimer(
     val interval: Long,
     val onFinish: () -> Unit
 ) {
-    var tick: ((millisUntilFinished: Long) -> Unit)? = null
+    private var onTick: ((millisUntilFinished: Long) -> Unit)? = null
 
     val flow = callbackFlow {
-        tick = { millisUntilFinished: Long ->
+        onTick = { millisUntilFinished: Long ->
             trySend(millisUntilFinished)
         }
         awaitClose {}
@@ -24,7 +24,7 @@ private class CountDownTimer(
 
     suspend fun start() {
         for (i in total downTo 0 step interval) {
-            tick?.invoke(i)
+            onTick?.invoke(i)
             delay(interval)
         }
         onFinish()

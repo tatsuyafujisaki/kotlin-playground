@@ -16,9 +16,7 @@ private class CountDownTimer(
     private var onTick: ((millisUntilFinished: Long) -> Unit)? = null
 
     val flow = callbackFlow {
-        onTick = { millisUntilFinished: Long ->
-            trySend(millisUntilFinished)
-        }
+        onTick = { trySend(it) }
         awaitClose {}
     }
 

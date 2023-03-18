@@ -9,7 +9,7 @@ println(flow.first()) // a
 println(flow.single()) // IllegalArgumentException: Flow has more than one element
 ```
 
-# How `delay` affects actual time and virtual time in `runTest`
+# Actual time versus virtual time with `delay` in `runTest`
 runTest|Actual time to advance|Virtual time to advance
 --|--|--
 `delay(1_000)` not in `launch`|0s|0s

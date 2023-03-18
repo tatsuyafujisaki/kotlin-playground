@@ -10,6 +10,26 @@ println(flow.first()) // a
 println(flow.single()) // IllegalArgumentException: Flow has more than one element
 ```
 
+# Four ways to update the value of `MutableStateFlow`
+```kotlin
+suspend fun main() {
+    val mutableStateFlow = MutableStateFlow("")
+    val stateFlow = mutableStateFlow.asStateFlow()
+
+    mutableStateFlow.tryEmit("a")
+    println(stateFlow.value) // a
+
+    coroutineScope { mutableStateFlow.emit("b") }
+    println(stateFlow.value) // b
+
+    mutableStateFlow.update { "c" }
+    println(stateFlow.value) // c
+
+    mutableStateFlow.value = "d"
+    println(stateFlow.value) // d
+}
+```
+
 # Actual time versus virtual time with `delay` in `runTest`
 runTest|Actual time to advance|Virtual time to advance
 --|--|--

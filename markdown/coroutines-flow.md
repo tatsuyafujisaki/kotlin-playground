@@ -28,6 +28,19 @@ _stateFlow.value = "d"
 println(stateFlow.value) // d
 ```
 
+# `StateFlow` is preferred over `SharedFlow`
+> The recommended way to expose a Flow from a ViewModel is with a StateFlow
+
+https://developer.android.com/codelabs/basic-android-kotlin-compose-update-data-room#2
+
+> There are more types of flows, but this is what we recommend because we can optimize StateFlow very precisely.
+
+https://youtu.be/fSB6_KE95bU?t=1001
+
+# `repeatOnLifecycle()` is preferred over `asLiveData()` or `flowWithLifecycle()`
+
+https://youtu.be/fSB6_KE95bU?t=610
+
 # Actual time versus virtual time with `delay` in `runTest`
 runTest|Actual time to advance|Virtual time to advance
 --|--|--

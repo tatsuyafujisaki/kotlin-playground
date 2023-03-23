@@ -10,6 +10,12 @@ println(flow.first()) // a
 println(flow.single()) // IllegalArgumentException: Flow has more than one element
 ```
 
+# How to convert `Flow<T?>` into `T` or `T?`
+```kotlin
+val x: String = flowOf(null, "a").filterNotNull().first()
+val y: String? = flowOf(null, "a").firstOrNull()
+```
+
 # Four ways to update the value of `MutableStateFlow`
 ```kotlin
 val _stateFlow = MutableStateFlow("")

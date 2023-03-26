@@ -73,7 +73,7 @@ object RxUtil {
         fun <T : Any> Single<T>.mySubscribe(): Disposable =
             subscribe({ println("Observer#onSuccess: $it") }, { println("Observer#onError: $it") })
 
-        fun <T> Maybe<T>.mySubscribe(): Disposable = subscribe({ println("MaybeObserver#onNext: $it") },
+        fun <T: Any> Maybe<T>.mySubscribe(): Disposable = subscribe({ println("MaybeObserver#onNext: $it") },
             { println("MaybeObserver#onError: $it") },
             { println("MaybeObserver#onComplete") })
 

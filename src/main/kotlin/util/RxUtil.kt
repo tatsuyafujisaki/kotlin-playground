@@ -35,7 +35,7 @@ object RxUtil {
             println("👀doOnDispose")
         }
 
-        fun <T> Maybe<T>.doOnMisc(): Maybe<T> = doOnSubscribe {
+        fun <T: Any> Maybe<T>.doOnMisc(): Maybe<T> = doOnSubscribe {
             println("👀doOnSubscribe")
         }.doOnComplete {
             println("👀doOnComplete")

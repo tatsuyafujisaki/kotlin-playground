@@ -1,11 +1,11 @@
 [versions]
 coroutines = "1.6.4"
-gson = "2.9.1"
+gson = "2.10.1"
 kotlin = "1.8.10"
 kotlinx-serialization = "1.5.0"
-mockito = "4.0.0"
+mockito = "4.1.0"
 moshi = "1.14.0"
-rxjava = "3.1.5"
+rxjava = "3.1.6"
 turbine = "0.12.1"
 
 [libraries]

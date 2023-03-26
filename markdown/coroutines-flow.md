@@ -59,13 +59,13 @@ Can emit the same value as the previous one|TRUE|TRUE|TRUE|TRUE|TRUE|FALSE
 
 https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#sharedflow
 
-# Cold stream versus hot stream
+# Cold stream versus hot stream (Cold flow versus hot flow)
 Cold stream|Hot stream
 --|--
-is like an automatic faucet.|is like a normal faucet.
-is active only when any consumer exists.|is active whether or not any consumer exists.
-emits values whenever a new consumer starts collecting.|emits values without a new consumer starts collecting.
+is like an automatic faucet. It emits values only when a new consumer starts collecting.|is like a normal faucet. It emits values without a new consumer starts collecting.<br>is like a hot spring. It gushes out whether or not any user exists.
 e.g. (regular) flow|e.g. Channel, StateFlow, LiveData
+
+The analogy for a hot stream is a hot spring. It gushes out whether a user exists.
 
 # `yield()`
 * forcibly start child jobs. If `yield()` is not called before `child.cancel()`, the child job may not start by the time `child.cancel()` is called, so the `finally` block won't be executed when `child.cancel()` is called.

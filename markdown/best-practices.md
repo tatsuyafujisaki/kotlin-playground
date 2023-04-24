@@ -22,11 +22,11 @@ infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
 `Flow.filterNotNull()`|`Flow.flatMapConcat { if (it != null) flowOf(it) else emptyFlow() }`
     
 # Tips
-- Decompose a pair whenever possible.
+- Decompose a pair if possible.
     - Recommended: `listOf("apple" to 100, "orange" to 200).map { it.first + it.second })`
     - Not recommended: `listOf("apple" to 100, "orange" to 200).map { (fruit, price) -> fruit + price }`
-* When define a function, make the types of parameters as abstract as possible.
-  * e.g. Use a type as left as possible.
-    * Iterable > Collection > (Set) > List.
-* Don't overuse List\<T>. Use Set\<T> if the elements are unique and unordered.
-* Mark a function with `suspend` rather than call a coroutine builder inside the function.
+- When defining a function, make the parameter types as abstract as possible.
+  - e.g. Use a type as left as possible.
+    - Iterable > Collection > (Set) > List.
+- Mark a function with `suspend` if you need to call another suspend function in it, but cannot access `CoroutineScope`.
+- Don't overuse List\<T>. Use Set\<T> if the elements are unique and unordered.

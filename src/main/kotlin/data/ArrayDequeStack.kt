@@ -1,6 +1,6 @@
 package data
 
-private class MyStack<T> {
+private class ArrayDequeStack<T> {
     private val arrayDeque = ArrayDeque<T>()
 
     fun push(element: T) {
@@ -12,7 +12,7 @@ private class MyStack<T> {
 }
 
 private fun main() {
-    val stack = MyStack<String>()
+    val stack = ArrayDequeStack<String>()
     stack.push("a")
     stack.push("b")
 

@@ -17,6 +17,7 @@ private fun main() {
     stack.push("a")
     stack.push("b")
 
+    println(stack.peek()) // b
     println(stack.pop()) // b
     println(stack.pop()) // a
     println(stack.peekOrNull()) // null

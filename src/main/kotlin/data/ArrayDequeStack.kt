@@ -7,7 +7,9 @@ private class ArrayDequeStack<T> {
         arrayDeque.addFirst(element)
     }
 
+    fun peek() = arrayDeque.first()
     fun pop() = arrayDeque.removeFirst()
+    fun peekOrNull() = arrayDeque.firstOrNull()
     fun popOrNull() = arrayDeque.removeFirstOrNull()
 }
 
@@ -16,7 +18,9 @@ private fun main() {
     stack.push("a")
     stack.push("b")
 
+    println(stack.peek()) // b
     println(stack.pop()) // b
     println(stack.pop()) // a
+    println(stack.peekOrNull()) // null
     println(stack.popOrNull()) // null
 }

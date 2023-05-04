@@ -41,6 +41,9 @@ https://youtu.be/fSB6_KE95bU?t=1001
 
 https://youtu.be/fSB6_KE95bU?t=610
 
+# Even with the `catch` operator, the backing Flow still terminates.
+> Note: The catch operator only prevents the exception from crashing the app, the backing Flow still terminates. To resume collecting from the flow after the exception, consider the retry method.
+
 # Actual time versus virtual time with `delay` in `runTest`
 runTest|Actual time to advance|Virtual time to advance
 --|--|--

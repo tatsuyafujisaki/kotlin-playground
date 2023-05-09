@@ -6,7 +6,7 @@ import kotlin.concurrent.schedule
 import kotlin.time.Duration
 
 object TimerUtil {
-    object OneTimeTimerUtil {
+    class OneTimeTimerUtil {
         private var timerTask: TimerTask? = null
 
         fun run(delay: Duration, action: TimerTask.() -> Unit) {
@@ -19,7 +19,7 @@ object TimerUtil {
         }
     }
 
-    object PeriodicTimerUtil {
+    class PeriodicTimerUtil {
         private var timerTask: TimerTask? = null
 
         fun run(

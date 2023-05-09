@@ -12,7 +12,7 @@ object TimerUtil {
     class OneTimeTimer {
         private var timerTask: TimerTask? = null
 
-        fun run(delay: Duration, action: TimerTask.() -> Unit) {
+        fun schedule(delay: Duration, action: TimerTask.() -> Unit) {
             timerTask?.cancel()
             timerTask = Timer().schedule(delay.inWholeMilliseconds, action)
         }
@@ -25,7 +25,7 @@ object TimerUtil {
     class PeriodicTimer {
         private var timerTask: TimerTask? = null
 
-        fun run(
+        fun schedule(
             period: Duration,
             delay: Duration = period,
             action: TimerTask.() -> Unit
@@ -46,5 +46,5 @@ object TimerUtil {
 
 private fun main() {
     val timerUtil = PeriodicTimer()
-    timerUtil.run(period = 3.seconds) { println(LocalTime.now()) }
+    timerUtil.schedule(period = 3.seconds) { println(LocalTime.now()) }
 }

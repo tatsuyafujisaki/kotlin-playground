@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.take
 
-private fun interval(period: Duration, delay: Duration = Duration.ZERO) = flow {
+private fun interval(period: Duration, delay: Duration = period) = flow {
     delay(delay)
     while (true) {
         emit(Unit)
@@ -19,11 +19,13 @@ private fun interval(period: Duration, delay: Duration = Duration.ZERO) = flow {
     }
 }
 
-private fun countUp(period: Duration, delay: Duration = Duration.ZERO) =
+private fun countUp(period: Duration, delay: Duration = period) =
     generateSequence(0, Long::inc).asFlow().onStart { delay(delay) }.onEach { delay(period) }
 
 private fun countDown(
-    period: Long, interval: Long, delay: Duration = Duration.ZERO
+    period: Long,
+    interval: Long,
+    delay: Duration = Duration.ZERO
 ) = flow {
     delay(delay)
     for (t in period downTo 0 step interval) {

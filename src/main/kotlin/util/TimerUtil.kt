@@ -6,10 +6,10 @@ import java.util.TimerTask
 import kotlin.concurrent.schedule
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-import util.TimerUtil.PeriodicTimerUtil
+import util.TimerUtil.PeriodicTimer
 
 object TimerUtil {
-    class OneTimeTimerUtil {
+    class OneTimeTimer {
         private var timerTask: TimerTask? = null
 
         fun run(delay: Duration, action: TimerTask.() -> Unit) {
@@ -22,7 +22,7 @@ object TimerUtil {
         }
     }
 
-    class PeriodicTimerUtil {
+    class PeriodicTimer {
         private var timerTask: TimerTask? = null
 
         fun run(
@@ -45,6 +45,6 @@ object TimerUtil {
 }
 
 private fun main() {
-    val timerUtil = PeriodicTimerUtil()
+    val timerUtil = PeriodicTimer()
     timerUtil.run(period = 3.seconds) { println(LocalTime.now()) }
 }

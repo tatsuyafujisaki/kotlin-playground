@@ -1,9 +1,12 @@
 package util
 
+import java.time.LocalTime
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.concurrent.schedule
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
+import util.TimerUtil.PeriodicTimerUtil
 
 object TimerUtil {
     class OneTimeTimerUtil {
@@ -24,7 +27,7 @@ object TimerUtil {
 
         fun run(
             period: Duration,
-            delay: Duration = Duration.ZERO,
+            delay: Duration = period,
             action: TimerTask.() -> Unit
         ) {
             timerTask?.cancel()
@@ -39,4 +42,9 @@ object TimerUtil {
             timerTask?.cancel()
         }
     }
+}
+
+private fun main() {
+    val timerUtil = PeriodicTimerUtil()
+    timerUtil.run(period = 3.seconds) { println(LocalTime.now()) }
 }

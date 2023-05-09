@@ -4,32 +4,39 @@ import java.util.Timer
 import java.util.TimerTask
 import kotlin.concurrent.schedule
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 
 object TimerUtil {
-    private var oneTimeTimerTask: TimerTask? = null
-    private var periodicTimerTask: TimerTask? = null
+    object OneTimeTimerUtil {
+        private var timerTask: TimerTask? = null
 
-    fun runOneTime(delay: Duration, action: TimerTask.() -> Unit) {
-        oneTimeTimerTask?.cancel()
-        oneTimeTimerTask = Timer().schedule(delay.inWholeMilliseconds, action)
+        fun run(delay: Duration, action: TimerTask.() -> Unit) {
+            timerTask?.cancel()
+            timerTask = Timer().schedule(delay.inWholeMilliseconds, action)
+        }
+
+        fun cancel() {
+            timerTask?.cancel()
+        }
     }
 
-    fun runPeriodic(
-        period: Duration,
-        delay: Duration = Duration.ZERO,
-        action: TimerTask.() -> Unit
-    ) {
-        periodicTimerTask?.cancel()
-        periodicTimerTask = Timer().schedule(
-            delay = delay.inWholeMilliseconds,
-            period = period.inWholeMilliseconds,
-            action = action
-        )
-    }
-}
+    object PeriodicTimerUtil {
+        private var timerTask: TimerTask? = null
 
-private fun main() {
-    TimerUtil.runOneTime(delay = 3.seconds) { println("Hello") }
-    TimerUtil.runPeriodic(period = 3.seconds) { println("World") }
+        fun run(
+            period: Duration,
+            delay: Duration = Duration.ZERO,
+            action: TimerTask.() -> Unit
+        ) {
+            timerTask?.cancel()
+            timerTask = Timer().schedule(
+                delay = delay.inWholeMilliseconds,
+                period = period.inWholeMilliseconds,
+                action = action
+            )
+        }
+
+        fun cancel() {
+            timerTask?.cancel()
+        }
+    }
 }

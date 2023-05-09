@@ -1,5 +1,7 @@
 package flow
 
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
@@ -8,24 +10,22 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.take
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 
-private fun interval(period: Duration, initialDelay: Duration = Duration.ZERO) = flow {
-    delay(initialDelay)
+private fun interval(period: Duration, delay: Duration = Duration.ZERO) = flow {
+    delay(delay)
     while (true) {
         emit(Unit)
         delay(period)
     }
 }
 
-private fun countUp(period: Duration, initialDelay: Duration = Duration.ZERO) =
-    generateSequence(0, Long::inc).asFlow().onStart { delay(initialDelay) }.onEach { delay(period) }
+private fun countUp(period: Duration, delay: Duration = Duration.ZERO) =
+    generateSequence(0, Long::inc).asFlow().onStart { delay(delay) }.onEach { delay(period) }
 
 private fun countDown(
-    period: Long, interval: Long, initialDelay: Duration = Duration.ZERO
+    period: Long, interval: Long, delay: Duration = Duration.ZERO
 ) = flow {
-    delay(initialDelay)
+    delay(delay)
     for (t in period downTo 0 step interval) {
         emit(t)
         delay(interval)

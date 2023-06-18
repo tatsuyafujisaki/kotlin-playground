@@ -21,7 +21,6 @@ dependencies {
      */
 
     implementation(libs.coroutines.core)
-    implementation(libs.coroutines.rx3)
     implementation(libs.gson)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.moshi.kotlin)

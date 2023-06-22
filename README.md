@@ -666,7 +666,10 @@ var x = ""
 # How to get the name of the current thread
 
 ```kotlin
-val name: String = Thread.currentThread().name
+println(Thread.currentThread().name)
+
+# alternatively
+println(currentCoroutineContext())
 ```
 
 * The preceding code also shows the name of the current coroutine after the following preparation:

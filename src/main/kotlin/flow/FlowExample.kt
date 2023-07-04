@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -18,11 +19,12 @@ private suspend fun main() = coroutineScope {
         flow.map {
             if (it == "b") throw Throwable() else it
         }.catch {
-            println("Catch: $it")
+            println("catch")
+            emit("catch")
             // Prevent the flow from completing.
             emitAll(flow)
         }.collect {
-            println("Collect: $it")
+            println("collect: $it")
         }
     }
 

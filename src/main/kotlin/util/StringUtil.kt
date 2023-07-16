@@ -7,7 +7,7 @@ object StringUtil {
     fun equalsIgnoreCase(s1: String, s2: String) = s1.equals(s2, true)
     fun replaceAt(s: String, index: Int, replacement: Char) = s.replaceRange(index, index + 1, replacement.toString())
 
-    fun substrings(s: String) = sequence {
+    fun getSubstrings(s: String) = sequence {
         for (i in s.indices) {
             for (j in i + 1..s.length) yield(s.substring(i, j))
         }

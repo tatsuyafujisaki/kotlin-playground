@@ -5,10 +5,8 @@ import kotlin.math.max
 object StringUtil {
     fun alphabetize(s: String) = s.toCharArray().sorted().joinToString("")
     fun equalsIgnoreCase(s1: String, s2: String) = s1.equals(s2, true)
-    fun isNeitherNullNorBlank(s: String?) = s != null && s.isNotBlank()
-    fun isNeitherNullNorEmpty(s: String?) = s != null && s.isNotEmpty()
     fun replaceAt(s: String, index: Int, replacement: Char) = s.replaceRange(index, index + 1, replacement.toString())
-    fun splitLast(s: String) = s.substringBeforeLast("") to s.substringAfterLast("")
+    private fun splitLast(s: String) = s.substringBeforeLast("") to s.substringAfterLast("")
 
     fun substrings(s: String) = sequence {
         for (i in s.indices) {
@@ -16,11 +14,7 @@ object StringUtil {
         }
     }
 
-    fun isAllSameChars(s: String) = if (s.isEmpty()) {
-        true
-    } else {
-        s.all { s[0] == it }
-    }
+    fun isAllSameChars(s: String) = if (s.isEmpty()) true else s.toSet().size == 1
 
     /** https://en.wikipedia.org/wiki/Longest_common_subsequence_problem */
     fun lcs(s1: String, s2: String): String {

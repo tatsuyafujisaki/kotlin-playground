@@ -2,8 +2,8 @@
 coroutines = "1.7.3" # https://github.com/Kotlin/kotlinx.coroutines/releases
 gson = "2.10.1"
 kotlin = "1.9.0"
-kotlinx-serialization = "1.5.1"
-mockito = "5.0.0"
+kotlinx-serialization = "1.5.1" # https://github.com/Kotlin/kotlinx.serialization/releases
+mockito = "5.1.0" # https://github.com/mockito/mockito-kotlin/releases
 moshi = "1.15.0"
 rxjava = "3.1.6"
 turbine = "1.0.0"

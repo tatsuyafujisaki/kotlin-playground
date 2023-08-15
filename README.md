@@ -5,15 +5,6 @@
 
 # Iterable
 
-## The condition flag can be declared inside a do while loop.
-
-```kotlin
-do {
-    var cont = true // The condition flag can be declared inside a do while loop!
-    if (Random.nextBoolean()) cont = false
-} while (cont)
-```
-
 ## How to iterate through an Iterable with index
 
 ```kotlin

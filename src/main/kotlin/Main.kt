@@ -1,3 +1,3 @@
 private fun main() {
-    println("Hello!")
+    println(KotlinVersion.CURRENT)
 }

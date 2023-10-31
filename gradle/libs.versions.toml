@@ -1,11 +1,11 @@
 [versions]
 coroutines = "1.7.3" # https://github.com/Kotlin/kotlinx.coroutines/releases
 gson = "2.10.1"
-kotlinx-serialization = "1.5.1" # https://github.com/Kotlin/kotlinx.serialization/releases
+kotlinx-serialization = "1.6.0" # https://github.com/Kotlin/kotlinx.serialization/releases
 mockito = "5.1.0" # https://github.com/mockito/mockito-kotlin/releases
-moshi = "1.15.0"
-rxjava = "3.1.6"
-turbine = "1.0.0"
+moshi = "1.15.0" # https://github.com/square/moshi/blob/master/CHANGELOG.md
+rxjava = "3.1.8" # https://github.com/ReactiveX/RxJava/releases/tag/v3.1.8
+turbine = "1.0.0" # https://github.com/cashapp/turbine/releases
 
 [libraries]
 coroutines-core = { group = "org.jetbrains.kotlinx", name= "kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -18,4 +18,4 @@ rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjav
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [plugins]
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "11.0.0" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "11.6.1" } # https://github.com/JLLeitschuh/ktlint-gradle/releases

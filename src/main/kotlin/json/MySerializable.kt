@@ -2,11 +2,6 @@ package json
 
 import kotlinx.serialization.Serializable
 
-/**
- * Kotlin Serialization requires “@Serializable”.
- *
- * @see <a href="https://kotlinlang.org/docs/reference/serialization.html">Serialization</a>
- */
 @Serializable
 data class MySerializable(
     val object1: MySerializable2, val object2: MySerializable2

@@ -1,6 +1,5 @@
 [versions]
 coroutines = "1.7.3" # https://github.com/Kotlin/kotlinx.coroutines/releases
-gson = "2.10.1"
 kotlinx-serialization = "1.6.0" # https://github.com/Kotlin/kotlinx.serialization/releases
 mockito = "5.1.0" # https://github.com/mockito/mockito-kotlin/releases
 moshi = "1.15.0" # https://github.com/square/moshi/blob/master/CHANGELOG.md
@@ -10,7 +9,6 @@ turbine = "1.0.0" # https://github.com/cashapp/turbine/releases
 [libraries]
 coroutines-core = { group = "org.jetbrains.kotlinx", name= "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 mockito = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito" }
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }

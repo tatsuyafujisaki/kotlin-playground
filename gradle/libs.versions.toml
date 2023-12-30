@@ -16,4 +16,4 @@ rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjav
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [plugins]
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "11.6.1" } # https://github.com/JLLeitschuh/ktlint-gradle/releases
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.0.3" } # https://github.com/JLLeitschuh/ktlint-gradle/releases

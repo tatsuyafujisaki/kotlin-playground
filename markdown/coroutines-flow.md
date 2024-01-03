@@ -76,7 +76,7 @@ The analogy for a hot stream is a hot spring. It gushes out whether a user exist
 
 # SupervisorJob
 * If a child job throws any exception other than CancellationException, its parent job and sibling jobs will NOT be canceled.
-* i.e. Failure is propagated only dowards.
+* i.e. Failure is propagated only downwards.
 
 ```
 SupervisorJobA

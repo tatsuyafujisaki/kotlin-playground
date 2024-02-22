@@ -7,6 +7,7 @@ import util.DateTimeUtil.DateUtil.convertToDate
 import util.DateTimeUtil.DateUtil.convertToJapaneseDate
 import util.DateTimeUtil.japaneseDiff
 import java.time.Duration
+import java.time.temporal.ChronoUnit
 import kotlin.time.toKotlinDuration
 
 object DateTimeUtil {
@@ -19,7 +20,7 @@ object DateTimeUtil {
         }.getOrNull()
 
         fun convertToJapaneseDate(date: LocalDate): String = date.format(
-            DateTimeFormatter.ofPattern("y年M月d日")
+                DateTimeFormatter.ofPattern("y年M月d日")
         )
     }
 
@@ -61,12 +62,21 @@ object DateTimeUtil {
             else -> ""
         }
     }
+
+    fun japaneseDiff(date1: LocalDate, date2: LocalDate): String {
+        val diffInDays = ChronoUnit.DAYS.between(date1, date2)
+        return if (diffInDays > 0) "${diffInDays}日前" else "本日"
+    }
 }
 
 private fun main() {
-    val dateTime1 = LocalDateTime.of(2024, 2, 20, 23, 59, 0);
-    val dateTime2 = LocalDateTime.of(2024, 3, 22, 0, 0, 0);
+    val dateTime1 = LocalDateTime.of(2024, 2, 20, 23, 59, 0)
+    val dateTime2 = LocalDateTime.of(2024, 3, 22, 0, 0, 0)
     println(japaneseDiff(dateTime1, dateTime2))
+
+    val date1 = LocalDate.of(2024, 2, 1)
+    val date2 = LocalDate.of(2024, 2, 20)
+    println(japaneseDiff(date1, date2))
 }
 
 //private fun main() {

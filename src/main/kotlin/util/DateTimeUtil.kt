@@ -1,16 +1,30 @@
 package util
 
-import java.time.format.DateTimeFormatter
+import util.DateTimeUtil.DateUtil.japaneseDatePassed
+import util.DateTimeUtil.japaneseDateTimePassed
+import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
-import util.DateTimeUtil.DateUtil.convertToDate
-import util.DateTimeUtil.DateUtil.convertToJapaneseDate
-import util.DateTimeUtil.japaneseDiff
-import java.time.Duration
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import kotlin.time.toKotlinDuration
+import java.util.Date
 
 object DateTimeUtil {
+    fun convertJavaUtilDateToLocalDateTime(date: Date): LocalDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+
+    fun japaneseDateTimePassed(date1: LocalDateTime, date2: LocalDateTime): String {
+        val diff = Duration.between(date1, date2).toKotlinDuration()
+        return when {
+            diff.inWholeDays > 0 -> "${diff.inWholeDays}日前"
+            diff.inWholeHours > 0 -> "${diff.inWholeHours}時間前"
+            diff.inWholeMinutes > 0 -> "${diff.inWholeMinutes}分前"
+            diff.inWholeSeconds > 0 -> "${diff.inWholeSeconds}秒前"
+            else -> ""
+        }
+    }
+
     object DateUtil {
         /**
          * @param date yyyy-mm-dd
@@ -19,9 +33,12 @@ object DateTimeUtil {
             LocalDate.parse(date)
         }.getOrNull()
 
-        fun convertToJapaneseDate(date: LocalDate): String = date.format(
-                DateTimeFormatter.ofPattern("y年M月d日")
-        )
+        fun convertToJapaneseDate(date: LocalDate): String = date.format(DateTimeFormatter.ofPattern("y年M月d日"))
+
+        fun japaneseDatePassed(date1: LocalDate, date2: LocalDate): String {
+            val diffInDays = ChronoUnit.DAYS.between(date1, date2)
+            return if (diffInDays > 0) "${diffInDays}日前" else "本日"
+        }
     }
 
     object TimeUtil {
@@ -51,32 +68,16 @@ object DateTimeUtil {
             }
         }
     }
-
-    fun japaneseDiff(date1: LocalDateTime, date2: LocalDateTime): String {
-        val diff = Duration.between(date1, date2).toKotlinDuration()
-        return when {
-            diff.inWholeDays > 0 -> "${diff.inWholeDays}日前"
-            diff.inWholeHours > 0 -> "${diff.inWholeHours}時間前"
-            diff.inWholeMinutes > 0 -> "${diff.inWholeMinutes}分前"
-            diff.inWholeSeconds > 0 -> "${diff.inWholeSeconds}秒前"
-            else -> ""
-        }
-    }
-
-    fun japaneseDiff(date1: LocalDate, date2: LocalDate): String {
-        val diffInDays = ChronoUnit.DAYS.between(date1, date2)
-        return if (diffInDays > 0) "${diffInDays}日前" else "本日"
-    }
 }
 
 private fun main() {
     val dateTime1 = LocalDateTime.of(2024, 2, 20, 23, 59, 0)
     val dateTime2 = LocalDateTime.of(2024, 3, 22, 0, 0, 0)
-    println(japaneseDiff(dateTime1, dateTime2))
+    println(japaneseDateTimePassed(dateTime1, dateTime2))
 
     val date1 = LocalDate.of(2024, 2, 1)
     val date2 = LocalDate.of(2024, 2, 20)
-    println(japaneseDiff(date1, date2))
+    println(japaneseDatePassed(date1, date2))
 }
 
 //private fun main() {

@@ -15,12 +15,12 @@ object DateTimeUtil {
     fun convertJavaUtilDateToLocalDateTime(date: Date): LocalDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
 
     fun japaneseDateTimePassed(date1: LocalDateTime, date2: LocalDateTime): String {
-        val diff = Duration.between(date1, date2).toKotlinDuration()
+        val duration = Duration.between(date1, date2).toKotlinDuration()
         return when {
-            diff.inWholeDays > 0 -> "${diff.inWholeDays}日前"
-            diff.inWholeHours > 0 -> "${diff.inWholeHours}時間前"
-            diff.inWholeMinutes > 0 -> "${diff.inWholeMinutes}分前"
-            diff.inWholeSeconds > 0 -> "${diff.inWholeSeconds}秒前"
+            duration.inWholeDays > 0 -> "${duration.inWholeDays}日前"
+            duration.inWholeHours > 0 -> "${duration.inWholeHours}時間前"
+            duration.inWholeMinutes > 0 -> "${duration.inWholeMinutes}分前"
+            duration.inWholeSeconds > 0 -> "${duration.inWholeSeconds}秒前"
             else -> ""
         }
     }

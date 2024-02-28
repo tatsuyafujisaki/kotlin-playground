@@ -14,8 +14,8 @@ import java.util.Date
 object DateTimeUtil {
     fun convertJavaUtilDateToLocalDateTime(date: Date): LocalDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
 
-    fun japaneseDateTimePassed(date1: LocalDateTime, date2: LocalDateTime): String {
-        val duration = Duration.between(date1, date2).toKotlinDuration()
+    fun japaneseDateTimePassed(dateTime1: LocalDateTime, date2: LocalDateTime): String {
+        val duration = Duration.between(dateTime1, date2).toKotlinDuration()
         return when {
             duration.inWholeDays > 0 -> "${duration.inWholeDays}日前"
             duration.inWholeHours > 0 -> "${duration.inWholeHours}時間前"

@@ -7,8 +7,7 @@ import java.io.PrintWriter
 fun main() {
     BufferedReaderWrapper().use { br ->
         PrintWriter(System.out, false /* writes at once */).use { pw ->
-            val n = br.readInt()
-            pw.println("Hello, World!")
+            pw.println(br.readInt())
         }
     }
 }

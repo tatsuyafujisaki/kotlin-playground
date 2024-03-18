@@ -1,6 +1,7 @@
 package util
 
 import util.DateTimeUtil.DateUtil.japaneseDatePassed
+import util.DateTimeUtil.formatPassedDateTime
 import util.DateTimeUtil.japaneseDateTimePassed
 import java.time.Duration
 import java.time.LocalDate
@@ -12,9 +13,10 @@ import kotlin.time.toKotlinDuration
 import java.util.Date
 
 object DateTimeUtil {
-    fun convertJavaUtilDateToLocalDateTime(date: Date): LocalDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+    fun convertObsoleteJavaUtilDateToLocalDateTime(date: Date = Date()): LocalDateTime =
+            date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
 
-    fun japaneseDateTimePassed(dateTime1: LocalDateTime, date2: LocalDateTime): String {
+    fun formatJapanesePassedDateTime(dateTime1: LocalDateTime, date2: LocalDateTime): String {
         val duration = Duration.between(dateTime1, date2).toKotlinDuration()
         return when {
             duration.inWholeDays > 0 -> "${duration.inWholeDays}日前"
@@ -74,7 +76,7 @@ object DateTimeUtil {
 private fun main() {
     val dateTime1 = LocalDateTime.of(2024, 2, 20, 23, 59, 0)
     val dateTime2 = LocalDateTime.of(2024, 3, 22, 0, 0, 0)
-    println(japaneseDateTimePassed(dateTime1, dateTime2))
+    println(formatPassedDateTime(dateTime1, dateTime2))
 
     val date1 = LocalDate.of(2024, 2, 1)
     val date2 = LocalDate.of(2024, 2, 20)

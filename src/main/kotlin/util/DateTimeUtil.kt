@@ -33,7 +33,7 @@ object DateTimeUtil {
             LocalDate.parse(date)
         }.getOrNull()
 
-        fun convertToJapaneseDate(date: LocalDate): String = date.format(DateTimeFormatter.ofPattern("y年M月d日"))
+        fun formatToJapaneseDate(date: LocalDate): String = date.format(DateTimeFormatter.ofPattern("y年M月d日"))
 
         fun japaneseDatePassed(date1: LocalDate, date2: LocalDate): String {
             val diffInDays = ChronoUnit.DAYS.between(date1, date2)

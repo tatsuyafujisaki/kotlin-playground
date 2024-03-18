@@ -1,6 +1,7 @@
 package util
 
 import util.DateTimeUtil.DateUtil.japaneseDatePassed
+import util.DateTimeUtil.formatJapanesePassedDateTime
 import util.DateTimeUtil.formatPassedDateTime
 import util.DateTimeUtil.japaneseDateTimePassed
 import java.time.Duration
@@ -76,7 +77,7 @@ object DateTimeUtil {
 private fun main() {
     val dateTime1 = LocalDateTime.of(2024, 2, 20, 23, 59, 0)
     val dateTime2 = LocalDateTime.of(2024, 3, 22, 0, 0, 0)
-    println(formatPassedDateTime(dateTime1, dateTime2))
+    println(formatJapanesePassedDateTime(dateTime1, dateTime2))
 
     val date1 = LocalDate.of(2024, 2, 1)
     val date2 = LocalDate.of(2024, 2, 20)

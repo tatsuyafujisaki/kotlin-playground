@@ -2,8 +2,6 @@ package util
 
 import util.DateTimeUtil.DateUtil.japaneseDatePassed
 import util.DateTimeUtil.formatJapanesePassedDateTime
-import util.DateTimeUtil.formatPassedDateTime
-import util.DateTimeUtil.japaneseDateTimePassed
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime

@@ -23,6 +23,23 @@ xs.mapIndexed { i, x -> "$i $x" }.forEach(::println)
 val xs: List<Char> = listOf('a', 'b', 'c').filterIndexed { i, _ -> i != 1 } // [a, c]
 ```
 
+## How to iterate two lists in parallel
+```kotlin
+// > The returned list has length of the shortest collection.
+// https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip.html
+fun <T> showZipExample(xs: List<T>, ys: List<T>) {
+    xs.zip(ys).forEach { (x, y) ->
+        println("$x$y")
+    }
+}
+
+fun main() {
+    showZipExample(listOf("A", "B"), listOf("a", "b")) // Aa Bb
+    showZipExample(listOf("A", "B", "C"), listOf("a", "b")) // Aa Bb
+    showZipExample(listOf("A", "B"), listOf("a", "b", "c")) // Aa Bb
+}
+```
+
 # Array
 
 ## Type mapping between Kotlin and Java

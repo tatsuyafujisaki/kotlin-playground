@@ -23,7 +23,7 @@ xs.mapIndexed { i, x -> "$i $x" }.forEach(::println)
 val xs: List<Char> = listOf('a', 'b', 'c').filterIndexed { i, _ -> i != 1 } // [a, c]
 ```
 
-## How to iterate two lists in parallel
+## How to iterate two iterables in parallel
 ```kotlin
 // > The returned list has length of the shortest collection.
 // https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip.html

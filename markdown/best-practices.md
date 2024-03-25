@@ -7,8 +7,7 @@ A|B|Note
 `emptyList()`|`listOf()`
 `emptyFlow()`|`flowOf()`
 `in`|`contains`
-`repeat(n)`|`while(n--)`
-`repeat(n) { println(it) }`|`for (i in 0 until n) { println(i) }`
+`repeat(n) { println(it) }`|`for (i in 0 until n) { println(i) }`<br>or<br>`while(i--) { println(i) }`
 `Iterable<T>.find(...)`|`Iterable<T>.firstOrNull(...)`|`find(...)` is an alias of `firstOrNull(...)`.
 `Collection<*>.size`|`Collection<*>.count()`
 `Set<T>`|`List<T>`|if elements are unique and unordered.

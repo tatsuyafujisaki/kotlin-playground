@@ -15,7 +15,7 @@ A|B|Note
 `Iterable<T>.forEachIndexed { i, x -> ... }`|`Iterable<T>.forEach { ... }`|if you need to access both indices and elements.
 `nullableList.orEmpty()`<br>`nullableString.orEmpty()`|`nullableList ?: emptyList()`<br>`nullableString ?: ""`
 `filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
-infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
+`x in xs`<br>`x !in xs`|`xs.contains(x)`<br>`!xs.contains(x)`
 `List<*>.lastIndex`<br>`CharSequence.lastIndex`|`List<*>.size - 1`<br>`String.length - 1`
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
 `(this.)javaClass.simpleName`|`this::class.java.simpleName`
@@ -29,4 +29,4 @@ infix notation(e.g. `x !in xs`)|`!xs.contains(x)`
   - e.g. Use a type as left as possible.
     - Iterable > Collection > (Set) > List.
 - Mark a function with `suspend` if you need to call another suspend function in it, but cannot access `CoroutineScope`.
-- Don't overuse List\<T>. Use Set\<T> if the elements are unique and unordered.
+- Don't overuse `List<T>`. Use `Set<T>` if items are unique and unordered.

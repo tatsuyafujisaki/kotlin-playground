@@ -215,22 +215,32 @@ val ys: List<Int> = x.orEmpty()
 ## How to convert a List to a Map
 
 ```kotlin
+// data class Fruit(val name: String, val price: Int)
+val fruits: List<Fruit> = listOf(Fruit(name = "apple", price = 100), Fruit(name = "orange", price = 200))
+val result: Map<String, Int> = fruits.associate { it.name to it.price } // {apple=100, orange=200}
+```
+```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c')
-val result1: Map<Char, Int> = xs.withIndex().associate { it.value to it.index } // {a=0, b=1, c=2}
+val result: Map<Char, Int> = xs.withIndex().associate { it.value to it.index } // {a=0, b=1, c=2}
 
 // FYI, mapIndexed() returns a List instead of a Map.
-// val result1: List<Pair<Char, Int>> = xs.mapIndexed { i, x -> x to i } // [(a, 0), (b, 1), (c, 2)]
-
-val result2: Map<Char, Char> = xs.associateWith { it.toUpperCase() } // {a=A, b=B, c=C}
-val result3: Map<Char, Char> = xs.associateBy { it.toUpperCase() } // {A=a, B=b, C=c}
-
-val ys: List<String> = listOf("fruit" to "apple", "fruit" to "orange", "vegetable" to "carrot", "vegetable" to "potato")
-val result4: Map<String, List<String>> =
-    ys.groupBy({ it.first }, { it.second }) // {fruit=[apple, orange], vegetable=[carrot, potato]}
-
-val zs: List<String> = listOf("key1", "key2", "key1", "key2")
-val result5: Map<String, List<Int>> =
-    zs.mapIndexed { i, x -> x to i }.groupBy({ it.first }, { it.second }) // {key1=[0, 2], key2=[1, 3]}
+// val result2: List<Pair<Char, Int>> = xs.mapIndexed { i, x -> x to i } // [(a, 0), (b, 1), (c, 2)]
+```
+```kotlin
+val result: Map<Char, Char> = xs.associateWith { it.toUpperCase() } // {a=A, b=B, c=C}
+```
+```kotlin
+val result: Map<Char, Char> = xs.associateBy { it.toUpperCase() } // {A=a, B=b, C=c}
+```
+```kotlin
+val xs: List<String> = listOf("fruit" to "apple", "fruit" to "orange", "vegetable" to "carrot", "vegetable" to "potato")
+val result: Map<String, List<String>> =
+    xs.groupBy({ it.first }, { it.second }) // {fruit=[apple, orange], vegetable=[carrot, potato]}
+```
+```kotlin
+val xs: List<String> = listOf("key1", "key2", "key1", "key2")
+val result: Map<String, List<Int>> =
+    xs.mapIndexed { i, x -> x to i }.groupBy({ it.first }, { it.second }) // {key1=[0, 2], key2=[1, 3]}
 ```
 
 ## How to convert two List(s) to a List

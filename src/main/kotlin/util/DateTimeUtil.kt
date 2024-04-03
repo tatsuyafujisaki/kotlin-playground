@@ -12,6 +12,9 @@ import kotlin.time.toKotlinDuration
 import java.util.Date
 
 object DateTimeUtil {
+    fun isWithinHoursFromNowOrFuture(pastDateTime: LocalDateTime = LocalDateTime.now(), hours: Long = 0): Boolean =
+            pastDateTime.isAfter(LocalDateTime.now().minusHours(hours))
+
     fun convertObsoleteJavaUtilDateToLocalDateTime(date: Date = Date()): LocalDateTime =
             date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
 

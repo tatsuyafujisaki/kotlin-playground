@@ -20,7 +20,7 @@ enum class Fruit2 {
     abstract fun printSimilarFruit()
 }
 
-fun sample() {
+private fun main() {
     val apple: Fruit2 = Fruit2.APPLE
     println(apple) // 🍎
     println(apple.producer) // 👨‍🌾

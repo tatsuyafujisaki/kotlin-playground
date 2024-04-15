@@ -10,17 +10,17 @@ object YearMonthUtil {
     }.getOrNull()
 
     /**
-     * @return only the current month if n = 0. both current month and last month if n = 1, and so on.
+     * @return an empty list if n = 0. Last month if n = 1. Last two months if n = 2.
      */
     fun getPastMonths(n: Int = 0): List<YearMonth> {
         val now = YearMonth.now()
-        return List(n + 1) {
+        return List(n) {
             now.minusMonths(it.toLong())
         }
     }
 
     /**
-     * @return the current month if n = 0. last month if n = 1, and so on.
+     * @return the current month if n = 0. Last month if n = 1. Second last month if n = 2.
      */
     fun getPastMonth(n: Int = 0): YearMonth = YearMonth.now().minusMonths(n.toLong())
 
@@ -29,6 +29,6 @@ object YearMonthUtil {
 }
 
 private fun main() {
-    println(YearMonthUtil.getPastMonths(0))
-    println(YearMonthUtil.getPastMonth(0))
+    println(YearMonthUtil.getPastMonths(6))
+    println(YearMonthUtil.getPastMonth(6))
 }

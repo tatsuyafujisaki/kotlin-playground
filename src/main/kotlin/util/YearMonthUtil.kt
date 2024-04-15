@@ -5,7 +5,7 @@ import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
 object YearMonthUtil {
-    fun parseStringOrNull(text: String, pattern: String) = runCatching {
+    fun parseOrNull(text: String, pattern: String) = runCatching {
         YearMonth.parse(text, DateTimeFormatter.ofPattern(pattern))
     }.getOrNull()
 

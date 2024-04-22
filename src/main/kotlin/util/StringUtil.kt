@@ -1,5 +1,6 @@
 package util
 
+import util.StringUtil.splitByNestedDelimiters
 import kotlin.math.max
 
 object StringUtil {
@@ -33,8 +34,7 @@ object StringUtil {
         IntArray(s2.length + 1)
     }.also {
         for (i in s1.indices) {
-            for (j in s2.indices) it[i + 1][j + 1] =
-                if (s1[i] == s2[j]) it[i][j] + 1 else max(it[i + 1][j], it[i][j + 1])
+            for (j in s2.indices) it[i + 1][j + 1] = if (s1[i] == s2[j]) it[i][j] + 1 else max(it[i + 1][j], it[i][j + 1])
         }
     }[s1.length][s2.length]
 
@@ -48,4 +48,10 @@ object StringUtil {
         }
         return permute(s)
     }
+
+    fun splitByNestedDelimiters(s: String, vararg delimiters: String) = s.split(*delimiters).chunked(2) { (k, v) -> k to v }.toMap()
+}
+
+private fun main() {
+    println(splitByNestedDelimiters("a=b,c=d,e=f", ",", "=")) // {a=b, c=d, e=f}
 }

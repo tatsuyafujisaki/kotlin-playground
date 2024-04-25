@@ -6,7 +6,7 @@ import java.time.ZoneId
 import java.util.Date
 import kotlin.time.toKotlinDuration
 
-object DateTimeUtil {
+object LocalDateTimeUtil {
     fun isWithinHoursPastOrFuture(pastDateTime: LocalDateTime = LocalDateTime.now(), hours: Long = 0): Boolean =
             pastDateTime.isAfter(LocalDateTime.now().minusHours(hours))
 

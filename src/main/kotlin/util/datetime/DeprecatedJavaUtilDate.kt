@@ -12,7 +12,7 @@ object DeprecatedJavaUtilDate {
     }.time
 
     fun create(localDateTime: LocalDateTime): Date = Date.from(localDateTime.atZone(ZoneOffset.systemDefault()).toInstant())
-    fun isLessThanMinutesOld(date: Date, minutes: Long) = date.after(Date(System.currentTimeMillis() - minutes.minutes.inWholeMilliseconds))
+    fun isLessThanMinutesOld(pastDate: Date, minutes: Long) = pastDate.after(Date(System.currentTimeMillis() - minutes.minutes.inWholeMilliseconds))
 }
 
 private fun main() {

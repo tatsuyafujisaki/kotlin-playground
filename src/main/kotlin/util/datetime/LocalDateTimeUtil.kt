@@ -10,7 +10,7 @@ import kotlin.time.toKotlinDuration
 object LocalDateTimeUtil {
     fun create(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int): LocalDateTime = LocalDateTime.of(year, month, day, hour, minute, second)
     fun create(date: Date): LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(date.time), ZoneId.systemDefault())
-    fun isLessThanMinutesOld(pastDateTime: LocalDateTime = LocalDateTime.now(), hours: Long = 0) = pastDateTime.isAfter(LocalDateTime.now().minusHours(hours))
+    fun isLessThanHoursOld(pastDateTime: LocalDateTime = LocalDateTime.now(), hours: Long) = pastDateTime.isAfter(LocalDateTime.now().minusHours(hours))
     fun convertObsoleteJavaUtilDateToLocalDateTime(date: Date = Date()): LocalDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
     fun formatJapanesePassedDateTime(dateTime1: LocalDateTime, date2: LocalDateTime): String {
         val duration = Duration.between(dateTime1, date2).toKotlinDuration()

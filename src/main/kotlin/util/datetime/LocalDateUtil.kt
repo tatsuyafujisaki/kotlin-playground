@@ -14,13 +14,9 @@ object LocalDateUtil {
     /**
      * @param date yyyy-mm-dd
      */
-    fun convertToDate(date: String) = runCatching {
-        LocalDate.parse(date)
-    }.getOrNull()
-
-    fun formatToJapaneseDate(date: LocalDate = LocalDate.now()): String =
-            date.format(DateTimeFormatter.ofPattern("y年M月d日"))
-
+    fun createOrNull(date: String) = runCatching { LocalDate.parse(date) }.getOrNull()
+    fun isLessThanDaysOld(pastDate: LocalDate = LocalDate.now(), days: Long) = pastDate.isAfter(LocalDate.now().minusDays(days))
+    fun formatToJapaneseDate(date: LocalDate = LocalDate.now()): String = date.format(DateTimeFormatter.ofPattern("y年M月d日"))
     fun japaneseDatePassed(date1: LocalDate, date2: LocalDate): String {
         val diffInDays = ChronoUnit.DAYS.between(date1, date2)
         return if (diffInDays > 0) "${diffInDays}日前" else "本日"

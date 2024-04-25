@@ -8,8 +8,8 @@ import java.time.temporal.ChronoUnit
 import java.util.Date
 
 object LocalDateUtil {
-    fun create(date: Date) = LocalDate.ofInstant(Instant.ofEpochMilli(date.time), ZoneId.systemDefault())
     fun create(year: Int, month: Int, day: Int) = LocalDate.of(year, month, day)
+    fun create(date: Date) = LocalDate.ofInstant(Instant.ofEpochMilli(date.time), ZoneId.systemDefault())
 
     /**
      * @param date yyyy-mm-dd
@@ -40,5 +40,6 @@ object LocalDateUtil {
 }
 
 private fun main() {
+    println(LocalDateTimeUtil.create(2025, 1, 2, 3, 4, 5))
     println(LocalDateTimeUtil.create(Date()))
 }

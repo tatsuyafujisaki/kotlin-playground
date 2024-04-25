@@ -1,10 +1,16 @@
 package util.datetime
 
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import java.util.Date
 
 object LocalDateUtil {
+    fun create(date: Date) = LocalDate.ofInstant(Instant.ofEpochMilli(date.time), ZoneId.systemDefault())
+    fun create(year: Int, month: Int, day: Int) = LocalDate.of(year, month, day)
+
     /**
      * @param date yyyy-mm-dd
      */
@@ -31,4 +37,8 @@ object LocalDateUtil {
         println("Current month: ${getMonth()}")
         println("Previous month: ${getMonth(monthDelta = 1)}")
     }
+}
+
+private fun main() {
+    println(LocalDateTimeUtil.create(Date()))
 }

@@ -7,7 +7,7 @@ import java.util.Date
 import kotlin.time.toKotlinDuration
 
 object DateTimeUtil {
-    fun isWithinHoursFromNowOrFuture(pastDateTime: LocalDateTime = LocalDateTime.now(), hours: Long = 0): Boolean =
+    fun isWithinHoursPastOrFuture(pastDateTime: LocalDateTime = LocalDateTime.now(), hours: Long = 0): Boolean =
             pastDateTime.isAfter(LocalDateTime.now().minusHours(hours))
 
     fun convertObsoleteJavaUtilDateToLocalDateTime(date: Date = Date()): LocalDateTime =

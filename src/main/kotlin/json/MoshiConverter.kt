@@ -4,7 +4,6 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import util.FileUtil.readAndPrint
@@ -14,15 +13,15 @@ object MoshiConverter {
     inline fun <reified T> getAdapter(): JsonAdapter<T> = moshi.adapter(T::class.java)
 
     inline fun <reified T> getListAdapter(): JsonAdapter<List<T>> = moshi.adapter(
-        Types.newParameterizedType(
-            List::class.java, T::class.java
-        )
+            Types.newParameterizedType(
+                    List::class.java, T::class.java
+            )
     )
 
     inline fun <reified T> getMapAdapter(): JsonAdapter<Map<String, T>> = moshi.adapter(
-        Types.newParameterizedType(
-            Map::class.java, String::class.java, T::class.java
-        )
+            Types.newParameterizedType(
+                    Map::class.java, String::class.java, T::class.java
+            )
     )
 }
 

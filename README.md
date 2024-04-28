@@ -19,11 +19,13 @@ xs.mapIndexed { i, x -> "$i $x" }.forEach(::println)
 ```
 
 ## How to filter an Iterable by index
+
 ```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c').filterIndexed { i, _ -> i != 1 } // [a, c]
 ```
 
 ## How to iterate two iterables in parallel
+
 ```kotlin
 // > The returned list has length of the shortest collection.
 // https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip.html
@@ -44,10 +46,10 @@ fun main() {
 
 ## Type mapping between Kotlin and Java
 
-Kotlin|Java
----|---
-IntArray|int[]
-Array\<Int>|Integer[]
+ Kotlin      | Java      
+-------------|-----------
+ IntArray    | int[]     
+ Array\<Int> | Integer[] 
 
 ## How to create an IntArray
 
@@ -219,6 +221,7 @@ val ys: List<Int> = x.orEmpty()
 val fruits: List<Fruit> = listOf(Fruit(name = "apple", price = 100), Fruit(name = "orange", price = 200))
 val result: Map<String, Int> = fruits.associate { it.name to it.price } // {apple=100, orange=200}
 ```
+
 ```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c')
 val result: Map<Char, Int> = xs.withIndex().associate { it.value to it.index } // {a=0, b=1, c=2}
@@ -226,17 +229,21 @@ val result: Map<Char, Int> = xs.withIndex().associate { it.value to it.index } /
 // FYI, mapIndexed() returns a List instead of a Map.
 // val result2: List<Pair<Char, Int>> = xs.mapIndexed { i, x -> x to i } // [(a, 0), (b, 1), (c, 2)]
 ```
+
 ```kotlin
 val result: Map<Char, Char> = xs.associateWith { it.toUpperCase() } // {a=A, b=B, c=C}
 ```
+
 ```kotlin
 val result: Map<Char, Char> = xs.associateBy { it.toUpperCase() } // {A=a, B=b, C=c}
 ```
+
 ```kotlin
 val xs: List<String> = listOf("fruit" to "apple", "fruit" to "orange", "vegetable" to "carrot", "vegetable" to "potato")
 val result: Map<String, List<String>> =
     xs.groupBy({ it.first }, { it.second }) // {fruit=[apple, orange], vegetable=[carrot, potato]}
 ```
+
 ```kotlin
 val xs: List<String> = listOf("key1", "key2", "key1", "key2")
 val result: Map<String, List<Int>> =
@@ -330,8 +337,8 @@ val result2: Set<String> = map.keys // [a, b, c]
 val result3: Collection<String> = map.values // [x, y, z]
 val result4: String? = map["d"] // null
 val result5: String = map.getValue("d") // "default"
-val result6: String? = map.getOrDefault("d", "not found") // not found
-val result7: String? = map.getOrElse("d") { "not found" } // not found
+val result6: String = map.getOrDefault("d", "not found") // not found
+val result7: String = map.getOrElse("d") { "not found" } // not found
 ```
 
 ## How to map a Map
@@ -437,7 +444,9 @@ val s: String = buildString {
 ```
 
 # Enum
+
 ## Enum without a value
+
 ```kotlin
 enum class Fruit {
     APPLE, ORANGE, UNKNOWN;
@@ -456,6 +465,7 @@ enum class Fruit {
 ```
 
 ## Enum with a value
+
 ```kotlin
 enum class MyColor(val value: Int) {
     BLACK(0x000000), WHITE(0xffffff), UNKNOWN(Int.MIN_VALUE);
@@ -476,6 +486,7 @@ enum class MyColor(val value: Int) {
 ```
 
 ## Enum with properties and functions
+
 ```kotlin
 enum class Fruit {
     APPLE {
@@ -503,6 +514,7 @@ apple.printSimilarFruit() // 🍏
 ```
 
 # Function references / Constructor references
+
 ```kotlin
 fun main() {
     val xs: List<Int> = listOf(1, 2)
@@ -533,6 +545,7 @@ data class Sample(val x: Int) {
 ```
 
 # Sealed interface
+
 ```kotlin
 sealed interface Shape {
     val description: String
@@ -562,6 +575,7 @@ fun main() {
 ```
 
 # Sealed class
+
 ```kotlin
 sealed class Shape(open val description: String, open val print: () -> Unit) {
     val commonDescription: String = "common!"
@@ -642,23 +656,24 @@ println(evenNumber) // 2
 
 ## Comparison among `lazy`, `Delegates.notNull()`, and `lateinit`
 
-&nbsp;|lazy|Delegates.notNull()|lateinit
---|--|--|--
-val|supported|not supported|not supported
-non-nullable|supported|supported|not supported primitive types|supported|supported|not supported performance|ok(※1)|ok(
-※1)|good Dagger|supported|supported(※2)|supported
+ &nbsp;       | lazy        | Delegates.notNull() | lateinit                      
+--------------|-------------|---------------------|-------------------------------
+ val          | supported   | not supported       | not supported                 
+ non-nullable | supported   | supported           | not supported primitive types |supported|supported|not supported performance|ok(※1)|ok(
+ ※1)          | good Dagger | supported           | supported(※2)                 |supported
 
 * (※1) A delegate object is created.
 * (※2) Dagger's field injection is not supported but Dagger's method (setter) injection is.
 
 # Regex
 
-Construct|Matches|Greedy or reluctant
---|--|--
-x?|0,1|greedy x??|0,1|reluctant x*|0+|greedy x*?|0+|reluctant
-x+|1+|greedy x+?|1+|reluctant
+ Construct | Matches | Greedy or reluctant 
+-----------|---------|---------------------
+ x?        | 0,1     | greedy x??          |0,1|reluctant x*|0+|greedy x*?|0+|reluctant
+ x+        | 1+      | greedy x+?          |1+|reluctant
 
-Kotlin's regex pattern syntax is the same as Java's [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
+Kotlin's regex pattern syntax is the same as Java'
+s [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
 
 # How to print the name of the current function
 
@@ -669,6 +684,7 @@ fun sample() {
 ```
 
 # How to print when a property is accessed
+
 ```kotlin
 var x = ""
     get() {
@@ -696,53 +712,64 @@ println(currentCoroutineContext())
 
 # Syntactic sugar for throwing exceptions
 
-Function|Throws
---|--
-check(Boolean)|IllegalStateException
-checkNotNull(T?)|IllegalStateException
-error(Any)|IllegalStateException
-require(Boolean)|IllegalArgumentException
-requireNotNull(T?)|IllegalArgumentException
+ Function           | Throws                   
+--------------------|--------------------------
+ check(Boolean)     | IllegalStateException    
+ checkNotNull(T?)   | IllegalStateException    
+ error(Any)         | IllegalStateException    
+ require(Boolean)   | IllegalArgumentException 
+ requireNotNull(T?) | IllegalArgumentException 
 
 # `fold` versus `reduce`
 
-&nbsp;|Type of initial value|Type of element of input array|Return type
---|--|--|--
-fold|R|T|R
-reduce|n/a|T|T or one of T's ancestors
+ &nbsp; | Type of initial value | Type of element of input array | Return type               
+--------|-----------------------|--------------------------------|---------------------------
+ fold   | R                     | T                              | R                         
+ reduce | n/a                   | T                              | T or one of T's ancestors 
 
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html
 
 # KDoc
+
 ## How to add an external link
+
 ```kotlin
 /**
  * @see <a href="https://example.com">Example</a>
  */
 ```
+
 Markdown also works. However, Intellij IDEA issues a warning that "Example" in `[Example]` is invalid.
+
 ```kotlin
 /**
  * @see [Example](https://example.com)
  */
 ```
+
 https://github.com/Kotlin/dokka/issues/518#issuecomment-744062184
 
 # Best practices
+
 [best-practices.md](markdown/best-practices.md)
 
 # Coroutines and Flow
+
 [coroutines-flow.md](markdown/coroutines-flow.md)
 
 # ktlint
+
 [ktlint.md](markdown/ktlint.md)
 
 # Misc
+
 [misc.md](markdown/misc.md)
 
 # RxJava
+
 [rxjava.md](markdown/rxjava.md)
 
 # Scope functions
+
 [scope-functions.md](markdown/scope-functions.md)

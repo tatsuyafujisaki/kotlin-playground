@@ -225,16 +225,15 @@ val result: Map<String, Int> = fruits.associate { it.name to it.price } // {appl
 ```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c')
 val result: Map<Char, Int> = xs.withIndex().associate { it.value to it.index } // {a=0, b=1, c=2}
-
-// FYI, mapIndexed() returns a List instead of a Map.
-// val result2: List<Pair<Char, Int>> = xs.mapIndexed { i, x -> x to i } // [(a, 0), (b, 1), (c, 2)]
 ```
 
 ```kotlin
+val xs: List<Char> = listOf('a', 'b', 'c')
 val result: Map<Char, Char> = xs.associateWith { it.toUpperCase() } // {a=A, b=B, c=C}
 ```
 
 ```kotlin
+val xs: List<Char> = listOf('a', 'b', 'c')
 val result: Map<Char, Char> = xs.associateBy { it.toUpperCase() } // {A=a, B=b, C=c}
 ```
 

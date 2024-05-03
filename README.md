@@ -150,7 +150,7 @@ val result2: List<Int> = xs.minus(2) // [1, 3]
 ```kotlin
 listOf('a', 'b', 'c')
     .onEach { println(it) } // a b c
-    .map(Char::toUpperCase)
+    .map(Char::uppercaseChar)
     .forEach { println(it) } // A B C
 ```
 
@@ -229,12 +229,12 @@ val result: Map<Char, Int> = xs.withIndex().associate { it.value to it.index } /
 
 ```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c')
-val result: Map<Char, Char> = xs.associateWith { it.toUpperCase() } // {a=A, b=B, c=C}
+val result: Map<Char, Char> = xs.associateWith { it.uppercaseChar() } // {a=A, b=B, c=C}
 ```
 
 ```kotlin
 val xs: List<Char> = listOf('a', 'b', 'c')
-val result: Map<Char, Char> = xs.associateBy { it.toUpperCase() } // {A=a, B=b, C=c}
+val result: Map<Char, Char> = xs.associateBy { it.uppercaseChar() } // {A=a, B=b, C=c}
 ```
 
 ```kotlin
@@ -344,9 +344,9 @@ val result7: String = map.getOrElse("d") { "not found" } // not found
 
 ```kotlin
 val map: Map<Char, Int> = mapOf('a' to 10, 'b' to 20)
-val result1: Map<Char, Int> = map.mapKeys { it.key.toUpperCase() } // {A=10, B=20}
+val result1: Map<Char, Int> = map.mapKeys { it.key.uppercaseChar() } // {A=10, B=20}
 val result2: Map<Char, Int> = map.mapValues { it.value * 10 } // {a=100, b=200}
-val result3: Map<Char, Int> = map.map { it.key.toUpperCase() to it.value * 10 }.toMap() // {A=100, B=200}
+val result3: Map<Char, Int> = map.map { it.key.uppercaseChar() to it.value * 10 }.toMap() // {A=100, B=200}
 ```
 
 ## How to filter a Map
@@ -429,7 +429,7 @@ val xs: String = listOf("a", "b", "c").joinToString(
     limit = 2,
     truncated = "..."
 ) {
-    it.toUpperCase()
+    it.uppercaseChar()
 } // "{A;B;...}
 ```
 

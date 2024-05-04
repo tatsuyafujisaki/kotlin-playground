@@ -443,28 +443,6 @@ val s: String = buildString {
 ```
 
 # Enum
-
-## Enum without a value
-
-```kotlin
-enum class Fruit {
-    APPLE, ORANGE, UNKNOWN;
-
-    companion object {
-        // Verbose for illustrative purposes
-        fun fromOrdinal(ordinal: Int): Fruit = entries[ordinal]
-        fun fromOrdinalOrNull(ordinal: Int): Fruit? = entries.getOrNull(ordinal)
-        fun fromOrdinalOrDefault(ordinal: Int): Fruit = entries.getOrElse(ordinal) { UNKNOWN }
-        fun fromName(name: String): Fruit = valueOf(name)
-        fun fromNameIgnoreCase(name: String): Fruit = valueOf(name.uppercase())
-        fun fromNameOrNull(name: String): Fruit? = entries.find { it.name == name }
-        fun fromNameIgnoreCaseOrNull(name: String): Fruit? = entries.find { it.name == name.uppercase() }
-    }
-}
-```
-
-## Enum with a value
-
 ```kotlin
 enum class MyColor(val value: Int) {
     BLACK(0x000000), WHITE(0xffffff), UNKNOWN(Int.MIN_VALUE);
@@ -510,6 +488,20 @@ enum class Fruit {
 println(apple) // 🍎
 println(apple.producer) // 👨‍🌾
 apple.printSimilarFruit() // 🍏
+```
+
+## How to extend an enum class
+```
+enum class Fruit(val emoji: String) {
+    APPLE("🍎"),
+    ORANGE("🍊");
+}
+
+enum class ExtendedFruit(emoji: String) {
+    APPLE(Fruit.APPLE.emoji),
+    ORANGE(Fruit.ORANGE.emoji),
+    BANANA("🍌");
+}
 ```
 
 # Function references / Constructor references

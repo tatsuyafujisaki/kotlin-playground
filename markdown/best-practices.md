@@ -19,11 +19,27 @@ A|B|Note
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
 `(this.)javaClass.simpleName`|`this::class.java.simpleName`
 `Flow.filterNotNull()`|`Flow.flatMapConcat { if (it != null) flowOf(it) else emptyFlow() }`
-    
-# Tips
+
+# Use [onEach](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/on-each.html) or [onEachIndexed](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/on-each-indexed.html) when you want to perform a side effect for clarity
+For example, the following is better ...
+```kotlin
+val capitals = listOf('a', 'b', 'c')
+        .onEach { println(it) } // a b c
+        .map { it.uppercaseChar() }
+```
+... than the following.
+```kotlin
+val capitals = listOf('a', 'b', 'c')
+        .map {
+            println(it) // a b c
+            it.uppercaseChar()
+        }
+```
+
+# Misc
 - Decompose a pair if possible.
-    - Recommended: `listOf("apple" to 100, "orange" to 200).map { it.first + it.second })`
-    - Not recommended: `listOf("apple" to 100, "orange" to 200).map { (fruit, price) -> fruit + price }`
+    - Recommended: `listOf("apple" to "🍎", "orange" to "🍊").map { it.first + it.second })`
+    - Not recommended: `listOf("apple" to "🍎", "orange" to "🍊").map { (fruit, emoji) -> fruit + emoji }`
 - When defining a function, make the parameter types as abstract as possible.
   - e.g. Use a type as left as possible.
     - Iterable > Collection > (Set) > List.

@@ -14,7 +14,7 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.moshi.kotlin)
-    implementation(libs.obsolete.json)
+    implementation(libs.legacy.json)
     implementation(libs.rxjava)
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)

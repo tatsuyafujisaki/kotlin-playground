@@ -1,10 +1,13 @@
-package json
+package json.kotlinserialization
 
+import json.MySerializable
+import json.MySerializable2
+import json.Person
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import util.FileUtil
 
-private fun sample0() {
+private fun showExample1() {
     val person = Person("Jane", 18)
     println(person)
 
@@ -16,33 +19,34 @@ private fun sample0() {
     println(person2)
 }
 
-private fun sample1() {
+private fun showExample2() {
     FileUtil.readAndPrint("data/array-of-numbers.json") {
         Json.decodeFromString<List<Double>>(it)
     }
 }
 
-private fun sample2() {
+private fun showExample3() {
     FileUtil.readAndPrint("data/object-of-numbers.json") {
         Json.decodeFromString<Map<String, Double>>(it)
     }
 }
 
-private fun sample3() {
+private fun showExample4() {
     FileUtil.readAndPrint("data/comprehensive-object.json") {
         Json.decodeFromString<MySerializable>(it)
     }
 }
 
-private fun sample4() {
+private fun showExample5() {
     FileUtil.readAndPrint("data/comprehensive-array.json") {
         Json.decodeFromString<List<MySerializable2>>(it)
     }
 }
 
-fun main() {
-    sample1()
-    sample2()
-    sample3()
-    sample4()
+private fun main() {
+    showExample1()
+    showExample2()
+    showExample3()
+    showExample4()
+    showExample5()
 }

@@ -1,4 +1,4 @@
-package serialization
+package json.kotlinserialization
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer

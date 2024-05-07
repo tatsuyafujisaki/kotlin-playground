@@ -1,4 +1,4 @@
-package serialization
+package json.kotlinserialization
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 
 @Serializable
-data class MySerializable(
+private data class MySerializable(
         @Serializable(with = LocalDateSerializer::class) val localDate: LocalDate,
         @Serializable(with = LocalTimeSerializer::class) val localTime: LocalTime,
         @Serializable(with = LocalDateTimeSerializer::class) val localDateTime: LocalDateTime,

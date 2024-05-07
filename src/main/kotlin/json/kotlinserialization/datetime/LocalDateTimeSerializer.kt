@@ -1,4 +1,4 @@
-package json.kotlinserialization
+package json.kotlinserialization.datetime
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer

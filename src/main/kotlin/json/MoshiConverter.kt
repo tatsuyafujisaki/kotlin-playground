@@ -25,7 +25,7 @@ object MoshiConverter {
     )
 }
 
-private fun sample0() {
+private fun showExample1() {
     val person = Person("Jane", 18)
     println(person)
 
@@ -37,33 +37,34 @@ private fun sample0() {
     println(person2)
 }
 
-private fun sample1() {
+private fun showExample2() {
     readAndPrint("data/object-of-numbers.json") {
         MoshiConverter.getMapAdapter<Double>().fromJson(it)
     }
 }
 
-private fun sample2() {
+private fun showExample3() {
     readAndPrint("data/array-of-numbers.json") {
         MoshiConverter.getListAdapter<Double>().fromJson(it)
     }
 }
 
-private fun sample3() {
+private fun showExample4() {
     readAndPrint("data/comprehensive-object.json") {
         MoshiConverter.getAdapter<MySerializable>().fromJson(it)
     }
 }
 
-private fun sample4() {
+private fun showExample5() {
     readAndPrint("data/comprehensive-array.json") {
         MoshiConverter.getListAdapter<MySerializable2>().fromJson(it)
     }
 }
 
-fun main() {
-    sample1()
-    sample2()
-    sample3()
-    sample4()
+private fun main() {
+    showExample1()
+    showExample2()
+    showExample3()
+    showExample4()
+    showExample5()
 }

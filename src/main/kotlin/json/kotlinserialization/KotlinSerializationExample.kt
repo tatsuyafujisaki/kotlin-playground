@@ -2,10 +2,13 @@ package json.kotlinserialization
 
 import json.MySerializable
 import json.MySerializable2
-import json.Person
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import util.FileUtil
+
+@Serializable
+private data class Person(val name: String, val age: Int)
 
 private fun showExample1() {
     val person = Person("Jane", 18)

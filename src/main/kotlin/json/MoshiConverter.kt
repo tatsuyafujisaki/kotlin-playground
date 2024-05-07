@@ -4,9 +4,13 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import util.FileUtil.readAndPrint
+
+@Serializable
+private data class Person(val name: String, val age: Int)
 
 object MoshiConverter {
     val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()

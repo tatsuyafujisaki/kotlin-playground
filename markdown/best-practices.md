@@ -13,12 +13,13 @@ A|B|Note
 `Set<T>`|`List<T>`|if elements are unique and unordered.
 `Iterable<T>.forEachIndexed { i, x -> ... }`|`Iterable<T>.forEach { ... }`|if you need to access both indices and elements.
 `nullableList.orEmpty()`<br>`nullableString.orEmpty()`|`nullableList ?: emptyList()`<br>`nullableString ?: ""`
-`filterIsInstance<Foo>()`|`filterIsInstance(Foo::class.java)`
 `x in xs`<br>`x !in xs`|`xs.contains(x)`<br>`!xs.contains(x)`
 `List<*>.lastIndex`<br>`CharSequence.lastIndex`|`List<*>.size - 1`<br>`String.length - 1`
 `List<Int>.sumBy {...}` or `List<Int>.sumByDouble {...}`|`List<Int>.map {...}.sum()`
 `(this.)javaClass.simpleName`|`this::class.java.simpleName`
 `Flow.filterNotNull()`|`Flow.flatMapConcat { if (it != null) flowOf(it) else emptyFlow() }`
+`DateTimeFormatter.ISO_LOCAL_DATE`|`DateTimeFormatter.ofPattern("yyyy-MM-dd")`
+`DateTimeFormatter.ISO_LOCAL_TIME`|`DateTimeFormatter.ofPattern("HH:mm:ss")`
 
 # Use [onEach](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/on-each.html) or [onEachIndexed](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/on-each-indexed.html) when you want to perform a side effect for clarity
 For example, the following is better ...

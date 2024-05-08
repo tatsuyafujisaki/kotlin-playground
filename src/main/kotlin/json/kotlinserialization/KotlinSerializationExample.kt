@@ -31,12 +31,21 @@ private fun showExample3() {
 }
 
 private fun showExample4() {
+    // Lenient mode does not throw a JsonDecodingException for unquoted JSON keys and unquoted JSON string values.
+    val lenientJson = Json {
+        isLenient = false//true
+    }
+    // Object of numbers
+    println(lenientJson.decodeFromString<Map<String, String>>(string = "{ A: a, B: b }".trimIndent()))
+}
+
+private fun showExample5() {
     FileUtil.readAndPrint("data/comprehensive-object.json") {
         Json.decodeFromString<MySerializable>(it)
     }
 }
 
-private fun showExample5() {
+private fun showExample6() {
     FileUtil.readAndPrint("data/comprehensive-array.json") {
         Json.decodeFromString<List<MySerializable2>>(it)
     }
@@ -46,6 +55,6 @@ private fun main() {
     showExample1()
     showExample2()
     showExample3()
-//    showExample4()
-//    showExample5()
+    showExample4()
+    showExample5()
 }

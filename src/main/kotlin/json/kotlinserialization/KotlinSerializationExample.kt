@@ -17,9 +17,7 @@ private fun showExample1() {
     val json = Json.encodeToString(person)
     println(json)
 
-    // Note that the returned value is not nullable unlike Moshi.
-    val person2: Person = Json.decodeFromString(json)
-    println(person2)
+    println(Json.decodeFromString<Person>(json))
 }
 
 private fun showExample2() {
@@ -45,7 +43,7 @@ private fun showExample5() {
 }
 
 private fun main() {
-//    showExample1()
+    showExample1()
     showExample2()
     showExample3()
 //    showExample4()

@@ -14,9 +14,7 @@ object NullableLocalDateTimeSerializer : KSerializer<LocalDateTime?> {
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
 
     override fun serialize(encoder: Encoder, value: LocalDateTime?) {
-        if (value == null) {
-            encoder.encodeNull()
-        } else {
+        if (value != null) {
             encoder.encodeString(value.format(formatter))
         }
     }

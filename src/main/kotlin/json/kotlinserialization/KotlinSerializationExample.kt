@@ -23,15 +23,13 @@ private fun showExample1() {
 }
 
 private fun showExample2() {
-    FileUtil.readAndPrint("data/array-of-numbers.json") {
-        Json.decodeFromString<List<Double>>(it)
-    }
+    // Array of numbers
+    println(Json.decodeFromString<List<Double>>(string = "[-1, 3.14]"))
 }
 
 private fun showExample3() {
-    FileUtil.readAndPrint("data/object-of-numbers.json") {
-        Json.decodeFromString<Map<String, Double>>(it)
-    }
+    // Object of numbers
+    println(Json.decodeFromString<Map<String, Double>>(string = """{ "a": -1, "b": 3.14 }""".trimIndent()))
 }
 
 private fun showExample4() {
@@ -47,9 +45,9 @@ private fun showExample5() {
 }
 
 private fun main() {
-    showExample1()
+//    showExample1()
     showExample2()
     showExample3()
-    showExample4()
-    showExample5()
+//    showExample4()
+//    showExample5()
 }

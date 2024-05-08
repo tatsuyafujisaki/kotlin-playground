@@ -31,9 +31,9 @@ private fun showExample3() {
 }
 
 private fun showExample4() {
-    // Lenient mode does not throw a JsonDecodingException for unquoted JSON keys and unquoted JSON string values.
+    // The lenient mode does not throw a JsonDecodingException for unquoted JSON keys and unquoted JSON string values.
     val lenientJson = Json {
-        isLenient = false//true
+        isLenient = true
     }
     // Object of numbers
     println(lenientJson.decodeFromString<Map<String, String>>(string = "{ A: a, B: b }".trimIndent()))

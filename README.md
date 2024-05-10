@@ -664,7 +664,7 @@ println(evenNumber) // 2
  x+        | 1+      | greedy x+?          |1+|reluctant
 
 Kotlin's regex pattern syntax is the same as Java'
-s [Pattern class](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/regex/Pattern.html).
+s [Pattern class](https://developer.android.com/reference/java/util/regex/Pattern).
 
 # How to print the name of the current function
 

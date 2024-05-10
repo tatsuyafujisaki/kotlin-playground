@@ -6,16 +6,15 @@ import java.time.LocalDateTime
 
 @Serializable
 private data class MySerializable(
-        @Serializable(with = LocalDateTimeSerializer::class) val localDateTime1: LocalDateTime,
-        @Serializable(with = NullableLocalDateTimeSerializer::class) val localDateTime2: LocalDateTime?,
+        @Serializable(with = LocalDateTimeSerializer::class) val dateTime1: LocalDateTime,
+        @Serializable(with = NullableLocalDateTimeSerializer::class) val dateTime2: LocalDateTime?,
 )
 
 private fun main() {
     val json = """
         {
-            "localDate": "2025-01-02",
-            "localDateTime1": "2025-01-02 12:34:56",
-            "localDateTime2": ""
+            "dateTime1": "2025-01-02 12:34:56",
+            "dateTime2": ""
         }
     """.trimIndent()
 

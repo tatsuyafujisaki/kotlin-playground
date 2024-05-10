@@ -657,14 +657,9 @@ println(evenNumber) // 2
 * (※2) Dagger's field injection is not supported but Dagger's method (setter) injection is.
 
 # Regex
+Kotlin's regex pattern syntax is the same as Java's pattern class.
 
- Construct | Matches | Greedy or reluctant 
------------|---------|---------------------
- x?        | 0,1     | greedy x??          |0,1|reluctant x*|0+|greedy x*?|0+|reluctant
- x+        | 1+      | greedy x+?          |1+|reluctant
-
-Kotlin's regex pattern syntax is the same as Java'
-s [Pattern class](https://developer.android.com/reference/java/util/regex/Pattern).
+https://developer.android.com/reference/java/util/regex/Pattern
 
 # How to print the name of the current function
 

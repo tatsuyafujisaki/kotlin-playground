@@ -539,7 +539,7 @@ data class Sample(val x: Int) {
 
 Prefer sealed interfaces to sealed classes, except in these two cases.
 
-## Case 1: You want to hardcode a common property.
+## Case 1: You want to use a constructor. (i.e. you want to hardcode a shared property)
 
 Using the constructor of a sealed class is more concise than ...
 ```kotlin

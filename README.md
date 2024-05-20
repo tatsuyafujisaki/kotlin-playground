@@ -535,67 +535,44 @@ data class Sample(val x: Int) {
 }
 ```
 
-# Sealed interface
+# How do I know when to use a sealed class or interface?
 
+Prefer sealed interfaces to sealed classes, except in these two cases.
+
+## Case 1: You want to hardcode a common property.
+
+Using the constructor of a sealed class is more concise than ...
 ```kotlin
-sealed interface Shape {
-    val description: String
-    val print: () -> Unit
-}
-
-data class Circle(
-    val radius: Int,
-    override val description: String,
-    override val print: () -> Unit
-) : Shape
-
-data class Square(
-    val perimeter: Int,
-    override val description: String,
-    override val print: () -> Unit
-) : Shape
-
-fun main() {
-    val circle = Circle(1, "circle!") { println("circle!") }
-    val square = Square(1, "square!") { println("square!") }
-    println(circle) // Circle(radius=1, description=circle!, print=() -> kotlin.Unit)
-    circle.print() // circle!
-    println(square) // Square(perimeter=1, description=square!, print=() -> kotlin.Unit)
-    square.print() // square!
-}
+sealed class Fruit(val emoji: String)
+data class Apple(val foo: String) : Fruit(emoji = "🍎")
+data class Orange(val bar: String) : Fruit(emoji = "🍊")
 ```
 
-# Sealed class
-
+... using a sealed interface.
 ```kotlin
-sealed class Shape(open val description: String, open val print: () -> Unit) {
-    val commonDescription: String = "common!"
-    val printCommon: () -> Unit = { println("common!") }
+sealed interface Fruit {
+    val emoji: String
 }
 
-data class Circle(
-    val radius: Int,
-    override val description: String,
-    override val print: () -> Unit
-) : Shape("circle!", print)
+data class Apple(val foo: String, override val emoji: String = "🍎") : Fruit
+data class Orange(val bar: String, override val emoji: String = "🍊") : Fruit
+```
 
-data class Square(
-    val perimeter: Int,
-    override val description: String,
-    override val print: () -> Unit
-) : Shape("square!", print)
-
-fun main() {
-    val circle = Circle(1, "circle!") { println("circle!") }
-    val square = Square(1, "square!") { println("square!") }
-    println(circle) // Circle(radius=1, description=circle!, print=() -> kotlin.Unit)
-    println(circle.commonDescription) // common!
-    circle.printCommon() // common!
-    circle.print() // circle!
-    println(square) // Square(perimeter=1, description=square!, print=() -> kotlin.Unit)
-    println(square.commonDescription) // common!
-    square.printCommon() // common!
-    square.print() // square!
+## Case 2: You want to use generics, which interfaces don't support.
+You can use generics with a sealed class, as shown below.
+```kotlin
+sealed class UiState<out T> {
+    data object Loading : UiState<Nothing>()
+    data class Success<T>(val data: T) : UiState<T>()
+    data class Failure(val throwable: Throwable) : UiState<Nothing>()
+}
+```
+On the other hand, you cannot use generics with a sealed interface as shown below.
+```kotlin
+private sealed interface NonGenericUiState {
+    data object Loading : NonGenericUiState
+    data class Success(val data: String) : NonGenericUiState
+    data class Failure(val throwable: Throwable) : NonGenericUiState
 }
 ```
 

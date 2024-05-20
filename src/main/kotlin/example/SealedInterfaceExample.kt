@@ -6,15 +6,15 @@ sealed interface Shape {
 }
 
 data class Circle(
-    val radius: Int,
-    override val description: String,
-    override val print: () -> Unit
+        val radius: Int,
+        override val description: String,
+        override val print: () -> Unit,
 ) : Shape
 
 data class Square(
-    val perimeter: Int,
-    override val description: String,
-    override val print: () -> Unit
+        val perimeter: Int,
+        override val description: String,
+        override val print: () -> Unit,
 ) : Shape
 
 fun main() {

@@ -19,7 +19,6 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockito)
-    testImplementation(libs.turbine)
 }
 
 tasks.test {

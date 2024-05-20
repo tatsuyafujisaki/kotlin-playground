@@ -1,5 +1,7 @@
 package util
 
+import util.CollectionUtil.isNeitherNullNorEmpty
+
 object CollectionUtil {
     fun <T> Collection<T>?.isNeitherNullNorEmpty() = !isNullOrEmpty()
 

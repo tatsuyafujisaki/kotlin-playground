@@ -11,15 +11,15 @@ object ArrayUtil {
         fun <T> Array<T>.rotateRight(distance: Int) = takeLast(distance) + dropLast(distance)
 
         fun <T> Array<T>.rotate(distance: Int) =
-            toList().also { // toList() is a deep copy to avoid changing the original array.
-                Collections.rotate(it, distance)
-            }
+                toList().also { // toList() is a deep copy to avoid changing the original array.
+                    Collections.rotate(it, distance)
+                }
     }
 
     val pow2 = intArrayOf(
-        1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024,
-        2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576,
-        2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912, 1073741824
+            1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024,
+            2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576,
+            2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912, 1073741824
     )
 
     fun IntArray.swap(i: Int, j: Int) {
@@ -94,7 +94,7 @@ object ArrayUtil {
     }
 
     fun IntArray.permute(left: List<Int> = emptyList(), right: List<Int> = toList()): List<List<Int>> =
-        if (right.isEmpty()) listOf(left) else right.flatMap { permute(left + it, right - it) }
+            if (right.isEmpty()) listOf(left) else right.flatMap { permute(left + it, right - it) }
 
     fun IntArray.permuteWithoutDuplicates() = permute().distinct()
 

@@ -443,6 +443,7 @@ val s: String = buildString {
 ```
 
 # Enum
+
 ```kotlin
 enum class MyColor(val value: Int) {
     BLACK(0x000000), WHITE(0xffffff), UNKNOWN(Int.MIN_VALUE);
@@ -491,6 +492,7 @@ apple.printSimilarFruit() // 🍏
 ```
 
 ## How to extend an enum class
+
 ```
 enum class Fruit(val emoji: String) {
     APPLE("🍎"),
@@ -542,6 +544,7 @@ Prefer sealed interfaces to sealed classes, except in these two cases.
 ## Case 1: You want to use a constructor. (i.e. you want to hardcode a common property)
 
 Using the constructor of a sealed class is more concise than ...
+
 ```kotlin
 sealed class Fruit(val emoji: String)
 data class Apple(val foo: String) : Fruit(emoji = "🍎")
@@ -549,6 +552,7 @@ data class Orange(val bar: String) : Fruit(emoji = "🍊")
 ```
 
 ... using a sealed interface.
+
 ```kotlin
 sealed interface Fruit {
     val emoji: String
@@ -559,7 +563,9 @@ data class Orange(val bar: String, override val emoji: String = "🍊") : Fruit
 ```
 
 ## Case 2: You want to use generics, which interfaces don't support.
+
 You can use generics with a sealed class, as shown below.
+
 ```kotlin
 sealed class UiState<out T> {
     data object Loading : UiState<Nothing>()
@@ -567,7 +573,9 @@ sealed class UiState<out T> {
     data class Failure(val throwable: Throwable) : UiState<Nothing>()
 }
 ```
+
 On the other hand, you cannot use generics with a sealed interface as shown below.
+
 ```kotlin
 private sealed interface NonGenericUiState {
     data object Loading : NonGenericUiState
@@ -634,6 +642,7 @@ println(evenNumber) // 2
 * (※2) Dagger's field injection is not supported but Dagger's method (setter) injection is.
 
 # Regex
+
 Kotlin's regex pattern syntax is the same as Java's pattern class.
 
 https://developer.android.com/reference/java/util/regex/Pattern

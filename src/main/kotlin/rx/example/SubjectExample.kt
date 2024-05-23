@@ -49,11 +49,11 @@ object SubjectExample {
     fun example2() {
         val subject = PublishSubject.create<String>()
         subject
-            .hide()
-            .flatMap {
-                Observable.error<String>(Throwable("WTF"))
-            }
-            .mySubscribe()
+                .hide()
+                .flatMap {
+                    Observable.error<String>(Throwable("WTF"))
+                }
+                .mySubscribe()
         subject.onNext("a")
         subject.onNext("b")
     }
@@ -64,15 +64,15 @@ object SubjectExample {
     fun example3() {
         val subject = PublishSubject.create<String>()
         subject
-            .hide()
-            .flatMap {
-                Observable.error<String>(Throwable("WTF"))
-            }
-            .onErrorResumeNext {
-                println("onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
-                Observable.just("phoenix")
-            }
-            .mySubscribe()
+                .hide()
+                .flatMap {
+                    Observable.error<String>(Throwable("WTF"))
+                }
+                .onErrorResumeNext {
+                    println("onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
+                    Observable.just("phoenix")
+                }
+                .mySubscribe()
         subject.onNext("a")
         subject.onNext("b")
     }
@@ -83,16 +83,16 @@ object SubjectExample {
     fun example4() {
         val subject = PublishSubject.create<String>()
         subject
-            .hide()
-            .flatMap {
-                Observable
-                    .error<String>(Throwable("WTF"))
-                    .onErrorResumeNext {
-                        println("onErrorResumeNext (Because this onErrorResumeNext is inside flatMap, the outer Observable will continue as if no error occurred.)")
-                        Observable.just("phoenix")
-                    }
-            }
-            .mySubscribe()
+                .hide()
+                .flatMap {
+                    Observable
+                            .error<String>(Throwable("WTF"))
+                            .onErrorResumeNext {
+                                println("onErrorResumeNext (Because this onErrorResumeNext is inside flatMap, the outer Observable will continue as if no error occurred.)")
+                                Observable.just("phoenix")
+                            }
+                }
+                .mySubscribe()
         subject.onNext("a")
         subject.onNext("b")
     }
@@ -105,14 +105,14 @@ object SubjectExample {
         val subject = PublishSubject.create<String>()
         val observable = subject.hide()
         val disposable = observable
-            .flatMap {
-                Observable.error<String>(Throwable("WTF"))
-            }
-            .onErrorResumeNext {
-                println("onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
-                Observable.just("phoenix")
-            }
-            .mySubscribe()
+                .flatMap {
+                    Observable.error<String>(Throwable("WTF"))
+                }
+                .onErrorResumeNext {
+                    println("onErrorResumeNext (Immediately afterwards, Observer.onNext() and Observer.onComplete() will be called instead of Observer.onError(): $it")
+                    Observable.just("phoenix")
+                }
+                .mySubscribe()
         subject.onNext("a")
         subject.onNext("b")
         disposable.print() // true
@@ -147,7 +147,7 @@ object SubjectExample {
     fun example8() {
         val subject = PublishSubject.create<String>()
         val single =
-            Single.fromObservable(subject.hide()) // Unlike Observable.single(), you don't have to set the default value.
+                Single.fromObservable(subject.hide()) // Unlike Observable.single(), you don't have to set the default value.
         val disposable = single.mySubscribe()
         subject.onNext("a")
         subject.onComplete()
@@ -159,17 +159,17 @@ object SubjectExample {
         var firstRun = true
         val subject = PublishSubject.create<String>()
         val observable = subject
-            .hide()
-            .doOnMisc()
-            .flatMap {
-                if (firstRun) {
-                    firstRun = false
-                    Observable.error(Throwable("WTF"))
-                } else {
-                    Observable.just(it)
+                .hide()
+                .doOnMisc()
+                .flatMap {
+                    if (firstRun) {
+                        firstRun = false
+                        Observable.error(Throwable("WTF"))
+                    } else {
+                        Observable.just(it)
+                    }
                 }
-            }
-            .retry()
+                .retry()
         val disposable = observable.mySubscribe()
         subject.onNext("a")
         subject.onNext("b")

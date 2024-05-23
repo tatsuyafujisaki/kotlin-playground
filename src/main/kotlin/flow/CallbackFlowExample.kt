@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 
 private class CountDownTimer(
-    val total: Long,
-    val interval: Long,
-    val onFinish: () -> Unit
+        val total: Long,
+        val interval: Long,
+        val onFinish: () -> Unit,
 ) {
     private var onTick: ((millisUntilFinished: Long) -> Unit)? = null
 
@@ -35,12 +35,12 @@ private suspend fun main() {
 
         launch {
             countDownTimer
-                .flow
-                .onCompletion {
-                    println("onCompletion")
-                }.collect {
-                    println("collect: $it")
-                }
+                    .flow
+                    .onCompletion {
+                        println("onCompletion")
+                    }.collect {
+                        println("collect: $it")
+                    }
         }
 
         countDownTimer.start()

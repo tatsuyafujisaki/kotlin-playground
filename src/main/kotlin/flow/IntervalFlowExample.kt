@@ -1,7 +1,5 @@
 package flow
 
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.FlowCollector
@@ -11,6 +9,8 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.take
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Notice the order of [delay] and [FlowCollector.emit]. i.e. The initial delay is the same as the periodic delay.
@@ -31,12 +31,12 @@ private fun interval(period: Duration, delay: Duration = Duration.ZERO) = flow {
 }
 
 private fun countUp(period: Duration, delay: Duration = period) =
-    generateSequence(0, Long::inc).asFlow().onStart { delay(delay) }.onEach { delay(period) }
+        generateSequence(0, Long::inc).asFlow().onStart { delay(delay) }.onEach { delay(period) }
 
 private fun countDown(
-    period: Duration,
-    interval: Duration,
-    delay: Duration = Duration.ZERO
+        period: Duration,
+        interval: Duration,
+        delay: Duration = Duration.ZERO,
 ) = flow {
     delay(delay)
     for (t in period.inWholeSeconds downTo 0 step interval.inWholeSeconds) {
@@ -55,10 +55,10 @@ private suspend fun main() = coroutineScope {
     }
 
     countDown(
-        period = 3.seconds,
-        interval = 1.seconds
+            period = 3.seconds,
+            interval = 1.seconds
     ).onCompletion { println("onCompletion") }
-        .collect {
-            println("collect: $it")
-        }
+            .collect {
+                println("collect: $it")
+            }
 }

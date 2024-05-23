@@ -13,8 +13,8 @@ object StandardInputUtil {
      * val zs = " 1  2 ".trim().split("\\s+".toRegex()).map(String::toInt) // succeeds.
      */
     @Deprecated(
-        message = "Use safeReadIntegers() because it is faster.",
-        replaceWith = ReplaceWith("safeReadIntegers()")
+            message = "Use safeReadIntegers() because it is faster.",
+            replaceWith = ReplaceWith("safeReadIntegers()")
     )
     fun safeReadIntegersSlow() = readln().trim().split("\\s+".toRegex()).map(String::toInt)
 

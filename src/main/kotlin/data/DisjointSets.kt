@@ -33,8 +33,8 @@ class DisjointSets(n: Int) {
             // Make each parent the direct child of its root ancestor.
             for (i in parents.indices) parents[i] = find(parents[i])
             return parents
-                .mapIndexed { i, x -> x to i }
-                .groupBy({ it.first }, { it.second })
-                .values
+                    .mapIndexed { i, x -> x to i }
+                    .groupBy({ it.first }, { it.second })
+                    .values
         }
 }

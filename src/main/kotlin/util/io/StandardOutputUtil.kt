@@ -73,11 +73,11 @@ object StandardOutputUtil {
 
     fun printTime(times: Int = 1, action: () -> Unit) {
         println(
-            measureTimeMillis {
-                repeat(times) {
-                    action()
+                measureTimeMillis {
+                    repeat(times) {
+                        action()
+                    }
                 }
-            }
         )
     }
 }

@@ -1,12 +1,12 @@
 package util
 
+import util.TimerUtil.PeriodicTimer
 import java.time.LocalTime
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.concurrent.schedule
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-import util.TimerUtil.PeriodicTimer
 
 object TimerUtil {
     class OneTimeTimer {
@@ -26,15 +26,15 @@ object TimerUtil {
         private var timerTask: TimerTask? = null
 
         fun schedule(
-            period: Duration,
-            delay: Duration = period,
-            action: TimerTask.() -> Unit
+                period: Duration,
+                delay: Duration = period,
+                action: TimerTask.() -> Unit,
         ) {
             timerTask?.cancel()
             timerTask = Timer().schedule(
-                delay = delay.inWholeMilliseconds,
-                period = period.inWholeMilliseconds,
-                action = action
+                    delay = delay.inWholeMilliseconds,
+                    period = period.inWholeMilliseconds,
+                    action = action
             )
         }
 

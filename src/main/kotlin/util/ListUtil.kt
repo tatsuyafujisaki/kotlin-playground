@@ -11,9 +11,9 @@ object ListUtil {
     fun <T> rotateRight(xs: List<T>, distance: Int) = xs.takeLast(distance) + xs.dropLast(distance)
 
     fun <T> List<T>.rotate(distance: Int) =
-        toList().also { // toList() is a deep copy to avoid changing the original array.
-            Collections.rotate(it, distance)
-        }
+            toList().also { // toList() is a deep copy to avoid changing the original array.
+                Collections.rotate(it, distance)
+            }
 
     fun <T> splitLast(xs: List<T>) = with(xs.chunked(xs.lastIndex)) { first() to last().last() }
 

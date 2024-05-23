@@ -16,9 +16,9 @@ object TreeUtil {
             val children = graph[id].filter { parent != it }
             for (child in children) visitVertex(child, id)
             vertices[id] = Vertex(
-                ancestors[id],
-                children,
-                data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+                    ancestors[id],
+                    children,
+                    data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
             )
         }
 
@@ -36,17 +36,17 @@ object TreeUtil {
             val children = graph[id].filter { parent != it }
             for (child in children) visitVertex(child, id)
             vertices[id] = Vertex(
-                ancestors[id],
-                children,
-                data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+                    ancestors[id],
+                    children,
+                    data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
             )
         }
 
         for (child in graph[root]) visitVertex(child, root)
         vertices[root] = Vertex(
-            ancestors[root],
-            graph[root],
-            data[root] + graph[root].map { vertices[it]!!.subtreeSum }.sum()
+                ancestors[root],
+                graph[root],
+                data[root] + graph[root].map { vertices[it]!!.subtreeSum }.sum()
         )
 
         return vertices.filterNotNull()
@@ -71,9 +71,9 @@ object TreeUtil {
     }
 
     fun isParentChildRelationship(ancestors: List<List<Int>>, vertex1: Int, vertex2: Int) =
-        findLCA(ancestors, vertex1, vertex2).let {
-            it == vertex1 || it == vertex2
-        }
+            findLCA(ancestors, vertex1, vertex2).let {
+                it == vertex1 || it == vertex2
+            }
 
     /**
      * returns one or two roots of minimum height tree(s).

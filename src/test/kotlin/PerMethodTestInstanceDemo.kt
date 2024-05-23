@@ -1,6 +1,6 @@
+import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import org.junit.jupiter.api.Test
 
 class PerMethodTestInstanceDemo {
     private var b = false

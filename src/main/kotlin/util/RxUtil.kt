@@ -35,7 +35,7 @@ object RxUtil {
             println("👀doOnDispose")
         }
 
-        fun <T: Any> Maybe<T>.doOnMisc(): Maybe<T> = doOnSubscribe {
+        fun <T : Any> Maybe<T>.doOnMisc(): Maybe<T> = doOnSubscribe {
             println("👀doOnSubscribe")
         }.doOnComplete {
             println("👀doOnComplete")
@@ -68,18 +68,18 @@ object RxUtil {
 
     object SubscribeUtil {
         fun Completable.mySubscribe(): Disposable =
-            subscribe({ println("CompletableObserver#onComplete") }) { println("CompletableObserver#onError: $it") }
+                subscribe({ println("CompletableObserver#onComplete") }) { println("CompletableObserver#onError: $it") }
 
         fun <T : Any> Single<T>.mySubscribe(): Disposable =
-            subscribe({ println("Observer#onSuccess: $it") }, { println("Observer#onError: $it") })
+                subscribe({ println("Observer#onSuccess: $it") }, { println("Observer#onError: $it") })
 
-        fun <T: Any> Maybe<T>.mySubscribe(): Disposable = subscribe({ println("MaybeObserver#onNext: $it") },
-            { println("MaybeObserver#onError: $it") },
-            { println("MaybeObserver#onComplete") })
+        fun <T : Any> Maybe<T>.mySubscribe(): Disposable = subscribe({ println("MaybeObserver#onNext: $it") },
+                { println("MaybeObserver#onError: $it") },
+                { println("MaybeObserver#onComplete") })
 
         fun <T : Any> Observable<T>.mySubscribe(): Disposable = subscribe({ println("Observer#onNext: $it") },
-            { println("Observer#onError: $it") },
-            { println("Observer#onComplete") })
+                { println("Observer#onError: $it") },
+                { println("Observer#onComplete") })
 
         fun <T : Any> Observable<T>.mySubscribeWithId(id: Int) {
             fun <T : Any> createObserver(id: Int) = object : Observer<T> {

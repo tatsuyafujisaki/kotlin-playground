@@ -76,40 +76,40 @@ object ObservableExample {
      */
     fun observableEmptyExample() {
         val disposable = Observable
-            .just("a", "b", "c")
-            .flatMap {
-                if (it == "b") Observable.empty() else Observable.just(it)
-            }
-            .doOnMisc()
-            .mySubscribe()
+                .just("a", "b", "c")
+                .flatMap {
+                    if (it == "b") Observable.empty() else Observable.just(it)
+                }
+                .doOnMisc()
+                .mySubscribe()
         println(disposable.isDisposed)
     }
 
     fun errorExample1() {
         println("-- " + object {}::class.java.enclosingMethod?.name + " --")
         Observable
-            .just("a", "b", "c")
-            .errorWhen("b")
-            .mySubscribe()
+                .just("a", "b", "c")
+                .errorWhen("b")
+                .mySubscribe()
         compositeDisposable.clear()
     }
 
     fun errorExample2() {
         println("-- " + object {}::class.java.enclosingMethod?.name + " --")
         Observable.just("a", "b", "c")
-            .errorWhen2("b")
-            .mySubscribe()
+                .errorWhen2("b")
+                .mySubscribe()
         compositeDisposable.clear()
     }
 
     fun errorExample3() {
         val observable =
-            Observable.just("a", "b", "c")
-                .errorWhen("b")
-                .onErrorResumeNext {
-                    println("Observable#onErrorResumeNext: $it")
-                    Observable.just("z")
-                }
+                Observable.just("a", "b", "c")
+                        .errorWhen("b")
+                        .onErrorResumeNext {
+                            println("Observable#onErrorResumeNext: $it")
+                            Observable.just("z")
+                        }
         observable.mySubscribe()
         observable.mySubscribe()
         compositeDisposable.clear()
@@ -117,21 +117,21 @@ object ObservableExample {
 
     fun retrySample() {
         Observable
-            .just(Unit)
-            .flatMap {
-                if (Random.nextBoolean()) {
-                    Observable.just(Unit)
-                } else {
-                    Observable.error(Throwable())
+                .just(Unit)
+                .flatMap {
+                    if (Random.nextBoolean()) {
+                        Observable.just(Unit)
+                    } else {
+                        Observable.error(Throwable())
+                    }
+                }.retryWhen {
+                    it.flatMap {
+                        println("retryWhen")
+                        Observable.just(Unit)
+                    }
                 }
-            }.retryWhen {
-                it.flatMap {
-                    println("retryWhen")
-                    Observable.just(Unit)
+                .subscribe {
+                    println("onNext")
                 }
-            }
-            .subscribe {
-                println("onNext")
-            }
     }
 }

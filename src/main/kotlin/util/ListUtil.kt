@@ -24,11 +24,11 @@ object ListUtil {
         xs[j] = temp
     }
 
-    fun <T> toPair(xs: List<T>) = xs[0] to xs[1]
+    fun <T> createPair(xs: List<T>) = xs[0] to xs[1]
 
-    fun <T> pairs(xs: List<T>) = sequence {
+    fun <T> createPairs(xs: List<T>) = sequence {
         for (i in xs.indices) {
-            for (j in i + 1 until xs.size) yield(xs[i] to xs[j])
+            for (j in i + 1..<xs.size) yield(xs[i] to xs[j])
         }
     }
 

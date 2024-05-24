@@ -10,12 +10,13 @@ object ListUtil {
      */
     fun <T> rotateRight(xs: List<T>, distance: Int) = xs.takeLast(distance) + xs.dropLast(distance)
 
-    fun <T> List<T>.rotate(distance: Int) =
-            toList().also { // toList() is a deep copy to avoid changing the original array.
-                Collections.rotate(it, distance)
-            }
+    fun <T> splitAt(xs: List<T>, index: Int) = xs.subList(0, index) to xs.subList(index, xs.size)
 
-    fun <T> splitLast(xs: List<T>) = with(xs.chunked(xs.lastIndex)) { first() to last().last() }
+    fun <T> splitLast(xs: List<T>) = xs.subList(0, xs.lastIndex) to xs.last()
+
+    fun <T> List<T>.rotate(distance: Int) = toList().also { // toList() is a deep copy to avoid changing the original array.
+        Collections.rotate(it, distance)
+    }
 
     fun swap(xs: MutableList<Int>, i: Int, j: Int) {
         val temp = xs[i]

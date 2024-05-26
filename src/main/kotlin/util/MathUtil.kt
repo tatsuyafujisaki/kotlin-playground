@@ -10,8 +10,7 @@ import kotlin.math.sqrt
 object MathUtil {
     val fibonacci = generateSequence(0 to 1) { it.second to it.first + it.second }.map { it.first }
     fun mode(xs: Collection<Int>) = xs.groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
-    fun weightedMean(xs: Collection<Int>, weights: Collection<Int>) =
-            xs.zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
+    fun weightedMean(xs: Collection<Int>, weights: Collection<Int>) = xs.zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
     /**
      * @receiver must be sorted.
@@ -45,12 +44,10 @@ object MathUtil {
         return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
     }
 
-    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) =
-            covariance(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
+    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) = covariance(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
 
     @JvmName("correlationCoefficientDouble")
-    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) =
-            covariance(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
+    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) = covariance(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
 
     /**
      * @param p probability of success
@@ -128,13 +125,10 @@ object MathUtil {
         }
 
         val n = xs.size
-        return 1 - (6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }
-                .sum() / (n * (n * n - 1)))
+        return 1 - (6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }.sum() / (n * (n * n - 1)))
     }
 
-    fun <S, T> cartesianProduct(xs: Collection<S>, ys: Collection<T>): List<Pair<S, T>> {
-        return xs.flatMap { x -> ys.map { y -> x to y } }
-    }
+    fun <S, T> cartesianProduct(xs: Collection<S>, ys: Collection<T>) = xs.flatMap { x -> ys.map { y -> x to y } }
 
     fun sigmoid(x: Double) = 1 / (1 + exp(-x))
 }

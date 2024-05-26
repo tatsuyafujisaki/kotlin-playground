@@ -674,7 +674,7 @@ var x = ""
 ```kotlin
 println(Thread.currentThread().name)
 
-# alternatively
+// alternatively
 println(currentCoroutineContext())
 ```
 

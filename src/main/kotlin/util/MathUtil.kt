@@ -128,7 +128,7 @@ object MathUtil {
         return 1 - (6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }.sum() / (n * (n * n - 1)))
     }
 
-    fun <S, T> cartesianProduct(xs: Collection<S>, ys: Collection<T>) = xs.flatMap { x -> ys.map { y -> x to y } }
+    fun <S, T> cartesianProduct(xs: Iterable<S>, ys: Iterable<T>) = xs.flatMap { x -> ys.map { y -> x to y } }
 
     fun sigmoid(x: Double) = 1 / (1 + exp(-x))
 }

@@ -6,8 +6,9 @@
  `emptyList`<br>`emptySet`<br>`emptyMap`<br>`emptyFlow`|`listOf`<br>`setOf`<br>`mapOf`<br>`flowOf`                                                     
  `buildList`<br>`buildSet`<br>`buildMap`|`mutableListOf`<br>`mutableSetOf`<br>`mutableMapOf`
  `repeat(n) { println(it) }`                              | `for (i in 0..<n) { println(i) }`<br>
- `Iterable<T>.find`                                  | `Iterable<T>.firstOrNull`                                             | `find` is an alias of `firstOrNull`.   
- `Collection<T>.size`                                     | `Collection<T>.count()`                                                    
+ `Iterable<T>.find(...)`                                  | `Iterable<T>.firstOrNull(...)`                                             | `find` is an alias of `firstOrNull`.   
+ `Collection<T>.size`<br>`String.length`|`Collection<T>.count()`<br>`String.count()`
+ `String.substring(...)`|`String.take(...)`
  `Set<T>`                                                 | `List<T>`                                                                  | if elements are unique and unordered. Don't overuse `List<T>`.
  `Iterable<T>.forEachIndexed { i, x -> ... }`             | `Iterable<T>.forEach { ... }`                                              | if you need to access both indices and elements. 
  `nullableString.orEmpty()`<br>`nullableList.orEmpty()`   | `nullableString ?: ""`<br>`nullableList ?: emptyList()`                  

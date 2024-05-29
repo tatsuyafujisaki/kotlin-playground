@@ -4,7 +4,7 @@ import java.net.URLEncoder
 
 object UrlUtil {
     /**
-     * Instead, use Uri.encode in Android.
+     * Instead, use Uri.encode in Android for simplicity.
      * https://developer.android.com/reference/kotlin/android/net/Uri#encode
      */
     private fun encode(url: String) = URLEncoder.encode(url, Charsets.UTF_8.name())

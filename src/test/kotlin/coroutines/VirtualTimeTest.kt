@@ -14,7 +14,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
-import kotlin.time.TimeSource
 import kotlin.time.measureTime
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -50,7 +49,7 @@ class VirtualTimeTest {
      */
     @Test
     fun measureTimeTest() = runTest {
-        val elapsed = TimeSource.Monotonic.measureTime {
+        val elapsed = measureTime {
             val job = launch {
                 delay(1.minutes) // skipped because this delay(...) is inside launch.
                 withContext(Dispatchers.Default) {

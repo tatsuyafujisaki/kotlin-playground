@@ -23,12 +23,11 @@ object IntLongUtil {
     }
 
     /** O(sqrt(n)) */
-    val Int.isPrime
-        get() = when {
-            this == 2 -> true
-            this < 2 || this % 2 == 0 -> false
-            else -> (3..sqrt(toDouble()).toInt() step 2).none { this % it == 0 }
-        }
+    fun isPrime(x: Int) = when {
+        x == 2 -> true
+        x < 2 || x % 2 == 0 -> false
+        else -> (3..sqrt(x.toDouble()).toInt() step 2).none { x % it == 0 }
+    }
 
     val Int.largestDivisor: Int
         get() {
@@ -77,8 +76,7 @@ object IntLongUtil {
      * Tail recursive method
      * @receiver must be greater than or equal to 0.
      */
-    tailrec fun Int.factorialRecursive(acc: Int = 1): Int =
-            if (this <= 1) acc else (this - 1).factorialRecursive(acc * this)
+    tailrec fun Int.factorialRecursive(acc: Int = 1): Int = if (this <= 1) acc else (this - 1).factorialRecursive(acc * this)
 
     fun nPr(n: Int, r: Int) = n.factorial().toDouble() / (n - r).factorial()
     fun nCr(n: Int, r: Int) = nPr(n, r) / r.factorial()

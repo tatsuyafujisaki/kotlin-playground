@@ -5,7 +5,7 @@ object DeprecationExample {
             message = "Use myNewFunction(String) instead.",
             replaceWith = ReplaceWith(
                     expression = "myNewFunction(String)",
-                    imports = ["com.github.tatsuyafujisaki.androidplayground.myNewFunction"]
+                    imports = ["example.DeprecationExample"]
             ),
     )
     fun myOldFunction() {

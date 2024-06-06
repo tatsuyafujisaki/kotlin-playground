@@ -1,7 +1,7 @@
 package util
 
-import util.IntLongUtil.factorial
-import util.IntLongUtil.nCr
+import util.NumberUtil.factorial
+import util.NumberUtil.nCr
 import kotlin.math.E
 import kotlin.math.exp
 import kotlin.math.pow

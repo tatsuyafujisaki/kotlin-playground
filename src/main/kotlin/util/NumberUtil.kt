@@ -6,7 +6,7 @@ import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-object IntLongUtil {
+object NumberUtil {
     fun bits(x: Int) = Integer.toBinaryString(x).padStart(Int.SIZE_BITS, '0')
 
     /** @receiver must be 0 or positive. */

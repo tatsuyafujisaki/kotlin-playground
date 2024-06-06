@@ -7,16 +7,19 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 object NumberUtil {
-    fun bits(x: Int) = Integer.toBinaryString(x).padStart(Int.SIZE_BITS, '0')
+    object Bit {
+        fun getBits(x: Int) = Integer.toBinaryString(x).padStart(Int.SIZE_BITS, '0')
 
-    /** @receiver must be 0 or positive. */
-    fun bitsForNonNegativeInt(x: Int) = x.toString(2).padStart(Int.SIZE_BITS, '0')
+        fun getBitsForNonNegativeInt(x: Int) {
+            require(x >= 0)
+            x.toString(2).padStart(Int.SIZE_BITS, '0')
+        }
 
-    fun ithBit(x: Int, i: Int) = (x shr i) and 1
+        fun getBitAt(x: Int, index: Int) = (x shr index) and 1
+    }
 
     fun isEven(x: Int) = x % 2 == 0
     fun isOdd(x: Int) = x % 2 == 1
-    private fun sqrtInt(x: Int) = sqrt(x.toDouble()).toInt()
 
     fun isPerfectSquare(x: Int) = sqrtInt(x).let {
         x == it * it
@@ -28,6 +31,8 @@ object NumberUtil {
         x < 2 || x % 2 == 0 -> false
         else -> (3..sqrt(x.toDouble()).toInt() step 2).none { x % it == 0 }
     }
+
+    private fun sqrtInt(x: Int) = sqrt(x.toDouble()).toInt()
 
     val Int.largestDivisor: Int
         get() {

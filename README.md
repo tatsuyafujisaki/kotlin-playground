@@ -643,9 +643,9 @@ println(evenNumber) // 2
 
 # Regex
 
-Kotlin's regex pattern syntax is the same as Java's pattern class.
+> For pattern syntax reference see [Pattern](https://developer.android.com/reference/java/util/regex/Pattern).
 
-https://developer.android.com/reference/java/util/regex/Pattern
+https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-regex/
 
 # How to print the name of the current function
 

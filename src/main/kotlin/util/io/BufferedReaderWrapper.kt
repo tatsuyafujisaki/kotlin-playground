@@ -3,15 +3,6 @@ package util.io
 import java.io.Closeable
 import java.io.PrintWriter
 
-// Usage of BufferedReaderWrapper
-fun main() {
-    BufferedReaderWrapper().use { br ->
-        PrintWriter(System.out, false /* writes at once */).use { pw ->
-            pw.println(br.readInt())
-        }
-    }
-}
-
 class BufferedReaderWrapper : Closeable {
     private val br = System.`in`.bufferedReader()
 
@@ -40,5 +31,13 @@ class BufferedReaderWrapper : Closeable {
      */
     fun readMatrix() = List(br.readLine().toInt()) {
         br.readLine().split(' ').map(String::toInt).toIntArray()
+    }
+}
+
+private fun main() {
+    BufferedReaderWrapper().use { br ->
+        PrintWriter(System.out, false /* writes at once */).use { pw ->
+            pw.println(br.readInt())
+        }
     }
 }

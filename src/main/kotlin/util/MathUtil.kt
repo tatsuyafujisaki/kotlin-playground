@@ -13,25 +13,25 @@ object MathUtil {
     fun weightedMean(xs: Collection<Int>, weights: Collection<Int>) = xs.zip(weights) { x, weight -> x * weight }.sum().toDouble() / weights.sum()
 
     /**
-     * @receiver must be sorted.
+     * @param xs must be sorted.
      */
-    fun median(xs: List<Int>): Double {
+    fun getMedian(xs: List<Int>): Double {
         val i = xs.size / 2
         return if (xs.size % 2 == 0) (xs[i - 1] + xs[i]) / 2.0 else xs[i].toDouble()
     }
 
-    fun standardDeviation(xs: Collection<Int>): Double {
+    fun getStandardDeviation(xs: Collection<Int>): Double {
         val mean = xs.average()
         return sqrt(xs.sumOf { (it - mean).pow(2) } / xs.size)
     }
 
     @JvmName("standardDeviationDouble")
-    fun standardDeviation(xs: Collection<Double>): Double {
+    fun getStandardDeviation(xs: Collection<Double>): Double {
         val mean = xs.average()
         return sqrt(xs.sumOf { (it - mean).pow(2) } / xs.size)
     }
 
-    fun covariance(xs: Collection<Int>, ys: Collection<Int>): Double {
+    fun getCovariance(xs: Collection<Int>, ys: Collection<Int>): Double {
         val meanX = xs.average()
         val meanY = ys.average()
         return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size

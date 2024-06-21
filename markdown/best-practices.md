@@ -1,7 +1,7 @@
 # Use A rather than B for simplicity or clarity
 
- A                                                        | B                                                                          | Note                                             
-----------------------------------------------------------|----------------------------------------------------------------------------|--------------------------------------------------
+A|B|Note
+--|--|--
  `with(...)`                                              | `run(...)`                                                                 | if the receiver is not nullable.                 
  `emptyList`<br>`emptySet`<br>`emptyMap`<br>`emptyFlow`|`listOf`<br>`setOf`<br>`mapOf`<br>`flowOf`                                                     
  `buildList`<br>`buildSet`<br>`buildMap`|`mutableListOf`<br>`mutableSetOf`<br>`mutableMapOf`
@@ -9,7 +9,9 @@
  `Iterable<T>.find(...)`                                  | `Iterable<T>.firstOrNull(...)`                                             | `find` is an alias of `firstOrNull`.   
  `Collection<T>.size`<br>`String.length`|`Collection<T>.count()`<br>`String.count()`
  `String.substring(...)`|`String.take(...)`
- `Set<T>`                                                 | `List<T>`                                                                  | if elements are unique and unordered. Don't overuse `List<T>`.
+`Set<T>`|`List<T>`|if elements are unique and unordered. Don't overuse `List<T>`.
+`SortedSet<T>`|`Set<T>`|if elements must remain sorted.
+`SortedMap<T>`|`Map<T>`|if keys must remain sorted.
  `Iterable<T>.forEachIndexed { i, x -> ... }`             | `Iterable<T>.forEach { ... }`                                              | if you need to access both indices and elements. 
  `nullableString.orEmpty()`<br>`nullableList.orEmpty()`   | `nullableString ?: ""`<br>`nullableList ?: emptyList()`                  
  `CharSequence.lastIndex`<br>`List<T>.lastIndex`          | `String.length - 1`<br>`List<T>.size - 1`                                

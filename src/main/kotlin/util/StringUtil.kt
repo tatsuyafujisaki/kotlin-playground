@@ -1,12 +1,11 @@
 package util
 
-import util.StringUtil.splitByNestedDelimiters
 import kotlin.math.max
 
 object StringUtil {
     fun alphabetize(s: String) = s.toCharArray().sorted().joinToString("")
-    fun equalsIgnoreCase(s1: String, s2: String) = s1.equals(s2, true)
-    fun replaceAt(s: String, index: Int, replacement: Char) = s.replaceRange(index, index + 1, replacement.toString())
+    fun equalsIgnoreCase(s1: String, s2: String) = s1.equals(other = s2, ignoreCase = true)
+    fun replaceAt(s: String, index: Int, replacement: Char) = s.replaceRange(startIndex = index, endIndex = index + 1, replacement = replacement.toString())
 
     fun getSubstrings(s: String) = sequence {
         for (i in s.indices) {
@@ -48,10 +47,4 @@ object StringUtil {
         }
         return permute(s)
     }
-
-    fun splitByNestedDelimiters(s: String, vararg delimiters: String) = s.split(*delimiters).chunked(2) { (k, v) -> k to v }.toMap()
-}
-
-private fun main() {
-    println(splitByNestedDelimiters("a=b,c=d,e=f", ",", "=")) // {a=b, c=d, e=f}
 }

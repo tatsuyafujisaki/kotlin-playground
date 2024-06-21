@@ -9,6 +9,5 @@ object UrlUtil {
      */
     private fun encode(url: String) = URLEncoder.encode(url, Charsets.UTF_8.name())
 
-    fun getNthLevelDomain(domain: String, level: Int) =
-            domain.split(".").takeLast(level).joinToString(".")
+    fun getNthLevelDomain(domain: String, level: Int) = domain.split(".").takeLast(level).joinToString(".")
 }

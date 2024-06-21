@@ -392,6 +392,12 @@ println(sortedMapOf(compareBy { it.toInt() }, "10" to "ten", "1" to "one", "2" t
 ```
 
 ### How to sort a Map by value
+```kotlin
+val map = mapOf("ten" to "10", "one" to "1", "two" to "2")
+println(map.toList().sortedBy { it.second }.toMap()) // {one=1, ten=10, two=2}
+println(map.toList().sortedByDescending { it.second }.toMap()) // {two=2, ten=10, one=1}
+println(map.toList().sortedBy { it.second.toInt() }.toMap()) // {one=1, two=2, ten=10}
+```
 
 ### How to convert a Map to a SortedMap
 ```kotlin

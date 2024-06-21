@@ -38,16 +38,18 @@ object MathUtil {
     }
 
     @JvmName("covarianceDouble")
-    fun covariance(xs: Collection<Double>, ys: Collection<Double>): Double {
+    fun getCovariance(xs: Collection<Double>, ys: Collection<Double>): Double {
         val meanX = xs.average()
         val meanY = ys.average()
         return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
     }
 
-    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) = covariance(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
+    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) =
+        getCovariance(xs, ys) / (getStandardDeviation(xs) * getStandardDeviation(ys))
 
     @JvmName("correlationCoefficientDouble")
-    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) = covariance(xs, ys) / (standardDeviation(xs) * standardDeviation(ys))
+    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) =
+        getCovariance(xs, ys) / (getStandardDeviation(xs) * getStandardDeviation(ys))
 
     /**
      * @param p probability of success
@@ -102,13 +104,13 @@ object MathUtil {
      * If the number of elements is odd, the median element is excluded.
      * @receiver must be sorted.
      */
-    fun firstQuartile(xs: Collection<Int>) = median(xs.take(xs.size / 2))
+    fun firstQuartile(xs: Collection<Int>) = getMedian(xs.take(xs.size / 2))
 
     /**
      * If the number of elements is odd, the median element is excluded.
      * @receiver must be sorted.
      */
-    fun thirdQuartile(xs: List<Int>) = median(xs.takeLast(xs.size / 2))
+    fun thirdQuartile(xs: List<Int>) = getMedian(xs.takeLast(xs.size / 2))
 
     /**
      * @receiver must be sorted.

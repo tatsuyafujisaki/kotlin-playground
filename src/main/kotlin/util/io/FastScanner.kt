@@ -5,7 +5,7 @@ import java.io.PrintWriter
 import java.util.StringTokenizer
 
 // Usage of FastScanner
-fun main() {
+private fun main() {
     FastScanner().use { fs ->
         PrintWriter(System.out, false /* writes at once */).use { pw ->
             val n = fs.nextInt()

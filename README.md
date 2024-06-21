@@ -374,22 +374,6 @@ val result2: Map<Char, Char> = map.filterValues { it == 'b' } // {B=b}
 val result3: Map<Char, Char> = map.filter { it.key == 'B' && it.value == 'b' } // {B=b}
 ```
 
-## How to sort a Map
-
-```kotlin
-val map: Map<Char, Char> = mapOf('A' to 'a', 'C' to 'c', 'B' to 'b')
-val sorted: Map<Char, Char> = map.toSortedMap() // {A=a, B=b, C=c}
-val sortedDescending: Map<Char, Char> = map.toSortedMap(reverseOrder()) // {C=c, B=b, A=a}
-```
-
-## How to sort a Map by value
-
-```kotlin
-val map: Map<Char, Int> = mapOf('a' to 2, 'b' to 1, 'c' to 3)
-val sorted: Map<Char, Int> = map.toList().sortedBy { it.second }.toMap() // {b=1, a=2, c=3}
-val sortedDescending: Map<Char, Int> = map.toList().sortedByDescending { it.second }.toMap() // {c=3, a=2, b=1}
-```
-
 ## How to flatten a list of Map(s)
 
 ```kotlin
@@ -397,6 +381,24 @@ val map1: Map<Char, Char> = mapOf('A' to 'a')
 val map2: Map<Char, Char> = mapOf('B' to 'b')
 val maps: List<Map<Char, Char>> = listOf(map1, map2)
 val map: Map<Char, Char> = maps.reduce { acc, x -> acc + x } // {A=a, B=b}
+```
+
+## SortedMap
+### How to sort a Map by key
+```kotlin
+println(sortedMapOf("10" to "ten", "1" to "one", "2" to "two")) // {1=one, 10=ten, 2=two}
+println(sortedMapOf(reverseOrder(), "10" to "ten", "1" to "one", "2" to "two")) // {2=two, 10=ten, 1=one}
+println(sortedMapOf(compareBy { it.toInt() }, "10" to "ten", "1" to "one", "2" to "two")) // {1=one, 2=two, 10=ten}
+```
+
+### How to sort a Map by value
+
+### How to convert a Map to a SortedMap
+```kotlin
+val map = mapOf("10" to "ten", "1" to "one", "2" to "two")
+println(map.toSortedMap()) // {1=one, 10=ten, 2=two}
+println(map.toSortedMap(reverseOrder())) // {2=two, 10=ten, 1=one}
+println(map.toSortedMap(compareBy { it.toInt() })) // {1=one, 2=two, 10=ten}
 ```
 
 # String

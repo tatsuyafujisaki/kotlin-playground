@@ -325,6 +325,20 @@ class Sample(private val name: String, val order: Int) {
 }
 ```
 
+## SortedSet
+### How to use a SortedSet
+```kotlin
+println(sortedSetOf("10", "1", "2")) // [1, 10, 2]
+println(sortedSetOf(compareBy { it.toInt() }, "10", "1", "2")) // [1, 2, 10]
+```
+
+### How to convert a Set to a SortedSet
+```kotlin
+val set = setOf("10", "1", "2")
+println(set.toSortedSet()) // [1, 10, 2]
+println(set.toSortedSet(compareBy { it.toInt() })) // [1, 2, 10]
+```
+
 # Map
 
 ## How to create a Map

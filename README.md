@@ -326,9 +326,10 @@ class Sample(private val name: String, val order: Int) {
 ```
 
 ## SortedSet
-### How to use a SortedSet
+### How to sort a Set
 ```kotlin
 println(sortedSetOf("10", "1", "2")) // [1, 10, 2]
+println(sortedSetOf(reverseOrder(), "10", "1", "2")) // [2, 10, 1]
 println(sortedSetOf(compareBy { it.toInt() }, "10", "1", "2")) // [1, 2, 10]
 ```
 
@@ -336,6 +337,7 @@ println(sortedSetOf(compareBy { it.toInt() }, "10", "1", "2")) // [1, 2, 10]
 ```kotlin
 val set = setOf("10", "1", "2")
 println(set.toSortedSet()) // [1, 10, 2]
+println(set.toSortedSet(reverseOrder())) // [2, 10, 1]
 println(set.toSortedSet(compareBy { it.toInt() })) // [1, 2, 10]
 ```
 

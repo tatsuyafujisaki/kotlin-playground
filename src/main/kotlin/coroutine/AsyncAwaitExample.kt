@@ -1,25 +1,25 @@
 package coroutine
 
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 private suspend fun main() = coroutineScope {
-    val job = launch {
+    val deferred = async {
         try {
-            println("The job started!")
-            delay(timeMillis = 10_000)
-            println("The job ended!")
+            println("try started!")
+            delay(timeMillis = 1_000)
+            println("try is ending!")
         } catch (e: CancellationException) {
             println("👀$e")
             throw e
         } catch (e: Exception) {
             println("👀$e")
         }
+        "🍎"
     }
-    delay(timeMillis = 1) // waits a little bit or the job will be canceled even before it starts.
-    job.cancelAndJoin()
-    println("job: $job")
+    deferred.cancel()
+    val result = deferred.await()
+    println("result: $result")
 }

@@ -25,7 +25,7 @@ fun CoroutineScope.safeLaunch(
 
 private suspend fun main() = coroutineScope {
     val job = safeLaunch(
-        handleException = { e -> println("👀$e") },
+        handleException = { println("👀$it") },
     ) {
         println("try started!")
         delay(timeMillis = 10_000)

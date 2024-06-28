@@ -16,8 +16,12 @@ private suspend fun main() = coroutineScope {
             println("try is ending!")
         } catch (e: CancellationException) {
             println("👀$e")
-            throw MyCancellationException(e)
-            // throw e
+
+            // If you catch a CancellationException, rethrow it.
+            // Don't throw a custom exception after catching a CancellationException.
+            // throw MyCancellationException(e)
+
+            throw e
         } catch (e: Exception) {
             println("👀$e")
         }

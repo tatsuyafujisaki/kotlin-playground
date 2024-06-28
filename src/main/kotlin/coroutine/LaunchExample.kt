@@ -17,7 +17,6 @@ private suspend fun main() = coroutineScope {
 
             // If you catch a CancellationException, rethrow it.
             // Don't throw a custom exception after catching a CancellationException.
-
             throw e
         } catch (e: Exception) {
             println("👀$e")

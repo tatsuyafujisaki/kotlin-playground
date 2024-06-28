@@ -13,12 +13,13 @@ private suspend fun main() = coroutineScope {
             delay(timeMillis = 10_000)
             println("The job ended!")
         } catch (e: CancellationException) {
+            println("👀$e")
             throw e
         } catch (e: Exception) {
-            println(e)
+            println("👀$e")
         }
     }
     delay(timeMillis = 1) // waits a little bit or the job will be canceled even before it starts.
     job.cancelAndJoin()
-    println("Done!")
+    println("job: $job")
 }

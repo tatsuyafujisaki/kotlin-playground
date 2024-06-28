@@ -6,8 +6,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private class MyCancellationException(t: CancellationException) : Exception(t)
-
 private suspend fun main() = coroutineScope {
     val job = launch {
         try {
@@ -19,7 +17,6 @@ private suspend fun main() = coroutineScope {
 
             // If you catch a CancellationException, rethrow it.
             // Don't throw a custom exception after catching a CancellationException.
-            // throw MyCancellationException(e)
 
             throw e
         } catch (e: Exception) {

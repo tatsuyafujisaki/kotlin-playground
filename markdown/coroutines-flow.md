@@ -1,4 +1,10 @@
 # CancellationException
+> The same problem can be observed by catching a CancellationException and not rethrowing it:
+
+> While catching Exception is an anti-pattern, this issue may surface in more subtle ways, like when using the runCatching function, which does not rethrow CancellationException.
+
+https://kotlinlang.org/docs/cancellation-and-timeouts.html#cancellation-is-cooperative
+
 > Is it necceary to rethrow the CancellationException in kotlin?
 
 https://stackoverflow.com/q/76259793/10867055

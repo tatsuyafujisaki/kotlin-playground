@@ -46,8 +46,9 @@ private suspend fun doExample1() = coroutineScope {
  *
  * Result:
  * async started!
+ * try started!
  * catch started!
- * kotlinx.coroutines.JobCancellationException: DeferredCoroutine was cancelled; job=DeferredCoroutine{Cancelled}@c7ce68f
+ * kotlinx.coroutines.JobCancellationException: DeferredCoroutine was cancelled; job=DeferredCoroutine{Cancelled}@7919012c
  * catch is ending!
  * Done!
  */
@@ -60,6 +61,7 @@ private suspend fun doExample2() = coroutineScope {
     }
     deferred.cancel()
     try {
+        println("try started!")
         deferred.await()
         println("try is ending!")
     } catch (e: CancellationException) {

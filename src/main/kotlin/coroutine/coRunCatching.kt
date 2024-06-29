@@ -29,9 +29,8 @@ inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Resu
 private suspend fun main(): Unit = coroutineScope {
     val job = launch {
         coRunCatching {
-            // Delays this coroutine a little so that it does not complete before being cancelled.
-            delay(timeMillis = 100)
-            println("I am not printed because the job is canceled before it reaches me.")
+            delay(timeMillis = 100) // waits to avoid completing before being cancelled.
+            println("I am not printed because the job is canceled before me.")
         }.onSuccess {
             println("onSuccess: $it")
         }.onFailure {

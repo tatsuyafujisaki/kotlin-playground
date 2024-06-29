@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Result<T> {
     return try {
         Result.success(value = block())
-    } catch (e: Throwable) {
+    } catch (exception: Throwable) {
         ensureActive()
-        Result.failure(exception = e)
+        Result.failure(exception = exception)
     }
 }
 

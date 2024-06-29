@@ -1,34 +1,35 @@
 package coroutine
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
-import kotlin.coroutines.cancellation.CancellationException
 
 fun CoroutineScope.safeLaunch(
     handleException: CoroutineScope.(Exception) -> Unit = {},
-    handleCancellationException: CoroutineScope.(CancellationException) -> Unit = handleException,
     tryBlock: suspend CoroutineScope.() -> Unit,
-): Job = launch {
+) = launch {
     try {
         tryBlock()
-    } catch (e: CancellationException) {
-        handleCancellationException(e)
-        throw e
     } catch (e: Exception) {
+        ensureActive()
         handleException(e)
     }
 }
 
+/**
+ * Result:
+ * try started!
+ * job: StandaloneCoroutine{Cancelled}@36412113
+ */
 private suspend fun main() = coroutineScope {
     val job = safeLaunch(
-        handleException = { println("👀$it") },
+        handleException = { println(it) },
     ) {
         println("try started!")
-        delay(timeMillis = 10_000)
+        delay(timeMillis = 100)
         println("try is ending!")
     }
     job.cancelAndJoin()

@@ -5,6 +5,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.launch
 
 /**
  * https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
@@ -30,22 +31,21 @@ inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Resu
  * Done!
  */
 private suspend fun doExample1() = coroutineScope {
-    coRunCatching {
-        println("try started!")
-        val deferred = async {
-            println("async started!")
+    val job = launch {
+        coRunCatching {
+            println("try started!")
             delay(timeMillis = 100) // waits to avoid completing before being cancelled.
-            println("async ended!")
+            println("try ended!")
+        }.onSuccess {
+            println("onSuccess: $it")
+        }.onFailure {
+            // The following is not executed because `ensureActive()` inside coRunCatching throws CancellationException.
+            println("onFailure: $it")
         }
-        deferred.cancel()
-        deferred.await() // throws CancellationException.
-        println("try ended!")
-    }.onSuccess {
-        println("onSuccess: $it")
-    }.onFailure {
-        // The following is executed because `ensureActive()` inside coRunCatching does not throw CancellationException.
-        println("onFailure: $it")
     }
+    job.cancel()
+    delay(timeMillis = 100) // waits for catch inside coRunCatching to run.
+    job.join()
     println("Done!")
 }
 

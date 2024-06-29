@@ -4,7 +4,6 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
@@ -32,9 +31,9 @@ private suspend fun doExample1() {
                 println("try is ending!")
             } catch (e: CancellationException) {
                 println("catch started!")
-                currentCoroutineContext().ensureActive() // throws CancellationException because the current coroutine was cancelled.
-                println(e) // executes.
-                println("catch is ending!")
+                ensureActive() // throws CancellationException because the current coroutine was cancelled.
+                println(e) // does not execute even if `ensureActive()` above is replaced by `throw e`.
+                println("catch is ending!") // does not execute even if `ensureActive()` above is replaced by `throw e`.
             }
         }
     }
@@ -68,14 +67,15 @@ private suspend fun doExample2() {
             println("try is ending!")
         } catch (e: CancellationException) {
             println("catch started!")
-            currentCoroutineContext().ensureActive() // does not throw CancellationException because the current coroutine was cancelled.
-            println(e) // executes.
-            println("catch is ending!")
+            ensureActive() // does not throw CancellationException because the current coroutine was cancelled.
+            println(e) // executes unless `ensureActive()` above is replaced by `throw e`.
+            println("catch is ending!") // executes unless `ensureActive()` above is replaced by `throw e`.
+
         }
         println("Done!")
     }
 }
 
 private suspend fun main() = coroutineScope {
-    doExample1()
+    doExample2()
 }

@@ -1,21 +1,21 @@
 package coroutine
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
-import kotlinx.coroutines.launch
 
-fun CoroutineScope.safeLaunch(
-    handleException: CoroutineScope.(Exception) -> Unit = {},
-    tryBlock: suspend CoroutineScope.() -> Unit,
-) = launch {
-    try {
-        tryBlock()
-    } catch (e: Exception) {
+/**
+ * The coRunCatching implementation
+ * https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
+ */
+inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Result<T> {
+    return try {
+        Result.success(value = block())
+    } catch (e: Throwable) {
         ensureActive()
-        handleException(e)
+        Result.failure(exception = e)
     }
 }
 
@@ -24,14 +24,19 @@ fun CoroutineScope.safeLaunch(
  * try started!
  * job: StandaloneCoroutine{Cancelled}@36412113
  */
-private suspend fun main() = coroutineScope {
-    val job = safeLaunch(
-        handleException = { println(it) },
-    ) {
-        println("try started!")
-        delay(timeMillis = 100)
-        println("try is ending!")
+private suspend fun main(): Unit = coroutineScope {
+    coRunCatching {
+        val job = async {
+            // Delay this coroutine a little so that it does not complete before being cancelled.
+            delay(timeMillis = 1_000)
+            println("launched!")
+        }
+        job.cancel()
+        job.await()
+        println("job: $job")
+    }.onSuccess {
+        println("onSuccess: $it")
+    }.onFailure {
+        println("onFailure: $it")
     }
-    job.cancelAndJoin()
-    println("job: $job")
 }

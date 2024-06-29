@@ -77,5 +77,5 @@ private suspend fun doExample2() {
 }
 
 private suspend fun main() = coroutineScope {
-    doExample2()
+    doExample1()
 }

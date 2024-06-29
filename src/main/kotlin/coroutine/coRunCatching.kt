@@ -74,7 +74,7 @@ private suspend fun doExample2() = coroutineScope {
     }.onSuccess {
         println("onSuccess: $it")
     }.onFailure {
-        // The following is executed because `ensureActive()` inside coRunCatching does not throw CancellationException.
+        // onFailure is executed because `ensureActive()` inside coRunCatching does not throw CancellationException.
         println("onFailure: $it")
     }
     println("Done!")

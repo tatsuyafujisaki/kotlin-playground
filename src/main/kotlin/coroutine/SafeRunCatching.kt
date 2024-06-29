@@ -8,7 +8,6 @@ import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 
 /**
- * The coRunCatching implementation
  * https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
  */
 inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Result<T> {

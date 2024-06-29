@@ -24,7 +24,7 @@ inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Resu
  * Result:
  * Done!
  *
- * If `ensureActive()` is uncommented, the output will be:
+ * If `ensureActive()` inside coRunCatching is uncommented, the output will be:
  * onFailure: kotlinx.coroutines.JobCancellationException: StandaloneCoroutine was cancelled
  */
 private suspend fun main(): Unit = coroutineScope {

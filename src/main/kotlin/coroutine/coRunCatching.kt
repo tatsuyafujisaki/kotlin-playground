@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 
 /**
@@ -13,7 +14,7 @@ inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Resu
     return try {
         Result.success(value = block())
     } catch (t: Throwable) {
-        throw t
+        ensureActive()
         Result.failure(exception = t)
     }
 }

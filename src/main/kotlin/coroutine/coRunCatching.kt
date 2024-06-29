@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 
 /**
  * https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
@@ -12,7 +13,7 @@ inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Resu
     return try {
         Result.success(value = block())
     } catch (exception: Throwable) {
-        //ensureActive()
+        ensureActive()
         Result.failure(exception = exception)
     }
 }
@@ -42,7 +43,7 @@ private suspend fun doExample1() = coroutineScope {
     }.onSuccess {
         println("onSuccess: $it")
     }.onFailure {
-        // The following is executed because `ensureActive()` inside safeLaunch does not throw CancellationException.
+        // The following is executed because `ensureActive()` inside coRunCatching does not throw CancellationException.
         println("onFailure: $it")
     }
     println("Done!")
@@ -73,12 +74,12 @@ private suspend fun doExample2() = coroutineScope {
     }.onSuccess {
         println("onSuccess: $it")
     }.onFailure {
-        // The following is executed because `ensureActive()` inside safeLaunch does not throw CancellationException.
+        // The following is executed because `ensureActive()` inside coRunCatching does not throw CancellationException.
         println("onFailure: $it")
     }
     println("Done!")
 }
 
 private suspend fun main() = coroutineScope {
-    doExample2()
+    doExample1()
 }

@@ -10,13 +10,11 @@ import kotlinx.coroutines.launch
 /**
  * https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
  */
-inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Result<T> {
-    return try {
-        Result.success(value = block())
-    } catch (t: Throwable) {
-        ensureActive()
-        Result.failure(exception = t)
-    }
+inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T) = try {
+    Result.success(value = block())
+} catch (t: Throwable) {
+    ensureActive()
+    Result.failure(exception = t)
 }
 
 /**

@@ -11,6 +11,12 @@
 
 https://kotlinlang.org/docs/cancellation-and-timeouts.html#cancellation-is-cooperative
 
+> This means that await can throw CancellationException in two cases:<br>
+> if the coroutine in which await was called got cancelled,<br>
+> or if the Deferred itself got completed with a CancellationException.
+
+https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html
+
 ## Detekt
 > Using `runCatching` increases this risk of mis-handling cancellation. If you catch and don't rethrow all the `CancellationException`, your coroutines are not cancelled even if you cancel their `CoroutineScope`.
 >

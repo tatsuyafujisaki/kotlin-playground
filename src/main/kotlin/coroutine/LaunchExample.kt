@@ -13,13 +13,10 @@ private suspend fun main() = coroutineScope {
             delay(timeMillis = 10_000)
             println("try is ending!")
         } catch (e: CancellationException) {
-            println("👀$e")
-
-            // If you catch a CancellationException, rethrow it.
-            // Don't throw a custom exception after catching a CancellationException.
+            println(e)
             throw e
         } catch (e: Exception) {
-            println("👀$e")
+            println(e)
         }
     }
     job.cancelAndJoin()

@@ -30,7 +30,7 @@ private suspend fun doExample1() = coroutineScope {
             println("try is ending!")
         } catch (e: CancellationException) {
             println("catch started!")
-            ensureActive() // throws CancellationException because the current coroutine was cancelled.
+            ensureActive() // throws CancellationException because the current coroutine is cancelled.
             println(e) // does not execute even if `ensureActive()` above is replaced by `throw e`.
             println("catch is ending!") // does not execute even if `ensureActive()` above is replaced by `throw e`.
         }
@@ -66,7 +66,7 @@ private suspend fun doExample2() = coroutineScope {
         println("try is ending!")
     } catch (e: CancellationException) {
         println("catch started!")
-        ensureActive() // does not throw CancellationException because the current coroutine was cancelled.
+        ensureActive() // does not throw CancellationException because the current coroutine is cancelled.
         println(e) // executes unless `ensureActive()` above is replaced by `throw e`.
         println("catch is ending!") // executes unless `ensureActive()` above is replaced by `throw e`.
 

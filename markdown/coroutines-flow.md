@@ -1,4 +1,9 @@
 # [CancellationException](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/)
+
+- If you catch a `CancellationException`, rethrow it. But how?
+  - Rethrowing the `CancellationException` with `throw` is the second best.
+  - Rethrowing the `CancellationException` with `ensureActive()` is best.
+
 ## kotlinlang.org
 > The same problem can be observed by catching a CancellationException and not rethrowing it:
 
@@ -7,7 +12,15 @@
 https://kotlinlang.org/docs/cancellation-and-timeouts.html#cancellation-is-cooperative
 
 ## Detekt
-SuspendFunSwallowedCancellation<br>
+> Using `runCatching` increases this risk of mis-handling cancellation. If you catch and don't rethrow all the `CancellationException`, your coroutines are not cancelled even if you cancel their `CoroutineScope`.
+>
+> This can very easily lead to:
+> - unexpected crashes
+> - extremely hard to diagnose bugs
+> - memory leaks
+> - performance issues
+> - battery drain
+
 https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
 
 ## Slack

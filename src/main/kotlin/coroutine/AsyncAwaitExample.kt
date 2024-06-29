@@ -19,22 +19,20 @@ import kotlinx.coroutines.launch
  * catch started!
  * Done!
  */
-private suspend fun doExample1() {
-    val job = coroutineScope {
-        launch {
-            val deferred = async {
-                println("async is running!")
-            }
-            try {
-                println("try started!")
-                deferred.await()
-                println("try is ending!")
-            } catch (e: CancellationException) {
-                println("catch started!")
-                ensureActive() // throws CancellationException because the current coroutine was cancelled.
-                println(e) // does not execute even if `ensureActive()` above is replaced by `throw e`.
-                println("catch is ending!") // does not execute even if `ensureActive()` above is replaced by `throw e`.
-            }
+private suspend fun doExample1() = coroutineScope {
+    val job = launch {
+        val deferred = async {
+            println("async is running!")
+        }
+        try {
+            println("try started!")
+            deferred.await()
+            println("try is ending!")
+        } catch (e: CancellationException) {
+            println("catch started!")
+            ensureActive() // throws CancellationException because the current coroutine was cancelled.
+            println(e) // does not execute even if `ensureActive()` above is replaced by `throw e`.
+            println("catch is ending!") // does not execute even if `ensureActive()` above is replaced by `throw e`.
         }
     }
     job.cancelAndJoin()
@@ -53,27 +51,25 @@ private suspend fun doExample1() {
  * catch is ending!
  * Done!
  */
-private suspend fun doExample2() {
-    coroutineScope {
-        val deferred = async {
-            println("async started!")
-            // Delay this coroutine a little so that it does not complete before being cancelled.
-            delay(100)
-            println("async is ending!")
-        }
-        deferred.cancel()
-        try {
-            deferred.await()
-            println("try is ending!")
-        } catch (e: CancellationException) {
-            println("catch started!")
-            ensureActive() // does not throw CancellationException because the current coroutine was cancelled.
-            println(e) // executes unless `ensureActive()` above is replaced by `throw e`.
-            println("catch is ending!") // executes unless `ensureActive()` above is replaced by `throw e`.
-
-        }
-        println("Done!")
+private suspend fun doExample2() = coroutineScope {
+    val deferred = async {
+        println("async started!")
+        // Delay this coroutine a little so that it does not complete before being cancelled.
+        delay(100)
+        println("async is ending!")
     }
+    deferred.cancel()
+    try {
+        deferred.await()
+        println("try is ending!")
+    } catch (e: CancellationException) {
+        println("catch started!")
+        ensureActive() // does not throw CancellationException because the current coroutine was cancelled.
+        println(e) // executes unless `ensureActive()` above is replaced by `throw e`.
+        println("catch is ending!") // executes unless `ensureActive()` above is replaced by `throw e`.
+
+    }
+    println("Done!")
 }
 
 private suspend fun main() = coroutineScope {

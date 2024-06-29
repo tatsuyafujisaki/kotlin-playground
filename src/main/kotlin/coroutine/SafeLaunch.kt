@@ -88,5 +88,5 @@ private suspend fun doExample2() = coroutineScope {
 }
 
 private suspend fun main() = coroutineScope {
-    doExample2()
+    doExample1()
 }

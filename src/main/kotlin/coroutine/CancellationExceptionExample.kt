@@ -9,7 +9,7 @@ import kotlin.coroutines.cancellation.CancellationException
 /**
  * https://stackoverflow.com/a/78683217/10867055
  */
-suspend fun main() = coroutineScope {
+private suspend fun main() = coroutineScope {
     val job = launch {
         repeat(5) { i ->
             try {

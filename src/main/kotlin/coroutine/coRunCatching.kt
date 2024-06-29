@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Result<T> {
     return try {
         Result.success(value = block())
-    } catch (exception: Throwable) {
+    } catch (t: Throwable) {
         ensureActive()
-        Result.failure(exception = exception)
+        Result.failure(exception = t)
     }
 }
 
@@ -39,7 +39,7 @@ private suspend fun doExample1() = coroutineScope {
         }.onSuccess {
             println("onSuccess: $it")
         }.onFailure {
-            // The following is not executed because `ensureActive()` inside coRunCatching throws CancellationException.
+            // onFailure is not executed because `ensureActive()` inside coRunCatching throws CancellationException.
             println("onFailure: $it")
         }
     }

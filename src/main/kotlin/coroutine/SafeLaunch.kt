@@ -7,31 +7,44 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 
-fun CoroutineScope.safeLaunch(
-    handleException: CoroutineScope.(Exception) -> Unit = {},
-    tryBlock: suspend CoroutineScope.() -> Unit,
+inline fun CoroutineScope.safeLaunch(
+    crossinline tryBlock: suspend CoroutineScope.() -> Unit,
+    crossinline catchBlock: CoroutineScope.(Throwable) -> Unit = {},
 ) = launch {
     try {
         tryBlock()
-    } catch (e: Exception) {
+    } catch (t: Throwable) {
         ensureActive()
-        handleException(e)
+        catchBlock(t)
     }
 }
 
 /**
  * Result:
  * try started!
- * job: StandaloneCoroutine{Cancelled}@36412113
+ * Done!
+ *
+ * If `ensureActive()` inside safeLaunch is uncommented, the output will be:
+ * try started!
+ * catch started!
+ * kotlinx.coroutines.JobCancellationException: StandaloneCoroutine was cancelled; job=StandaloneCoroutine{Cancelling}@10b714fe
+ * catch ended!
+ * Done!
  */
-private suspend fun main() = coroutineScope {
+private suspend fun main(): Unit = coroutineScope {
     val job = safeLaunch(
-        handleException = { println(it) },
-    ) {
-        println("try started!")
-        delay(timeMillis = 100)
-        println("try is ending!")
-    }
+        tryBlock = {
+            println("try started!")
+            // Delays this coroutine a little so that it does not complete before being cancelled.
+            delay(timeMillis = 100)
+            println("try is ending!")
+        },
+        catchBlock = {
+            println("catch started!")
+            println(it)
+            println("catch ended!")
+        }
+    )
     job.cancelAndJoin()
-    println("job: $job")
+    println("Done!")
 }

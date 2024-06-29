@@ -31,7 +31,7 @@ private suspend fun main(): Unit = coroutineScope {
         coRunCatching {
             // Delays this coroutine a little so that it does not complete before being cancelled.
             delay(timeMillis = 100)
-            println("launched!")
+            println("I am not printed because the job is canceled before it reaches me.")
         }.onSuccess {
             println("onSuccess: $it")
         }.onFailure {

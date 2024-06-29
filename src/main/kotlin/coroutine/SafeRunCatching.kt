@@ -1,10 +1,11 @@
 package coroutine
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.launch
 
 /**
  * The coRunCatching implementation
@@ -21,22 +22,23 @@ inline fun <T> CoroutineScope.coRunCatching(block: CoroutineScope.() -> T): Resu
 
 /**
  * Result:
- * try started!
- * job: StandaloneCoroutine{Cancelled}@36412113
+ * Done!
+ *
+ * If `ensureActive()` is replaced by `throw e`, the output will be:
+ * onFailure: kotlinx.coroutines.JobCancellationException: StandaloneCoroutine was cancelled
  */
 private suspend fun main(): Unit = coroutineScope {
-    coRunCatching {
-        val job = async {
-            // Delay this coroutine a little so that it does not complete before being cancelled.
-            delay(timeMillis = 1_000)
+    val job = launch {
+        coRunCatching {
+            // Delays this coroutine a little so that it does not complete before being cancelled.
+            delay(timeMillis = 100)
             println("launched!")
+        }.onSuccess {
+            println("onSuccess: $it")
+        }.onFailure {
+            println("onFailure: $it")
         }
-        job.cancel()
-        job.await()
-        println("job: $job")
-    }.onSuccess {
-        println("onSuccess: $it")
-    }.onFailure {
-        println("onFailure: $it")
     }
+    job.cancelAndJoin()
+    println("Done!")
 }

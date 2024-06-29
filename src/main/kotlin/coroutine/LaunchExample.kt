@@ -10,15 +10,15 @@ private suspend fun main() = coroutineScope {
     val job = launch {
         try {
             println("try started!")
-            delay(timeMillis = 10_000)
-            println("try is ending!")
+            delay(timeMillis = 100) // waits to avoid completing before being cancelled.
+            println("try ended!")
         } catch (e: CancellationException) {
+            println("catch started!")
             println(e)
+            println("catch ended!")
             throw e
-        } catch (e: Exception) {
-            println(e)
         }
     }
     job.cancelAndJoin()
-    println("job: $job")
+    println("Done!")
 }

@@ -1,8 +1,19 @@
 # [CancellationException](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/)
 
-- If you catch a `CancellationException`, rethrow it. But how?
-  - Rethrowing the `CancellationException` with `throw` is the second best.
-  - Rethrowing the `CancellationException` with `ensureActive()` is best.
+If you want to catch a `CancellationException`, rethrow it.
+
+But how?
+
+There are two options.
+
+## Option 1: Use `throw`
+## Option 2: Use [ensureActive()](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/ensure-active.html), where are pros and cons
+  - Pros
+    - https://betterprogramming.pub/the-silent-killer-thats-crashing-your-coroutines-9171d1e8f79b
+    - https://github.com/Kotlin/kotlinx.coroutines/issues/3658#issuecomment-1465747377
+    - https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html
+  - Cons
+    - https://github.com/Kotlin/kotlinx.coroutines/issues/3658#issuecomment-1527096439
 
 ## kotlinlang.org
 > The same problem can be observed by catching a CancellationException and not rethrowing it:
@@ -10,12 +21,6 @@
 > While catching Exception is an anti-pattern, this issue may surface in more subtle ways, like when using the runCatching function, which does not rethrow CancellationException.
 
 https://kotlinlang.org/docs/cancellation-and-timeouts.html#cancellation-is-cooperative
-
-> This means that await can throw CancellationException in two cases:<br>
-> if the coroutine in which await was called got cancelled,<br>
-> or if the Deferred itself got completed with a CancellationException.
-
-https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html
 
 ## Detekt
 > Using `runCatching` increases this risk of mis-handling cancellation. If you catch and don't rethrow all the `CancellationException`, your coroutines are not cancelled even if you cancel their `CoroutineScope`.
@@ -28,9 +33,6 @@ https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.co
 > - battery drain
 
 https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
-
-## GitHub Issues
-https://github.com/Kotlin/kotlinx.coroutines/issues/3658#issuecomment-1465747377
 
 ## Stack Overflow
 https://stackoverflow.com/a/78683217/10867055

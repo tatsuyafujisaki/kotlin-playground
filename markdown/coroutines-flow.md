@@ -119,12 +119,6 @@ https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#sharedflow
 
 The analogy for a hot stream is a hot spring. It gushes out whether a user exists.
 
-# `yield()`
-
-* forcibly start child jobs. If `yield()` is not called before `child.cancel()`, the child job may not start by the
-  time `child.cancel()` is called, so the `finally` block won't be executed when `child.cancel()` is called.
-* https://kotlinlang.org/docs/exception-handling.html#cancellation-and-exceptions
-
 # SupervisorJob
 
 - If a child job throws an exception other than CancellationException, its parent and sibling jobs are NOT canceled.

@@ -34,6 +34,7 @@ There are two options.
   - Pros
     - https://betterprogramming.pub/the-silent-killer-thats-crashing-your-coroutines-9171d1e8f79b
     - https://github.com/Kotlin/kotlinx.coroutines/issues/3658#issuecomment-1465747377
+    - https://github.com/Kotlin/kotlinx.coroutines/issues/1814#issuecomment-1943224856
     - https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html
   - Cons
     - https://github.com/Kotlin/kotlinx.coroutines/issues/3658#issuecomment-1527096439

@@ -21,6 +21,8 @@ https://kotlinlang.org/docs/cancellation-and-timeouts.html#cancellation-is-coope
 
 https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
 
+https://github.com/Kotlin/kotlinx.coroutines/issues/1814
+
 https://stackoverflow.com/a/78683217/10867055
 
 ## How should you rethrow [CancellationException](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/)?

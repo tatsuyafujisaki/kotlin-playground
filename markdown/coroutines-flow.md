@@ -32,16 +32,6 @@ https://detekt.dev/docs/rules/coroutines/#suspendfunswallowedcancellation
 ## GitHub Issues
 https://github.com/Kotlin/kotlinx.coroutines/issues/3658#issuecomment-1465747377
 
-## Slack
-> Great blog on CancellationException: [The Silent Killer That’s Crashing Your Coroutines | by Sam Cooper | Feb, 2023 | Better Programming](https://betterprogramming.pub/the-silent-killer-thats-crashing-your-coroutines-9171d1e8f79b
-)
-
-https://kotlinlang.slack.com/archives/C1CFAFJSK/p1679328077237319?thread_ts=1679326509.883299&cid=C1CFAFJSK
-
-> Roman actually thinks this article is on point :wink: (from what I could tell)
-
-https://kotlinlang.slack.com/archives/C1CFAFJSK/p1679328191375679?thread_ts=1679326509.883299&cid=C1CFAFJSK
-
 ## Stack Overflow
 https://stackoverflow.com/a/78683217/10867055
 

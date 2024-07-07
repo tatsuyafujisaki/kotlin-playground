@@ -6,7 +6,7 @@ import java.util.Calendar
 import java.util.Date
 import kotlin.time.Duration.Companion.minutes
 
-object DeprecatedJavaUtilDate {
+object LegacyJavaDateUtil {
     fun create(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int): Date = Calendar.getInstance().apply {
         set(year, month - 1, day, hour, minute, second)
     }.time
@@ -16,5 +16,5 @@ object DeprecatedJavaUtilDate {
 }
 
 private fun main() {
-    println(DeprecatedJavaUtilDate.create(2025, 1, 2, 3, 4, 5))
+    println(LegacyJavaDateUtil.create(2025, 1, 2, 3, 4, 5))
 }

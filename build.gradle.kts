@@ -1,5 +1,5 @@
 plugins {
-    embeddedKotlin("jvm")
+    kotlin("jvm") version "2.0.0"
     embeddedKotlin("plugin.serialization")
     alias(libs.plugins.ktlint)
     application

@@ -301,27 +301,16 @@ val set2: Set<String> = setOfNotNull(null, "a", "b", "b", null) // [a, b]
 ## How to convert a List to a SortedSet
 
 ```kotlin
-fun main() {
-    val xs: SortedSet<String> = listOf("c", "b", "a").toSortedSet() // [a, b, c]
-
-    val ys = sortedSetOf(
-        compareBy { it.order },
-        Sample("a", 3),
-        Sample("b", 2),
-        Sample("c", 1)
-    ) // [(c,1), (b,2), (a,3)]
-
-    val zs: SortedSet<Sample> = listOf(
-        Sample("a", 3),
-        Sample("b", 2),
-        Sample("c", 1)
-    ).toSortedSet(compareBy { it.order }) // [(c,1), (b,2), (a,3)]
+enum class Fruit {
+    APPLE, ORANGE
 }
 
-class Sample(private val name: String, val order: Int) {
-    override fun toString(): String {
-        return "($name,$order)"
-    }
+fun main() {
+    val xs: SortedSet<String> = listOf("c", "b", "a").toSortedSet()
+    println(xs) // [a, b, c]
+
+    val ys: SortedSet<Fruit> = listOf(Fruit.ORANGE, Fruit.APPLE).toSortedSet(compareBy { it.ordinal })
+    println(ys) // [APPLE, ORANGE]
 }
 ```
 

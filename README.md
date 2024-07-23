@@ -392,8 +392,8 @@ println(map.toList().sortedBy { it.second.toInt() }.toMap()) // {one=1, two=2, t
 ```kotlin
 val map = mapOf("10" to "ten", "1" to "one", "2" to "two")
 println(map.toSortedMap()) // {1=one, 10=ten, 2=two}
-println(map.toSortedMap(reverseOrder())) // {2=two, 10=ten, 1=one}
-println(map.toSortedMap(compareBy { it.toInt() })) // {1=one, 2=two, 10=ten}
+println(map.toSortedMap(comparator = reverseOrder())) // {2=two, 10=ten, 1=one}
+println(map.toSortedMap(comparator = compareBy { it.toInt() })) // {1=one, 2=two, 10=ten}
 ```
 
 # String

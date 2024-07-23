@@ -318,16 +318,16 @@ fun main() {
 ### How to sort a Set
 ```kotlin
 println(sortedSetOf("10", "1", "2")) // [1, 10, 2]
-println(sortedSetOf(reverseOrder(), "10", "1", "2")) // [2, 10, 1]
-println(sortedSetOf(compareBy { it.toInt() }, "10", "1", "2")) // [1, 2, 10]
+println(sortedSetOf(comparator = reverseOrder(), "10", "1", "2")) // [2, 10, 1]
+println(sortedSetOf(comparator = compareBy { it.toInt() }, "10", "1", "2")) // [1, 2, 10]
 ```
 
 ### How to convert a Set to a SortedSet
 ```kotlin
 val set = setOf("10", "1", "2")
 println(set.toSortedSet()) // [1, 10, 2]
-println(set.toSortedSet(reverseOrder())) // [2, 10, 1]
-println(set.toSortedSet(compareBy { it.toInt() })) // [1, 2, 10]
+println(set.toSortedSet(comparator = reverseOrder())) // [2, 10, 1]
+println(set.toSortedSet(comparator = compareBy { it.toInt() })) // [1, 2, 10]
 ```
 
 # Map
@@ -376,8 +376,8 @@ val map: Map<Char, Char> = maps.reduce { acc, x -> acc + x } // {A=a, B=b}
 ### How to sort a Map by key
 ```kotlin
 println(sortedMapOf("10" to "ten", "1" to "one", "2" to "two")) // {1=one, 10=ten, 2=two}
-println(sortedMapOf(reverseOrder(), "10" to "ten", "1" to "one", "2" to "two")) // {2=two, 10=ten, 1=one}
-println(sortedMapOf(compareBy { it.toInt() }, "10" to "ten", "1" to "one", "2" to "two")) // {1=one, 2=two, 10=ten}
+println(sortedMapOf(comparator = reverseOrder(), "10" to "ten", "1" to "one", "2" to "two")) // {2=two, 10=ten, 1=one}
+println(sortedMapOf(comparator = compareBy { it.toInt() }, "10" to "ten", "1" to "one", "2" to "two")) // {1=one, 2=two, 10=ten}
 ```
 
 ### How to sort a Map by value

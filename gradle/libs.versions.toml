@@ -1,6 +1,5 @@
 [versions]
 coroutines = "1.8.1" # https://github.com/Kotlin/kotlinx.coroutines/releases
-kotlinx-datetime = "0.5.0" # https://github.com/Kotlin/kotlinx-datetime/releases
 kotlinx-serialization = "1.7.1" # https://github.com/Kotlin/kotlinx.serialization/releases
 legacy-json = "20240303" # https://github.com/stleary/JSON-java/releases
 legacy-moshi = "1.15.1" # https://github.com/square/moshi/blob/master/CHANGELOG.md
@@ -10,7 +9,6 @@ mockito = "5.3.1" # https://github.com/mockito/mockito-kotlin/releases
 [libraries]
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 legacy-json = { group = "org.json", name = "json", version.ref = "legacy-json" }
 legacy-moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "legacy-moshi" }

@@ -11,7 +11,6 @@ repositories {
 
 dependencies {
     implementation(libs.coroutines.core)
-    implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.legacy.json)
     implementation(libs.legacy.moshi.kotlin)

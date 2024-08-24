@@ -16,4 +16,4 @@ legacy-rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref =
 mockito = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito" }
 
 [plugins]
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.0.3" } # https://github.com/JLLeitschuh/ktlint-gradle/releases
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.1.1" } # https://github.com/JLLeitschuh/ktlint-gradle/releases

@@ -1,7 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version "2.0.20"
     embeddedKotlin("plugin.serialization")
-    alias(libs.plugins.ktlint)
     application
 }
 

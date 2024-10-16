@@ -1,5 +1,5 @@
 [versions]
-coroutines = "1.8.1" # https://github.com/Kotlin/kotlinx.coroutines/releases
+coroutines = "1.9.0" # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-serialization = "1.7.1" # https://github.com/Kotlin/kotlinx.serialization/releases
 legacy-json = "20240303" # https://github.com/stleary/JSON-java/releases
 legacy-moshi = "1.15.1" # https://github.com/square/moshi/blob/master/CHANGELOG.md

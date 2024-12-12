@@ -15,7 +15,6 @@ dependencies {
     implementation(libs.legacy.rxjava)
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)
-    testImplementation(libs.mockito)
 }
 
 tasks.test {

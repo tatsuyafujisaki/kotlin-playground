@@ -45,6 +45,6 @@ object TimerUtil {
 }
 
 private fun main() {
-    val timerUtil = PeriodicTimer()
-    timerUtil.schedule(period = 3.seconds) { println(LocalTime.now()) }
+    val timer = PeriodicTimer()
+    timer.schedule(period = 3.seconds) { println(LocalTime.now()) }
 }

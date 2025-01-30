@@ -1,9 +1,5 @@
-package util
-
-import util.TimerUtil.PeriodicTimer
 import java.time.LocalTime
-import java.util.Timer
-import java.util.TimerTask
+import java.util.*
 import kotlin.concurrent.schedule
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -26,15 +22,15 @@ object TimerUtil {
         private var timerTask: TimerTask? = null
 
         fun schedule(
-                period: Duration,
-                delay: Duration = period,
-                action: TimerTask.() -> Unit,
+            period: Duration,
+            delay: Duration = period,
+            action: TimerTask.() -> Unit,
         ) {
             timerTask?.cancel()
             timerTask = Timer().schedule(
-                    delay = delay.inWholeMilliseconds,
-                    period = period.inWholeMilliseconds,
-                    action = action
+                delay = delay.inWholeMilliseconds,
+                period = period.inWholeMilliseconds,
+                action = action
             )
         }
 
@@ -45,6 +41,6 @@ object TimerUtil {
 }
 
 private fun main() {
-    val timer = PeriodicTimer()
-    timer.schedule(period = 3.seconds) { println(LocalTime.now()) }
+    val timerUtil = TimerUtil.PeriodicTimer()
+    timerUtil.schedule(period = 1.seconds) { println(LocalTime.now()) }
 }

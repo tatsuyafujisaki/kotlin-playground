@@ -1,6 +1,6 @@
 [versions]
 coroutines = "1.10.2" # https://github.com/Kotlin/kotlinx.coroutines/releases
-kotlinx-serialization = "1.8.0" # https://github.com/Kotlin/kotlinx.serialization/releases
+kotlinx-serialization = "1.8.1" # https://github.com/Kotlin/kotlinx.serialization/releases
 legacy-moshi = "1.15.2" # https://github.com/square/moshi/blob/master/CHANGELOG.md
 legacy-rxjava = "3.1.10" # https://github.com/ReactiveX/RxJava/releases
 

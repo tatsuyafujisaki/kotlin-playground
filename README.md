@@ -46,10 +46,10 @@ fun main() {
 
 ## Type mapping between Kotlin and Java
 
- Kotlin      | Java      
+ Kotlin      | Java
 -------------|-----------
- IntArray    | int[]     
- Array\<Int> | Integer[] 
+ IntArray    | int[]
+ Array\<Int> | Integer[]
 
 ## How to create an IntArray
 
@@ -645,9 +645,9 @@ println(evenNumber) // 2
 
 ## Comparison among `lazy`, `Delegates.notNull()`, and `lateinit`
 
- &nbsp;       | lazy        | Delegates.notNull() | lateinit                      
+ &nbsp;       | lazy        | Delegates.notNull() | lateinit
 --------------|-------------|---------------------|-------------------------------
- val          | supported   | not supported       | not supported                 
+ val          | supported   | not supported       | not supported
  non-nullable | supported   | supported           | not supported primitive types |supported|supported|not supported performance|ok(※1)|ok(
  ※1)          | good Dagger | supported           | supported(※2)                 |supported
 
@@ -697,20 +697,20 @@ println(currentCoroutineContext())
 
 # Syntactic sugar for throwing exceptions
 
- Function           | Throws                   
+ Function           | Throws
 --------------------|--------------------------
- check(Boolean)     | IllegalStateException    
- checkNotNull(T?)   | IllegalStateException    
- error(Any)         | IllegalStateException    
- require(Boolean)   | IllegalArgumentException 
- requireNotNull(T?) | IllegalArgumentException 
+ check(Boolean)     | IllegalStateException
+ checkNotNull(T?)   | IllegalStateException
+ error(Any)         | IllegalStateException
+ require(Boolean)   | IllegalArgumentException
+ requireNotNull(T?) | IllegalArgumentException
 
 # `fold` versus `reduce`
 
- &nbsp; | Type of initial value | Type of element of input array | Return type               
+ &nbsp; | Type of initial value | Type of element of input array | Return type
 --------|-----------------------|--------------------------------|---------------------------
- fold   | R                     | T                              | R                         
- reduce | n/a                   | T                              | T or one of T's ancestors 
+ fold   | R                     | T                              | R
+ reduce | n/a                   | T                              | T or one of T's ancestors
 
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html
@@ -742,10 +742,6 @@ https://github.com/Kotlin/dokka/issues/518#issuecomment-744062184
 # Coroutines and Flow
 
 [coroutines-flow.md](markdown/coroutines-flow.md)
-
-# ktlint
-
-[ktlint.md](markdown/ktlint.md)
 
 # Misc
 

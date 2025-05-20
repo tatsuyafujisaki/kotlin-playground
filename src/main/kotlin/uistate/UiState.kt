@@ -4,10 +4,10 @@ package uistate
  * https://kotlinlang.org/docs/sealed-classes.html#state-management-in-ui-applications
  * https://developer.android.com/codelabs/basic-android-kotlin-compose-getting-data-internet#6
  */
-private sealed class UiState<out T> {
-    data object Loading : UiState<Nothing>()
-    data class Success<T>(val data: T) : UiState<T>()
-    data class Failure(val throwable: Throwable) : UiState<Nothing>()
+private sealed interface UiState<out T> {
+    data object Loading : UiState<Nothing>
+    data class Success<T>(val data: T) : UiState<T>
+    data class Failure(val throwable: Throwable) : UiState<Nothing>
 }
 
 private fun printState(state: UiState<String>) {

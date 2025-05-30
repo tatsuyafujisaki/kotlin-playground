@@ -12,7 +12,10 @@ object ListUtil {
 
     fun <T> splitAt(xs: List<T>, index: Int) = xs.subList(0, index) to xs.subList(index, xs.size)
 
-    fun <T> splitLast(xs: List<T>) = xs.subList(0, xs.lastIndex) to xs.last()
+    fun <T> splitLast(xs: List<T>): Pair<List<T>, T?> {
+        if (xs.isEmpty()) return emptyList<T>() to null
+        return xs.dropLast(n = 1) to xs.last()
+    }
 
     fun <T> List<T>.rotate(distance: Int) = toList().also { // toList() is a deep copy to avoid changing the original array.
         Collections.rotate(it, distance)

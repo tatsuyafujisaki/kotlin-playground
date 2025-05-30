@@ -3,7 +3,6 @@ package util
 import util.NumberUtil.factorial
 import util.NumberUtil.nCr
 import kotlin.math.E
-import kotlin.math.exp
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -44,12 +43,10 @@ object MathUtil {
         return xs.zip(ys) { x, y -> (x - meanX) * (y - meanY) }.sum() / xs.size
     }
 
-    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) =
-        getCovariance(xs, ys) / (getStandardDeviation(xs) * getStandardDeviation(ys))
+    fun correlationCoefficient(xs: Collection<Int>, ys: Collection<Int>) = getCovariance(xs, ys) / (getStandardDeviation(xs) * getStandardDeviation(ys))
 
     @JvmName("correlationCoefficientDouble")
-    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) =
-        getCovariance(xs, ys) / (getStandardDeviation(xs) * getStandardDeviation(ys))
+    fun correlationCoefficient(xs: Collection<Double>, ys: Collection<Double>) = getCovariance(xs, ys) / (getStandardDeviation(xs) * getStandardDeviation(ys))
 
     /**
      * @param p probability of success
@@ -130,7 +127,16 @@ object MathUtil {
         return 1 - (6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }.sum() / (n * (n * n - 1)))
     }
 
-    fun <S, T> cartesianProduct(xs: Iterable<S>, ys: Iterable<T>) = xs.flatMap { x -> ys.map { y -> x to y } }
+    fun <T> cartesianProduct(vararg sets: Set<T>): Set<List<T>> =
+        sets.fold(setOf(emptyList())) { acc, value ->
+            acc.flatMap { set -> value.map { set + it } }.toSet()
+        }
+}
 
-    fun sigmoid(x: Double) = 1 / (1 + exp(-x))
+private fun main() {
+    val set1 = setOf(1, 2)
+    val set2 = setOf("a", "b")
+    val set3 = setOf(true, false)
+    val result = MathUtil.cartesianProduct(set1, set2, set3)
+    println(result) // [[1, a, true], [1, a, false], [1, b, true], [1, b, false], [2, a, true], [2, a, false], [2, b, true], [2, b, false]]
 }

@@ -127,10 +127,12 @@ object MathUtil {
         return 1 - (6 * xs.rank().zip(ys.rank()) { rankX, rankY -> (rankX - rankY).toDouble().pow(2) }.sum() / (n * (n * n - 1)))
     }
 
-    fun <T> cartesianProduct(vararg sets: Set<T>): Set<List<T>> =
-        sets.fold(setOf(emptyList())) { acc, value ->
+    fun <T> cartesianProduct(vararg sets: Set<T>): Set<List<T>> {
+        require(sets.size >= 2) { "Cartesian product requires at least two sets." }
+        return sets.fold(setOf(emptyList())) { acc, value ->
             acc.flatMap { set -> value.map { set + it } }.toSet()
         }
+    }
 }
 
 private fun main() {

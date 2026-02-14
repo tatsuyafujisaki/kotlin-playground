@@ -4,8 +4,6 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.serialization.json.Json
-import util.FileUtil.readAndPrint
 
 private data class Person(val name: String, val age: Int)
 
@@ -26,46 +24,25 @@ object MoshiConverter {
     )
 }
 
-private fun showExample1() {
-    val person = Person("John", 42)
-    println(person)
-
-    val json = Json.encodeToString(person)
-    println(json)
-
-    // Note that the returned value is not nullable unlike Moshi.
-    val person2: Person = Json.decodeFromString(json)
-    println(person2)
-}
-
-private fun showExample2() {
-    readAndPrint("data/object-of-numbers.json") {
-        MoshiConverter.getMapAdapter<Double>().fromJson(it)
-    }
-}
-
-private fun showExample3() {
-    readAndPrint("data/array-of-numbers.json") {
-        MoshiConverter.getListAdapter<Double>().fromJson(it)
-    }
-}
-
-private fun showExample4() {
-    readAndPrint("data/comprehensive-object.json") {
-        MoshiConverter.getAdapter<MySerializable>().fromJson(it)
-    }
-}
-
-private fun showExample5() {
-    readAndPrint("data/comprehensive-array.json") {
-        MoshiConverter.getListAdapter<MySerializable2>().fromJson(it)
-    }
-}
-
 private fun main() {
-    showExample1()
-    showExample2()
-    showExample3()
-    showExample4()
-    showExample5()
+    val personAdapter = MoshiConverter.getAdapter<Person>()
+    val person = Person(name = "Ava", age = 28)
+    val personJson = personAdapter.toJson(person)
+    println(personJson)
+    val personDecoded = personAdapter.fromJson(personJson)
+    println(personDecoded)
+
+    val listAdapter = MoshiConverter.getListAdapter<Person>()
+    val people = listOf(Person("Noah", 31), Person("Mia", 25))
+    val peopleJson = listAdapter.toJson(people)
+    println(peopleJson)
+    val peopleDecoded = listAdapter.fromJson(peopleJson)
+    println(peopleDecoded)
+
+    val mapAdapter = MoshiConverter.getMapAdapter<Person>()
+    val peopleById = mapOf("u1" to Person("Leo", 40), "u2" to Person("Zoe", 19))
+    val mapJson = mapAdapter.toJson(peopleById)
+    println(mapJson)
+    val mapDecoded = mapAdapter.fromJson(mapJson)
+    println(mapDecoded)
 }

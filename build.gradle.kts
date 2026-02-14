@@ -1,10 +1,14 @@
 plugins {
-    kotlin("jvm") version "2.3.0"
+    kotlin("jvm") version "+"
     embeddedKotlin("plugin.serialization")
 }
 
 repositories {
     mavenCentral()
+}
+
+kotlin {
+    jvmToolchain(23)
 }
 
 dependencies {

@@ -1,14 +1,15 @@
 package json
 
 import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
-private data class Person(val name: String, val age: Int)
+@JsonClass(generateAdapter = true)
+internal data class Person(val name: String, val age: Int)
 
 object MoshiConverter {
-    val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+    val moshi: Moshi = Moshi.Builder().build()
     inline fun <reified T> getAdapter(): JsonAdapter<T> = moshi.adapter(T::class.java)
 
     inline fun <reified T> getListAdapter(): JsonAdapter<List<T>> = moshi.adapter(

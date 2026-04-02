@@ -743,10 +743,6 @@ https://github.com/Kotlin/dokka/issues/518#issuecomment-744062184
 
 [coroutines-flow.md](markdown/coroutines-flow.md)
 
-# Misc
-
-[misc.md](markdown/misc.md)
-
 # RxJava
 
 [rxjava.md](markdown/rxjava.md)

@@ -16,7 +16,6 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.moshi.kotlin)
-    implementation(libs.rxjava)
     ksp(libs.moshi.kotlin.codegen)
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)

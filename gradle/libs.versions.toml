@@ -2,7 +2,6 @@
 coroutines = "+" # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-serialization = "+" # https://github.com/Kotlin/kotlinx.serialization/releases
 moshi = "+" # https://github.com/square/moshi/blob/master/CHANGELOG.md
-rxjava = "+" # https://github.com/ReactiveX/RxJava/releases
 ksp = "+" # https://github.com/google/ksp/releases
 
 [libraries]

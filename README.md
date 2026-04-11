@@ -46,10 +46,10 @@ fun main() {
 
 ## Type mapping between Kotlin and Java
 
- Kotlin      | Java
+ Kotlin      | Java      
 -------------|-----------
- IntArray    | int[]
- Array\<Int> | Integer[]
+ IntArray    | int[]     
+ Array\<Int> | Integer[] 
 
 ## How to create an IntArray
 
@@ -315,7 +315,9 @@ fun main() {
 ```
 
 ## SortedSet
+
 ### How to sort a Set
+
 ```kotlin
 println(sortedSetOf("10", "1", "2")) // [1, 10, 2]
 println(sortedSetOf(comparator = reverseOrder(), "10", "1", "2")) // [2, 10, 1]
@@ -323,6 +325,7 @@ println(sortedSetOf(comparator = compareBy { it.toInt() }, "10", "1", "2")) // [
 ```
 
 ### How to convert a Set to a SortedSet
+
 ```kotlin
 val set = setOf("10", "1", "2")
 println(set.toSortedSet()) // [1, 10, 2]
@@ -373,7 +376,9 @@ val map: Map<Char, Char> = maps.reduce { acc, x -> acc + x } // {A=a, B=b}
 ```
 
 ## SortedMap
+
 ### How to sort a Map by key
+
 ```kotlin
 println(sortedMapOf("10" to "ten", "1" to "one", "2" to "two")) // {1=one, 10=ten, 2=two}
 println(sortedMapOf(comparator = reverseOrder(), "10" to "ten", "1" to "one", "2" to "two")) // {2=two, 10=ten, 1=one}
@@ -381,6 +386,7 @@ println(sortedMapOf(comparator = compareBy { it.toInt() }, "10" to "ten", "1" to
 ```
 
 ### How to sort a Map by value
+
 ```kotlin
 val map = mapOf("ten" to "10", "one" to "1", "two" to "2")
 println(map.toList().sortedBy { it.second }.toMap()) // {one=1, ten=10, two=2}
@@ -389,6 +395,7 @@ println(map.toList().sortedBy { it.second.toInt() }.toMap()) // {one=1, two=2, t
 ```
 
 ### How to convert a Map to a SortedMap
+
 ```kotlin
 val map = mapOf("10" to "ten", "1" to "one", "2" to "two")
 println(map.toSortedMap()) // {1=one, 10=ten, 2=two}
@@ -645,9 +652,9 @@ println(evenNumber) // 2
 
 ## Comparison among `lazy`, `Delegates.notNull()`, and `lateinit`
 
- &nbsp;       | lazy        | Delegates.notNull() | lateinit
+ &nbsp;       | lazy        | Delegates.notNull() | lateinit                      
 --------------|-------------|---------------------|-------------------------------
- val          | supported   | not supported       | not supported
+ val          | supported   | not supported       | not supported                 
  non-nullable | supported   | supported           | not supported primitive types |supported|supported|not supported performance|ok(※1)|ok(
  ※1)          | good Dagger | supported           | supported(※2)                 |supported
 
@@ -672,14 +679,14 @@ fun sample() {
 
 ```kotlin
 var x = ""
-    get() {
-        println("${object {}.javaClass.enclosingMethod?.name}: $field")
-        return field
-    }
-    set(value) {
-        println("${object {}.javaClass.enclosingMethod?.name}: $value")
-        field = value
-    }
+get() {
+    println("${object {}.javaClass.enclosingMethod?.name}: $field")
+    return field
+}
+set(value) {
+    println("${object {}.javaClass.enclosingMethod?.name}: $value")
+    field = value
+}
 ```
 
 # How to get the name of the current thread
@@ -697,20 +704,20 @@ println(currentCoroutineContext())
 
 # Syntactic sugar for throwing exceptions
 
- Function           | Throws
+ Function           | Throws                   
 --------------------|--------------------------
- check(Boolean)     | IllegalStateException
- checkNotNull(T?)   | IllegalStateException
- error(Any)         | IllegalStateException
- require(Boolean)   | IllegalArgumentException
- requireNotNull(T?) | IllegalArgumentException
+ check(Boolean)     | IllegalStateException    
+ checkNotNull(T?)   | IllegalStateException    
+ error(Any)         | IllegalStateException    
+ require(Boolean)   | IllegalArgumentException 
+ requireNotNull(T?) | IllegalArgumentException 
 
 # `fold` versus `reduce`
 
- &nbsp; | Type of initial value | Type of element of input array | Return type
+ &nbsp; | Type of initial value | Type of element of input array | Return type               
 --------|-----------------------|--------------------------------|---------------------------
- fold   | R                     | T                              | R
- reduce | n/a                   | T                              | T or one of T's ancestors
+ fold   | R                     | T                              | R                         
+ reduce | n/a                   | T                              | T or one of T's ancestors 
 
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html
 * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html
@@ -737,16 +744,12 @@ https://github.com/Kotlin/dokka/issues/518#issuecomment-744062184
 
 # Best practices
 
-[best-practices.md](markdown/best-practices.md)
+[best-practices.md](md/best-practices.md)
 
 # Coroutines and Flow
 
-[coroutines-flow.md](markdown/coroutines-flow.md)
-
-# RxJava
-
-[rxjava.md](markdown/rxjava.md)
+[coroutines-flow.md](md/coroutines-flow.md)
 
 # Scope functions
 
-[scope-functions.md](markdown/scope-functions.md)
+[scope-functions.md](md/scope-functions.md)

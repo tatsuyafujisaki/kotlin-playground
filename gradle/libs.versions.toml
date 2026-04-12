@@ -1,15 +1,8 @@
 [versions]
 coroutines = "+" # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-serialization = "+" # https://github.com/Kotlin/kotlinx.serialization/releases
-moshi = "+" # https://github.com/square/moshi/blob/master/CHANGELOG.md
-ksp = "+" # https://github.com/google/ksp/releases
 
 [libraries]
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
-moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
-moshi-kotlin-codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshi" }
-
-[plugins]
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

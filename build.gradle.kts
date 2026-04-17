@@ -7,10 +7,6 @@ repositories {
     mavenCentral()
 }
 
-kotlin {
-    jvmToolchain(23)
-}
-
 dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.kotlinx.serialization.json)

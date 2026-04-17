@@ -20,8 +20,8 @@ object CollectionUtil {
 }
 
 private fun main() {
-    val xs: List<String>? = listOf("a")
-    val ys: List<String>? = emptyList()
+    val xs: List<String> = listOf("a")
+    val ys: List<String> = emptyList()
     val zs: List<String>? = null
 
     println(xs.isNeitherNullNorEmpty()) // true

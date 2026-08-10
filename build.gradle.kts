@@ -11,6 +11,7 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.gson)
     implementation(libs.json)
+    implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)

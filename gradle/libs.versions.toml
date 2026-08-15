@@ -1,12 +1,10 @@
 [versions]
 coroutines = "+" # https://github.com/Kotlin/kotlinx.coroutines/releases
-gson = "+" # https://github.com/google/gson/releases
 kotlinx-datetime = "+" # https://github.com/Kotlin/kotlinx-datetime/releases
 kotlinx-serialization = "+" # https://github.com/Kotlin/kotlinx-serialization/releases
 
 [libraries]
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }

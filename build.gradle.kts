@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "+"
-    kotlin("plugin.serialization") version "+"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 repositories {

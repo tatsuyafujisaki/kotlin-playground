@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm") version "+"
-    embeddedKotlin("plugin.serialization")
+    kotlin("plugin.serialization") version "+"
 }
 
 repositories {

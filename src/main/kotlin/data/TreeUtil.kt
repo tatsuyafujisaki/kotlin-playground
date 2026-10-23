@@ -18,7 +18,7 @@ object TreeUtil {
             vertices[id] = Vertex(
                     ancestors[id],
                     children,
-                    data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+                    data[id] + children.sumOf { vertices[it]!!.subtreeSum }
             )
         }
 
@@ -38,7 +38,7 @@ object TreeUtil {
             vertices[id] = Vertex(
                     ancestors[id],
                     children,
-                    data[id] + children.map { vertices[it]!!.subtreeSum }.sum()
+                    data[id] + children.sumOf { vertices[it]!!.subtreeSum }
             )
         }
 
@@ -46,7 +46,7 @@ object TreeUtil {
         vertices[root] = Vertex(
                 ancestors[root],
                 graph[root],
-                data[root] + graph[root].map { vertices[it]!!.subtreeSum }.sum()
+                data[root] + graph[root].sumOf { vertices[it]!!.subtreeSum }
         )
 
         return vertices.filterNotNull()

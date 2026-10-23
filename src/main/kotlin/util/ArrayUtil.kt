@@ -71,7 +71,7 @@ object ArrayUtil {
 
     fun IntArray.medianByCountingSort(): Double {
         fun median(onMiddleIndex: (IntArray, Int) -> Double): Double {
-            val counts = IntArray(maxOrNull()!! + 1)
+            val counts = IntArray(max() + 1)
             for (x in this) {
                 counts[x]++
             }

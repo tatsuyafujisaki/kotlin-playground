@@ -19,7 +19,7 @@ object NumberUtil {
     }
 
     fun isEven(x: Int) = x % 2 == 0
-    fun isOdd(x: Int) = x % 2 == 1
+    fun isOdd(x: Int) = x % 2 != 0
 
     fun isPerfectSquare(x: Int) = sqrtInt(x).let {
         x == it * it

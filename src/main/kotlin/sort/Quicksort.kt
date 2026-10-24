@@ -5,6 +5,15 @@ object Quicksort {
         sort(xs, 0, xs.lastIndex)
     }
 
+    /** Returns a new sorted array, leaving [xs] untouched. Simpler but allocates at every level of recursion. */
+    fun sorted(xs: IntArray): IntArray {
+        if (xs.isEmpty()) return xs
+        val pivot = xs[xs.size / 2]
+        return sorted(xs.filter { it < pivot }.toIntArray()) +
+                xs.filter { it == pivot } +
+                sorted(xs.filter { it > pivot }.toIntArray())
+    }
+
     private fun sort(xs: IntArray, low: Int, high: Int) {
         if (low < high) {
             val p = partition(xs, low, high)

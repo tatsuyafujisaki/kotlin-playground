@@ -15,6 +15,10 @@ dependencies {
     testImplementation(libs.coroutines.test)
 }
 
+kotlin {
+    jvmToolchain(27)
+}
+
 tasks.test {
     useJUnitPlatform()
 }

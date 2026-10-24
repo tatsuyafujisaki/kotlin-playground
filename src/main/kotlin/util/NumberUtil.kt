@@ -9,12 +9,6 @@ import kotlin.math.sqrt
 object NumberUtil {
     object Bit {
         fun getBits(x: Int) = Integer.toBinaryString(x).padStart(Int.SIZE_BITS, '0')
-
-        fun getBitsForNonNegativeInt(x: Int) {
-            require(x >= 0)
-            x.toString(2).padStart(Int.SIZE_BITS, '0')
-        }
-
         fun getBitAt(x: Int, index: Int) = (x shr index) and 1
     }
 
